@@ -4,7 +4,7 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E5BF67D9-A1AC-4878-8072-0E5A23EA17CD}</ProjectGuid>
+    <ProjectGuid>{F3F1FA82-B2C8-43AD-92D4-BED7608E6053}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>App.ico</ApplicationIcon>
@@ -161,18 +161,17 @@
       <Isolated>False</Isolated>
     </COMReference>
     <Reference Include="Aga.Controls">
-      <HintPath>..\..\ThirdParty\Aga.Controls.dll</HintPath>
+      <HintPath>ThirdParty\Aga.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="DgvFilterPopup, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ThirdParty\DgvFilterPopup.dll</HintPath>
+    <Reference Include="DgvFilterPopup">
+      <HintPath>ThirdParty\DgvFilterPopup.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+      <HintPath>..\PiscesOfficial\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SSH.NET.2016.1.0-beta1\lib\net40\Renci.SshNet.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\PiscesOfficial\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="SpreadsheetGear2012.Core, Version=7.0.6.138, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="SpreadsheetGear2012.Drawing, Version=7.0.6.138, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
@@ -185,8 +184,8 @@
       <Name>System.Data</Name>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.108.0\lib\net451\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.SQLite, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\PiscesOfficial\packages\System.Data.SQLite.Core.1.0.110.0\lib\net451\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Design">
       <Name>System.Design</Name>
@@ -195,9 +194,6 @@
       <Name>System.Drawing</Name>
     </Reference>
     <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.4.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web">
       <Name>System.Web</Name>
     </Reference>
@@ -563,15 +559,15 @@
     <Compile Include="TimeSeriesSpreadsheet.Designer.cs">
       <DependentUpon>TimeSeriesSpreadsheet.cs</DependentUpon>
     </Compile>
-    <Content Include="..\..\..\..\..\..\..\utils\PSCP.EXE">
+    <Content Include="ThirdParty\PSCP.EXE">
       <Link>PSCP.EXE</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\TimeSeries\Reports\YakimaStatusTemplate.txt">
+    <Content Include="Reports\YakimaStatusTemplate.txt">
       <Link>YakimaStatusTemplate.txt</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\cfg\mpoll_inventory.txt">
+    <Content Include="cfg\mpoll_inventory.txt">
       <Link>cfg\mpoll_inventory.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -640,242 +636,242 @@
       <Link>hydromet-tools-private.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\TimeSeries\Reports\YakimaOthersAboveParker.csv">
+    <None Include="Reports\YakimaOthersAboveParker.csv">
       <Link>YakimaOthersAboveParker.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\boise_arc.dat">
+    <None Include="cfg\boise_arc.dat">
       <Link>cfg\boise_arc.dat</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\CC.DAT">
+    <None Include="cfg\CC.DAT">
       <Link>cfg\CC.DAT</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\daily_pcode.csv">
+    <None Include="cfg\daily_pcode.csv">
       <Link>cfg\daily_pcode.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\data_import_sites.csv">
+    <None Include="cfg\data_import_sites.csv">
       <Link>cfg\data_import_sites.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\goes.csv">
+    <None Include="cfg\goes.csv">
       <Link>cfg\goes.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\alarm.csv">
+    <None Include="cfg\gp\alarm.csv">
       <Link>cfg\gp\alarm.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\arc_inv.dat">
+    <None Include="cfg\gp\arc_inv.dat">
       <Link>cfg\gp\arc_inv.dat</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\billings_arc.dat">
+    <None Include="cfg\gp\billings_arc.dat">
       <Link>cfg\gp\billings_arc.dat</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\goes.csv">
+    <None Include="cfg\gp\goes.csv">
       <Link>cfg\gp\goes.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\group.csv">
+    <None Include="cfg\gp\group.csv">
       <Link>cfg\gp\group.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\pcode.csv">
+    <None Include="cfg\gp\pcode.csv">
       <Link>cfg\gp\pcode.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\ratingtables.xls">
+    <None Include="cfg\gp\ratingtables.xls">
       <Link>cfg\gp\ratingtables.xls</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\gp\site.csv">
+    <None Include="cfg\gp\site.csv">
       <Link>cfg\gp\site.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\group.csv">
+    <None Include="cfg\group.csv">
       <Link>cfg\group.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\instant_pcode.csv">
+    <None Include="cfg\instant_pcode.csv">
       <Link>cfg\instant_pcode.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\monthly_pcode.csv">
+    <None Include="cfg\monthly_pcode.csv">
       <Link>cfg\monthly_pcode.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\mpoll.cbt">
+    <None Include="cfg\mpoll.cbt">
       <Link>cfg\mpoll.cbt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\nwcc_inventory.csv">
+    <None Include="cfg\nwcc_inventory.csv">
       <Link>cfg\nwcc_inventory.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\owrd_station_list.csv">
+    <None Include="cfg\owrd_station_list.csv">
       <Link>cfg\owrd_station_list.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\pcode.csv">
+    <None Include="cfg\pcode.csv">
       <Link>cfg\pcode.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\rating_tables\bhr_af.csv">
+    <None Include="cfg\rating_tables\bhr_af.csv">
       <Link>cfg\rating_tables\bhr_af.csv</Link>
     </None>
-    <None Include="..\cfg\RuleCurves\AMF.csv">
+    <None Include="cfg\RuleCurves\AMF.csv">
       <Link>cfg\RuleCurves\AMF.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\BEUO.csv">
+    <None Include="cfg\RuleCurves\BEUO.csv">
       <Link>cfg\RuleCurves\BEUO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\BUL.csv">
+    <None Include="cfg\RuleCurves\BUL.csv">
       <Link>cfg\RuleCurves\BUL.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\ControlPoints.csv">
+    <None Include="cfg\RuleCurves\ControlPoints.csv">
       <Link>cfg\RuleCurves\ControlPoints.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\EMI.csv">
+    <None Include="cfg\RuleCurves\EMI.csv">
       <Link>cfg\RuleCurves\EMI.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\Heii.Dashed.csv">
+    <None Include="cfg\RuleCurves\Heii.Dashed.csv">
       <Link>cfg\RuleCurves\Heii.Dashed.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\Heii.Solid.csv">
+    <None Include="cfg\RuleCurves\Heii.Solid.csv">
       <Link>cfg\RuleCurves\Heii.Solid.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\HGH.csv">
+    <None Include="cfg\RuleCurves\HGH.csv">
       <Link>cfg\RuleCurves\HGH.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\HRSI.csv">
+    <None Include="cfg\RuleCurves\HRSI.csv">
       <Link>cfg\RuleCurves\HRSI.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\ISLI.csv">
+    <None Include="cfg\RuleCurves\ISLI.csv">
       <Link>cfg\RuleCurves\ISLI.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\LUC.csv">
+    <None Include="cfg\RuleCurves\LUC.csv">
       <Link>cfg\RuleCurves\LUC.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\MaxCapacity.csv">
+    <None Include="cfg\RuleCurves\MaxCapacity.csv">
       <Link>cfg\RuleCurves\MaxCapacity.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\MCKO.csv">
+    <None Include="cfg\RuleCurves\MCKO.csv">
       <Link>cfg\RuleCurves\MCKO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\MFDO.csv">
+    <None Include="cfg\RuleCurves\MFDO.csv">
       <Link>cfg\RuleCurves\MFDO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\OCHO.csv">
+    <None Include="cfg\RuleCurves\OCHO.csv">
       <Link>cfg\RuleCurves\OCHO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\OWY.csv">
+    <None Include="cfg\RuleCurves\OWY.csv">
       <Link>cfg\RuleCurves\OWY.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\PARW.csv">
+    <None Include="cfg\RuleCurves\PARW.csv">
       <Link>cfg\RuleCurves\PARW.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\PODO.csv">
+    <None Include="cfg\RuleCurves\PODO.csv">
       <Link>cfg\RuleCurves\PODO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\PRVO.csv">
+    <None Include="cfg\RuleCurves\PRVO.csv">
       <Link>cfg\RuleCurves\PRVO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\RIR.csv">
+    <None Include="cfg\RuleCurves\RIR.csv">
       <Link>cfg\RuleCurves\RIR.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\SCOO.csv">
+    <None Include="cfg\RuleCurves\SCOO.csv">
       <Link>cfg\RuleCurves\SCOO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\VariableForecastLevels.csv">
+    <None Include="cfg\RuleCurves\VariableForecastLevels.csv">
       <Link>cfg\RuleCurves\VariableForecastLevels.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\WARO.csv">
+    <None Include="cfg\RuleCurves\WARO.csv">
       <Link>cfg\RuleCurves\WARO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\wodi.forecast.csv">
+    <None Include="cfg\RuleCurves\wodi.forecast.csv">
       <Link>cfg\RuleCurves\wodi.forecast.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\wodi.inflow.csv">
+    <None Include="cfg\RuleCurves\wodi.inflow.csv">
       <Link>cfg\RuleCurves\wodi.inflow.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\RuleCurves\wodi.space.csv">
+    <None Include="cfg\RuleCurves\wodi.space.csv">
       <Link>cfg\RuleCurves\wodi.space.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\site.csv">
+    <None Include="cfg\site.csv">
       <Link>cfg\site.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\snotel_site_list2.csv">
+    <None Include="cfg\snotel_site_list2.csv">
       <Link>cfg\snotel_site_list2.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\snowgg_groups.csv">
+    <None Include="cfg\snowgg_groups.csv">
       <Link>cfg\snowgg_groups.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\snowgg_groups_gp.csv">
+    <None Include="cfg\snowgg_groups_gp.csv">
       <Link>cfg\snowgg_groups_gp.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\yak\alarm.csv">
+    <None Include="cfg\yak\alarm.csv">
       <Link>cfg\yak\alarm.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\yak\goes.csv">
+    <None Include="cfg\yak\goes.csv">
       <Link>cfg\yak\goes.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\yak\pcode.csv">
+    <None Include="cfg\yak\pcode.csv">
       <Link>cfg\yak\pcode.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\yak\site.csv">
+    <None Include="cfg\yak\site.csv">
       <Link>cfg\yak\site.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\yak\yakima_ratingtables.xls">
+    <None Include="cfg\yak\yakima_ratingtables.xls">
       <Link>cfg\yak\yakima_ratingtables.xls</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\yak\yakima_record_list.csv">
+    <None Include="cfg\yak\yakima_record_list.csv">
       <Link>cfg\yak\yakima_record_list.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Advanced\ManualEncodeDecode\Binary to Dec Conversion.xls" />
-    <None Include="..\cfg\RatingTableTemplate.xls">
+    <None Include="cfg\RatingTableTemplate.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\cfg\reclamationcgi.csv">
+    <None Include="cfg\reclamationcgi.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Decodes\DecodesDataSet.xsc">
@@ -1026,35 +1022,35 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Reclamation.Core.csproj">
+    <ProjectReference Include="..\PiscesOfficial\Core\Reclamation.Core.csproj">
       <Project>{80c73d4c-43cf-42de-addc-7b0f06ecf086}</Project>
       <Name>Reclamation.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Reclamation.Windows\Reclamation.Windows.csproj">
+    <ProjectReference Include="..\PiscesOfficial\Reclamation.Windows\Reclamation.Windows.csproj">
       <Project>{c9278b32-7c94-4532-9f4c-92109a6b8e03}</Project>
       <Name>Reclamation.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TimeSeries.Excel\Reclamation.TimeSeries.Excel.csproj">
+    <ProjectReference Include="..\PiscesOfficial\TimeSeries.Excel\Reclamation.TimeSeries.Excel.csproj">
       <Project>{37b543f5-03a5-479e-b20c-7b4acc53d16a}</Project>
       <Name>Reclamation.TimeSeries.Excel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TimeSeries.Graphing\Reclamation.TimeSeries.Graphing.csproj">
+    <ProjectReference Include="..\PiscesOfficial\TimeSeries.Graphing\Reclamation.TimeSeries.Graphing.csproj">
       <Project>{862135b0-793a-4f06-b731-26c61b3ad068}</Project>
       <Name>Reclamation.TimeSeries.Graphing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TimeSeries\Reclamation.TimeSeries.csproj">
+    <ProjectReference Include="..\PiscesOfficial\TimeSeries\Reclamation.TimeSeries.csproj">
       <Project>{5dd20a8a-4037-4885-ab91-2f5a3d1f48b4}</Project>
       <Name>Reclamation.TimeSeries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HydrometNotifications\HydrometNotifications.csproj">
+    <ProjectReference Include="..\PiscesOfficial\Applications\HydrometNotifications\HydrometNotifications.csproj">
       <Project>{09B73D14-AFBB-434E-A71D-73248CBBF0A3}</Project>
       <Name>HydrometNotifications</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TimeSeries.Forms\Reclamation.TimeSeries.Forms.csproj">
+    <ProjectReference Include="..\PiscesOfficial\TimeSeries.Forms\Reclamation.TimeSeries.Forms.csproj">
       <Project>{A7E73F2A-CA66-4BC8-934A-B5068C566F10}</Project>
       <Name>Reclamation.TimeSeries.Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PiscesUI\Pisces.csproj">
+    <ProjectReference Include="..\PiscesOfficial\Applications\PiscesUI\Pisces.csproj">
       <Project>{60537c98-6e33-42f7-9b7d-9b326abc019e}</Project>
       <Name>Pisces</Name>
     </ProjectReference>
@@ -1083,11 +1079,11 @@
     </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Import Project="..\PiscesOfficial\packages\System.Data.SQLite.Core.1.0.110.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\PiscesOfficial\packages\System.Data.SQLite.Core.1.0.110.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\PiscesOfficial\packages\System.Data.SQLite.Core.1.0.110.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\PiscesOfficial\packages\System.Data.SQLite.Core.1.0.110.0\build\net451\System.Data.SQLite.Core.targets'))" />
   </Target>
 </Project>
