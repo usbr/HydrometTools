@@ -193,7 +193,7 @@ namespace HydrometTools.SnowGG
                 this.timeSeriesGraph1.Series = finalSeriesCollection;
                 if (seriesList.Count == 1)
                 {
-                    this.timeSeriesGraph1.Title = HydrometInfoUtility.LookupSiteDescription(cbtt) + "  Elevation:" + HydrometInfoUtility.LookupElevation(pcode);
+                    this.timeSeriesGraph1.Title = HydrometInfoUtility.LookupSiteDescription(cbtt) + "  Elevation:" + HydrometInfoUtility.LookupElevation(cbtt);
                 }
                 //timeSeriesGraph1.GraphSettings = GetGraphSettings();
 

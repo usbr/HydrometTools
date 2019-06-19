@@ -61,7 +61,6 @@ namespace FcPlot
                 var avg30yrQU = Get30YearAverageSeries(pt.DailyStationQU, "qu", 5);
 
                 // sum volume for the forecast period (may,sep)
-
                 var t = new DateTime(start.DateTime.Year, 5, 1);
                 var t2 = new DateTime(start.DateTime.Year, 9, 30);
                 double historicalAverageResidual = SumResidual(avg30yrQU, t, t2);

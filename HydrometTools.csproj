@@ -632,7 +632,7 @@
     <EmbeddedResource Include="TimeSeriesSpreadsheetSG.resx">
       <DependentUpon>TimeSeriesSpreadsheetSG.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="..\..\..\..\..\..\..\utils\private\hydromet-tools-private.config">
+    <None Include="..\..\..\..\..\utils\private\hydromet-tools-private.config">
       <Link>hydromet-tools-private.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
