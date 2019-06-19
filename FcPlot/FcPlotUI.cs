@@ -93,6 +93,11 @@ namespace FcPlot
                 Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 FloodControlPoint pt = new FloodControlPoint(this.comboBoxSite.Text.ToString());
+                if (pt.DailyStationQU == "NA")
+                {
+                    return;
+                }
+
                 checkBoxDashed.Visible = pt.StationFC.ToLower() == "heii";
 
                 residForecast = new ResidualForecast(pt,checkBoxDashed.Checked);
