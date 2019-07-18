@@ -19,7 +19,8 @@ VersionInfoVersion={#FileVerStr}
 VersionInfoTextVersion={#AppVerStr}
 VersionInfoProductName="HydrometTools
 VersionInfoCompany="Reclamation"
-PrivilegesRequired=none
+PrivilegesRequired=none 
+LicenseFile=.\license.txt
 ;show dialogs even if previous install found
 DisableWelcomePage=no
 DisableDirPage=no
