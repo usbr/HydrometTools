@@ -445,32 +445,44 @@ namespace HydrometTools.SnowGG
             var dlg = new SelectBasin(SnowGGUtility.GetSnowggGroupList());
 
             dlg.ShowDialog();
-                // get group name.
-                string grp = dlg.SelectedGroup;
-                if (grp.Trim() != "")
-                {
-                    this.buttonSelectGroup.Text = grp;
-                    comboBoxCbtt.Items.Clear();
-                    // get list of items.
+            // get group name.
+            string grp = dlg.SelectedGroup;
+            string pcode = "se";
+            if (grp.ToLower().IndexOf("dams") != 0)
+            {
+                pcode = "af";
+            }
+            if (grp.Trim() != "")
+            {
+                this.buttonSelectGroup.Text = grp;
+                comboBoxCbtt.Items.Clear();
+                // get list of items.
 
-                    string[] list = SnowGGUtility.GetCbttList(grp);
-                    
-                    for (int i = 0; i < list.Length; i++)
-                    {
-                        // check if first itme is 'pcode:pc'
-                        if (i == 0 && list[0].IndexOf("pcode:") == 0)
-                        {// set pcode
+                string[] list = SnowGGUtility.GetCbttList(grp);
+
+                for (int i = 0; i < list.Length; i++)
+                {
+                    // check if first itme is 'pcode:pc'
+                    if (i == 0)
+                    {// set pcode
+                        if (list[0].IndexOf("pcode:") == 0)
+                        {
                             this.comboBoxPcode.Text = list[i].Substring(6);
                         }
                         else
                         {
-                            // add other items to cbtt combo box
-                            comboBoxCbtt.Items.Add(list[i]);
+                            this.comboBoxPcode.Text = pcode;
                         }
-
                     }
-                    comboBoxCbtt.SelectedIndex = 0;
+                    else
+                    {
+                        // add other items to cbtt combo box
+                        comboBoxCbtt.Items.Add(list[i]);
+                    }
+
                 }
+                comboBoxCbtt.SelectedIndex = 0;
+            }
         }
 
         private void comboBoxCbtt_SelectedIndexChanged(object sender, EventArgs e)

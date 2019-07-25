@@ -251,7 +251,7 @@
             this.buttonSelectGroup.Name = "buttonSelectGroup";
             this.buttonSelectGroup.Size = new System.Drawing.Size(139, 24);
             this.buttonSelectGroup.TabIndex = 7;
-            this.buttonSelectGroup.Text = "basin...";
+            this.buttonSelectGroup.Text = "Select...";
             this.toolTip1.SetToolTip(this.buttonSelectGroup, "select basin or group of sites");
             this.buttonSelectGroup.UseVisualStyleBackColor = true;
             this.buttonSelectGroup.Click += new System.EventHandler(this.buttonSelectGroup_Click);

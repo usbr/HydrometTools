@@ -21,8 +21,7 @@ namespace HydrometTools.SnowGG
                 var a = new ListViewItem(item);
                 a.ToolTipText = item;
                 listView1.Items.Add(a);
-            }
-            
+            }            
         }
 
         public SelectBasin()
@@ -39,6 +38,7 @@ namespace HydrometTools.SnowGG
                 return listView1.SelectedItems[0].Text;
             }
         }
+
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
