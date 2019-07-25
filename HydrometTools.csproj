@@ -1070,7 +1070,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="cfg\gp\" />
+    <Folder Include="cfg\rating_tables\" />
+    <Folder Include="cfg\RuleCurves\" />
+    <Folder Include="cfg\yak\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

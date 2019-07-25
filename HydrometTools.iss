@@ -26,7 +26,9 @@ DisableWelcomePage=no
 DisableDirPage=no
 DisableProgramGroupPage=no
 AlwaysShowDirOnReadyPage=yes
-AlwaysShowGroupOnReadyPage=yes
+AlwaysShowGroupOnReadyPage=yes        
+SignTool=signtool $f
+;signtool = "signtool.exe" sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a $p
 
 [InstallDelete]
 Type: files;  Name: "{app}\reclamationcgi.csv"
