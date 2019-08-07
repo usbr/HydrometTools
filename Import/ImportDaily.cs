@@ -51,19 +51,24 @@ namespace HydrometTools
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
+            refresh();
+        }
+
+        private void refresh()
+        {
             try
             {
                 labelStatus.Text = "Reading";
-                
+
                 Cursor = Cursors.WaitCursor;
                 Sync();
                 Application.DoEvents();
                 DateTime t1 = this.timeSelectorBeginEnd1.T1;
                 DateTime t2 = this.timeSelectorBeginEnd1.T2;
 
-                ReadExternalData( t1, t2);
+                ReadExternalData(t1, t2);
 
-                labelStatus.Text = "found " + externalSeries.Count + " records in "+GetSourceType().ToString();
+                labelStatus.Text = "found " + externalSeries.Count + " records in " + GetSourceType().ToString();
                 Application.DoEvents();
 
 
@@ -83,6 +88,8 @@ namespace HydrometTools
                 list.Add(hmet);
 
                 this.teeChartExplorerView1.SeriesList = list;
+                this.teeChartExplorerView1.SeriesList[0].Appearance.Color = "black";
+                this.teeChartExplorerView1.SeriesList[1].Appearance.Color = "blue";
                 //this.timeSeriesGraph1.Series = list;
                 this.teeChartExplorerView1.Draw();
                 //this.timeSeriesGraph1.Draw(true);
@@ -93,14 +100,14 @@ namespace HydrometTools
                 SeriesList list2 = new SeriesList();
                 list2.Add(diff);
                 timeSeriesGraph2.Series = list2;
-
+                timeSeriesGraph2.Series[0].Appearance.Color = "red";
                 timeSeriesGraph2.Draw(true);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message+" \n"+ex.StackTrace);
-                
+                MessageBox.Show(ex.Message + " \n" + ex.StackTrace);
+
 
             }
             finally
@@ -220,7 +227,7 @@ namespace HydrometTools
         public void Sync()
         {
             teeChartExplorerView1.Clear();
-
+            timeSeriesGraph2.Clear();
             this.textBoxcbtt.Text = csv.Rows[rowIndex]["cbtt"].ToString();
             this.textBoxPcode.Text = csv.Rows[rowIndex]["pcode"].ToString();
             this.textBoxUsgs.Text = csv.Rows[rowIndex]["usgs"].ToString();
@@ -259,6 +266,9 @@ namespace HydrometTools
             {
                 rowIndex = comboBoxSite.SelectedIndex;
                 Sync();
+                comboBoxSite.SelectedIndex = rowIndex;
+                if (checkBoxAutoRefresh.Checked)
+                    buttonRefresh_Click(this, EventArgs.Empty);
             }
         }
         private void buttonNext_Click(object sender, EventArgs e)
