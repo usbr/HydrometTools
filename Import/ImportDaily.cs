@@ -5,10 +5,10 @@ using Reclamation.TimeSeries;
 using Reclamation.TimeSeries.Hydromet;
 using Reclamation.Core;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using Reclamation.TimeSeries.Owrd;
-using System.Configuration;
 using Reclamation.TimeSeries.Nrcs;
-using System.Web.Security;
 using Reclamation.TimeSeries.Graphing;
 using Reclamation.TimeSeries.IDWR;
 
@@ -20,7 +20,7 @@ namespace HydrometTools
     /// </summary>
     public partial class ImportDaily : UserControl
     {
-        enum ExternalSource { USGS, OWRD, Excel, IDACORP,nrcs, Idwr };
+        enum ExternalSource { USGS, OWRD, Excel, IDACORP, nrcs, Idwr, NA };
         CsvFile csv;
         int rowIndex = 0;
         Series externalSeries;
@@ -36,22 +36,24 @@ namespace HydrometTools
             this.timeSelectorBeginEnd1.T1 = new DateTime(DateTime.Now.Year - 5, 10, 1);
             this.timeSelectorBeginEnd1.T2 = DateTime.Now.Date;
 
-            // Move constructors for the TeeChart graphs outside of the initialization section to bypass designer errors at design-time
-            teeChartExplorerView1 = new Reclamation.TimeSeries.Graphing.GraphExplorerView(new TimeSeriesTeeChartGraph());
-            this.teeChartExplorerView1.Parent = this.panelChart;
-            this.teeChartExplorerView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            // [JR] Move constructors for the TeeChart graphs outside of the initialization section to bypass designer errors at design-time
+            {
+                teeChartExplorerView1 = new Reclamation.TimeSeries.Graphing.GraphExplorerView(new TimeSeriesTeeChartGraph());
+                this.teeChartExplorerView1.Parent = this.panelChart;
+                this.teeChartExplorerView1.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            timeSeriesGraph2 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
-            this.timeSeriesGraph2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.timeSeriesGraph2.Location = new System.Drawing.Point(0, 373);
-            this.timeSeriesGraph2.MissingDataValue = -999D;
-            this.timeSeriesGraph2.MultiLeftAxis = false;
-            this.timeSeriesGraph2.Name = "timeSeriesGraph2";
-            this.timeSeriesGraph2.Size = new System.Drawing.Size(939, 159);
-            this.timeSeriesGraph2.SubTitle = "";
-            this.timeSeriesGraph2.TabIndex = 1;
-            this.timeSeriesGraph2.Title = "";
-            this.Controls.Add(this.timeSeriesGraph2);
+                timeSeriesGraph2 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
+                this.timeSeriesGraph2.Dock = System.Windows.Forms.DockStyle.Bottom;
+                this.timeSeriesGraph2.Location = new System.Drawing.Point(0, 373);
+                this.timeSeriesGraph2.MissingDataValue = -999D;
+                this.timeSeriesGraph2.MultiLeftAxis = false;
+                this.timeSeriesGraph2.Name = "timeSeriesGraph2";
+                this.timeSeriesGraph2.Size = new System.Drawing.Size(939, 159);
+                this.timeSeriesGraph2.SubTitle = "";
+                this.timeSeriesGraph2.TabIndex = 1;
+                this.timeSeriesGraph2.Title = "";
+                this.Controls.Add(this.timeSeriesGraph2);
+            }
 
             var fn = FileUtility.GetFileReference("data_import_sites.csv");
             if(File.Exists(fn))
@@ -59,19 +61,33 @@ namespace HydrometTools
                 OpenFile(fn);
             }
         }
-
-       
+               
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             refresh();
         }
 
+
+        private void updateStatus(string msg, bool critical = false)
+        {
+            labelStatus.Text = msg;
+            if (critical)
+            {
+                labelStatus.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                labelStatus.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+
         private void refresh()
         {
             try
             {
-                labelStatus.Text = "Reading";
+                updateStatus("Reading Data...");
 
                 Cursor = Cursors.WaitCursor;
                 Sync();
@@ -79,23 +95,16 @@ namespace HydrometTools
                 DateTime t1 = this.timeSelectorBeginEnd1.T1;
                 DateTime t2 = this.timeSelectorBeginEnd1.T2;
 
-                ReadDailyExternalData(t1, t2);
-
-                labelStatus.Text = "found " + externalSeries.Count + " records in " + GetSourceType().ToString();
                 Application.DoEvents();
-
-
                 HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
-
                 hmet = new HydrometDailySeries(textBoxcbtt.Text.Trim(),
                     textBoxPcode.Text.Trim(), svr);
                 hmet.Read(t1, t2);
-
-
                 int hmetCount = hmet.Count - hmet.CountMissing();
-                labelStatus.Text += " and " + hmetCount + " records in hydromet";
-                Application.DoEvents();
+                
+                ReadDailyExternalData(t1, t2);
 
+                Application.DoEvents();
                 SeriesList list = new SeriesList();
                 list.Add(externalSeries);
                 list.Add(hmet);
@@ -107,21 +116,40 @@ namespace HydrometTools
                 this.teeChartExplorerView1.Draw();
                 //this.timeSeriesGraph1.Draw(true);
 
+                if (externalSeries.Count == 0)
+                {
+                    updateStatus("Online data source not found or has no data...", true);
+                }
+                else if (hmetCount == 0)
+                {
+                    updateStatus("No Hydromet data...", true);
+                }
+                else
+                {
+                    Series diff = hmet - externalSeries;
+                    List<double> diffVals = new List<double>(diff.Values);
+                    int diffCount = diffVals.Count(v => System.Math.Abs(v) > 0.05);
+                    if (diffCount > 0)
+                    {
+                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() + 
+                            " and " + hmetCount + " records in hydromet - " + diffCount + " records need updates...", true);
+                    }
+                    else
+                    {
+                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() + 
+                            " and " + hmetCount + " records in hydromet.");
+                    }
 
-                Series diff = hmet - externalSeries;
-
-                SeriesList list2 = new SeriesList();
-                list2.Add(diff);
-                timeSeriesGraph2.Series = list2;
-                timeSeriesGraph2.Series[0].Appearance.Color = "red";
-                timeSeriesGraph2.Draw(true);
-
+                    SeriesList list2 = new SeriesList();
+                    list2.Add(diff);
+                    timeSeriesGraph2.Series = list2;
+                    timeSeriesGraph2.Series[0].Appearance.Color = "red";
+                    timeSeriesGraph2.Draw(true);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " \n" + ex.StackTrace);
-
-
             }
             finally
             {
@@ -146,14 +174,14 @@ namespace HydrometTools
 
             if (textBoxSnotel.Text.Trim().Length > 0)
                 return ExternalSource.nrcs;
+
             if (textBoxIdwr.Text.Trim().Length > 0)
                 return ExternalSource.Idwr;
-
-
-            throw new NotImplementedException("Invalid type of Data Source.  Missing data?");
-
-
+            
+            updateStatus("Invalid Data Source.  Missing data?", true);
+            return ExternalSource.NA;
         }
+
 
         private void ReadDailyExternalData(DateTime t1, DateTime t2)
         {
@@ -187,24 +215,28 @@ namespace HydrometTools
                 case ExternalSource.Idwr:
                     externalSeries = new IDWRDailySeries(textBoxIdwr.Text.Trim());
                     break;
+                default:
+                    updateStatus("Invalid Data Source.  Missing data?", true);
+                    externalSeries = new Series("", TimeInterval.Daily);
+                    return;
+                    break;
             }
 
             externalSeries.Read(t1, t2);
+
             // convert units if needed
-
             if (externalSeries.Units == "degrees Celsius")
+            {
                 externalSeries.Units = "degrees C";
-
-            if (externalSeries.Units == "degrees C")
+            }
+            if (externalSeries.Units == "degrees C" )
             {
                 Reclamation.TimeSeries.Math.ConvertUnits(externalSeries, "degrees F");
             }
 
-
             externalSeries.Appearance.LegendText = GetSourceType().ToString() + " " + externalSeries.Name;
-
-
         }
+
 
         private static UsgsDailyParameter FindUsgsParameter(string pc)
         {
@@ -219,18 +251,16 @@ namespace HydrometTools
             if (pc == "wz")
                 rval = UsgsDailyParameter.DailyMeanTemperature;
 
-
             return rval;
         }
-
 
        
         private Series GetIdahoPowerSeries()
         {
             var s = new Reclamation.TimeSeries.IdahoPower.IdahoPowerSeries(textBoxIdaCorp.Text,TimeInterval.Daily);
-            return s;
-            
+            return s;            
         }
+
 
         public void Sync()
         {
@@ -247,10 +277,12 @@ namespace HydrometTools
             this.textBoxLastUpdate.Text = csv.Rows[rowIndex]["Updated"].ToString();
         }
 
+
         private void Form1_Load(object sender, EventArgs e)
         {
             //OpenFile("cata);
         }
+
 
         private void OpenFile(string filename)
         {
@@ -268,6 +300,7 @@ namespace HydrometTools
             Sync();
         }
 
+
         private void comboBoxSite_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxSite.SelectedIndex != rowIndex)
@@ -279,6 +312,8 @@ namespace HydrometTools
                     buttonRefresh_Click(this, EventArgs.Empty);
             }
         }
+
+
         private void buttonNext_Click(object sender, EventArgs e)
         {
             rowIndex++;
@@ -293,6 +328,7 @@ namespace HydrometTools
                 buttonRefresh_Click(this, EventArgs.Empty);
         }
 
+
         private void buttonPrevious_Click(object sender, EventArgs e)
         {
             rowIndex--;
@@ -302,48 +338,53 @@ namespace HydrometTools
             }
             Sync();
             comboBoxSite.SelectedIndex = rowIndex;
+            if (checkBoxAutoRefresh.Checked)
+                buttonRefresh_Click(this, EventArgs.Empty);
         }
+
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (externalSeries == null || hmet == null)
             {
-                MessageBox.Show("can not save. please try loading data");
+                updateStatus("Can not save. please try loading data", true);
                 return;
             }
 
             string cbtt = textBoxcbtt.Text.Trim().ToUpper();
             string pcode = textBoxPcode.Text.Trim().ToUpper();
 
-
-
             string fileName = FileUtility.GetTempFileName(".txt"); //"update" + DateTime.Now.ToString("yyyyMMMdd") + ".txt";
-
             int counter = WriteArchivesImportFile(cbtt, pcode, fileName,GetSourceType());
-            labelStatus.Text = "Saved  "+counter+" records to file " + fileName;
+            updateStatus("Found " + counter + " records to update...");// + fileName);
             Application.DoEvents();
 
-
-            if(counter == 0)
+            if (counter == 0)
+            {
+                updateStatus("No data to update...", true);
                 return;
+            }
 
             Login login = new Login();
 
             bool admin = Login.AdminPasswordIsValid();
-            if( !admin)
-                MessageBox.Show("You must enter the administrator password in the setup tab for this feature to work");
+            if (!admin)
+            {
+                updateStatus("You must enter the administrator password in the setup tab for this feature to work", true);
+            }
 
             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
+            updateStatus("Updating " + counter + " records...");// + fileName);
 
-            if ( svr == HydrometHost.GreatPlains &&
-                admin && login.ShowDialog() == DialogResult.OK)
+            if ( svr == HydrometHost.GreatPlains && admin && login.ShowDialog() == DialogResult.OK)
             {
                 SaveToVMS(fileName, login);
             }
-            else if( admin)
+            else if(admin)
             {
                 SaveToLinux(fileName);
             }
+            refresh();
         }
 
         private void SaveToVMS(string fileName, Login login)
@@ -374,7 +415,7 @@ namespace HydrometTools
 
                 if (Database.IsPasswordBlank())
                 {
-                    MessageBox.Show("Warning: the database password is blank.");
+                    updateStatus("Warning: the database password is blank.", true);
                     return;
                 }
 
@@ -399,15 +440,11 @@ namespace HydrometTools
             {
                 DateTime t = externalSeries[i].DateTime;
                 string flag = externalSeries[i].Flag;
-
                 
                 if (ValidData(pcode, src, flag) )
                 {
-                    if (
-                          hmet.IndexOf(t) >= 0 &&
-                           System.Math.Abs(hmet[t].Value - externalSeries[i].Value) > 0.01 
-                          && System.Math.Abs(externalSeries[i].Value - 998877) > .1
-                        )
+                    if (hmet.IndexOf(t) >= 0 && System.Math.Abs(hmet[t].Value - externalSeries[i].Value) > 0.01
+                          && System.Math.Abs(externalSeries[i].Value - 998877) > .1)
                     {
                         // save to output file
                         output.WriteLine(t.ToString("MM/dd/yyyy")
@@ -437,6 +474,7 @@ namespace HydrometTools
                                 || src == ExternalSource.IDACORP;
         }
 
+
         private void buttonSaveCsv_Click(object sender, EventArgs e)
         {
             csv.Rows[rowIndex]["cbtt"] = this.textBoxcbtt.Text;
@@ -453,7 +491,6 @@ namespace HydrometTools
         }
 
        
-
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
