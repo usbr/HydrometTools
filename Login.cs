@@ -175,9 +175,9 @@ namespace HydrometTools
             // buttonOk
             // 
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Location = new System.Drawing.Point(320, 16);
+            this.buttonOk.Location = new System.Drawing.Point(384, 18);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(75, 23);
+            this.buttonOk.Size = new System.Drawing.Size(90, 27);
             this.buttonOk.TabIndex = 0;
             this.buttonOk.Text = "Ok";
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -188,51 +188,51 @@ namespace HydrometTools
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxPass);
             this.groupBox1.Controls.Add(this.textBoxUser);
-            this.groupBox1.Location = new System.Drawing.Point(16, 24);
+            this.groupBox1.Location = new System.Drawing.Point(19, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(298, 79);
+            this.groupBox1.Size = new System.Drawing.Size(358, 91);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "login";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(24, 42);
+            this.label2.Location = new System.Drawing.Point(29, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 23);
+            this.label2.Size = new System.Drawing.Size(67, 27);
             this.label2.TabIndex = 3;
             this.label2.Text = "password";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(24, 19);
+            this.label1.Location = new System.Drawing.Point(29, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 23);
+            this.label1.Size = new System.Drawing.Size(75, 26);
             this.label1.TabIndex = 2;
             this.label1.Text = "username";
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(96, 44);
+            this.textBoxPass.Location = new System.Drawing.Point(115, 51);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
-            this.textBoxPass.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPass.Size = new System.Drawing.Size(120, 22);
             this.textBoxPass.TabIndex = 1;
             this.toolTip1.SetToolTip(this.textBoxPass, "pnhyd0 password");
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(96, 16);
+            this.textBoxUser.Location = new System.Drawing.Point(115, 18);
             this.textBoxUser.Name = "textBoxUser";
-            this.textBoxUser.Size = new System.Drawing.Size(100, 20);
+            this.textBoxUser.Size = new System.Drawing.Size(120, 22);
             this.textBoxUser.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBoxUser, "username for pnhyd0");
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(320, 48);
+            this.buttonCancel.Location = new System.Drawing.Point(384, 55);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(90, 27);
             this.buttonCancel.TabIndex = 2;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -241,9 +241,9 @@ namespace HydrometTools
             // 
             this.groupBoxPassMpoll.Controls.Add(this.label3);
             this.groupBoxPassMpoll.Controls.Add(this.textBoxPassMpoll);
-            this.groupBoxPassMpoll.Location = new System.Drawing.Point(16, 109);
+            this.groupBoxPassMpoll.Location = new System.Drawing.Point(19, 126);
             this.groupBoxPassMpoll.Name = "groupBoxPassMpoll";
-            this.groupBoxPassMpoll.Size = new System.Drawing.Size(298, 56);
+            this.groupBoxPassMpoll.Size = new System.Drawing.Size(358, 64);
             this.groupBoxPassMpoll.TabIndex = 3;
             this.groupBoxPassMpoll.TabStop = false;
             this.groupBoxPassMpoll.Text = "mpoll login";
@@ -251,18 +251,18 @@ namespace HydrometTools
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(24, 23);
+            this.label3.Location = new System.Drawing.Point(29, 27);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 23);
+            this.label3.Size = new System.Drawing.Size(67, 26);
             this.label3.TabIndex = 4;
             this.label3.Text = "password";
             // 
             // textBoxPassMpoll
             // 
-            this.textBoxPassMpoll.Location = new System.Drawing.Point(96, 20);
+            this.textBoxPassMpoll.Location = new System.Drawing.Point(115, 23);
             this.textBoxPassMpoll.Name = "textBoxPassMpoll";
             this.textBoxPassMpoll.PasswordChar = '*';
-            this.textBoxPassMpoll.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPassMpoll.Size = new System.Drawing.Size(120, 22);
             this.textBoxPassMpoll.TabIndex = 0;
             // 
             // groupBoxHydromet
@@ -270,9 +270,9 @@ namespace HydrometTools
             this.groupBoxHydromet.Controls.Add(this.checkBoxACE);
             this.groupBoxHydromet.Controls.Add(this.checkBoxRatingTable);
             this.groupBoxHydromet.Controls.Add(this.checkBoxArchiver);
-            this.groupBoxHydromet.Location = new System.Drawing.Point(16, 109);
+            this.groupBoxHydromet.Location = new System.Drawing.Point(19, 126);
             this.groupBoxHydromet.Name = "groupBoxHydromet";
-            this.groupBoxHydromet.Size = new System.Drawing.Size(248, 61);
+            this.groupBoxHydromet.Size = new System.Drawing.Size(298, 70);
             this.groupBoxHydromet.TabIndex = 4;
             this.groupBoxHydromet.TabStop = false;
             this.groupBoxHydromet.Text = "advanced options";
@@ -281,9 +281,9 @@ namespace HydrometTools
             // checkBoxACE
             // 
             this.checkBoxACE.AutoSize = true;
-            this.checkBoxACE.Location = new System.Drawing.Point(170, 18);
+            this.checkBoxACE.Location = new System.Drawing.Point(204, 21);
             this.checkBoxACE.Name = "checkBoxACE";
-            this.checkBoxACE.Size = new System.Drawing.Size(70, 17);
+            this.checkBoxACE.Size = new System.Drawing.Size(88, 21);
             this.checkBoxACE.TabIndex = 2;
             this.checkBoxACE.Text = "ace table";
             this.checkBoxACE.UseVisualStyleBackColor = true;
@@ -291,9 +291,9 @@ namespace HydrometTools
             // checkBoxRatingTable
             // 
             this.checkBoxRatingTable.AutoSize = true;
-            this.checkBoxRatingTable.Location = new System.Drawing.Point(27, 18);
+            this.checkBoxRatingTable.Location = new System.Drawing.Point(32, 21);
             this.checkBoxRatingTable.Name = "checkBoxRatingTable";
-            this.checkBoxRatingTable.Size = new System.Drawing.Size(133, 17);
+            this.checkBoxRatingTable.Size = new System.Drawing.Size(175, 21);
             this.checkBoxRatingTable.TabIndex = 1;
             this.checkBoxRatingTable.Text = "Apply rating table math";
             this.checkBoxRatingTable.UseVisualStyleBackColor = true;
@@ -301,9 +301,9 @@ namespace HydrometTools
             // checkBoxArchiver
             // 
             this.checkBoxArchiver.AutoSize = true;
-            this.checkBoxArchiver.Location = new System.Drawing.Point(27, 38);
+            this.checkBoxArchiver.Location = new System.Drawing.Point(32, 44);
             this.checkBoxArchiver.Name = "checkBoxArchiver";
-            this.checkBoxArchiver.Size = new System.Drawing.Size(125, 17);
+            this.checkBoxArchiver.Size = new System.Drawing.Size(162, 21);
             this.checkBoxArchiver.TabIndex = 0;
             this.checkBoxArchiver.Text = "compute daily values";
             this.checkBoxArchiver.UseVisualStyleBackColor = true;
@@ -312,7 +312,7 @@ namespace HydrometTools
             // 
             this.AcceptButton = this.buttonOk;
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Dialog;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.ClientSize = new System.Drawing.Size(504, 228);
             this.Controls.Add(this.groupBoxHydromet);
             this.Controls.Add(this.groupBox1);

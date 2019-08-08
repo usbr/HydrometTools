@@ -54,34 +54,36 @@ namespace HydrometTools
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             this.labelVersion = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelVersion
             // 
-            this.labelVersion.Location = new System.Drawing.Point(8, 48);
+            this.labelVersion.Location = new System.Drawing.Point(10, 55);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(320, 32);
+            this.labelVersion.Size = new System.Drawing.Size(384, 37);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "version number here..";
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(264, 136);
+            this.buttonOk.Location = new System.Drawing.Point(317, 157);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(75, 23);
+            this.buttonOk.Size = new System.Drawing.Size(90, 26);
             this.buttonOk.TabIndex = 1;
             this.buttonOk.Text = "Ok";
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // About
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.ClientSize = new System.Drawing.Size(344, 174);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";
