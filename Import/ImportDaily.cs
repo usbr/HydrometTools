@@ -61,7 +61,11 @@ namespace HydrometTools
                 OpenFile(fn);
             }
         }
+<<<<<<< HEAD
 
+=======
+               
+>>>>>>> remotes/origin/master
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
@@ -95,15 +99,27 @@ namespace HydrometTools
                 DateTime t1 = this.timeSelectorBeginEnd1.T1;
                 DateTime t2 = this.timeSelectorBeginEnd1.T2;
 
+<<<<<<< HEAD
                 Application.DoEvents();
+=======
+                ReadDailyExternalData(t1, t2);
+
+                Application.DoEvents();
+
+>>>>>>> remotes/origin/master
                 HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
                 hmet = new HydrometDailySeries(textBoxcbtt.Text.Trim(),
                     textBoxPcode.Text.Trim(), svr);
                 hmet.Read(t1, t2);
                 int hmetCount = hmet.Count - hmet.CountMissing();
 
+<<<<<<< HEAD
                 ReadDailyExternalData(t1, t2);
 
+=======
+                int hmetCount = hmet.Count - hmet.CountMissing();
+                updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() + " and " + hmetCount + " records in hydromet");
+>>>>>>> remotes/origin/master
                 Application.DoEvents();
                 SeriesList list = new SeriesList();
                 list.Add(externalSeries);
@@ -116,6 +132,7 @@ namespace HydrometTools
                 this.teeChartExplorerView1.Draw();
                 //this.timeSeriesGraph1.Draw(true);
 
+<<<<<<< HEAD
                 if (externalSeries.Count == 0)
                 {
                     updateStatus("Online data source not found or has no data...", true);
@@ -146,6 +163,15 @@ namespace HydrometTools
                     timeSeriesGraph2.Series[0].Appearance.Color = "red";
                     timeSeriesGraph2.Draw(true);
                 }
+=======
+                Series diff = hmet - externalSeries;
+
+                SeriesList list2 = new SeriesList();
+                list2.Add(diff);
+                timeSeriesGraph2.Series = list2;
+                timeSeriesGraph2.Series[0].Appearance.Color = "red";
+                timeSeriesGraph2.Draw(true);
+>>>>>>> remotes/origin/master
             }
             catch (Exception ex)
             {
@@ -177,7 +203,11 @@ namespace HydrometTools
 
             if (textBoxIdwr.Text.Trim().Length > 0)
                 return ExternalSource.Idwr;
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> remotes/origin/master
             updateStatus("Invalid Data Source.  Missing data?", true);
             return ExternalSource.NA;
         }
@@ -229,7 +259,11 @@ namespace HydrometTools
             {
                 externalSeries.Units = "degrees C";
             }
+<<<<<<< HEAD
             if (externalSeries.Units == "degrees C")
+=======
+            if (externalSeries.Units == "degrees C" )
+>>>>>>> remotes/origin/master
             {
                 Reclamation.TimeSeries.Math.ConvertUnits(externalSeries, "degrees F");
             }
@@ -254,7 +288,11 @@ namespace HydrometTools
             return rval;
         }
 
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> remotes/origin/master
         private Series GetIdahoPowerSeries()
         {
             var s = new Reclamation.TimeSeries.IdahoPower.IdahoPowerSeries(textBoxIdaCorp.Text, TimeInterval.Daily);
@@ -355,8 +393,14 @@ namespace HydrometTools
             string pcode = textBoxPcode.Text.Trim().ToUpper();
 
             string fileName = FileUtility.GetTempFileName(".txt"); //"update" + DateTime.Now.ToString("yyyyMMMdd") + ".txt";
+<<<<<<< HEAD
             int counter = WriteArchivesImportFile(cbtt, pcode, fileName, GetSourceType());
             updateStatus("Found " + counter + " records to update...");// + fileName);
+=======
+
+            int counter = WriteArchivesImportFile(cbtt, pcode, fileName,GetSourceType());
+            updateStatus("Saved  " + counter + " records to file " + fileName);
+>>>>>>> remotes/origin/master
             Application.DoEvents();
 
             if (counter == 0)
@@ -368,10 +412,15 @@ namespace HydrometTools
             Login login = new Login();
 
             bool admin = Login.AdminPasswordIsValid();
+<<<<<<< HEAD
             if (!admin)
             {
                 updateStatus("You must enter the administrator password in the setup tab for this feature to work", true);
             }
+=======
+            if( !admin)
+                updateStatus("You must enter the administrator password in the setup tab for this feature to work", true);
+>>>>>>> remotes/origin/master
 
             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
             updateStatus("Updating " + counter + " records...");// + fileName);
@@ -490,7 +539,11 @@ namespace HydrometTools
             DataTableOutput.Write(this.csv, labelFileName.Text, false);
         }
 
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> remotes/origin/master
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
