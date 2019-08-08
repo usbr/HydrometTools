@@ -56,12 +56,12 @@ namespace HydrometTools
             }
 
             var fn = FileUtility.GetFileReference("data_import_sites.csv");
-            if(File.Exists(fn))
+            if (File.Exists(fn))
             {
                 OpenFile(fn);
             }
         }
-               
+
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
@@ -101,7 +101,7 @@ namespace HydrometTools
                     textBoxPcode.Text.Trim(), svr);
                 hmet.Read(t1, t2);
                 int hmetCount = hmet.Count - hmet.CountMissing();
-                
+
                 ReadDailyExternalData(t1, t2);
 
                 Application.DoEvents();
@@ -131,12 +131,12 @@ namespace HydrometTools
                     int diffCount = diffVals.Count(v => System.Math.Abs(v) > 0.05);
                     if (diffCount > 0)
                     {
-                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() + 
+                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() +
                             " and " + hmetCount + " records in hydromet - " + diffCount + " records need updates...", true);
                     }
                     else
                     {
-                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() + 
+                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() +
                             " and " + hmetCount + " records in hydromet.");
                     }
 
@@ -177,7 +177,7 @@ namespace HydrometTools
 
             if (textBoxIdwr.Text.Trim().Length > 0)
                 return ExternalSource.Idwr;
-            
+
             updateStatus("Invalid Data Source.  Missing data?", true);
             return ExternalSource.NA;
         }
@@ -229,7 +229,7 @@ namespace HydrometTools
             {
                 externalSeries.Units = "degrees C";
             }
-            if (externalSeries.Units == "degrees C" )
+            if (externalSeries.Units == "degrees C")
             {
                 Reclamation.TimeSeries.Math.ConvertUnits(externalSeries, "degrees F");
             }
@@ -254,11 +254,11 @@ namespace HydrometTools
             return rval;
         }
 
-       
+
         private Series GetIdahoPowerSeries()
         {
-            var s = new Reclamation.TimeSeries.IdahoPower.IdahoPowerSeries(textBoxIdaCorp.Text,TimeInterval.Daily);
-            return s;            
+            var s = new Reclamation.TimeSeries.IdahoPower.IdahoPowerSeries(textBoxIdaCorp.Text, TimeInterval.Daily);
+            return s;
         }
 
 
@@ -320,7 +320,7 @@ namespace HydrometTools
             if (rowIndex >= csv.Rows.Count)
             {
                 rowIndex = 0;
-               // MessageBox.Show("back to the beginning");
+                // MessageBox.Show("back to the beginning");
             }
             Sync();
             comboBoxSite.SelectedIndex = rowIndex;
@@ -332,7 +332,7 @@ namespace HydrometTools
         private void buttonPrevious_Click(object sender, EventArgs e)
         {
             rowIndex--;
-            if (rowIndex <0)
+            if (rowIndex < 0)
             {
                 rowIndex = 0;
             }
@@ -355,7 +355,7 @@ namespace HydrometTools
             string pcode = textBoxPcode.Text.Trim().ToUpper();
 
             string fileName = FileUtility.GetTempFileName(".txt"); //"update" + DateTime.Now.ToString("yyyyMMMdd") + ".txt";
-            int counter = WriteArchivesImportFile(cbtt, pcode, fileName,GetSourceType());
+            int counter = WriteArchivesImportFile(cbtt, pcode, fileName, GetSourceType());
             updateStatus("Found " + counter + " records to update...");// + fileName);
             Application.DoEvents();
 
@@ -376,11 +376,11 @@ namespace HydrometTools
             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
             updateStatus("Updating " + counter + " records...");// + fileName);
 
-            if ( svr == HydrometHost.GreatPlains && admin && login.ShowDialog() == DialogResult.OK)
+            if (svr == HydrometHost.GreatPlains && admin && login.ShowDialog() == DialogResult.OK)
             {
                 SaveToVMS(fileName, login);
             }
-            else if(admin)
+            else if (admin)
             {
                 SaveToLinux(fileName);
             }
@@ -410,7 +410,7 @@ namespace HydrometTools
         {
             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
 
-            if (svr == HydrometHost.PNLinux )
+            if (svr == HydrometHost.PNLinux)
             { // saving to Postgresql/Linux
 
                 if (Database.IsPasswordBlank())
@@ -429,7 +429,7 @@ namespace HydrometTools
         }
 
 
-        private int WriteArchivesImportFile(string cbtt, string pcode, string fileName , ExternalSource src)
+        private int WriteArchivesImportFile(string cbtt, string pcode, string fileName, ExternalSource src)
         {
             StreamWriter output = new StreamWriter(fileName, true);
 
@@ -440,8 +440,8 @@ namespace HydrometTools
             {
                 DateTime t = externalSeries[i].DateTime;
                 string flag = externalSeries[i].Flag;
-                
-                if (ValidData(pcode, src, flag) )
+
+                if (ValidData(pcode, src, flag))
                 {
                     if (hmet.IndexOf(t) >= 0 && System.Math.Abs(hmet[t].Value - externalSeries[i].Value) > 0.01
                           && System.Math.Abs(externalSeries[i].Value - 998877) > .1)
@@ -469,7 +469,7 @@ namespace HydrometTools
                                 || pcode.Trim().ToUpper() == "WZ"
                                 || src == ExternalSource.Idwr && pcode.ToLower() == "qj"
                                 || src == ExternalSource.OWRD && flag == "Published"
-                                || src == ExternalSource.OWRD &&  checkBoxProvisional.Checked
+                                || src == ExternalSource.OWRD && checkBoxProvisional.Checked
                                 || src == ExternalSource.nrcs
                                 || src == ExternalSource.IDACORP;
         }
@@ -479,18 +479,18 @@ namespace HydrometTools
         {
             csv.Rows[rowIndex]["cbtt"] = this.textBoxcbtt.Text;
             csv.Rows[rowIndex]["pcode"] = this.textBoxPcode.Text;
-            csv.Rows[rowIndex]["usgs"] = this.textBoxUsgs.Text ;
+            csv.Rows[rowIndex]["usgs"] = this.textBoxUsgs.Text;
             csv.Rows[rowIndex]["owrd"] = this.textBoxOwrd.Text;
             csv.Rows[rowIndex]["idwr"] = this.textBoxIdwr.Text;
             csv.Rows[rowIndex]["notes"] = this.textBoxNotes.Text;
             csv.Rows[rowIndex]["idahopower"] = this.textBoxIdaCorp.Text;
             csv.Rows[rowIndex]["nrcs"] = this.textBoxSnotel.Text;
             csv.Rows[rowIndex]["Updated"] = this.textBoxLastUpdate.Text;
-            
+
             DataTableOutput.Write(this.csv, labelFileName.Text, false);
         }
 
-       
+
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -504,6 +504,6 @@ namespace HydrometTools
             }
         }
 
-       
+
     }
 }
