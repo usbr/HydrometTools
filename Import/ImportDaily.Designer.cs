@@ -62,7 +62,6 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.timeSelectorBeginEnd1 = new Reclamation.TimeSeries.Forms.TimeSelectorBeginEnd();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.timeSeriesGraph2 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
             this.panelChart = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -101,60 +100,67 @@
             this.panel1.Controls.Add(this.timeSelectorBeginEnd1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(939, 110);
+            this.panel1.Size = new System.Drawing.Size(1417, 147);
             this.panel1.TabIndex = 2;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(632, 43);
+            this.label9.Location = new System.Drawing.Point(597, 73);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 13);
+            this.label9.Size = new System.Drawing.Size(33, 17);
             this.label9.TabIndex = 39;
             this.label9.Text = "idwr";
             // 
             // textBoxIdwr
             // 
-            this.textBoxIdwr.Location = new System.Drawing.Point(617, 59);
+            this.textBoxIdwr.Location = new System.Drawing.Point(600, 97);
+            this.textBoxIdwr.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxIdwr.Name = "textBoxIdwr";
-            this.textBoxIdwr.Size = new System.Drawing.Size(76, 20);
+            this.textBoxIdwr.Size = new System.Drawing.Size(83, 22);
             this.textBoxIdwr.TabIndex = 38;
             // 
             // checkBoxProvisional
             // 
             this.checkBoxProvisional.AutoSize = true;
-            this.checkBoxProvisional.Location = new System.Drawing.Point(440, 83);
+            this.checkBoxProvisional.Location = new System.Drawing.Point(943, 72);
+            this.checkBoxProvisional.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxProvisional.Name = "checkBoxProvisional";
-            this.checkBoxProvisional.Size = new System.Drawing.Size(76, 17);
+            this.checkBoxProvisional.Size = new System.Drawing.Size(173, 21);
             this.checkBoxProvisional.TabIndex = 37;
-            this.checkBoxProvisional.Text = "provisional";
+            this.checkBoxProvisional.Text = "Also import Provisional";
             this.toolTip1.SetToolTip(this.checkBoxProvisional, "check to include USGS provisional data");
             this.checkBoxProvisional.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(722, 5);
+            this.label8.Location = new System.Drawing.Point(1136, 11);
+            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.Size = new System.Drawing.Size(78, 17);
             this.label8.TabIndex = 36;
             this.label8.Text = "last update";
             // 
             // textBoxLastUpdate
             // 
-            this.textBoxLastUpdate.Location = new System.Drawing.Point(787, 5);
+            this.textBoxLastUpdate.Location = new System.Drawing.Point(1139, 32);
+            this.textBoxLastUpdate.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxLastUpdate.Name = "textBoxLastUpdate";
             this.textBoxLastUpdate.ReadOnly = true;
-            this.textBoxLastUpdate.Size = new System.Drawing.Size(170, 20);
+            this.textBoxLastUpdate.Size = new System.Drawing.Size(273, 22);
             this.textBoxLastUpdate.TabIndex = 35;
             // 
             // buttonOpenFile
             // 
             this.buttonOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonOpenFile.Image")));
-            this.buttonOpenFile.Location = new System.Drawing.Point(12, 3);
+            this.buttonOpenFile.Location = new System.Drawing.Point(12, 6);
+            this.buttonOpenFile.Margin = new System.Windows.Forms.Padding(5);
             this.buttonOpenFile.Name = "buttonOpenFile";
-            this.buttonOpenFile.Size = new System.Drawing.Size(35, 18);
+            this.buttonOpenFile.Size = new System.Drawing.Size(63, 27);
             this.buttonOpenFile.TabIndex = 34;
             this.buttonOpenFile.UseVisualStyleBackColor = true;
             this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
@@ -162,18 +168,20 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(51, 4);
+            this.label7.Location = new System.Drawing.Point(85, 10);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.Size = new System.Drawing.Size(65, 17);
             this.label7.TabIndex = 33;
             this.label7.Text = "filename:";
             // 
             // labelFileName
             // 
             this.labelFileName.AutoSize = true;
-            this.labelFileName.Location = new System.Drawing.Point(103, 4);
+            this.labelFileName.Location = new System.Drawing.Point(183, 10);
+            this.labelFileName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelFileName.Name = "labelFileName";
-            this.labelFileName.Size = new System.Drawing.Size(77, 13);
+            this.labelFileName.Size = new System.Drawing.Size(102, 17);
             this.labelFileName.TabIndex = 32;
             this.labelFileName.Text = "select filename";
             // 
@@ -182,9 +190,10 @@
             this.checkBoxAutoRefresh.AutoSize = true;
             this.checkBoxAutoRefresh.Checked = true;
             this.checkBoxAutoRefresh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAutoRefresh.Location = new System.Drawing.Point(272, 4);
+            this.checkBoxAutoRefresh.Location = new System.Drawing.Point(762, 10);
+            this.checkBoxAutoRefresh.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxAutoRefresh.Name = "checkBoxAutoRefresh";
-            this.checkBoxAutoRefresh.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxAutoRefresh.Size = new System.Drawing.Size(107, 21);
             this.checkBoxAutoRefresh.TabIndex = 23;
             this.checkBoxAutoRefresh.Text = "auto refresh";
             this.checkBoxAutoRefresh.UseVisualStyleBackColor = true;
@@ -192,79 +201,92 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(785, 45);
+            this.label6.Location = new System.Drawing.Point(786, 73);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(87, 17);
             this.label6.TabIndex = 22;
             this.label6.Text = "nrcs (snotel)";
             // 
             // textBoxSnotel
             // 
-            this.textBoxSnotel.Location = new System.Drawing.Point(787, 59);
+            this.textBoxSnotel.Location = new System.Drawing.Point(786, 97);
+            this.textBoxSnotel.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxSnotel.Name = "textBoxSnotel";
-            this.textBoxSnotel.Size = new System.Drawing.Size(65, 20);
+            this.textBoxSnotel.Size = new System.Drawing.Size(83, 22);
             this.textBoxSnotel.TabIndex = 21;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(703, 45);
+            this.label5.Location = new System.Drawing.Point(691, 73);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.Size = new System.Drawing.Size(85, 17);
             this.label5.TabIndex = 20;
             this.label5.Text = "idaho power";
             // 
             // textBoxIdaCorp
             // 
-            this.textBoxIdaCorp.Location = new System.Drawing.Point(699, 59);
+            this.textBoxIdaCorp.Location = new System.Drawing.Point(693, 97);
+            this.textBoxIdaCorp.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxIdaCorp.Name = "textBoxIdaCorp";
-            this.textBoxIdaCorp.Size = new System.Drawing.Size(82, 20);
+            this.textBoxIdaCorp.Size = new System.Drawing.Size(83, 22);
             this.textBoxIdaCorp.TabIndex = 19;
             // 
             // comboBoxSite
             // 
             this.comboBoxSite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSite.FormattingEnabled = true;
-            this.comboBoxSite.Location = new System.Drawing.Point(305, 22);
+            this.comboBoxSite.Location = new System.Drawing.Point(283, 44);
+            this.comboBoxSite.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxSite.Name = "comboBoxSite";
-            this.comboBoxSite.Size = new System.Drawing.Size(429, 21);
+            this.comboBoxSite.Size = new System.Drawing.Size(609, 24);
             this.comboBoxSite.TabIndex = 18;
             this.comboBoxSite.SelectedIndexChanged += new System.EventHandler(this.comboBoxSite_SelectedIndexChanged);
             // 
             // buttonSaveCsv
             // 
-            this.buttonSaveCsv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonSaveCsv.BackgroundImage")));
-            this.buttonSaveCsv.Location = new System.Drawing.Point(876, 79);
+            this.buttonSaveCsv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonSaveCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveCsv.ForeColor = System.Drawing.Color.Black;
+            this.buttonSaveCsv.Location = new System.Drawing.Point(1200, 108);
+            this.buttonSaveCsv.Margin = new System.Windows.Forms.Padding(5);
             this.buttonSaveCsv.Name = "buttonSaveCsv";
-            this.buttonSaveCsv.Size = new System.Drawing.Size(30, 26);
+            this.buttonSaveCsv.Size = new System.Drawing.Size(212, 27);
             this.buttonSaveCsv.TabIndex = 17;
+            this.buttonSaveCsv.Text = "Save Notes && Mappings";
             this.toolTip1.SetToolTip(this.buttonSaveCsv, "saves config file");
             this.buttonSaveCsv.UseVisualStyleBackColor = true;
             this.buttonSaveCsv.Click += new System.EventHandler(this.buttonSaveCsv_Click);
             // 
             // textBoxNotes
             // 
-            this.textBoxNotes.Location = new System.Drawing.Point(557, 83);
+            this.textBoxNotes.Location = new System.Drawing.Point(1139, 57);
+            this.textBoxNotes.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxNotes.Multiline = true;
             this.textBoxNotes.Name = "textBoxNotes";
-            this.textBoxNotes.Size = new System.Drawing.Size(313, 20);
+            this.textBoxNotes.Size = new System.Drawing.Size(273, 44);
             this.textBoxNotes.TabIndex = 16;
             // 
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(42, 83);
+            this.labelStatus.Location = new System.Drawing.Point(25, 126);
+            this.labelStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(38, 13);
+            this.labelStatus.Size = new System.Drawing.Size(50, 17);
             this.labelStatus.TabIndex = 15;
             this.labelStatus.Text = "status:";
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(197, 50);
+            this.buttonSave.Location = new System.Drawing.Point(912, 41);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(5);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(62, 23);
+            this.buttonSave.Size = new System.Drawing.Size(204, 27);
             this.buttonSave.TabIndex = 12;
-            this.buttonSave.Text = "Import";
+            this.buttonSave.Text = "Update Hydromet Data";
             this.toolTip1.SetToolTip(this.buttonSave, "imports data to hydromet database");
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -272,143 +294,144 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(546, 43);
+            this.label3.Location = new System.Drawing.Point(504, 73);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.Size = new System.Drawing.Size(38, 17);
             this.label3.TabIndex = 11;
             this.label3.Text = "owrd";
             // 
             // textBoxOwrd
             // 
-            this.textBoxOwrd.Location = new System.Drawing.Point(531, 59);
+            this.textBoxOwrd.Location = new System.Drawing.Point(507, 97);
+            this.textBoxOwrd.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxOwrd.Name = "textBoxOwrd";
-            this.textBoxOwrd.Size = new System.Drawing.Size(84, 20);
+            this.textBoxOwrd.Size = new System.Drawing.Size(83, 22);
             this.textBoxOwrd.TabIndex = 10;
             this.textBoxOwrd.Text = "13018750";
             // 
             // buttonPrevious
             // 
-            this.buttonPrevious.Location = new System.Drawing.Point(269, 44);
+            this.buttonPrevious.Location = new System.Drawing.Point(630, 6);
+            this.buttonPrevious.Margin = new System.Windows.Forms.Padding(5);
             this.buttonPrevious.Name = "buttonPrevious";
-            this.buttonPrevious.Size = new System.Drawing.Size(30, 23);
+            this.buttonPrevious.Size = new System.Drawing.Size(53, 31);
             this.buttonPrevious.TabIndex = 9;
-            this.buttonPrevious.Text = "<-";
+            this.buttonPrevious.Text = "<<";
             this.toolTip1.SetToolTip(this.buttonPrevious, "Previous Site");
             this.buttonPrevious.UseVisualStyleBackColor = true;
             this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
             // 
             // buttonNext
             // 
-            this.buttonNext.Location = new System.Drawing.Point(268, 20);
+            this.buttonNext.Location = new System.Drawing.Point(694, 6);
+            this.buttonNext.Margin = new System.Windows.Forms.Padding(5);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(31, 23);
+            this.buttonNext.Size = new System.Drawing.Size(55, 31);
             this.buttonNext.TabIndex = 8;
-            this.buttonNext.Text = "->";
+            this.buttonNext.Text = ">>";
             this.toolTip1.SetToolTip(this.buttonNext, "Next Site");
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // textBoxPcode
             // 
-            this.textBoxPcode.Location = new System.Drawing.Point(393, 60);
+            this.textBoxPcode.Location = new System.Drawing.Point(356, 97);
+            this.textBoxPcode.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxPcode.Name = "textBoxPcode";
-            this.textBoxPcode.Size = new System.Drawing.Size(41, 20);
+            this.textBoxPcode.Size = new System.Drawing.Size(48, 22);
             this.textBoxPcode.TabIndex = 7;
             this.textBoxPcode.Text = "QD";
             // 
             // pcode
             // 
             this.pcode.AutoSize = true;
-            this.pcode.Location = new System.Drawing.Point(390, 45);
+            this.pcode.Location = new System.Drawing.Point(353, 73);
+            this.pcode.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.pcode.Name = "pcode";
-            this.pcode.Size = new System.Drawing.Size(37, 13);
+            this.pcode.Size = new System.Drawing.Size(47, 17);
             this.pcode.TabIndex = 6;
             this.pcode.Text = "pcode";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(455, 43);
+            this.label2.Location = new System.Drawing.Point(410, 73);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.Size = new System.Drawing.Size(38, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "usgs";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(332, 45);
+            this.label1.Location = new System.Drawing.Point(281, 73);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 13);
+            this.label1.Size = new System.Drawing.Size(31, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "cbtt";
             // 
             // textBoxUsgs
             // 
-            this.textBoxUsgs.Location = new System.Drawing.Point(440, 60);
+            this.textBoxUsgs.Location = new System.Drawing.Point(414, 97);
+            this.textBoxUsgs.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxUsgs.Name = "textBoxUsgs";
-            this.textBoxUsgs.Size = new System.Drawing.Size(68, 20);
+            this.textBoxUsgs.Size = new System.Drawing.Size(83, 22);
             this.textBoxUsgs.TabIndex = 3;
             this.textBoxUsgs.Text = "13018750";
             // 
             // textBoxcbtt
             // 
-            this.textBoxcbtt.Location = new System.Drawing.Point(323, 60);
+            this.textBoxcbtt.Location = new System.Drawing.Point(281, 97);
+            this.textBoxcbtt.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxcbtt.Name = "textBoxcbtt";
-            this.textBoxcbtt.Size = new System.Drawing.Size(64, 20);
+            this.textBoxcbtt.Size = new System.Drawing.Size(65, 22);
             this.textBoxcbtt.TabIndex = 2;
             this.textBoxcbtt.Text = "JKSY";
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(197, 25);
+            this.buttonRefresh.Location = new System.Drawing.Point(912, 10);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(5);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(62, 23);
+            this.buttonRefresh.Size = new System.Drawing.Size(204, 27);
             this.buttonRefresh.TabIndex = 1;
-            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.Text = "Query Data";
             this.toolTip1.SetToolTip(this.buttonRefresh, "reads data from internet");
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // timeSelectorBeginEnd1
             // 
-            this.timeSelectorBeginEnd1.Location = new System.Drawing.Point(7, 24);
+            this.timeSelectorBeginEnd1.Location = new System.Drawing.Point(12, 44);
+            this.timeSelectorBeginEnd1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.timeSelectorBeginEnd1.Name = "timeSelectorBeginEnd1";
             this.timeSelectorBeginEnd1.ShowTime = false;
-            this.timeSelectorBeginEnd1.Size = new System.Drawing.Size(195, 46);
+            this.timeSelectorBeginEnd1.Size = new System.Drawing.Size(259, 57);
             this.timeSelectorBeginEnd1.T1 = new System.DateTime(2009, 12, 16, 13, 55, 46, 802);
             this.timeSelectorBeginEnd1.T2 = new System.DateTime(2009, 12, 16, 13, 55, 46, 802);
             this.timeSelectorBeginEnd1.TabIndex = 0;
             // 
-            // timeSeriesGraph2
-            // 
-            this.timeSeriesGraph2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.timeSeriesGraph2.Location = new System.Drawing.Point(0, 373);
-            this.timeSeriesGraph2.MissingDataValue = -999D;
-            this.timeSeriesGraph2.MultiLeftAxis = false;
-            this.timeSeriesGraph2.Name = "timeSeriesGraph2";
-            this.timeSeriesGraph2.Size = new System.Drawing.Size(939, 159);
-            this.timeSeriesGraph2.SubTitle = "";
-            this.timeSeriesGraph2.TabIndex = 1;
-            this.timeSeriesGraph2.Title = "";
-            // 
             // panelChart
             // 
             this.panelChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChart.Location = new System.Drawing.Point(0, 110);
+            this.panelChart.Location = new System.Drawing.Point(0, 147);
+            this.panelChart.Margin = new System.Windows.Forms.Padding(4);
             this.panelChart.Name = "panelChart";
-            this.panelChart.Size = new System.Drawing.Size(939, 263);
+            this.panelChart.Size = new System.Drawing.Size(1417, 508);
             this.panelChart.TabIndex = 3;
             // 
-            // ImportUI
+            // ImportDaily
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelChart);
-            this.Controls.Add(this.timeSeriesGraph2);
             this.Controls.Add(this.panel1);
-            this.Name = "ImportUI";
-            this.Size = new System.Drawing.Size(939, 532);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "ImportDaily";
+            this.Size = new System.Drawing.Size(1417, 655);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -434,7 +457,6 @@
         private System.Windows.Forms.TextBox textBoxOwrd;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.TextBox textBoxNotes;
         private System.Windows.Forms.Button buttonSaveCsv;
         private System.Windows.Forms.ComboBox comboBoxSite;
@@ -453,6 +475,7 @@
         private System.Windows.Forms.TextBox textBoxIdwr;
         private Reclamation.TimeSeries.Graphing.GraphExplorerView teeChartExplorerView1;
         private System.Windows.Forms.Panel panelChart;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
 

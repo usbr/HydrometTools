@@ -33,12 +33,25 @@ namespace HydrometTools
 
             Reclamation.TimeSeries.Point.MissingValueFlag = 998877;
 
-            this.timeSelectorBeginEnd1.T1 = new DateTime(2011, 10, 1);
+            this.timeSelectorBeginEnd1.T1 = new DateTime(DateTime.Now.Year - 5, 10, 1);
             this.timeSelectorBeginEnd1.T2 = DateTime.Now.Date;
 
+            // Move constructors for the TeeChart graphs outside of the initialization section to bypass designer errors at design-time
             teeChartExplorerView1 = new Reclamation.TimeSeries.Graphing.GraphExplorerView(new TimeSeriesTeeChartGraph());
             this.teeChartExplorerView1.Parent = this.panelChart;
             this.teeChartExplorerView1.Dock = System.Windows.Forms.DockStyle.Fill;
+
+            timeSeriesGraph2 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
+            this.timeSeriesGraph2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.timeSeriesGraph2.Location = new System.Drawing.Point(0, 373);
+            this.timeSeriesGraph2.MissingDataValue = -999D;
+            this.timeSeriesGraph2.MultiLeftAxis = false;
+            this.timeSeriesGraph2.Name = "timeSeriesGraph2";
+            this.timeSeriesGraph2.Size = new System.Drawing.Size(939, 159);
+            this.timeSeriesGraph2.SubTitle = "";
+            this.timeSeriesGraph2.TabIndex = 1;
+            this.timeSeriesGraph2.Title = "";
+            this.Controls.Add(this.timeSeriesGraph2);
 
             var fn = FileUtility.GetFileReference("data_import_sites.csv");
             if(File.Exists(fn))
@@ -66,7 +79,7 @@ namespace HydrometTools
                 DateTime t1 = this.timeSelectorBeginEnd1.T1;
                 DateTime t2 = this.timeSelectorBeginEnd1.T2;
 
-                ReadExternalData(t1, t2);
+                ReadDailyExternalData(t1, t2);
 
                 labelStatus.Text = "found " + externalSeries.Count + " records in " + GetSourceType().ToString();
                 Application.DoEvents();
@@ -142,57 +155,53 @@ namespace HydrometTools
 
         }
 
-        private void ReadExternalData(DateTime t1, DateTime t2)
+        private void ReadDailyExternalData(DateTime t1, DateTime t2)
         {
             var pc = textBoxPcode.Text.Trim().ToLower();
-            if (GetSourceType() == ExternalSource.USGS)
-            {
-                UsgsDailyParameter usgsParm = FindUsgsParameter(pc);
 
-                     externalSeries = new UsgsDailyValueSeries(this.textBoxUsgs.Text.Trim(), usgsParm);
-            }
-            else
-                if (GetSourceType() == ExternalSource.OWRD)
-                {
+            ExternalSource src = GetSourceType();
+            switch (src)
+            {
+                case ExternalSource.USGS:
+                    UsgsDailyParameter usgsParm = FindUsgsParameter(pc);
+                    externalSeries = new UsgsDailyValueSeries(this.textBoxUsgs.Text.Trim(), usgsParm);
+                    break;
+                case ExternalSource.OWRD:
                     if (pc == "qd" || pc == "qj")
-                        externalSeries = new OwrdSeries(this.textBoxOwrd.Text.Trim(), OwrdSeries.OwrdDataSet.MDF,this.checkBoxProvisional.Checked);
+                        externalSeries = new OwrdSeries(this.textBoxOwrd.Text.Trim(), OwrdSeries.OwrdDataSet.MDF, this.checkBoxProvisional.Checked);
                     else
                         if (pc == "af")
-                            externalSeries = new OwrdSeries(this.textBoxOwrd.Text.Trim(), OwrdSeries.OwrdDataSet.Midnight_Volume, this.checkBoxProvisional.Checked);
-                        else
-                            externalSeries = new Series();
-                }
-                else
-                        if (GetSourceType() == ExternalSource.IDACORP)
-                        {
-                            externalSeries = GetIdahoPowerSeries();
-                            externalSeries.Units = "cfs";
-                        }
-                        else if (GetSourceType() == ExternalSource.nrcs)
-                        {
-                            var snotelSiteID = NrcsSnotelSeries.LookupSiteID(textBoxSnotel.Text);
-                            string snotelParameter = NrcsSnotelSeries.SnotelParameterFromHydrometPcode(pc);
-                            externalSeries = new NrcsSnotelSeries(snotelSiteID, snotelParameter);
-                        }
-                        else if (GetSourceType() == ExternalSource.Idwr)
-                        {
-                            externalSeries = new IDWRDailySeries(textBoxIdwr.Text.Trim());
-
-                        }
+                        externalSeries = new OwrdSeries(this.textBoxOwrd.Text.Trim(), OwrdSeries.OwrdDataSet.Midnight_Volume, this.checkBoxProvisional.Checked);
+                    else
+                        externalSeries = new Series();
+                    break;
+                case ExternalSource.IDACORP:
+                    externalSeries = GetIdahoPowerSeries();
+                    externalSeries.Units = "cfs";
+                    break;
+                case ExternalSource.nrcs:
+                    var snotelSiteID = NrcsSnotelSeries.LookupSiteID(textBoxSnotel.Text);
+                    string snotelParameter = NrcsSnotelSeries.SnotelParameterFromHydrometPcode(pc);
+                    externalSeries = new NrcsSnotelSeries(snotelSiteID, snotelParameter);
+                    break;
+                case ExternalSource.Idwr:
+                    externalSeries = new IDWRDailySeries(textBoxIdwr.Text.Trim());
+                    break;
+            }
 
             externalSeries.Read(t1, t2);
             // convert units if needed
 
-            if( externalSeries.Units == "degrees Celsius")
-                externalSeries.Units = "degrees C" ;
+            if (externalSeries.Units == "degrees Celsius")
+                externalSeries.Units = "degrees C";
 
-            if (externalSeries.Units  =="degrees C" )
+            if (externalSeries.Units == "degrees C")
             {
                 Reclamation.TimeSeries.Math.ConvertUnits(externalSeries, "degrees F");
             }
 
 
-            externalSeries.Appearance.LegendText =  GetSourceType().ToString() + " " + externalSeries.Name;
+            externalSeries.Appearance.LegendText = GetSourceType().ToString() + " " + externalSeries.Name;
 
 
         }
@@ -203,7 +212,6 @@ namespace HydrometTools
 
             if (pc == "qd")
                 rval = UsgsDailyParameter.DailyMeanDischarge;
-
             if (pc == "wi")
                 rval = UsgsDailyParameter.DailyMinTemperature;
             if (pc == "wk")

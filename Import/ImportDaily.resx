@@ -112,46 +112,29 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonOpenFile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAO9JREFUOE9jYKAW
-        OLdI8T8yJslckEZ0cGyWxH+iDAEphIA5aPj/f5AcNoxiMNiAz0DNn3swMYa7IIbOrZJEuA5swOuW/48O
-        +uO0EZsrlhbxQAwBG3C9Baz51v5shJ2/v2OxHyj0vAUsjmLA36v5YAO+f+jEEhZoYXM86v/vn9NQDXi0
-        2en/yQUKIHP///8+BS9+vi/o/7k90agGnF+k+v/6DnuI7cDwwImBzn+/ywmhGRYGx2ZJ/v/wpBJiwONq
-        3Ph+9f97m7AYcHyONETzdWAgEsD7Z2qgugDkigPTJP4Ti+dU4kihIAliMFHJm66KAORP5xRdT7ByAAAA
-        AElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8UlEQVQ4T2OgGji3SPE/MoYKEwdAGtDB
+        sVkSxBkCUggBc9AwxBBsGKoVAkAC/z8DNXzuwcRYAEj93CpJhCFgA163/H900B/DJnx4aREPxBAQ5//1
+        FrDgrf3ZUHuA4Pd3KAMNPG8BUygG/L2aDzbg+4dOoBR6WKDh41H/f/+chmrAo81O/08uUAAqWPr///cp
+        ePHzfUH/z+2JRjXg/CLV/9d32ENsAIYHTgx0/vtdTgjNIAAy4Ngsyf8fnlRCDHhcjRvfr/5/bxMWA47P
+        kYZovg4MRAJ4/0wNVANA4MA0if/E4jmVOFIoSIIYDFU+aAADAwDkT+cU+EjVYQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="buttonSaveCsv.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAwAA
-        CwMBSY6M0gAAAshJREFUWEftl8tPE1EYxbvwP3DNnqULFqQbVwRETYSKC5BS+oRWRBeQ+Ehk58KFC1eN
-        QfuQIlIitFTCo7GUAJZSlaBoQCrBUltoaekTiuR470gb7EhS6jTEyOKkzUzznd/9vjtze3gAeMepYzWn
-        C88AVJ57dOniBTWoRNJe2O0TnGh0bAEazTRTl6q09EYzj8c7TXTqNwB6U9VqQ1WNCc0tFkSiKc70rOs9
-        amuHIag2MhDEvJJCsACULZMQXBnCtZvDnJnThRi659HQMIGay+Y0wD0CUHycAA8JwJmcAWw2G46qgyP8
-        QweOBvC3++HfBzhq++nvT0bAaQdORvD/PYZny/QoO2+AQjWI+w/GodXPYtAyD3qy5SP6IpLLnRCJXqfP
-        gsPfhI3iKVwVjkPYYIdcMYnrrW/Q1ubErdsu3Ln7Ni+1t7tyB6CkhVJOHSiUuUw2k9sIsgEEAgNUqheY
-        mFrAiNUB06AVxj4TDIYeaHV66PV6jIyOYW7+I1Y9PmyGY5BKB1BSos6ovNxIrjnyB1AqnzMAB4vS71qt
-        DpZXQ3C9m8PK6hoCoQhiyRRkMhO3AE1NXXDMLrIA+gdMmHG6sPx1FevBMKLxHSR29rgHUMh1mPuwwgKY
-        nHZg8Ysbvo1NbMW2GfP49i4k0n5uOyCTabDk9rEAPn1egtcfQDiaJOY/GIW24hCLX3ILIJU8gccXYgF4
-        vH6EInGyamq+R0AS8G8EyWbr4xZAIu5EMJxgAQTDUbLpdpEk5hEygvVACN88XvIPuJdbAHHjY0QTKRYA
-        vUZXHk3sILAZhmftO5aX3aiv78kPgAYTscTGPK9pVVfpoFQ+ZQCoWbayzX8BdIHPV2dUUdENodCKujrL
-        4WcBjUzp+JT92dHRDbPZkrMUck0mimXXKiriu0gmYAeT/bxGIxO9SU+rQonWZ0czGhb3IYppaimgaP1M
-        OP0JdaHclRcPd1MAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>62</value>
   </metadata>
 </root>

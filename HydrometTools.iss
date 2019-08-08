@@ -17,8 +17,8 @@ Compression=lzma
 SolidCompression=yes
 VersionInfoVersion={#FileVerStr}
 VersionInfoTextVersion={#AppVerStr}
-VersionInfoProductName="HydrometTools
-VersionInfoCompany="Reclamation"
+VersionInfoProductName=HydrometTools
+VersionInfoCompany=Reclamation
 PrivilegesRequired=none 
 LicenseFile=.\license.txt
 ;show dialogs even if previous install found
