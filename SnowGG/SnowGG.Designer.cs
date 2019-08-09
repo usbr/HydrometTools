@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
-            Reclamation.TimeSeries.Forms.Graphing.GraphSettings graphSettings2 = new Reclamation.TimeSeries.Forms.Graphing.GraphSettings();
+            Reclamation.Core.MonthDayRange monthDayRange3 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
-
+            this.checkBoxUseList = new System.Windows.Forms.CheckBox();
+            this.textBoxMultiple = new System.Windows.Forms.TextBox();
             this.checkBoxDeltas = new System.Windows.Forms.CheckBox();
             this.checkBoxAnnotate = new System.Windows.Forms.CheckBox();
-
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBoxPctls = new System.Windows.Forms.TextBox();
             this.checkBoxPctls = new System.Windows.Forms.CheckBox();
             this.textBoxWY2 = new System.Windows.Forms.TextBox();
@@ -55,15 +56,14 @@
             this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.yearSelector1 = new Reclamation.TimeSeries.Forms.YearSelector();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.textBoxMultiple = new System.Windows.Forms.TextBox();
-            this.checkBoxUseList = new System.Windows.Forms.CheckBox();
-            this.timeSeriesGraph1 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
+            this.buttonToggleMonths = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonToggleMonths);
             this.panel1.Controls.Add(this.checkBoxUseList);
             this.panel1.Controls.Add(this.textBoxMultiple);
             this.panel1.Controls.Add(this.checkBoxDeltas);
@@ -85,12 +85,42 @@
             this.panel1.Size = new System.Drawing.Size(1323, 198);
             this.panel1.TabIndex = 0;
             // 
+            // checkBoxUseList
+            // 
+            this.checkBoxUseList.AutoSize = true;
+            this.checkBoxUseList.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxUseList.Location = new System.Drawing.Point(67, 84);
+            this.checkBoxUseList.Name = "checkBoxUseList";
+            this.checkBoxUseList.Size = new System.Drawing.Size(81, 21);
+            this.checkBoxUseList.TabIndex = 16;
+            this.checkBoxUseList.Text = "Use List";
+            this.checkBoxUseList.UseVisualStyleBackColor = true;
+            this.checkBoxUseList.CheckedChanged += new System.EventHandler(this.useList_CheckedChanged);
+            // 
+            // textBoxMultiple
+            // 
+            this.textBoxMultiple.Enabled = false;
+            this.textBoxMultiple.Location = new System.Drawing.Point(154, 83);
+            this.textBoxMultiple.Name = "textBoxMultiple";
+            this.textBoxMultiple.Size = new System.Drawing.Size(301, 22);
+            this.textBoxMultiple.TabIndex = 15;
+            // 
+            // checkBoxDeltas
+            // 
+            this.checkBoxDeltas.AutoSize = true;
+            this.checkBoxDeltas.Location = new System.Drawing.Point(154, 140);
+            this.checkBoxDeltas.Name = "checkBoxDeltas";
+            this.checkBoxDeltas.Size = new System.Drawing.Size(182, 21);
+            this.checkBoxDeltas.TabIndex = 14;
+            this.checkBoxDeltas.Text = "Apply Deltas to 1st Year";
+            this.checkBoxDeltas.UseVisualStyleBackColor = true;
+            // 
             // checkBoxAnnotate
             // 
             this.checkBoxAnnotate.AutoSize = true;
             this.checkBoxAnnotate.Checked = true;
             this.checkBoxAnnotate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAnnotate.Location = new System.Drawing.Point(154, 174);
+            this.checkBoxAnnotate.Location = new System.Drawing.Point(154, 111);
             this.checkBoxAnnotate.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxAnnotate.Name = "checkBoxAnnotate";
             this.checkBoxAnnotate.Size = new System.Drawing.Size(138, 21);
@@ -98,18 +128,10 @@
             this.checkBoxAnnotate.Text = "date/value tooltip";
             this.checkBoxAnnotate.UseVisualStyleBackColor = true;
             // 
-            // checkBoxDeltas
-            // 
-            this.checkBoxDeltas.AutoSize = true;
-            this.checkBoxDeltas.Location = new System.Drawing.Point(339, 172);
-            this.checkBoxDeltas.Name = "checkBoxDeltas";
-            this.checkBoxDeltas.Size = new System.Drawing.Size(182, 21);
-            this.checkBoxDeltas.TabIndex = 14;
-            this.checkBoxDeltas.Text = "Apply Deltas to 1st Year";
-            this.checkBoxDeltas.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxPctls);
             this.groupBox1.Controls.Add(this.checkBoxPctls);
             this.groupBox1.Controls.Add(this.textBoxWY2);
@@ -118,18 +140,38 @@
             this.groupBox1.Controls.Add(this.checkBoxAvg);
             this.groupBox1.Controls.Add(this.checkBoxMax);
             this.groupBox1.Controls.Add(this.checkBoxMin);
-            this.groupBox1.Location = new System.Drawing.Point(621, 97);
+            this.groupBox1.Location = new System.Drawing.Point(556, 90);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(580, 92);
+            this.groupBox1.Size = new System.Drawing.Size(496, 92);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statistics";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(204, 23);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "data";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Use";
+            // 
             // textBoxPctls
             // 
-            this.textBoxPctls.Location = new System.Drawing.Point(345, 52);
+            this.textBoxPctls.Location = new System.Drawing.Point(317, 50);
             this.textBoxPctls.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxPctls.Name = "textBoxPctls";
             this.textBoxPctls.Size = new System.Drawing.Size(171, 22);
@@ -139,7 +181,7 @@
             // checkBoxPctls
             // 
             this.checkBoxPctls.AutoSize = true;
-            this.checkBoxPctls.Location = new System.Drawing.Point(235, 54);
+            this.checkBoxPctls.Location = new System.Drawing.Point(207, 53);
             this.checkBoxPctls.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxPctls.Name = "checkBoxPctls";
             this.checkBoxPctls.Size = new System.Drawing.Size(100, 21);
@@ -149,17 +191,18 @@
             // 
             // textBoxWY2
             // 
-            this.textBoxWY2.Location = new System.Drawing.Point(122, 24);
+            this.textBoxWY2.Location = new System.Drawing.Point(139, 21);
             this.textBoxWY2.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWY2.Name = "textBoxWY2";
-            this.textBoxWY2.Size = new System.Drawing.Size(75, 22);
+            this.textBoxWY2.Size = new System.Drawing.Size(54, 22);
             this.textBoxWY2.TabIndex = 5;
             this.textBoxWY2.Text = "2010";
+            this.textBoxWY2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(92, 27);
+            this.label2.Location = new System.Drawing.Point(109, 24);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 17);
@@ -168,17 +211,18 @@
             // 
             // textBoxWY1
             // 
-            this.textBoxWY1.Location = new System.Drawing.Point(10, 24);
+            this.textBoxWY1.Location = new System.Drawing.Point(49, 21);
             this.textBoxWY1.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWY1.Name = "textBoxWY1";
-            this.textBoxWY1.Size = new System.Drawing.Size(72, 22);
+            this.textBoxWY1.Size = new System.Drawing.Size(54, 22);
             this.textBoxWY1.TabIndex = 3;
             this.textBoxWY1.Text = "1981";
+            this.textBoxWY1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // checkBoxAvg
             // 
             this.checkBoxAvg.AutoSize = true;
-            this.checkBoxAvg.Location = new System.Drawing.Point(10, 54);
+            this.checkBoxAvg.Location = new System.Drawing.Point(10, 52);
             this.checkBoxAvg.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxAvg.Name = "checkBoxAvg";
             this.checkBoxAvg.Size = new System.Drawing.Size(54, 21);
@@ -189,7 +233,7 @@
             // checkBoxMax
             // 
             this.checkBoxMax.AutoSize = true;
-            this.checkBoxMax.Location = new System.Drawing.Point(86, 54);
+            this.checkBoxMax.Location = new System.Drawing.Point(74, 52);
             this.checkBoxMax.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxMax.Name = "checkBoxMax";
             this.checkBoxMax.Size = new System.Drawing.Size(55, 21);
@@ -200,7 +244,7 @@
             // checkBoxMin
             // 
             this.checkBoxMin.AutoSize = true;
-            this.checkBoxMin.Location = new System.Drawing.Point(163, 54);
+            this.checkBoxMin.Location = new System.Drawing.Point(145, 52);
             this.checkBoxMin.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxMin.Name = "checkBoxMin";
             this.checkBoxMin.Size = new System.Drawing.Size(52, 21);
@@ -211,31 +255,33 @@
             // checkBoxGP
             // 
             this.checkBoxGP.AutoSize = true;
-            this.checkBoxGP.Location = new System.Drawing.Point(154, 120);
+            this.checkBoxGP.Location = new System.Drawing.Point(369, 111);
             this.checkBoxGP.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxGP.Name = "checkBoxGP";
             this.checkBoxGP.Size = new System.Drawing.Size(175, 21);
             this.checkBoxGP.TabIndex = 10;
             this.checkBoxGP.Text = "include  se_avg (2001)";
             this.checkBoxGP.UseVisualStyleBackColor = true;
+            this.checkBoxGP.Visible = false;
             // 
             // checkBoxMpoll
             // 
             this.checkBoxMpoll.AutoSize = true;
-            this.checkBoxMpoll.Location = new System.Drawing.Point(154, 146);
+            this.checkBoxMpoll.Location = new System.Drawing.Point(154, 169);
             this.checkBoxMpoll.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxMpoll.Name = "checkBoxMpoll";
             this.checkBoxMpoll.Size = new System.Drawing.Size(236, 21);
             this.checkBoxMpoll.TabIndex = 9;
             this.checkBoxMpoll.Text = "include monthly 30 year average";
             this.checkBoxMpoll.UseVisualStyleBackColor = true;
+            this.checkBoxMpoll.Visible = false;
             // 
             // buttonNext
             // 
             this.buttonNext.Location = new System.Drawing.Point(465, 15);
             this.buttonNext.Margin = new System.Windows.Forms.Padding(5);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(47, 24);
+            this.buttonNext.Size = new System.Drawing.Size(79, 24);
             this.buttonNext.TabIndex = 8;
             this.buttonNext.Text = ">";
             this.toolTip1.SetToolTip(this.buttonNext, "advance to next site");
@@ -270,6 +316,8 @@
             // 
             // buttonRefresh
             // 
+            this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefresh.ForeColor = System.Drawing.SystemColors.Highlight;
             this.buttonRefresh.Location = new System.Drawing.Point(465, 50);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(5);
             this.buttonRefresh.Name = "buttonRefresh";
@@ -302,65 +350,38 @@
             // 
             this.monthRangePicker1.AutoSize = true;
             this.monthRangePicker1.BeginningMonth = 10;
-            this.monthRangePicker1.Location = new System.Drawing.Point(620, 43);
+            this.monthRangePicker1.Location = new System.Drawing.Point(556, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange1;
+            this.monthRangePicker1.MonthDayRange = monthDayRange3;
             this.monthRangePicker1.Name = "monthRangePicker1";
-            this.monthRangePicker1.Size = new System.Drawing.Size(769, 73);
+            this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
             // 
             // yearSelector1
             // 
-            this.yearSelector1.Location = new System.Drawing.Point(621, 10);
+            this.yearSelector1.Location = new System.Drawing.Point(556, 9);
             this.yearSelector1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.yearSelector1.Name = "yearSelector1";
-            this.yearSelector1.SelectedYears = new int[] { 2001, 2005 };
-
-
+            this.yearSelector1.SelectedYears = new int[] {
+        2001,
+        2005};
             this.yearSelector1.Size = new System.Drawing.Size(428, 31);
             this.yearSelector1.TabIndex = 2;
             // 
-            // timeSeriesGraph1
+            // buttonToggleMonths
             // 
-            this.timeSeriesGraph1.AnnotationOnMouseMove = false;
-            this.timeSeriesGraph1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeSeriesGraph1.GraphSettings = graphSettings2;
-            this.timeSeriesGraph1.Location = new System.Drawing.Point(0, 131);
-            this.timeSeriesGraph1.Margin = new System.Windows.Forms.Padding(4);
-            this.timeSeriesGraph1.MissingDataValue = -999D;
-            this.timeSeriesGraph1.MonthlySummaryMultiYear = false;
-            this.timeSeriesGraph1.MultiLeftAxis = false;
-            this.timeSeriesGraph1.Name = "timeSeriesGraph1";
-            this.timeSeriesGraph1.Size = new System.Drawing.Size(732, 296);
-            this.timeSeriesGraph1.SubTitle = "";
-            this.timeSeriesGraph1.TabIndex = 1;
-            this.timeSeriesGraph1.Title = "";
-            // 
-            // textBoxMultiple
-            // 
-            this.textBoxMultiple.Location = new System.Drawing.Point(154, 83);
-            this.textBoxMultiple.Name = "textBoxMultiple";
-            this.textBoxMultiple.Size = new System.Drawing.Size(301, 22);
-            this.textBoxMultiple.TabIndex = 15;
-            this.textBoxMultiple.Enabled = false;
-            // 
-            // checkBoxUseList
-            // 
-            this.checkBoxUseList.AutoSize = true;
-            this.checkBoxUseList.Location = new System.Drawing.Point(49, 83);
-            this.checkBoxUseList.Name = "checkBoxUseList";
-            this.checkBoxUseList.Size = new System.Drawing.Size(81, 21);
-            this.checkBoxUseList.TabIndex = 16;
-            this.checkBoxUseList.Text = "Use List";
-            this.checkBoxUseList.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxUseList.UseVisualStyleBackColor = true;
-            this.checkBoxUseList.CheckedChanged += new System.EventHandler(this.useList_CheckedChanged);
+            this.buttonToggleMonths.Location = new System.Drawing.Point(993, 43);
+            this.buttonToggleMonths.Name = "buttonToggleMonths";
+            this.buttonToggleMonths.Size = new System.Drawing.Size(131, 39);
+            this.buttonToggleMonths.TabIndex = 17;
+            this.buttonToggleMonths.Text = "Toggle Year Type";
+            this.buttonToggleMonths.UseVisualStyleBackColor = true;
+            this.buttonToggleMonths.Click += new System.EventHandler(this.buttonToggleMonths_Click);
             // 
             // SnowGG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.timeSeriesGraph1);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SnowGG";
@@ -402,6 +423,8 @@
         private System.Windows.Forms.CheckBox checkBoxDeltas;
         private System.Windows.Forms.TextBox textBoxMultiple;
         private System.Windows.Forms.CheckBox checkBoxUseList;
-
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonToggleMonths;
     }
 }

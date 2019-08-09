@@ -23,7 +23,30 @@ namespace HydrometTools.SnowGG
             this.comboBoxCbtt.Text = UserPreference.Lookup("Snowgg->cbtt");
             this.comboBoxPcode.Text = UserPreference.Lookup("Snowgg->pcode");
 
-            
+
+            // 
+            // timeSeriesGraph1
+            // 
+            this.timeSeriesGraph1 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
+            Reclamation.TimeSeries.Forms.Graphing.GraphSettings graphSettings2 = new GraphSettings();
+            this.timeSeriesGraph1.AnnotationOnMouseMove = false;
+            this.timeSeriesGraph1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeSeriesGraph1.GraphSettings = graphSettings2;
+            this.timeSeriesGraph1.Location = new System.Drawing.Point(0, 131);
+            this.timeSeriesGraph1.Margin = new System.Windows.Forms.Padding(4);
+            this.timeSeriesGraph1.MissingDataValue = -999D;
+            this.timeSeriesGraph1.MonthlySummaryMultiYear = false;
+            this.timeSeriesGraph1.MultiLeftAxis = false;
+            this.timeSeriesGraph1.Name = "timeSeriesGraph1";
+            this.timeSeriesGraph1.Size = new System.Drawing.Size(732, 296);
+            this.timeSeriesGraph1.SubTitle = "";
+            this.timeSeriesGraph1.TabIndex = 1;
+            this.timeSeriesGraph1.Title = "";
+            this.Controls.Remove(this.panel1);
+            this.Controls.Add(this.timeSeriesGraph1);
+            this.Controls.Add(this.panel1);
+
+
             Reset();
             this.timeSeriesGraph1.AfterEditGraph += timeSeriesGraph1_AfterEditGraph;
             timeSeriesGraph1.AnnotationOnMouseMove = true;
@@ -512,5 +535,21 @@ namespace HydrometTools.SnowGG
             textBoxMultiple.Enabled = !textBoxMultiple.Enabled;
         }
 
+        private void buttonToggleMonths_Click(object sender, EventArgs e)
+        {
+            var startMonth = this.monthRangePicker1.BeginningMonth;
+            var selectedRange = this.monthRangePicker1.MonthDayRange;
+            if (startMonth == 1)
+            {
+                this.monthRangePicker1.BeginningMonth = 10;
+            }
+            else
+            {
+                this.monthRangePicker1.BeginningMonth = 1;
+            }
+            this.monthRangePicker1.Update();
+            this.monthRangePicker1.MonthDayRange = selectedRange;
+
+        }
     }
 }
