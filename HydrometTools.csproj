@@ -611,6 +611,9 @@
     <EmbeddedResource Include="ShiftInput.resx">
       <DependentUpon>ShiftInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SnowGG\SnowGG.resx">
+      <DependentUpon>SnowGG.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stats\MaxStat.resx">
       <DependentUpon>MaxStat.cs</DependentUpon>
     </EmbeddedResource>

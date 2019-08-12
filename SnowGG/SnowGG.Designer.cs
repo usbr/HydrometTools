@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange3 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxUseList = new System.Windows.Forms.CheckBox();
             this.textBoxMultiple = new System.Windows.Forms.TextBox();
@@ -352,7 +352,7 @@
             this.monthRangePicker1.BeginningMonth = 10;
             this.monthRangePicker1.Location = new System.Drawing.Point(556, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange3;
+            this.monthRangePicker1.MonthDayRange = monthDayRange1;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
@@ -372,9 +372,9 @@
             // 
             this.buttonToggleMonths.Location = new System.Drawing.Point(993, 43);
             this.buttonToggleMonths.Name = "buttonToggleMonths";
-            this.buttonToggleMonths.Size = new System.Drawing.Size(131, 39);
+            this.buttonToggleMonths.Size = new System.Drawing.Size(69, 39);
             this.buttonToggleMonths.TabIndex = 17;
-            this.buttonToggleMonths.Text = "Toggle Year Type";
+            this.buttonToggleMonths.Text = "Use CY";
             this.buttonToggleMonths.UseVisualStyleBackColor = true;
             this.buttonToggleMonths.Click += new System.EventHandler(this.buttonToggleMonths_Click);
             // 

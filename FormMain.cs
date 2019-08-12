@@ -57,6 +57,7 @@ namespace HydrometTools
         //private Import.ImportFDRTemperature importFDRTemperature1;
         private TabPage tabPageRecords;
         private TabPage tabPageShifts;
+        private TabPage tabPageFloodControl;
         private FcPlot.FcPlotUI fcUi;
 
 		public FormMain()
@@ -165,6 +166,7 @@ namespace HydrometTools
             this.tabPageShifts = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabPageFloodControl = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPageUpdater.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -178,20 +180,21 @@ namespace HydrometTools
             this.tabControl1.Controls.Add(this.tabPageDay);
             this.tabControl1.Controls.Add(this.tabPageArc);
             this.tabControl1.Controls.Add(this.tabPageMPoll);
-            this.tabControl1.Controls.Add(this.tabPageRecords);
             this.tabControl1.Controls.Add(this.tabPageSnowGG);
-            this.tabControl1.Controls.Add(this.tabPageSetup);
+            this.tabControl1.Controls.Add(this.tabPageFloodControl);
+            this.tabControl1.Controls.Add(this.tabPageStats);
             this.tabControl1.Controls.Add(this.tabPageUpdater);
             this.tabControl1.Controls.Add(this.tabPageRating);
-            this.tabControl1.Controls.Add(this.tabPageAdvanced);
             this.tabControl1.Controls.Add(this.tabPageAgrimet);
             this.tabControl1.Controls.Add(this.tabPageHydrographEditor);
-            this.tabControl1.Controls.Add(this.tabPageStats);
-            this.tabControl1.Controls.Add(this.tabPageReports);
             this.tabControl1.Controls.Add(this.tabPageShifts);
+            this.tabControl1.Controls.Add(this.tabPageRecords);
+            this.tabControl1.Controls.Add(this.tabPageReports);
+            this.tabControl1.Controls.Add(this.tabPageSetup);
+            this.tabControl1.Controls.Add(this.tabPageAdvanced);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1256, 645);
@@ -201,9 +204,9 @@ namespace HydrometTools
             // tabPageDay
             // 
             this.tabPageDay.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDay.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageDay.Name = "tabPageDay";
-            this.tabPageDay.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDay.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageDay.Size = new System.Drawing.Size(1248, 616);
             this.tabPageDay.TabIndex = 0;
             this.tabPageDay.Text = "Instant";
@@ -212,9 +215,9 @@ namespace HydrometTools
             // tabPageArc
             // 
             this.tabPageArc.Location = new System.Drawing.Point(4, 25);
-            this.tabPageArc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageArc.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageArc.Name = "tabPageArc";
-            this.tabPageArc.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageArc.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageArc.Size = new System.Drawing.Size(1248, 616);
             this.tabPageArc.TabIndex = 1;
             this.tabPageArc.Text = "Daily";
@@ -223,9 +226,9 @@ namespace HydrometTools
             // tabPageMPoll
             // 
             this.tabPageMPoll.Location = new System.Drawing.Point(4, 25);
-            this.tabPageMPoll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMPoll.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageMPoll.Name = "tabPageMPoll";
-            this.tabPageMPoll.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMPoll.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageMPoll.Size = new System.Drawing.Size(1248, 616);
             this.tabPageMPoll.TabIndex = 8;
             this.tabPageMPoll.Text = "Monthly";
@@ -234,9 +237,9 @@ namespace HydrometTools
             // tabPageRecords
             // 
             this.tabPageRecords.Location = new System.Drawing.Point(4, 25);
-            this.tabPageRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageRecords.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageRecords.Name = "tabPageRecords";
-            this.tabPageRecords.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageRecords.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageRecords.Size = new System.Drawing.Size(1248, 616);
             this.tabPageRecords.TabIndex = 17;
             this.tabPageRecords.Text = "Daily Records";
@@ -244,10 +247,11 @@ namespace HydrometTools
             // 
             // tabPageSnowGG
             // 
+            this.tabPageSnowGG.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPageSnowGG.Location = new System.Drawing.Point(4, 25);
-            this.tabPageSnowGG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageSnowGG.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageSnowGG.Name = "tabPageSnowGG";
-            this.tabPageSnowGG.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageSnowGG.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageSnowGG.Size = new System.Drawing.Size(1248, 616);
             this.tabPageSnowGG.TabIndex = 2;
             this.tabPageSnowGG.Text = "Data Analysis";
@@ -256,21 +260,21 @@ namespace HydrometTools
             // tabPageSetup
             // 
             this.tabPageSetup.Location = new System.Drawing.Point(4, 25);
-            this.tabPageSetup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageSetup.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageSetup.Name = "tabPageSetup";
-            this.tabPageSetup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageSetup.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageSetup.Size = new System.Drawing.Size(1248, 616);
             this.tabPageSetup.TabIndex = 3;
-            this.tabPageSetup.Text = "settings";
+            this.tabPageSetup.Text = "Settings";
             this.tabPageSetup.UseVisualStyleBackColor = true;
             // 
             // tabPageUpdater
             // 
             this.tabPageUpdater.Controls.Add(this.tabControl2);
             this.tabPageUpdater.Location = new System.Drawing.Point(4, 25);
-            this.tabPageUpdater.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageUpdater.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageUpdater.Name = "tabPageUpdater";
-            this.tabPageUpdater.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageUpdater.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageUpdater.Size = new System.Drawing.Size(1248, 616);
             this.tabPageUpdater.TabIndex = 6;
             this.tabPageUpdater.Text = "Data Import";
@@ -282,7 +286,7 @@ namespace HydrometTools
             this.tabControl2.Controls.Add(this.tabPageFdrImport);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(4, 4);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(1240, 608);
@@ -291,9 +295,9 @@ namespace HydrometTools
             // tabPageDailyImport
             // 
             this.tabPageDailyImport.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDailyImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDailyImport.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageDailyImport.Name = "tabPageDailyImport";
-            this.tabPageDailyImport.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDailyImport.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageDailyImport.Size = new System.Drawing.Size(1232, 579);
             this.tabPageDailyImport.TabIndex = 0;
             this.tabPageDailyImport.Text = "Daily";
@@ -302,10 +306,10 @@ namespace HydrometTools
             // tabPageFdrImport
             // 
             this.tabPageFdrImport.Location = new System.Drawing.Point(4, 25);
-            this.tabPageFdrImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageFdrImport.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageFdrImport.Name = "tabPageFdrImport";
-            this.tabPageFdrImport.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageFdrImport.Size = new System.Drawing.Size(1229, 574);
+            this.tabPageFdrImport.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPageFdrImport.Size = new System.Drawing.Size(1232, 579);
             this.tabPageFdrImport.TabIndex = 1;
             this.tabPageFdrImport.Text = "FDR - Water Quality";
             this.tabPageFdrImport.UseVisualStyleBackColor = true;
@@ -314,9 +318,9 @@ namespace HydrometTools
             // 
             this.tabPageRating.Controls.Add(this.ratingTable1);
             this.tabPageRating.Location = new System.Drawing.Point(4, 25);
-            this.tabPageRating.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageRating.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageRating.Name = "tabPageRating";
-            this.tabPageRating.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageRating.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageRating.Size = new System.Drawing.Size(1248, 616);
             this.tabPageRating.TabIndex = 7;
             this.tabPageRating.Text = "Rating Tables";
@@ -326,7 +330,7 @@ namespace HydrometTools
             // 
             this.ratingTable1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ratingTable1.Location = new System.Drawing.Point(4, 4);
-            this.ratingTable1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ratingTable1.Margin = new System.Windows.Forms.Padding(5);
             this.ratingTable1.Name = "ratingTable1";
             this.ratingTable1.Size = new System.Drawing.Size(1240, 608);
             this.ratingTable1.TabIndex = 0;
@@ -334,7 +338,7 @@ namespace HydrometTools
             // tabPageAdvanced
             // 
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
-            this.tabPageAdvanced.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAdvanced.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Size = new System.Drawing.Size(1248, 616);
             this.tabPageAdvanced.TabIndex = 9;
@@ -345,9 +349,9 @@ namespace HydrometTools
             // 
             this.tabPageAgrimet.Controls.Add(this.agriMetTab1);
             this.tabPageAgrimet.Location = new System.Drawing.Point(4, 25);
-            this.tabPageAgrimet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAgrimet.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageAgrimet.Name = "tabPageAgrimet";
-            this.tabPageAgrimet.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAgrimet.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageAgrimet.Size = new System.Drawing.Size(1248, 616);
             this.tabPageAgrimet.TabIndex = 10;
             this.tabPageAgrimet.Text = "AgriMet";
@@ -357,7 +361,7 @@ namespace HydrometTools
             // 
             this.agriMetTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.agriMetTab1.Location = new System.Drawing.Point(4, 4);
-            this.agriMetTab1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.agriMetTab1.Margin = new System.Windows.Forms.Padding(5);
             this.agriMetTab1.Name = "agriMetTab1";
             this.agriMetTab1.Size = new System.Drawing.Size(1240, 608);
             this.agriMetTab1.TabIndex = 0;
@@ -365,9 +369,9 @@ namespace HydrometTools
             // tabPageHydrographEditor
             // 
             this.tabPageHydrographEditor.Location = new System.Drawing.Point(4, 25);
-            this.tabPageHydrographEditor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageHydrographEditor.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageHydrographEditor.Name = "tabPageHydrographEditor";
-            this.tabPageHydrographEditor.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageHydrographEditor.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageHydrographEditor.Size = new System.Drawing.Size(1248, 616);
             this.tabPageHydrographEditor.TabIndex = 12;
             this.tabPageHydrographEditor.Text = "Hydrograph Editor";
@@ -376,9 +380,9 @@ namespace HydrometTools
             // tabPageStats
             // 
             this.tabPageStats.Location = new System.Drawing.Point(4, 25);
-            this.tabPageStats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageStats.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageStats.Name = "tabPageStats";
-            this.tabPageStats.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageStats.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageStats.Size = new System.Drawing.Size(1248, 616);
             this.tabPageStats.TabIndex = 15;
             this.tabPageStats.Text = "Check";
@@ -387,9 +391,9 @@ namespace HydrometTools
             // tabPageReports
             // 
             this.tabPageReports.Location = new System.Drawing.Point(4, 25);
-            this.tabPageReports.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageReports.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageReports.Name = "tabPageReports";
-            this.tabPageReports.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageReports.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageReports.Size = new System.Drawing.Size(1248, 616);
             this.tabPageReports.TabIndex = 16;
             this.tabPageReports.Text = "Reports";
@@ -398,9 +402,9 @@ namespace HydrometTools
             // tabPageShifts
             // 
             this.tabPageShifts.Location = new System.Drawing.Point(4, 25);
-            this.tabPageShifts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageShifts.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageShifts.Name = "tabPageShifts";
-            this.tabPageShifts.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageShifts.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageShifts.Size = new System.Drawing.Size(1248, 616);
             this.tabPageShifts.TabIndex = 18;
             this.tabPageShifts.Text = "Shifts";
@@ -423,6 +427,15 @@ namespace HydrometTools
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // tabPageFloodControl
+            // 
+            this.tabPageFloodControl.Location = new System.Drawing.Point(4, 25);
+            this.tabPageFloodControl.Name = "tabPageFloodControl";
+            this.tabPageFloodControl.Size = new System.Drawing.Size(1248, 616);
+            this.tabPageFloodControl.TabIndex = 19;
+            this.tabPageFloodControl.Text = "Flood Control";
+            this.tabPageFloodControl.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -432,7 +445,7 @@ namespace HydrometTools
             this.Controls.Add(this.statusStrip1);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(958, 505);
             this.Name = "FormMain";
@@ -635,11 +648,18 @@ namespace HydrometTools
                 shifts.Dock = DockStyle.Fill;
             }
 
-            if (tabPageFcplot == null 
-                && FcPlotDataSet.HasRuleCurves())
+            if (tabPageFcplot == null)
             {
-                tabPageFcplot = new TabPage("FCplot");
-                tabControl1.TabPages.Add(tabPageFcplot);
+                if (FcPlotDataSet.HasRuleCurves())
+                {
+                    fcUi = new FcPlot.FcPlotUI();
+                    fcUi.Parent = tabPageFloodControl;
+                    fcUi.Dock = DockStyle.Fill;
+                }
+                else
+                {
+                    this.tabControl1.TabPages.Remove(tabPageFcplot);
+                }
             }
 
         }

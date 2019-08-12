@@ -158,7 +158,15 @@ namespace HydrometTools.SnowGG
                     var sl = new SeriesList();
                     sl.Add(s);
 
-                    var wyList = PiscesAnalysis.WaterYears(sl, waterYears, false, 10, true);
+                    var wyList = new SeriesList();
+                    if (cySelected)
+                    {
+                        wyList = PiscesAnalysis.WaterYears(sl, waterYears, false, 1, true);
+                    }
+                    else
+                    {
+                        wyList = PiscesAnalysis.WaterYears(sl, waterYears, false, 10, true);
+                    }
 
                     foreach (var item in wyList)
                     {
@@ -338,16 +346,34 @@ namespace HydrometTools.SnowGG
 
             }
 
-            DateTime t1 = new DateTime(y1 - 1, 10, 1);
-            DateTime t2 = new DateTime(y2  , 9, 30);
+
+            DateTime t1, t2;
+            if (cySelected)
+            {
+                t1 = new DateTime(y1, 1, 1);
+                t2 = new DateTime(y2, 12, 31);
+            }
+            else
+            {
+                t1 = new DateTime(y1 - 1, 10, 1);
+                t2 = new DateTime(y2, 9, 30);
+            }
 
             var server = HydrometInfoUtility.HydrometServerFromPreferences();
             Series s = new HydrometDailySeries(comboBoxCbtt.Text.Trim(), DeterminePcode(),server);
             s.Read(t1, t2);
             s.RemoveMissing();
             s.Appearance.LegendText = "";
-           
-            YearRange yr = new YearRange(2000, 10);
+
+            YearRange yr;
+            if (cySelected)
+            {
+                yr = new YearRange(2000, 1);
+            }
+            else
+            {
+                yr = new YearRange(2000, 10);
+            }
             var list = Math.SummaryHydrograph(s, pctls, yr.DateTime1, checkBoxMax.Checked, checkBoxMin.Checked, checkBoxAvg.Checked, false); //, false);
            
             
@@ -535,6 +561,7 @@ namespace HydrometTools.SnowGG
             textBoxMultiple.Enabled = !textBoxMultiple.Enabled;
         }
 
+        private bool cySelected = false;
         private void buttonToggleMonths_Click(object sender, EventArgs e)
         {
             var startMonth = this.monthRangePicker1.BeginningMonth;
@@ -542,10 +569,16 @@ namespace HydrometTools.SnowGG
             if (startMonth == 1)
             {
                 this.monthRangePicker1.BeginningMonth = 10;
+                this.buttonToggleMonths.Text = "Use CY";
+                selectedRange = new MonthDayRange(10, 1, 9, 30);
+                cySelected = false;
             }
             else
             {
                 this.monthRangePicker1.BeginningMonth = 1;
+                this.buttonToggleMonths.Text = "Use WY";
+                selectedRange = new MonthDayRange(1, 1, 12, 31);
+                cySelected = true;
             }
             this.monthRangePicker1.Update();
             this.monthRangePicker1.MonthDayRange = selectedRange;
