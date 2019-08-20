@@ -319,6 +319,12 @@
     <Compile Include="Decodes\McfDecodesConverter.cs" />
     <Compile Include="Decodes\McfToDecodes.cs" />
     <Compile Include="Decodes\UnitConversion.cs" />
+    <Compile Include="FcPlot\FcOpsMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FcPlot\FcOpsMenu.Designer.cs">
+      <DependentUpon>FcOpsMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FcPlot\FloodOperation.cs" />
     <Compile Include="FcPlot\FcPlotUI.cs">
       <SubType>UserControl</SubType>
@@ -588,6 +594,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgriMet\SpreadsheetControl.resx">
       <DependentUpon>SpreadsheetControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FcPlot\FcOpsMenu.resx">
+      <DependentUpon>FcOpsMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Import\ImportFDRTemperature.resx">
       <DependentUpon>ImportFDRTemperature.cs</DependentUpon>

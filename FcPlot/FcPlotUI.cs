@@ -37,7 +37,7 @@ namespace FcPlot
             this.textBoxWaterYear.Text = wy.ToString();
             var t2 = t.AddMonths(1);
 
-            this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 7, 31);
+            this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 9, 30);
 
             // load QU locations
 
@@ -67,7 +67,7 @@ namespace FcPlot
         ResidualForecast residForecast;
         ResidualForecast residForecastCompare;
 
-        private void GraphData()
+        public void GraphData()
         {
             linkLabelReport.Visible = false;
             if ( comboBoxSite.Text.ToString() == "")
@@ -185,7 +185,7 @@ namespace FcPlot
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
 
                 hydrometChart1.Fcplot(residForecast.TotalContent, requiredContent, alternateRequiredContent,
-                 alternateActualContent,ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList,showRuleCurve,
+                 alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
                   dashedLines);
                 //compute the targets
                 if (pt.FillType == FillType.Variable && (showTarget.Checked == true || checkBoxOverrideFcast.Checked == true))
@@ -306,7 +306,7 @@ namespace FcPlot
             return new DateRange(t1, t2);
         }
 
-        private void SetupDates(int yr, ref DateTime t1, ref DateTime t2, bool allowFutureDate)
+        public void SetupDates(int yr, ref DateTime t1, ref DateTime t2, bool allowFutureDate)
         {
             
             var range = monthRangePicker1.MonthDayRange;
@@ -333,6 +333,29 @@ namespace FcPlot
             CsvFile.WriteToCSV(residForecast.ReportTable, fn);
             
             System.Diagnostics.Process.Start(fn);
+        }
+
+
+        FcOpsMenu fcOpsMenu;
+        private void buttonOpsMenu_Click(object sender, EventArgs e)
+        {
+            // Check if a valid FloodControl object is selected and if the form is already open
+            if (this.comboBoxSite.SelectedItem == null || this.comboBoxSite.SelectedItem.ToString().IndexOf("--") != -1)
+            {
+                return;
+            }
+            FormCollection fc = Application.OpenForms;
+            foreach (Form frm in fc)
+            {
+                if (frm.Text == "Flood Control Operations Menu")
+                {
+                    frm.Close();
+                    break;
+                }
+            }
+            // Open form
+            fcOpsMenu = new FcOpsMenu(this);
+            fcOpsMenu.Show();
         }
     }
 }

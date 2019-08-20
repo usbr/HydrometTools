@@ -32,6 +32,7 @@ namespace FcPlot
             this.components = new System.ComponentModel.Container();
             Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonOpsMenu = new System.Windows.Forms.Button();
             this.checkBoxOverrideFcast = new System.Windows.Forms.CheckBox();
             this.textBoxOverrideFcast = new System.Windows.Forms.TextBox();
             this.checkBoxDashed = new System.Windows.Forms.CheckBox();
@@ -46,18 +47,18 @@ namespace FcPlot
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAlternateWaterYear = new System.Windows.Forms.TextBox();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.textBoxWaterYear = new System.Windows.Forms.TextBox();
             this.comboBoxSite = new System.Windows.Forms.ComboBox();
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageGraph = new System.Windows.Forms.TabPage();
+            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFlagLegend = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
-            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageGraph.SuspendLayout();
@@ -68,6 +69,7 @@ namespace FcPlot
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonOpsMenu);
             this.panel1.Controls.Add(this.checkBoxOverrideFcast);
             this.panel1.Controls.Add(this.textBoxOverrideFcast);
             this.panel1.Controls.Add(this.checkBoxDashed);
@@ -92,6 +94,18 @@ namespace FcPlot
             this.panel1.Size = new System.Drawing.Size(1402, 103);
             this.panel1.TabIndex = 2;
             // 
+            // buttonOpsMenu
+            // 
+            this.buttonOpsMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOpsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonOpsMenu.Location = new System.Drawing.Point(4, 66);
+            this.buttonOpsMenu.Name = "buttonOpsMenu";
+            this.buttonOpsMenu.Size = new System.Drawing.Size(111, 32);
+            this.buttonOpsMenu.TabIndex = 17;
+            this.buttonOpsMenu.Text = "Ops Menu";
+            this.buttonOpsMenu.UseVisualStyleBackColor = true;
+            this.buttonOpsMenu.Click += new System.EventHandler(this.buttonOpsMenu_Click);
+            // 
             // checkBoxOverrideFcast
             // 
             this.checkBoxOverrideFcast.AutoSize = true;
@@ -109,7 +123,7 @@ namespace FcPlot
             this.textBoxOverrideFcast.Location = new System.Drawing.Point(904, 8);
             this.textBoxOverrideFcast.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxOverrideFcast.Name = "textBoxOverrideFcast";
-            this.textBoxOverrideFcast.Size = new System.Drawing.Size(110, 22);
+            this.textBoxOverrideFcast.Size = new System.Drawing.Size(119, 22);
             this.textBoxOverrideFcast.TabIndex = 15;
             this.toolTip1.SetToolTip(this.textBoxOverrideFcast, "forecast volume in AF");
             // 
@@ -118,7 +132,7 @@ namespace FcPlot
             this.checkBoxDashed.AutoSize = true;
             this.checkBoxDashed.Checked = true;
             this.checkBoxDashed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDashed.Location = new System.Drawing.Point(840, 71);
+            this.checkBoxDashed.Location = new System.Drawing.Point(904, 72);
             this.checkBoxDashed.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxDashed.Name = "checkBoxDashed";
             this.checkBoxDashed.Size = new System.Drawing.Size(119, 21);
@@ -129,17 +143,17 @@ namespace FcPlot
             // 
             // textBoxTargetPercentages
             // 
-            this.textBoxTargetPercentages.Location = new System.Drawing.Point(804, 41);
+            this.textBoxTargetPercentages.Location = new System.Drawing.Point(904, 39);
             this.textBoxTargetPercentages.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTargetPercentages.Name = "textBoxTargetPercentages";
-            this.textBoxTargetPercentages.Size = new System.Drawing.Size(152, 22);
+            this.textBoxTargetPercentages.Size = new System.Drawing.Size(119, 22);
             this.textBoxTargetPercentages.TabIndex = 13;
             this.toolTip1.SetToolTip(this.textBoxTargetPercentages, "space separated %-target levels: 100 120 ...");
             // 
             // compareData
             // 
             this.compareData.AutoSize = true;
-            this.compareData.Location = new System.Drawing.Point(410, 76);
+            this.compareData.Location = new System.Drawing.Point(363, 77);
             this.compareData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.compareData.Name = "compareData";
             this.compareData.Size = new System.Drawing.Size(113, 17);
@@ -149,7 +163,7 @@ namespace FcPlot
             // dataInitial
             // 
             this.dataInitial.AutoSize = true;
-            this.dataInitial.Location = new System.Drawing.Point(6, 64);
+            this.dataInitial.Location = new System.Drawing.Point(123, 77);
             this.dataInitial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dataInitial.Name = "dataInitial";
             this.dataInitial.Size = new System.Drawing.Size(72, 17);
@@ -161,7 +175,7 @@ namespace FcPlot
             this.showGreenLines.AutoSize = true;
             this.showGreenLines.Checked = true;
             this.showGreenLines.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showGreenLines.Location = new System.Drawing.Point(692, 71);
+            this.showGreenLines.Location = new System.Drawing.Point(746, 72);
             this.showGreenLines.Margin = new System.Windows.Forms.Padding(4);
             this.showGreenLines.Name = "showGreenLines";
             this.showGreenLines.Size = new System.Drawing.Size(138, 21);
@@ -172,7 +186,7 @@ namespace FcPlot
             // showTarget
             // 
             this.showTarget.AutoSize = true;
-            this.showTarget.Location = new System.Drawing.Point(692, 42);
+            this.showTarget.Location = new System.Drawing.Point(746, 41);
             this.showTarget.Margin = new System.Windows.Forms.Padding(4);
             this.showTarget.Name = "showTarget";
             this.showTarget.Size = new System.Drawing.Size(110, 21);
@@ -182,7 +196,7 @@ namespace FcPlot
             // 
             // pcodeComparison
             // 
-            this.pcodeComparison.Location = new System.Drawing.Point(530, 74);
+            this.pcodeComparison.Location = new System.Drawing.Point(484, 74);
             this.pcodeComparison.Margin = new System.Windows.Forms.Padding(4);
             this.pcodeComparison.Name = "pcodeComparison";
             this.pcodeComparison.Size = new System.Drawing.Size(152, 22);
@@ -191,17 +205,17 @@ namespace FcPlot
             // 
             // pcodeInitial
             // 
-            this.pcodeInitial.Location = new System.Drawing.Point(84, 63);
+            this.pcodeInitial.Location = new System.Drawing.Point(203, 74);
             this.pcodeInitial.Margin = new System.Windows.Forms.Padding(4);
             this.pcodeInitial.Name = "pcodeInitial";
-            this.pcodeInitial.Size = new System.Drawing.Size(188, 22);
+            this.pcodeInitial.Size = new System.Drawing.Size(152, 22);
             this.pcodeInitial.TabIndex = 7;
             this.toolTip1.SetToolTip(this.pcodeInitial, "additional series such as:   bigi qd");
             // 
             // waterYearLabel
             // 
             this.waterYearLabel.AutoSize = true;
-            this.waterYearLabel.Location = new System.Drawing.Point(6, 35);
+            this.waterYearLabel.Location = new System.Drawing.Point(123, 47);
             this.waterYearLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.waterYearLabel.Name = "waterYearLabel";
             this.waterYearLabel.Size = new System.Drawing.Size(72, 17);
@@ -211,7 +225,7 @@ namespace FcPlot
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(410, 44);
+            this.label1.Location = new System.Drawing.Point(363, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 17);
@@ -220,7 +234,7 @@ namespace FcPlot
             // 
             // textBoxAlternateWaterYear
             // 
-            this.textBoxAlternateWaterYear.Location = new System.Drawing.Point(530, 42);
+            this.textBoxAlternateWaterYear.Location = new System.Drawing.Point(484, 44);
             this.textBoxAlternateWaterYear.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAlternateWaterYear.Name = "textBoxAlternateWaterYear";
             this.textBoxAlternateWaterYear.Size = new System.Drawing.Size(152, 22);
@@ -229,21 +243,34 @@ namespace FcPlot
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(296, 44);
+            this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefresh.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.buttonRefresh.Location = new System.Drawing.Point(4, 31);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(100, 28);
+            this.buttonRefresh.Size = new System.Drawing.Size(111, 31);
             this.buttonRefresh.TabIndex = 2;
             this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // monthRangePicker1
+            // 
+            this.monthRangePicker1.AutoSize = true;
+            this.monthRangePicker1.BeginningMonth = 10;
+            this.monthRangePicker1.Location = new System.Drawing.Point(296, 0);
+            this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.monthRangePicker1.MonthDayRange = monthDayRange1;
+            this.monthRangePicker1.Name = "monthRangePicker1";
+            this.monthRangePicker1.Size = new System.Drawing.Size(433, 43);
+            this.monthRangePicker1.TabIndex = 1;
+            // 
             // textBoxWaterYear
             // 
-            this.textBoxWaterYear.Location = new System.Drawing.Point(84, 31);
+            this.textBoxWaterYear.Location = new System.Drawing.Point(203, 44);
             this.textBoxWaterYear.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxWaterYear.Name = "textBoxWaterYear";
-            this.textBoxWaterYear.Size = new System.Drawing.Size(188, 22);
+            this.textBoxWaterYear.Size = new System.Drawing.Size(152, 22);
             this.textBoxWaterYear.TabIndex = 1;
             this.toolTip1.SetToolTip(this.textBoxWaterYear, "base year");
             // 
@@ -326,6 +353,15 @@ namespace FcPlot
             this.tabPageGraph.Text = "graph";
             this.tabPageGraph.UseVisualStyleBackColor = true;
             // 
+            // hydrometChart1
+            // 
+            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
+            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.hydrometChart1.Name = "hydrometChart1";
+            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
+            this.hydrometChart1.TabIndex = 1;
+            // 
             // tabPageReport
             // 
             this.tabPageReport.Controls.Add(this.dataGridView1);
@@ -370,26 +406,6 @@ namespace FcPlot
             this.labelFlagLegend.TabIndex = 4;
             this.labelFlagLegend.Text = "label2";
             // 
-            // monthRangePicker1
-            // 
-            this.monthRangePicker1.AutoSize = true;
-            this.monthRangePicker1.BeginningMonth = 10;
-            this.monthRangePicker1.Location = new System.Drawing.Point(296, 0);
-            this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.monthRangePicker1.MonthDayRange = monthDayRange1;
-            this.monthRangePicker1.Name = "monthRangePicker1";
-            this.monthRangePicker1.Size = new System.Drawing.Size(433, 43);
-            this.monthRangePicker1.TabIndex = 1;
-            // 
-            // hydrometChart1
-            // 
-            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
-            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.hydrometChart1.Name = "hydrometChart1";
-            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
-            this.hydrometChart1.TabIndex = 1;
-            // 
             // FcPlotUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -414,11 +430,11 @@ namespace FcPlot
 
         #endregion
 
-        private HydrometTeeChart hydrometChart1;
+        public HydrometTeeChart hydrometChart1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBoxSite;
-        private Reclamation.TimeSeries.Forms.MonthRangePicker monthRangePicker1;
-        private System.Windows.Forms.TextBox textBoxWaterYear;
+        public System.Windows.Forms.ComboBox comboBoxSite;
+        public Reclamation.TimeSeries.Forms.MonthRangePicker monthRangePicker1;
+        public System.Windows.Forms.TextBox textBoxWaterYear;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.LinkLabel linkLabelReport;
         private System.Windows.Forms.Label label1;
@@ -441,5 +457,6 @@ namespace FcPlot
         private System.Windows.Forms.CheckBox checkBoxDashed;
         private System.Windows.Forms.TextBox textBoxOverrideFcast;
         private System.Windows.Forms.CheckBox checkBoxOverrideFcast;
+        private System.Windows.Forms.Button buttonOpsMenu;
     }
 }

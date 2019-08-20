@@ -104,7 +104,7 @@ namespace HydrometTools
 
                 ReadDailyExternalData(t1, t2);
 
-                updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() + " and " + hmetCount + " records in hydromet");
+                updateStatus("Found " + externalSeries.Count + " record(s) in " + GetSourceType().ToString() + " and " + hmetCount + " record(s) in hydromet");
 
                 Application.DoEvents();
                 SeriesList list = new SeriesList();
@@ -133,13 +133,13 @@ namespace HydrometTools
                     int diffCount = diffVals.Count(v => System.Math.Abs(v) > 0.05);
                     if (diffCount > 0)
                     {
-                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() +
-                            " and " + hmetCount + " records in hydromet - " + diffCount + " records need updates...", true);
+                        updateStatus("Found " + externalSeries.Count + " record(s) in " + GetSourceType().ToString() +
+                            " and " + hmetCount + " record(s) in hydromet - " + diffCount + " record(s) need updates...", true);
                     }
                     else
                     {
-                        updateStatus("Found " + externalSeries.Count + " records in " + GetSourceType().ToString() +
-                            " and " + hmetCount + " records in hydromet.");
+                        updateStatus("Found " + externalSeries.Count + " record(s) in " + GetSourceType().ToString() +
+                            " and " + hmetCount + " record(s) in hydromet.");
                     }
 
                     SeriesList list2 = new SeriesList();
@@ -359,7 +359,7 @@ namespace HydrometTools
 
             string fileName = FileUtility.GetTempFileName(".txt"); //"update" + DateTime.Now.ToString("yyyyMMMdd") + ".txt";
             int counter = WriteArchivesImportFile(cbtt, pcode, fileName, GetSourceType());
-            updateStatus("Found " + counter + " records to update...");// + fileName);
+            updateStatus("Found " + counter + " record(s) to update...");// + fileName);
             Application.DoEvents();
 
             if (counter == 0)
@@ -377,7 +377,7 @@ namespace HydrometTools
             }
 
             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
-            updateStatus("Updating " + counter + " records...");// + fileName);
+            updateStatus("Updating " + counter + " record(s)...");// + fileName);
 
             if (svr == HydrometHost.GreatPlains && admin && login.ShowDialog() == DialogResult.OK)
             {

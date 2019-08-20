@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonToggleMonths = new System.Windows.Forms.Button();
             this.checkBoxUseList = new System.Windows.Forms.CheckBox();
             this.textBoxMultiple = new System.Windows.Forms.TextBox();
             this.checkBoxDeltas = new System.Windows.Forms.CheckBox();
@@ -56,7 +57,6 @@
             this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.yearSelector1 = new Reclamation.TimeSeries.Forms.YearSelector();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonToggleMonths = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +84,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1323, 198);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonToggleMonths
+            // 
+            this.buttonToggleMonths.Location = new System.Drawing.Point(993, 43);
+            this.buttonToggleMonths.Name = "buttonToggleMonths";
+            this.buttonToggleMonths.Size = new System.Drawing.Size(69, 39);
+            this.buttonToggleMonths.TabIndex = 17;
+            this.buttonToggleMonths.Text = "Use CY";
+            this.buttonToggleMonths.UseVisualStyleBackColor = true;
+            this.buttonToggleMonths.Click += new System.EventHandler(this.buttonToggleMonths_Click);
             // 
             // checkBoxUseList
             // 
@@ -367,16 +377,6 @@
         2005};
             this.yearSelector1.Size = new System.Drawing.Size(428, 31);
             this.yearSelector1.TabIndex = 2;
-            // 
-            // buttonToggleMonths
-            // 
-            this.buttonToggleMonths.Location = new System.Drawing.Point(993, 43);
-            this.buttonToggleMonths.Name = "buttonToggleMonths";
-            this.buttonToggleMonths.Size = new System.Drawing.Size(69, 39);
-            this.buttonToggleMonths.TabIndex = 17;
-            this.buttonToggleMonths.Text = "Use CY";
-            this.buttonToggleMonths.UseVisualStyleBackColor = true;
-            this.buttonToggleMonths.Click += new System.EventHandler(this.buttonToggleMonths_Click);
             // 
             // SnowGG
             // 
