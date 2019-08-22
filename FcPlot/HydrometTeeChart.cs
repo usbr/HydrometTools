@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Reclamation.TimeSeries;
 //using Steema.TeeChart.Styles;
+using Reclamation.TimeSeries.Hydromet.Operations;
 
 namespace FcPlot
 {
@@ -267,12 +268,21 @@ namespace FcPlot
         /// Method to perform operations given an inflow and an outflow
         /// </summary>
         /// <param name="ui"></param>
-        internal void FcOps(FcPlotUI ui, string inflowCode, string outflowCode, 
-            decimal inflowYear, decimal outflowYear, 
-            string[] resCodes, double maxSpace,
-            decimal inflowShift, decimal outflowShift,
-            string inflowScale, string outflowScale)
+        internal void FcOps(FcPlotUI ui, FloodControlPoint pt, FcOpsMenu opsUI)
         {
+            // Get required variables from the available resources
+            string inflowCode = opsUI.textBoxInflowCode.Text;
+            string outflowCode = opsUI.textBoxOutflowCode.Text;
+            decimal inflowYear = opsUI.numericUpDownInflowYear.Value;
+            decimal outflowYear = opsUI.numericUpDownOutflowYear.Value;
+            string[] resCodes = pt.UpstreamReservoirs;
+            double maxSpace = pt.TotalUpstreamActiveSpace;
+            decimal inflowShift = opsUI.numericUpDownInflowShift.Value;
+            decimal outflowShift = opsUI.numericUpDownOutflowShift.Value;
+            string inflowScale = opsUI.textBoxInflowScale.Text;
+            string outflowScale = opsUI.textBoxOutflowScale.Text;
+
+            // redraw the main graph
             ui.GraphData();
 
             // Process current inflow curve
@@ -329,9 +339,41 @@ namespace FcPlot
             sOutflowShifted = Reclamation.TimeSeries.Math.Shift(sOutflowShifted, Convert.ToInt32(outflowShift));
             sOutflowShifted = sOutflowShifted.Subset(t1, t2);
             sOutflowShifted = sOutflowShifted * outflowScaleValue;
+            if (opsUI.checkBoxUseCustomOutflow.Checked) //apply custom outflow
+            {
+                DateTime customT1 = opsUI.dateTimePickerCustomOutflow1.Value;
+                DateTime customT2 = opsUI.dateTimePickerCustomOutflow2.Value;
+                DateTime customT3 = opsUI.dateTimePickerCustomOutflow3.Value;
+                var customV1 = Convert.ToInt32(opsUI.textBoxCustomOutflow1.Text);
+                var customV2 = Convert.ToInt32(opsUI.textBoxCustomOutflow2.Text);
+
+                Series rval = sOutflowShifted.Clone();
+                foreach (var item in sOutflowShifted)
+                {
+                    DateTime sDate1 = new DateTime(sOutflowShifted.MinDateTime.Year, customT1.Month, customT1.Day);
+                    if (customT1.Month <= 9) { sDate1 = new DateTime(sOutflowShifted.MaxDateTime.Year, customT1.Month, customT1.Day); }
+                    DateTime sDate2 = new DateTime(sOutflowShifted.MinDateTime.Year, customT2.Month, customT2.Day);
+                    if (customT1.Month <= 9) { sDate2 = new DateTime(sOutflowShifted.MaxDateTime.Year, customT2.Month, customT2.Day); }
+                    DateTime sDate3 = new DateTime(sOutflowShifted.MinDateTime.Year, customT3.Month, customT3.Day);
+                    if (customT1.Month <= 9) { sDate3 = new DateTime(sOutflowShifted.MaxDateTime.Year, customT3.Month, customT3.Day); }
+
+                    var ithDate = item.DateTime;
+                    if (ithDate >= sDate1 && ithDate < sDate2 && customV1 >= 0)
+                    {
+                        rval.Add(ithDate, customV1);
+                    }
+                    else if (ithDate >= sDate2 && ithDate < sDate3 && customV2 >= 0)
+                    {
+                        rval.Add(ithDate, customV2);
+                    }
+                    else
+                    {
+                        rval.Add(item);
+                    }
+                }                
+            }
             CreateSeries(System.Drawing.Color.Plum, outflowYear + "-Outflow", sOutflowShifted, "right", true);
 
-            // Process simulated storage curve
             // Get observed storage contents
             var ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[0], "AF");
             t1 = DateTime.Now;
@@ -352,7 +394,8 @@ namespace FcPlot
                 sStorage = sStorage + sStorageTemp;
             }
             Reclamation.TimeSeries.Point lastPt = sStorage[sStorage.Count() - 1];
-            // Run storage simulation forward
+
+            // Process simulated storage curve and run storage simulation forward
             DateTime minDate = new DateTime(System.Math.Min(sOutflowShifted.MaxDateTime.Ticks, sInflowShifted.MaxDateTime.Ticks));
             if (lastPt.DateTime < minDate)
             {

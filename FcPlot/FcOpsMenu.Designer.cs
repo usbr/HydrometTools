@@ -50,15 +50,30 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.dateTimePickerCustomOutflow1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerCustomOutflow2 = new System.Windows.Forms.DateTimePicker();
+            this.textBoxCustomOutflow1 = new System.Windows.Forms.TextBox();
+            this.textBoxCustomOutflow2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dateTimePickerCustomOutflow3 = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.checkBoxUseCustomOutflow = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowShift)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowShift)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOperate
             // 
-            this.buttonOperate.Location = new System.Drawing.Point(12, 367);
+            this.buttonOperate.Location = new System.Drawing.Point(11, 560);
             this.buttonOperate.Name = "buttonOperate";
             this.buttonOperate.Size = new System.Drawing.Size(140, 33);
             this.buttonOperate.TabIndex = 0;
@@ -252,11 +267,153 @@
             this.label10.TabIndex = 20;
             this.label10.Text = "Scaler";
             // 
+            // dateTimePickerCustomOutflow1
+            // 
+            this.dateTimePickerCustomOutflow1.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerCustomOutflow1.Location = new System.Drawing.Point(73, 52);
+            this.dateTimePickerCustomOutflow1.Name = "dateTimePickerCustomOutflow1";
+            this.dateTimePickerCustomOutflow1.ShowUpDown = true;
+            this.dateTimePickerCustomOutflow1.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerCustomOutflow1.TabIndex = 22;
+            // 
+            // dateTimePickerCustomOutflow2
+            // 
+            this.dateTimePickerCustomOutflow2.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerCustomOutflow2.Location = new System.Drawing.Point(73, 84);
+            this.dateTimePickerCustomOutflow2.Name = "dateTimePickerCustomOutflow2";
+            this.dateTimePickerCustomOutflow2.ShowUpDown = true;
+            this.dateTimePickerCustomOutflow2.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerCustomOutflow2.TabIndex = 23;
+            // 
+            // textBoxCustomOutflow1
+            // 
+            this.textBoxCustomOutflow1.Location = new System.Drawing.Point(231, 51);
+            this.textBoxCustomOutflow1.Name = "textBoxCustomOutflow1";
+            this.textBoxCustomOutflow1.Size = new System.Drawing.Size(77, 22);
+            this.textBoxCustomOutflow1.TabIndex = 24;
+            this.textBoxCustomOutflow1.Text = "1";
+            // 
+            // textBoxCustomOutflow2
+            // 
+            this.textBoxCustomOutflow2.Location = new System.Drawing.Point(231, 84);
+            this.textBoxCustomOutflow2.Name = "textBoxCustomOutflow2";
+            this.textBoxCustomOutflow2.Size = new System.Drawing.Size(77, 22);
+            this.textBoxCustomOutflow2.TabIndex = 25;
+            this.textBoxCustomOutflow2.Text = "1";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(8, 57);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 17);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "starting ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(170, 57);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 17);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "release";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(170, 89);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 17);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "release";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(8, 89);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 17);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "starting ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(8, 123);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(235, 17);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "revert to the analog year release on";
+            // 
+            // dateTimePickerCustomOutflow3
+            // 
+            this.dateTimePickerCustomOutflow3.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerCustomOutflow3.Location = new System.Drawing.Point(249, 118);
+            this.dateTimePickerCustomOutflow3.Name = "dateTimePickerCustomOutflow3";
+            this.dateTimePickerCustomOutflow3.ShowUpDown = true;
+            this.dateTimePickerCustomOutflow3.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerCustomOutflow3.TabIndex = 31;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBoxUseCustomOutflow);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.dateTimePickerCustomOutflow3);
+            this.groupBox1.Controls.Add(this.dateTimePickerCustomOutflow1);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.dateTimePickerCustomOutflow2);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.textBoxCustomOutflow1);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.textBoxCustomOutflow2);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Location = new System.Drawing.Point(90, 235);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(354, 161);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Custom Outflow";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(314, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(26, 17);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "cfs";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(314, 87);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(26, 17);
+            this.label17.TabIndex = 33;
+            this.label17.Text = "cfs";
+            // 
+            // checkBoxUseCustomOutflow
+            // 
+            this.checkBoxUseCustomOutflow.AutoSize = true;
+            this.checkBoxUseCustomOutflow.Location = new System.Drawing.Point(11, 21);
+            this.checkBoxUseCustomOutflow.Name = "checkBoxUseCustomOutflow";
+            this.checkBoxUseCustomOutflow.Size = new System.Drawing.Size(157, 21);
+            this.checkBoxUseCustomOutflow.TabIndex = 34;
+            this.checkBoxUseCustomOutflow.Text = "Use Custom Outflow";
+            this.checkBoxUseCustomOutflow.UseVisualStyleBackColor = true;
+            // 
             // FcOpsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 412);
+            this.ClientSize = new System.Drawing.Size(453, 605);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -279,13 +436,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonOperate);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(467, 334);
+            this.MaximumSize = new System.Drawing.Size(471, 652);
+            this.MinimumSize = new System.Drawing.Size(471, 652);
             this.Name = "FcOpsMenu";
             this.Text = "Flood Control Operations Menu";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowShift)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowShift)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,26 +453,40 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonOperate;
+        public System.Windows.Forms.Button buttonOperate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxInflowCode;
-        private System.Windows.Forms.TextBox textBoxOutflowCode;
+        public System.Windows.Forms.TextBox textBoxInflowCode;
+        public System.Windows.Forms.TextBox textBoxOutflowCode;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxSpace;
-        private System.Windows.Forms.TextBox textBoxInflowScale;
+        public System.Windows.Forms.TextBox textBoxSpace;
+        public System.Windows.Forms.TextBox textBoxInflowScale;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxOutflowScale;
-        private System.Windows.Forms.TextBox textBoxDams;
+        public System.Windows.Forms.TextBox textBoxOutflowScale;
+        public System.Windows.Forms.TextBox textBoxDams;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDownInflowYear;
-        private System.Windows.Forms.NumericUpDown numericUpDownOutflowYear;
-        private System.Windows.Forms.NumericUpDown numericUpDownInflowShift;
-        private System.Windows.Forms.NumericUpDown numericUpDownOutflowShift;
+        public System.Windows.Forms.NumericUpDown numericUpDownInflowYear;
+        public System.Windows.Forms.NumericUpDown numericUpDownOutflowYear;
+        public System.Windows.Forms.NumericUpDown numericUpDownInflowShift;
+        public System.Windows.Forms.NumericUpDown numericUpDownOutflowShift;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.DateTimePicker dateTimePickerCustomOutflow1;
+        public System.Windows.Forms.DateTimePicker dateTimePickerCustomOutflow2;
+        public System.Windows.Forms.TextBox textBoxCustomOutflow1;
+        public System.Windows.Forms.TextBox textBoxCustomOutflow2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.DateTimePicker dateTimePickerCustomOutflow3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.CheckBox checkBoxUseCustomOutflow;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label11;
     }
 }

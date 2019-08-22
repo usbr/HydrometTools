@@ -33,6 +33,12 @@ namespace FcPlot
             this.textBoxOutflowCode.Text = outflowCode;
             this.numericUpDownOutflowYear.Maximum = (DateTime.Now.Year - 1);
             this.numericUpDownOutflowYear.Value = (DateTime.Now.Year - 1);
+            this.dateTimePickerCustomOutflow1.Value = DateTime.Now.Date;
+            this.dateTimePickerCustomOutflow2.Value = DateTime.Now.Date.AddDays(5);
+            this.dateTimePickerCustomOutflow3.Value = DateTime.Now.Date.AddDays(10);
+            this.textBoxCustomOutflow1.Text = "-99";
+            this.textBoxCustomOutflow2.Text = "-99";
+
 
             // Handle ENTER key press
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
@@ -46,13 +52,7 @@ namespace FcPlot
 
         private void Operate()
         {
-            ui.hydrometChart1.FcOps(ui, this.textBoxInflowCode.Text, this.textBoxOutflowCode.Text,
-                this.numericUpDownInflowYear.Value, this.numericUpDownOutflowYear.Value,
-                //this.textBoxInflowYears.Text, this.textBoxOutflowYears.Text, 
-                pt.UpstreamReservoirs, pt.TotalUpstreamActiveSpace,
-                this.numericUpDownInflowShift.Value, this.numericUpDownOutflowShift.Value,
-                this.textBoxInflowScale.Text, this.textBoxOutflowScale.Text
-                );
+            ui.hydrometChart1.FcOps(ui, pt, this);
         }
 
         private void buttonOperate_Click(object sender, EventArgs e)
