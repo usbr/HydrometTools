@@ -186,11 +186,12 @@ namespace FcPlot
                 //tSeries.Marks.Items[tSeries.Count - 1].Text = "\n";
                 if( tSeries.Count >0)
                 tSeries.Marks.Items[tSeries.Count - 1].Visible = false;
-                if (rightAxis)
-                {
-                    tSeries.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
-                }
             }
+            if (rightAxis)
+            {
+                tSeries.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
+            }
+
         }
 
         //static void tSeries_GetSeriesMark(Steema.TeeChart.Styles.Series series,
@@ -370,7 +371,8 @@ namespace FcPlot
                     {
                         rval.Add(item);
                     }
-                }                
+                }
+                sOutflowShifted = rval;
             }
             CreateSeries(System.Drawing.Color.Plum, outflowYear + "-Outflow", sOutflowShifted, "right", true);
 
@@ -429,6 +431,46 @@ namespace FcPlot
                 }
 
             }
+            tChart1.Axes.Right.Grid.Visible = false;
+            SetupTChartTools();
+        }
+
+        void Form1_GetSeriesMark(Steema.TeeChart.Styles.Series series, Steema.TeeChart.Styles.GetSeriesMarkEventArgs e)
+        {
+            var t = DateTime.FromOADate(Convert.ToDouble(series.XValues[e.ValueIndex].ToString()));
+            var val = Convert.ToDouble(series.YValues[e.ValueIndex].ToString()).ToString("#,###,###.##");
+            e.MarkText = "Series: " + series.Title + "\r\nDate-Time: " + t.ToString("MM/dd/yyyy HH:mm") + "\r\nValue: " + val;
+        }
+
+        void SetupTChartTools()
+        {
+            tChart1.Tools.Clear();
+
+            // format nearest point
+            Steema.TeeChart.Tools.NearestPoint nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint(tChart1.Chart);
+            nearestPoint1.Pen.Color = System.Drawing.Color.Black;
+            nearestPoint1.Brush.Color = System.Drawing.Color.Black;
+            nearestPoint1.Size = 0;
+            nearestPoint1.Style = Steema.TeeChart.Tools.NearestPointStyles.Circle;
+            nearestPoint1.DrawLine = false;
+            tChart1.Tools.Add(nearestPoint1);
+
+            // set tool-tip pop-up for the FC-Ops added series
+            for (int i = (tChart1.Series.Count - 5); i < tChart1.Series.Count; i++)
+            {
+                tChart1.Series[i].GetSeriesMark += Form1_GetSeriesMark;
+            }
+
+            // Add point tooltips
+            Steema.TeeChart.Tools.MarksTip marksTip1 = new Steema.TeeChart.Tools.MarksTip(tChart1.Chart);
+            marksTip1.Style = Steema.TeeChart.Styles.MarksStyles.XY;
+            marksTip1.Active = true;
+            marksTip1.MouseDelay = 0;
+            marksTip1.HideDelay = 9999;
+            marksTip1.MouseAction = Steema.TeeChart.Tools.MarksTipMouseAction.Move;
+            marksTip1.BackColor = Color.LightSteelBlue;
+            marksTip1.ForeColor = Color.Black;
+            tChart1.Tools.Add(marksTip1);
 
         }
 
