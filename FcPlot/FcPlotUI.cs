@@ -23,7 +23,6 @@ namespace FcPlot
             {
                 this.showTarget.Checked = true;
             }
-
         }
 
         private void Reset()
@@ -46,7 +45,6 @@ namespace FcPlot
 
             checkBoxDashed.Visible = false;
         }
-
        
 
         private void FcPlotUI_Load(object sender, EventArgs e)
@@ -54,23 +52,28 @@ namespace FcPlot
             Reset();
         }
 
+
         private void comboBoxSite_SelectedIndexChanged(object sender, EventArgs e)
         {
+            CheckOpsMenuOpen();
             GraphData();
         }
+
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             GraphData();
         }
 
+
         ResidualForecast residForecast;
         ResidualForecast residForecastCompare;
+
 
         public void GraphData()
         {
             linkLabelReport.Visible = false;
-            if ( comboBoxSite.Text.ToString() == "")
+            if (comboBoxSite.Text.ToString() == "" || this.comboBoxSite.SelectedItem.ToString().IndexOf("--") != -1)
                 return;
             try
             {
@@ -87,8 +90,7 @@ namespace FcPlot
                 var cbttList = new List<string>();
                 var cbttListAlternate = new List<string>();
                 var labelDates = new List<DateTime>();
-                bool showRuleCurve = true;
-                
+                bool showRuleCurve = true;                
 
                 Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
@@ -132,7 +134,7 @@ namespace FcPlot
                 HydrometDailySeries.Cache = cache;
                 HydrometMonthlySeries.Cache = cache;
 
-                    //compute residual forecast
+                //compute residual forecast
                 residForecast.Compute(requiredRange.DateTime1, requiredRange.DateTime2);
                 requiredContent = -residForecast.SpaceRequired + pt.TotalUpstreamActiveSpace;
                 actualContent = residForecast.TotalContent;
@@ -163,7 +165,6 @@ namespace FcPlot
                 {
                     showRuleCurve = true;
                     // Green lines
-
                     if (residForecast.RuleCurve.FillType == FillType.Fixed)
                     {
                         ruleCurves =  residForecast.RuleCurve.CalculateFixedRuleCurve(curveRange.DateTime1, curveRange.DateTime2,pt.TotalUpstreamActiveSpace);
@@ -179,7 +180,7 @@ namespace FcPlot
                 {
                     showRuleCurve = false;
                 }
-                hydrometChart1.SetLabels(pt.Name, "Content");
+                hydrometChart1.SetLabels(pt.Name, "Storage Content (acre-feet)");
 
 
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
@@ -187,6 +188,7 @@ namespace FcPlot
                 hydrometChart1.Fcplot(residForecast.TotalContent, requiredContent, alternateRequiredContent,
                  alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
                   dashedLines);
+
                 //compute the targets
                 if (pt.FillType == FillType.Variable && (showTarget.Checked == true || checkBoxOverrideFcast.Checked == true))
                 { 
@@ -225,6 +227,7 @@ namespace FcPlot
             Cursor = Cursors.Default;
         }
 
+
         private int[] ParseOptionalPercentages()
         {
             var txt = textBoxTargetPercentages.Text;
@@ -243,6 +246,7 @@ namespace FcPlot
             return rval.ToArray();
         }
 
+
         private string[] OptionalCbttList(string input)
         {
             string[] s = input.ToUpper().Split(',');
@@ -252,6 +256,7 @@ namespace FcPlot
 			}
             return s;
         }
+
 
         private static SeriesList ReadHydrometOptionalData(int wy, string query, DateRange range)
         {
@@ -279,6 +284,7 @@ namespace FcPlot
             return rval;
         }
 
+
         private DateRange GetRequiredRange()
         {
             DateTime t1 = DateTime.Now;
@@ -287,6 +293,8 @@ namespace FcPlot
             SetupDates(yr, ref t1, ref t2, false);
             return new DateRange(t1, t2);
         }
+
+
         private DateRange GetComparisonRange()
         {
             DateTime t1 = DateTime.Now;
@@ -297,6 +305,8 @@ namespace FcPlot
             SetupDates(yr, ref t1, ref t2, true);
             return new DateRange(t1, t2);
         }
+
+
         private DateRange GetRuleCurveRange()
         {
             DateTime t1 = DateTime.Now;
@@ -305,6 +315,7 @@ namespace FcPlot
             SetupDates(yr, ref t1, ref t2,true);
             return new DateRange(t1, t2);
         }
+
 
         public void SetupDates(int yr, ref DateTime t1, ref DateTime t2, bool allowFutureDate)
         {
@@ -326,6 +337,7 @@ namespace FcPlot
                 t2 = DateTime.Now.Date.AddDays(-1);
         }
 
+
         private void linkLabelReport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
@@ -344,6 +356,15 @@ namespace FcPlot
             {
                 return;
             }
+            CheckOpsMenuOpen();
+            // Open form
+            fcOpsMenu = new FcOpsMenu(this);
+            fcOpsMenu.Show();
+        }
+
+
+        private void CheckOpsMenuOpen()
+        {
             FormCollection fc = Application.OpenForms;
             foreach (Form frm in fc)
             {
@@ -353,9 +374,6 @@ namespace FcPlot
                     break;
                 }
             }
-            // Open form
-            fcOpsMenu = new FcOpsMenu(this);
-            fcOpsMenu.Show();
         }
     }
 }

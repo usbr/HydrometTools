@@ -38,6 +38,7 @@ namespace FcPlot
             this.dateTimePickerCustomOutflow3.Value = DateTime.Now.Date.AddDays(10);
             this.textBoxCustomOutflow1.Text = "-99";
             this.textBoxCustomOutflow2.Text = "-99";
+            this.dateTimePickerSimStart.MaxDate = DateTime.Now.Date;
 
 
             // Handle ENTER key press

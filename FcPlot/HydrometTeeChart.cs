@@ -14,18 +14,19 @@ namespace FcPlot
 {
     public partial class HydrometTeeChart : UserControl
     {
-
         public HydrometTeeChart()
         {
             InitializeComponent();
             InitTChart();
         }
 
+
         private void InitTChart()
         {
             this.tChart1.Axes.Bottom.Labels.DateTimeFormat = "MMMdd";
 
         }
+
 
         private Steema.TeeChart.Styles.Line CreateSeries(System.Drawing.Color color , string title, Series s, string axis, bool dash=false)
         {
@@ -46,6 +47,7 @@ namespace FcPlot
             return rval;
         }
 
+
         //added for target not sure if needed
         public Steema.TeeChart.Styles.Line CreateTarget(System.Drawing.Color color, string title, Series s, string axis)
         {
@@ -63,6 +65,7 @@ namespace FcPlot
             return rval;
         }
 
+
         internal void SetLabels(string title, string yAxis)
         {
             tChart1.Axes.Left.Title.Caption = yAxis;
@@ -70,26 +73,29 @@ namespace FcPlot
             tChart1.Text = title;            
         }
 
+
         internal void Fcplot(Series actual, Series required, Series alternateRequiredContent,
-            Series alternateActualContent, SeriesList ruleCurves, DateTime[] labelDates, 
-            String RequiredLegend, SeriesList userInput,bool greenLines, bool dashed) 
+            Series alternateActualContent, SeriesList ruleCurves, DateTime[] labelDates,
+            String RequiredLegend, SeriesList userInput, bool greenLines, bool dashed)
         {
             tChart1.Zoom.Undo();
             this.tChart1.Series.RemoveAllSeries();
             tChart1.Axes.Bottom.Labels.Style = Steema.TeeChart.AxisLabelStyle.Value;
-            
+
             if (labelDates.Length != ruleCurves.Count)
                 throw new Exception("Error: The number of label dates " + labelDates.Length
                     + " must match the number of forecast levels " + ruleCurves.Count);
+
             //add green lines
             if (greenLines)
             {
-                AddRuleCurves(ruleCurves, labelDates,dashed);
+                AddRuleCurves(ruleCurves, labelDates, dashed);
             }
 
-            Color[] colors = {Color.Black,Color.Orange,Color.DarkKhaki,Color.Brown,
-                                 Color.Aqua,Color.Olive,Color.BurlyWood,Color.MediumSpringGreen,
-                                 Color.CadetBlue,Color.Chartreuse, Color.Chocolate,Color.Coral,Color.CornflowerBlue};
+            Color[] colors = {  Color.Black,Color.Orange,Color.DarkKhaki,Color.Brown,
+                                Color.Aqua,Color.Olive,Color.BurlyWood,Color.MediumSpringGreen,
+                                Color.CadetBlue,Color.Chartreuse, Color.Chocolate,Color.Coral,Color.CornflowerBlue};
+
             for (int i = 0; i < userInput.Count; i++)
             {
                 if (i <= colors.Length)
@@ -100,9 +106,10 @@ namespace FcPlot
                 else
                 {
                     var s = Reclamation.TimeSeries.Math.ShiftToYear(userInput[i], required[0].DateTime.Year);
-                    CreateSeries(colors[i-colors.Length], userInput[i].Name, s, "right");
+                    CreateSeries(colors[i - colors.Length], userInput[i].Name, s, "right");
                 }
             }
+
             //add alternative lines
             if (alternateRequiredContent.Count > 0) //&& required.Count >0)
             {
@@ -111,27 +118,23 @@ namespace FcPlot
                 s = Reclamation.TimeSeries.Math.ShiftToYear(alternateActualContent, required[0].DateTime.Year);
                 CreateSeries(Color.LightSkyBlue, alternateActualContent.Name, s, "left");
             }
+
             //add lines
             CreateSeries(Color.Red, required.Name + " " + RequiredLegend, required, "left");
-            CreateSeries(Color.Blue, actual.Name, actual,"left");
-
-           
+            CreateSeries(Color.Blue, actual.Name + " Storage", actual, "left");
 
             // zoom out a little..
-           double min=0, max=0;
-           tChart1.Axes.Left.Automatic = true;
-           tChart1.Axes.Left.CalcMinMax(ref min, ref max);
-           tChart1.Axes.Left.Maximum = max * 1.01;
-           tChart1.Axes.Left.Minimum = min - 1000;
-           tChart1.Axes.Left.Automatic = false;
-
+            double min = 0, max = 0;
+            tChart1.Axes.Left.Automatic = true;
+            tChart1.Axes.Left.CalcMinMax(ref min, ref max);
+            tChart1.Axes.Left.Maximum = max * 1.01;
+            tChart1.Axes.Left.Minimum = 0;// min - 1000;
+            tChart1.Axes.Left.Automatic = false;
             //tChart1.Axes.Bottom.in
-           //tChart1.Axes.Left.Automatic = true;
-
-           //tChart1.Zoom.ZoomPercent(10);
-
-
+            //tChart1.Axes.Left.Automatic = true;
+            //tChart1.Zoom.ZoomPercent(10);
         }
+
 
         private void AddRuleCurves(SeriesList ruleCurves, DateTime[] labelDates,bool dashed)
         {
@@ -152,18 +155,15 @@ namespace FcPlot
                 ts.Title = s.Name;
                 ReadIntoTChart(s, ts);
 
-                //int idx = FindLabelIndex(s);
                 int idx = FindLabelIndex(s, labelDates[i].Month, labelDates[i].Day);
                 if (idx > 0 && idx < ts.Marks.Items.Count - 1)
                 {
                     ts[idx].Label = s.Name;
-                    //ts.Marks.Items[idx].Text = s.Name;
                     ts.Marks.Items[idx].Visible = true;
                 }
 
             }
         }
-
       
 
         public void Edit()
@@ -171,6 +171,8 @@ namespace FcPlot
             var e = new Steema.TeeChart.Editors.ChartEditor(tChart1.Chart);
             e.ShowDialog();
         }
+
+
         private static void ReadIntoTChart(Series series1, Steema.TeeChart.Styles.Line tSeries, bool rightAxis = false)
         {
             tSeries.Clear();
@@ -182,36 +184,16 @@ namespace FcPlot
                 {
                     tSeries.Add(series1[i].DateTime, series1[i].Value);
                 }
-                //tSeries[tSeries.Count - 1].Label ="";
-                //tSeries.Marks.Items[tSeries.Count - 1].Text = "\n";
-                if( tSeries.Count >0)
-                tSeries.Marks.Items[tSeries.Count - 1].Visible = false;
+                if (tSeries.Count > 0)
+                {
+                    tSeries.Marks.Items[tSeries.Count - 1].Visible = false;
+                }
             }
             if (rightAxis)
             {
                 tSeries.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
             }
-
         }
-
-        //static void tSeries_GetSeriesMark(Steema.TeeChart.Styles.Series series,
-        //    Steema.TeeChart.Styles.GetSeriesMarkEventArgs e)
-        //{
-           
-        //    if (series.Tag != null)
-        //    {
-        //        var idx = Convert.ToInt32(series.Tag);
-
-        //        if (e.ValueIndex == idx)
-        //        {
-        //            e.MarkText = series.Title;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        e.MarkText = null;
-        //    }
-        //}
 
 
         /// <summary>
@@ -226,47 +208,24 @@ namespace FcPlot
             for (int i = 0; i < s.Count; i++)
             {
                 var t = s[i].DateTime;
-                if(t.Day == day && t.Month == month)
+                if (t.Day == day && t.Month == month)
+                {
                     return i;
+                }
             }
             return 0;
         }
-        ///// <summary>
-        ///// Find inflextion (minimum) point to place rule curve/forecast label
-        ///// </summary>
-        ///// <param name="series1"></param>
-        ///// <returns></returns>
-        //private static int FindLabelIndex(Series series1)
-        //{
-        //    if( series1.Count == 0)
-        //        return 0;
 
-        //    double previous = series1[0].Value;
-        //    double first = series1[0].Value;
-
-        //    for (int i = series1.Count/2; i < series1.Count; i++)
-        //    {
-        //        if (series1[i].IsMissing)
-        //            return System.Math.Max(0 ,i-10);
-
-        //        var val = series1[i].Value;
-
-        //        if( val >= previous && val != first) // first part or curve is often flat
-        //            return System.Math.Max(0 ,i-10);
-
-        //        previous = val;
-    
-        //    }
-        //    return series1.Count - 10 ;
-        //}
 
         private void linkLabelEdit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Edit();
         }
 
+
         /// <summary>
         /// Method to perform operations given an inflow and an outflow
+        /// [JR] Need to refactor this code! Maybe make a new class like FloodOperation? something like SimulationOperation?
         /// </summary>
         /// <param name="ui"></param>
         internal void FcOps(FcPlotUI ui, FloodControlPoint pt, FcOpsMenu opsUI)
@@ -376,7 +335,9 @@ namespace FcPlot
             }
             CreateSeries(System.Drawing.Color.Plum, outflowYear + "-Outflow", sOutflowShifted, "right", true);
 
-            // Get observed storage contents
+            // Get observed storage contents 
+            // [JR] we only need the last value so we can streamline this code...
+            //      or keep it as is and allow the user to start the simulation from a past date...
             var ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[0], "AF");
             t1 = DateTime.Now;
             t2 = DateTime.Now;
@@ -395,16 +356,18 @@ namespace FcPlot
                 Series sStorageTemp = new Series(ithStorage.Table, "content", TimeInterval.Daily);
                 sStorage = sStorage + sStorageTemp;
             }
-            Reclamation.TimeSeries.Point lastPt = sStorage[sStorage.Count() - 1];
+            //Reclamation.TimeSeries.Point lastPt = sStorage[sStorage.Count() - 1]; // could potentially start simulation from any past date...
+            Reclamation.TimeSeries.Point lastPt = sStorage[opsUI.dateTimePickerSimStart.Value.AddDays(-1)]; 
 
             // Process simulated storage curve and run storage simulation forward
-            DateTime minDate = new DateTime(System.Math.Min(sOutflowShifted.MaxDateTime.Ticks, sInflowShifted.MaxDateTime.Ticks));
+            DateTime minDate = new DateTime(System.Math.Min(sOutflowShifted.MaxDateTime.Ticks, sInflowShifted.MaxDateTime.Ticks)); //day-shifting misaligns the max-dates of each series
             if (lastPt.DateTime < minDate)
             {
                 var t = lastPt.DateTime;
                 var stor = lastPt.Value;
                 var simStorage = new Series();
                 var simSpill = new Series();
+                var simShort = new Series();
                 simStorage.Add(lastPt);
                 while (t < minDate)
                 {
@@ -414,9 +377,15 @@ namespace FcPlot
                     var tempStor = stor + volIn - volOut;
                     if (tempStor >= maxSpace)
                     {
-                        var spill = tempStor - maxSpace;
+                        var spill = (tempStor - maxSpace) * 43560.0 / 86400.0;
                         simSpill.Add(t, spill);
                         stor = maxSpace;
+                    }
+                    else if (tempStor <= 0)
+                    {
+                        var shrt = (0 - tempStor) * 43560.0 / 86400.0;
+                        simShort.Add(t, shrt);
+                        stor = 0;
                     }
                     else
                     {
@@ -424,14 +393,21 @@ namespace FcPlot
                     }
                     simStorage.Add(t, stor);
                 }
+                // Add series items to chart
                 CreateSeries(System.Drawing.Color.DodgerBlue, "Simulated Storage (" + inflowYear + "-Qin | " + outflowYear + "-Qout)", simStorage, "left", true);
                 if (simSpill.Count() > 0)
                 {
-                    CreateSeries(System.Drawing.Color.OrangeRed, "Simulated Spill (" + inflowYear + "-Qin | " + outflowYear + "-Qout)", simStorage, "right", true);
+                    CreateSeries(System.Drawing.Color.OrangeRed, "Simulated Spill (" + inflowYear + "-Qin | " + outflowYear + "-Qout)", simSpill, "right", true);
+                }
+                if (simShort.Count() > 0)
+                {
+                    CreateSeries(System.Drawing.Color.Cyan, "Simulated Shortage (" + inflowYear + "-Qin | " + outflowYear + "-Qout)", simShort, "right", true);
                 }
 
             }
             tChart1.Axes.Right.Grid.Visible = false;
+            tChart1.Axes.Right.Title.Caption = "Flow (cfs)";
+            tChart1.Axes.Right.FixedLabelSize = false;
             SetupTChartTools();
         }
 

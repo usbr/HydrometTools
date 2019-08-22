@@ -61,9 +61,11 @@
             this.label16 = new System.Windows.Forms.Label();
             this.dateTimePickerCustomOutflow3 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.checkBoxUseCustomOutflow = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePickerSimStart = new System.Windows.Forms.DateTimePicker();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowShift)).BeginInit();
@@ -380,24 +382,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Custom Outflow";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(314, 56);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(26, 17);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "cfs";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(314, 87);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(26, 17);
-            this.label17.TabIndex = 33;
-            this.label17.Text = "cfs";
-            // 
             // checkBoxUseCustomOutflow
             // 
             this.checkBoxUseCustomOutflow.AutoSize = true;
@@ -408,11 +392,50 @@
             this.checkBoxUseCustomOutflow.Text = "Use Custom Outflow";
             this.checkBoxUseCustomOutflow.UseVisualStyleBackColor = true;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(314, 87);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(26, 17);
+            this.label17.TabIndex = 33;
+            this.label17.Text = "cfs";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(314, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(26, 17);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "cfs";
+            // 
+            // dateTimePickerSimStart
+            // 
+            this.dateTimePickerSimStart.CustomFormat = "MMM-d";
+            this.dateTimePickerSimStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerSimStart.Location = new System.Drawing.Point(353, 571);
+            this.dateTimePickerSimStart.Name = "dateTimePickerSimStart";
+            this.dateTimePickerSimStart.ShowUpDown = true;
+            this.dateTimePickerSimStart.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerSimStart.TabIndex = 33;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(206, 576);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(141, 17);
+            this.label18.TabIndex = 34;
+            this.label18.Text = "Simulation Start Date";
+            // 
             // FcOpsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 605);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.dateTimePickerSimStart);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -488,5 +511,7 @@
         public System.Windows.Forms.CheckBox checkBoxUseCustomOutflow;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label11;
+        public System.Windows.Forms.DateTimePicker dateTimePickerSimStart;
+        private System.Windows.Forms.Label label18;
     }
 }
