@@ -267,7 +267,11 @@ namespace FcPlot
         /// Method to perform operations given an inflow and an outflow
         /// </summary>
         /// <param name="ui"></param>
-        internal void FcOps(FcPlotUI ui, string inflowCode, string outflowCode, string inflowYear, string outflowYear, string[] resCodes)
+        internal void FcOps(FcPlotUI ui, string inflowCode, string outflowCode, 
+            decimal inflowYear, decimal outflowYear, 
+            string[] resCodes, double maxSpace,
+            decimal inflowShift, decimal outflowShift,
+            string inflowScale, string outflowScale)
         {
             ui.GraphData();
 
@@ -292,6 +296,9 @@ namespace FcPlot
             CreateSeries(System.Drawing.Color.DarkViolet, ui.textBoxWaterYear.Text + "-Outflow", sOutflowShifted, "right");
 
             // Process simulation inflow curve
+            double inflowScaleValue;
+            try { inflowScaleValue = Convert.ToDouble(inflowScale); }
+            catch { inflowScaleValue = 1.0; }
             sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
             t1 = DateTime.Now;
             t2 = DateTime.Now;
@@ -299,9 +306,17 @@ namespace FcPlot
             ui.SetupDates(yr, ref t1, ref t2, false);
             sInflow.Read(t1, t2);
             sInflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sInflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
+            t1 = sInflowShifted.MinDateTime;
+            t2 = sInflowShifted.MaxDateTime;
+            sInflowShifted = Reclamation.TimeSeries.Math.Shift(sInflowShifted, Convert.ToInt32(inflowShift));
+            sInflowShifted = sInflowShifted.Subset(t1, t2);
+            sInflowShifted = sInflowShifted * inflowScaleValue;
             CreateSeries(System.Drawing.Color.Gold, inflowYear + "-Inflow", sInflowShifted, "right", true);
 
             // Process simulation outflow curve
+            double outflowScaleValue;
+            try { outflowScaleValue = Convert.ToDouble(outflowScale); }
+            catch { outflowScaleValue = 1.0; }
             sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1]);
             t1 = DateTime.Now;
             t2 = DateTime.Now;
@@ -309,6 +324,11 @@ namespace FcPlot
             ui.SetupDates(yr, ref t1, ref t2, false);
             sOutflow.Read(t1, t2);
             sOutflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sOutflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
+            t1 = sOutflowShifted.MinDateTime;
+            t2 = sOutflowShifted.MaxDateTime;
+            sOutflowShifted = Reclamation.TimeSeries.Math.Shift(sOutflowShifted, Convert.ToInt32(outflowShift));
+            sOutflowShifted = sOutflowShifted.Subset(t1, t2);
+            sOutflowShifted = sOutflowShifted * outflowScaleValue;
             CreateSeries(System.Drawing.Color.Plum, outflowYear + "-Outflow", sOutflowShifted, "right", true);
 
             // Process simulated storage curve
@@ -333,19 +353,38 @@ namespace FcPlot
             }
             Reclamation.TimeSeries.Point lastPt = sStorage[sStorage.Count() - 1];
             // Run storage simulation forward
-            if (lastPt.DateTime < sOutflowShifted.MaxDateTime)
+            DateTime minDate = new DateTime(System.Math.Min(sOutflowShifted.MaxDateTime.Ticks, sInflowShifted.MaxDateTime.Ticks));
+            if (lastPt.DateTime < minDate)
             {
                 var t = lastPt.DateTime;
                 var stor = lastPt.Value;
                 var simStorage = new Series();
+                var simSpill = new Series();
                 simStorage.Add(lastPt);
-                while (t < sOutflowShifted.MaxDateTime)
+                while (t < minDate)
                 {
                     t = t.AddDays(1);
-                    stor = stor + (sInflowShifted[t].Value * 86400.0 / 43560.0) - (sOutflowShifted[t].Value * 86400.0 / 43560.0);
+                    var volIn = (sInflowShifted[t].Value * 86400.0 / 43560.0);
+                    var volOut = (sOutflowShifted[t].Value * 86400.0 / 43560.0);
+                    var tempStor = stor + volIn - volOut;
+                    if (tempStor >= maxSpace)
+                    {
+                        var spill = tempStor - maxSpace;
+                        simSpill.Add(t, spill);
+                        stor = maxSpace;
+                    }
+                    else
+                    {
+                        stor = tempStor;
+                    }
                     simStorage.Add(t, stor);
                 }
                 CreateSeries(System.Drawing.Color.DodgerBlue, "Simulated Storage (" + inflowYear + "-Qin | " + outflowYear + "-Qout)", simStorage, "left", true);
+                if (simSpill.Count() > 0)
+                {
+                    CreateSeries(System.Drawing.Color.OrangeRed, "Simulated Spill (" + inflowYear + "-Qin | " + outflowYear + "-Qout)", simStorage, "right", true);
+                }
+
             }
 
         }
