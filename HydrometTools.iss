@@ -27,7 +27,7 @@ DisableDirPage=no
 DisableProgramGroupPage=no
 AlwaysShowDirOnReadyPage=yes
 AlwaysShowGroupOnReadyPage=yes        
-SignTool=signtool $f
+;SignTool=signtool $f
 ;signtool = "signtool.exe" sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a $p
 
 [InstallDelete]
