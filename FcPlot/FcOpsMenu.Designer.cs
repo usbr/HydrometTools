@@ -66,16 +66,34 @@
             this.label11 = new System.Windows.Forms.Label();
             this.dateTimePickerSimStart = new System.Windows.Forms.DateTimePicker();
             this.label18 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBoxUseCustomInflow = new System.Windows.Forms.CheckBox();
+            this.textBoxRfcNode = new System.Windows.Forms.TextBox();
+            this.radioButtonNFcast = new System.Windows.Forms.RadioButton();
+            this.radioButtonWSFcast = new System.Windows.Forms.RadioButton();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.buttonGetEspData = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBoxEspDay = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBoxEspTraces = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowShift)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowShift)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOperate
             // 
-            this.buttonOperate.Location = new System.Drawing.Point(11, 560);
+            this.buttonOperate.Location = new System.Drawing.Point(341, 637);
             this.buttonOperate.Name = "buttonOperate";
             this.buttonOperate.Size = new System.Drawing.Size(140, 33);
             this.buttonOperate.TabIndex = 0;
@@ -86,7 +104,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 57);
+            this.label1.Location = new System.Drawing.Point(36, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 1;
@@ -95,7 +113,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 157);
+            this.label2.Location = new System.Drawing.Point(24, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 17);
             this.label2.TabIndex = 2;
@@ -104,7 +122,7 @@
             // textBoxInflowCode
             // 
             this.textBoxInflowCode.Enabled = false;
-            this.textBoxInflowCode.Location = new System.Drawing.Point(103, 51);
+            this.textBoxInflowCode.Location = new System.Drawing.Point(120, 24);
             this.textBoxInflowCode.Name = "textBoxInflowCode";
             this.textBoxInflowCode.Size = new System.Drawing.Size(125, 22);
             this.textBoxInflowCode.TabIndex = 3;
@@ -112,7 +130,7 @@
             // textBoxOutflowCode
             // 
             this.textBoxOutflowCode.Enabled = false;
-            this.textBoxOutflowCode.Location = new System.Drawing.Point(103, 151);
+            this.textBoxOutflowCode.Location = new System.Drawing.Point(119, 21);
             this.textBoxOutflowCode.Name = "textBoxOutflowCode";
             this.textBoxOutflowCode.Size = new System.Drawing.Size(125, 22);
             this.textBoxOutflowCode.TabIndex = 4;
@@ -120,7 +138,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 18);
+            this.label3.Location = new System.Drawing.Point(12, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 17);
             this.label3.TabIndex = 5;
@@ -129,14 +147,14 @@
             // textBoxSpace
             // 
             this.textBoxSpace.Enabled = false;
-            this.textBoxSpace.Location = new System.Drawing.Point(103, 13);
+            this.textBoxSpace.Location = new System.Drawing.Point(96, 11);
             this.textBoxSpace.Name = "textBoxSpace";
             this.textBoxSpace.Size = new System.Drawing.Size(125, 22);
             this.textBoxSpace.TabIndex = 6;
             // 
             // textBoxInflowScale
             // 
-            this.textBoxInflowScale.Location = new System.Drawing.Point(367, 107);
+            this.textBoxInflowScale.Location = new System.Drawing.Point(384, 80);
             this.textBoxInflowScale.Name = "textBoxInflowScale";
             this.textBoxInflowScale.Size = new System.Drawing.Size(77, 22);
             this.textBoxInflowScale.TabIndex = 7;
@@ -145,7 +163,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(243, 54);
+            this.label4.Location = new System.Drawing.Point(260, 27);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 17);
             this.label4.TabIndex = 8;
@@ -154,7 +172,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(243, 154);
+            this.label5.Location = new System.Drawing.Point(259, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 17);
             this.label5.TabIndex = 10;
@@ -162,7 +180,7 @@
             // 
             // textBoxOutflowScale
             // 
-            this.textBoxOutflowScale.Location = new System.Drawing.Point(367, 207);
+            this.textBoxOutflowScale.Location = new System.Drawing.Point(383, 77);
             this.textBoxOutflowScale.Name = "textBoxOutflowScale";
             this.textBoxOutflowScale.Size = new System.Drawing.Size(77, 22);
             this.textBoxOutflowScale.TabIndex = 9;
@@ -171,7 +189,7 @@
             // textBoxDams
             // 
             this.textBoxDams.Enabled = false;
-            this.textBoxDams.Location = new System.Drawing.Point(304, 12);
+            this.textBoxDams.Location = new System.Drawing.Point(337, 10);
             this.textBoxDams.Name = "textBoxDams";
             this.textBoxDams.Size = new System.Drawing.Size(140, 22);
             this.textBoxDams.TabIndex = 11;
@@ -179,7 +197,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(243, 18);
+            this.label6.Location = new System.Drawing.Point(276, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 17);
             this.label6.TabIndex = 12;
@@ -187,21 +205,21 @@
             // 
             // numericUpDownInflowYear
             // 
-            this.numericUpDownInflowYear.Location = new System.Drawing.Point(304, 51);
+            this.numericUpDownInflowYear.Location = new System.Drawing.Point(321, 24);
             this.numericUpDownInflowYear.Name = "numericUpDownInflowYear";
             this.numericUpDownInflowYear.Size = new System.Drawing.Size(140, 22);
             this.numericUpDownInflowYear.TabIndex = 13;
             // 
             // numericUpDownOutflowYear
             // 
-            this.numericUpDownOutflowYear.Location = new System.Drawing.Point(304, 151);
+            this.numericUpDownOutflowYear.Location = new System.Drawing.Point(320, 21);
             this.numericUpDownOutflowYear.Name = "numericUpDownOutflowYear";
             this.numericUpDownOutflowYear.Size = new System.Drawing.Size(140, 22);
             this.numericUpDownOutflowYear.TabIndex = 14;
             // 
             // numericUpDownInflowShift
             // 
-            this.numericUpDownInflowShift.Location = new System.Drawing.Point(367, 79);
+            this.numericUpDownInflowShift.Location = new System.Drawing.Point(384, 52);
             this.numericUpDownInflowShift.Maximum = new decimal(new int[] {
             30,
             0,
@@ -218,7 +236,7 @@
             // 
             // numericUpDownOutflowShift
             // 
-            this.numericUpDownOutflowShift.Location = new System.Drawing.Point(367, 179);
+            this.numericUpDownOutflowShift.Location = new System.Drawing.Point(383, 49);
             this.numericUpDownOutflowShift.Maximum = new decimal(new int[] {
             30,
             0,
@@ -236,7 +254,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(296, 84);
+            this.label7.Location = new System.Drawing.Point(313, 57);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 17);
             this.label7.TabIndex = 17;
@@ -245,7 +263,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(296, 184);
+            this.label8.Location = new System.Drawing.Point(312, 54);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 17);
             this.label8.TabIndex = 18;
@@ -254,7 +272,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(313, 112);
+            this.label9.Location = new System.Drawing.Point(330, 85);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 17);
             this.label9.TabIndex = 19;
@@ -263,7 +281,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(313, 212);
+            this.label10.Location = new System.Drawing.Point(329, 82);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(48, 17);
             this.label10.TabIndex = 20;
@@ -272,6 +290,7 @@
             // dateTimePickerCustomOutflow1
             // 
             this.dateTimePickerCustomOutflow1.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow1.Enabled = false;
             this.dateTimePickerCustomOutflow1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCustomOutflow1.Location = new System.Drawing.Point(73, 52);
             this.dateTimePickerCustomOutflow1.Name = "dateTimePickerCustomOutflow1";
@@ -282,6 +301,7 @@
             // dateTimePickerCustomOutflow2
             // 
             this.dateTimePickerCustomOutflow2.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow2.Enabled = false;
             this.dateTimePickerCustomOutflow2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCustomOutflow2.Location = new System.Drawing.Point(73, 84);
             this.dateTimePickerCustomOutflow2.Name = "dateTimePickerCustomOutflow2";
@@ -291,6 +311,7 @@
             // 
             // textBoxCustomOutflow1
             // 
+            this.textBoxCustomOutflow1.Enabled = false;
             this.textBoxCustomOutflow1.Location = new System.Drawing.Point(231, 51);
             this.textBoxCustomOutflow1.Name = "textBoxCustomOutflow1";
             this.textBoxCustomOutflow1.Size = new System.Drawing.Size(77, 22);
@@ -299,6 +320,7 @@
             // 
             // textBoxCustomOutflow2
             // 
+            this.textBoxCustomOutflow2.Enabled = false;
             this.textBoxCustomOutflow2.Location = new System.Drawing.Point(231, 84);
             this.textBoxCustomOutflow2.Name = "textBoxCustomOutflow2";
             this.textBoxCustomOutflow2.Size = new System.Drawing.Size(77, 22);
@@ -353,6 +375,7 @@
             // dateTimePickerCustomOutflow3
             // 
             this.dateTimePickerCustomOutflow3.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow3.Enabled = false;
             this.dateTimePickerCustomOutflow3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCustomOutflow3.Location = new System.Drawing.Point(249, 118);
             this.dateTimePickerCustomOutflow3.Name = "dateTimePickerCustomOutflow3";
@@ -375,7 +398,7 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.textBoxCustomOutflow2);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Location = new System.Drawing.Point(90, 235);
+            this.groupBox1.Location = new System.Drawing.Point(106, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(354, 161);
             this.groupBox1.TabIndex = 32;
@@ -391,6 +414,7 @@
             this.checkBoxUseCustomOutflow.TabIndex = 34;
             this.checkBoxUseCustomOutflow.Text = "Use Custom Outflow";
             this.checkBoxUseCustomOutflow.UseVisualStyleBackColor = true;
+            this.checkBoxUseCustomOutflow.CheckedChanged += new System.EventHandler(this.checkBoxUseCustomOutflow_CheckedChanged);
             // 
             // label17
             // 
@@ -414,7 +438,7 @@
             // 
             this.dateTimePickerSimStart.CustomFormat = "MMM-d";
             this.dateTimePickerSimStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerSimStart.Location = new System.Drawing.Point(353, 571);
+            this.dateTimePickerSimStart.Location = new System.Drawing.Point(12, 643);
             this.dateTimePickerSimStart.Name = "dateTimePickerSimStart";
             this.dateTimePickerSimStart.ShowUpDown = true;
             this.dateTimePickerSimStart.Size = new System.Drawing.Size(91, 22);
@@ -423,44 +447,211 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(206, 576);
+            this.label18.Location = new System.Drawing.Point(109, 643);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(141, 17);
             this.label18.TabIndex = 34;
             this.label18.Text = "Simulation Start Date";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBoxEspTraces);
+            this.groupBox2.Controls.Add(this.comboBoxEspDay);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.buttonGetEspData);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.radioButtonWSFcast);
+            this.groupBox2.Controls.Add(this.radioButtonNFcast);
+            this.groupBox2.Controls.Add(this.textBoxRfcNode);
+            this.groupBox2.Controls.Add(this.checkBoxUseCustomInflow);
+            this.groupBox2.Location = new System.Drawing.Point(107, 105);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(354, 198);
+            this.groupBox2.TabIndex = 35;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Custom Inflow";
+            // 
+            // checkBoxUseCustomInflow
+            // 
+            this.checkBoxUseCustomInflow.AutoSize = true;
+            this.checkBoxUseCustomInflow.Location = new System.Drawing.Point(11, 21);
+            this.checkBoxUseCustomInflow.Name = "checkBoxUseCustomInflow";
+            this.checkBoxUseCustomInflow.Size = new System.Drawing.Size(163, 21);
+            this.checkBoxUseCustomInflow.TabIndex = 35;
+            this.checkBoxUseCustomInflow.Text = "Use RFC ESP Inflows";
+            this.checkBoxUseCustomInflow.UseVisualStyleBackColor = true;
+            this.checkBoxUseCustomInflow.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // textBoxRfcNode
+            // 
+            this.textBoxRfcNode.Enabled = false;
+            this.textBoxRfcNode.Location = new System.Drawing.Point(145, 75);
+            this.textBoxRfcNode.Name = "textBoxRfcNode";
+            this.textBoxRfcNode.Size = new System.Drawing.Size(196, 22);
+            this.textBoxRfcNode.TabIndex = 36;
+            this.textBoxRfcNode.Text = "1";
+            // 
+            // radioButtonNFcast
+            // 
+            this.radioButtonNFcast.AutoSize = true;
+            this.radioButtonNFcast.Enabled = false;
+            this.radioButtonNFcast.Location = new System.Drawing.Point(28, 48);
+            this.radioButtonNFcast.Name = "radioButtonNFcast";
+            this.radioButtonNFcast.Size = new System.Drawing.Size(134, 21);
+            this.radioButtonNFcast.TabIndex = 37;
+            this.radioButtonNFcast.TabStop = true;
+            this.radioButtonNFcast.Text = "Natural Forecast";
+            this.radioButtonNFcast.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonWSFcast
+            // 
+            this.radioButtonWSFcast.AutoSize = true;
+            this.radioButtonWSFcast.Enabled = false;
+            this.radioButtonWSFcast.Location = new System.Drawing.Point(168, 48);
+            this.radioButtonWSFcast.Name = "radioButtonWSFcast";
+            this.radioButtonWSFcast.Size = new System.Drawing.Size(173, 21);
+            this.radioButtonWSFcast.TabIndex = 38;
+            this.radioButtonWSFcast.TabStop = true;
+            this.radioButtonWSFcast.Text = "Water Supply Forecast";
+            this.radioButtonWSFcast.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(25, 78);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(101, 17);
+            this.label19.TabIndex = 36;
+            this.label19.Text = "Forecast Node";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(206, 107);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 17);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "ESP";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(305, 106);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(36, 17);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "-day";
+            // 
+            // buttonGetEspData
+            // 
+            this.buttonGetEspData.Enabled = false;
+            this.buttonGetEspData.Location = new System.Drawing.Point(209, 130);
+            this.buttonGetEspData.Name = "buttonGetEspData";
+            this.buttonGetEspData.Size = new System.Drawing.Size(132, 26);
+            this.buttonGetEspData.TabIndex = 42;
+            this.buttonGetEspData.Text = "Get ESP Data";
+            this.buttonGetEspData.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(84, 167);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(110, 17);
+            this.label22.TabIndex = 43;
+            this.label22.Text = "ESP Trace Year";
+            // 
+            // comboBoxEspDay
+            // 
+            this.comboBoxEspDay.Enabled = false;
+            this.comboBoxEspDay.FormattingEnabled = true;
+            this.comboBoxEspDay.Items.AddRange(new object[] {
+            "0",
+            "5",
+            "10"});
+            this.comboBoxEspDay.Location = new System.Drawing.Point(247, 103);
+            this.comboBoxEspDay.Name = "comboBoxEspDay";
+            this.comboBoxEspDay.Size = new System.Drawing.Size(52, 24);
+            this.comboBoxEspDay.TabIndex = 45;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.groupBox2);
+            this.groupBox3.Controls.Add(this.textBoxInflowCode);
+            this.groupBox3.Controls.Add(this.textBoxInflowScale);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.numericUpDownInflowYear);
+            this.groupBox3.Controls.Add(this.numericUpDownInflowShift);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Location = new System.Drawing.Point(11, 41);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(470, 312);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Inflow";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.textBoxOutflowCode);
+            this.groupBox4.Controls.Add(this.textBoxOutflowScale);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.groupBox1);
+            this.groupBox4.Controls.Add(this.numericUpDownOutflowYear);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.numericUpDownOutflowShift);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Location = new System.Drawing.Point(11, 359);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(470, 272);
+            this.groupBox4.TabIndex = 37;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Outflow";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(227, 16);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(25, 17);
+            this.label23.TabIndex = 38;
+            this.label23.Text = "AF";
+            // 
+            // comboBoxEspTraces
+            // 
+            this.comboBoxEspTraces.Enabled = false;
+            this.comboBoxEspTraces.FormattingEnabled = true;
+            this.comboBoxEspTraces.Items.AddRange(new object[] {
+            "0",
+            "5",
+            "10"});
+            this.comboBoxEspTraces.Location = new System.Drawing.Point(200, 160);
+            this.comboBoxEspTraces.Name = "comboBoxEspTraces";
+            this.comboBoxEspTraces.Size = new System.Drawing.Size(141, 24);
+            this.comboBoxEspTraces.TabIndex = 46;
+            // 
             // FcOpsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 605);
+            this.ClientSize = new System.Drawing.Size(491, 677);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.dateTimePickerSimStart);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.numericUpDownOutflowShift);
-            this.Controls.Add(this.numericUpDownInflowShift);
-            this.Controls.Add(this.numericUpDownOutflowYear);
-            this.Controls.Add(this.numericUpDownInflowYear);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxDams);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBoxOutflowScale);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxInflowScale);
             this.Controls.Add(this.textBoxSpace);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxOutflowCode);
-            this.Controls.Add(this.textBoxInflowCode);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonOperate);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(471, 652);
-            this.MinimumSize = new System.Drawing.Size(471, 652);
             this.Name = "FcOpsMenu";
             this.Text = "Flood Control Operations Menu";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).EndInit();
@@ -469,6 +660,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowShift)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,5 +710,20 @@
         private System.Windows.Forms.Label label11;
         public System.Windows.Forms.DateTimePicker dateTimePickerSimStart;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button buttonGetEspData;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RadioButton radioButtonWSFcast;
+        private System.Windows.Forms.RadioButton radioButtonNFcast;
+        public System.Windows.Forms.TextBox textBoxRfcNode;
+        public System.Windows.Forms.CheckBox checkBoxUseCustomInflow;
+        private System.Windows.Forms.ComboBox comboBoxEspDay;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboBoxEspTraces;
     }
 }

@@ -69,5 +69,24 @@ namespace FcPlot
                 // Then Do your Thang
             }
         }
+
+        private void checkBoxUseCustomOutflow_CheckedChanged(object sender, EventArgs e)
+        {
+            this.dateTimePickerCustomOutflow1.Enabled = checkBoxUseCustomOutflow.Checked;
+            this.dateTimePickerCustomOutflow2.Enabled = checkBoxUseCustomOutflow.Checked;
+            this.dateTimePickerCustomOutflow3.Enabled = checkBoxUseCustomOutflow.Checked;
+            this.textBoxCustomOutflow1.Enabled = checkBoxUseCustomOutflow.Checked;
+            this.textBoxCustomOutflow2.Enabled = checkBoxUseCustomOutflow.Checked;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.radioButtonNFcast.Enabled = checkBoxUseCustomInflow.Checked;
+            this.radioButtonWSFcast.Enabled = checkBoxUseCustomInflow.Checked;
+            this.textBoxRfcNode.Enabled = checkBoxUseCustomInflow.Checked;
+            this.comboBoxEspDay.Enabled = checkBoxUseCustomInflow.Checked;
+            this.buttonGetEspData.Enabled = checkBoxUseCustomInflow.Checked;
+            this.comboBoxEspTraces.Enabled = checkBoxUseCustomInflow.Checked;
+        }
     }
 }
