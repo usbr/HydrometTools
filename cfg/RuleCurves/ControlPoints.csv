@@ -13,7 +13,7 @@ PAL - Palisades,HEII,HEII,HEII,PALI,PAL,75,,1200000,TRUE,TRUE,,Required,1,7
 ISL - Island Park,ISLI,ISLI,ISLI,ISLI,ISL,100,,135200,TRUE,TRUE,,Guide Curve,1,7
 HEII  - Heise,HEII,HEII,HEII,HEII,"JCK,PAL",100,"1,0",2047000,TRUE,TRUE,,Required,1,7
 RIR - Ririe,RIR,RIR,RIR,RIR,RIR,100,,80500,TRUE,TRUE,,Required,1,6
-AMF - American Falls,AMF,AMFI,AMFI,AMFI,AMF,100,,1672590,TRUE,TRUE,,Guide Curve,1,7
+AMF - American Falls,AMF,AMF,AMFI,AMFI,AMF,100,,1672590,TRUE,TRUE,,Guide Curve,1,7
 WODI - Little Wood River,WODI,WODI,WODI,WODI,WOD,100,,30000,TRUE,TRUE,"* apr 1-sep 30, based on forecast -- # sep 30-apr 15, based on filling schedule --  $ mar 1-jul 31, based on mean daily inflow",Required,1,7
 -- MALHEUR SYSTEM --,NA,NA,NA,NA,NA,100,,9999999,TRUE,TRUE,,Required,1,7
 BUL - Bully Creek,BUL,BUL,BULO,BULO,BUL,100,,23676,TRUE,TRUE,,Required,1,6
