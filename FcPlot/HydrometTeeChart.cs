@@ -230,6 +230,8 @@ namespace FcPlot
         /// <param name="ui"></param>
         internal void FcOps(FcPlotUI ui, FloodControlPoint pt, FcOpsMenu opsUI)
         {
+            opsUI.toolStripStatusLabel1.Text = "Performing operations simulation...";
+
             // Get required variables from the available resources
             string inflowCode = opsUI.textBoxInflowCode.Text;
             string outflowCode = opsUI.textBoxOutflowCode.Text;
@@ -264,25 +266,7 @@ namespace FcPlot
             sOutflow.Read(t1, t2);
             var sOutflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sOutflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
             CreateSeries(System.Drawing.Color.DarkViolet, ui.textBoxWaterYear.Text + "-Outflow", sOutflowShifted, "right");
-
-            // Process simulation inflow curve
-            double inflowScaleValue;
-            try { inflowScaleValue = Convert.ToDouble(inflowScale); }
-            catch { inflowScaleValue = 1.0; }
-            sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
-            t1 = DateTime.Now;
-            t2 = DateTime.Now;
-            yr = Convert.ToInt32(inflowYear);
-            ui.SetupDates(yr, ref t1, ref t2, false);
-            sInflow.Read(t1, t2);
-            sInflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sInflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
-            t1 = sInflowShifted.MinDateTime;
-            t2 = sInflowShifted.MaxDateTime;
-            sInflowShifted = Reclamation.TimeSeries.Math.Shift(sInflowShifted, Convert.ToInt32(inflowShift));
-            sInflowShifted = sInflowShifted.Subset(t1, t2);
-            sInflowShifted = sInflowShifted * inflowScaleValue;
-            CreateSeries(System.Drawing.Color.Gold, inflowYear + "-Inflow", sInflowShifted, "right", true);
-
+            
             // Process simulation outflow curve
             double outflowScaleValue;
             try { outflowScaleValue = Convert.ToDouble(outflowScale); }
@@ -334,6 +318,39 @@ namespace FcPlot
                 sOutflowShifted = rval;
             }
             CreateSeries(System.Drawing.Color.Plum, outflowYear + "-Outflow", sOutflowShifted, "right", true);
+
+            // Process simulation inflow curve
+            double inflowScaleValue;
+            try { inflowScaleValue = Convert.ToDouble(inflowScale); }
+            catch { inflowScaleValue = 1.0; }
+            if (opsUI.checkBoxUseCustomInflow.Checked && opsUI.yearList.Count() > 0)
+            {
+                var sItem = opsUI.comboBoxEspTraces.SelectedItem;
+                var selIndex = opsUI.yearList.IndexOf(sItem.ToString());
+                var s = opsUI.espList[selIndex - 1];
+                inflowYear = Convert.ToDecimal(sItem.ToString());
+                sInflow.Table = s.Table;
+                sInflowShifted = Reclamation.TimeSeries.Math.Shift(sInflow, Convert.ToInt32(inflowShift));
+                sInflowShifted = sInflowShifted.Subset(sOutflowShifted.MinDateTime, sOutflowShifted.MaxDateTime);
+                sInflowShifted = sInflowShifted * inflowScaleValue;
+                CreateSeries(System.Drawing.Color.Gold, inflowYear + "-ESP Inflow", sInflowShifted, "right", true);
+            }
+            else
+            {
+                sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
+                t1 = DateTime.Now;
+                t2 = DateTime.Now;
+                yr = Convert.ToInt32(inflowYear);
+                ui.SetupDates(yr, ref t1, ref t2, false);
+                sInflow.Read(t1, t2);
+                sInflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sInflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
+                t1 = sInflowShifted.MinDateTime;
+                t2 = sInflowShifted.MaxDateTime;
+                sInflowShifted = Reclamation.TimeSeries.Math.Shift(sInflowShifted, Convert.ToInt32(inflowShift));
+                sInflowShifted = sInflowShifted.Subset(t1, t2);
+                sInflowShifted = sInflowShifted * inflowScaleValue;
+                CreateSeries(System.Drawing.Color.Gold, inflowYear + "-Inflow", sInflowShifted, "right", true);
+            }
 
             // Get observed storage contents 
             // [JR] we only need the last value so we can streamline this code...
@@ -409,6 +426,7 @@ namespace FcPlot
             tChart1.Axes.Right.Title.Caption = "Flow (cfs)";
             tChart1.Axes.Right.FixedLabelSize = false;
             SetupTChartTools();
+            opsUI.toolStripStatusLabel1.Text = "Showing results for (" + inflowYear + "-Qin | " + outflowYear + "-Qout)";
         }
 
         void Form1_GetSeriesMark(Steema.TeeChart.Styles.Series series, Steema.TeeChart.Styles.GetSeriesMarkEventArgs e)

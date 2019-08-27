@@ -67,20 +67,22 @@
             this.dateTimePickerSimStart = new System.Windows.Forms.DateTimePicker();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBoxUseCustomInflow = new System.Windows.Forms.CheckBox();
-            this.textBoxRfcNode = new System.Windows.Forms.TextBox();
-            this.radioButtonNFcast = new System.Windows.Forms.RadioButton();
-            this.radioButtonWSFcast = new System.Windows.Forms.RadioButton();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.buttonGetEspData = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
+            this.comboBoxEspTraces = new System.Windows.Forms.ComboBox();
             this.comboBoxEspDay = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.buttonGetEspData = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.radioButtonWSFcast = new System.Windows.Forms.RadioButton();
+            this.radioButtonNFcast = new System.Windows.Forms.RadioButton();
+            this.textBoxRfcNode = new System.Windows.Forms.TextBox();
+            this.checkBoxUseCustomInflow = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.comboBoxEspTraces = new System.Windows.Forms.ComboBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowShift)).BeginInit();
@@ -89,11 +91,13 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOperate
             // 
-            this.buttonOperate.Location = new System.Drawing.Point(341, 637);
+            this.buttonOperate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonOperate.Location = new System.Drawing.Point(343, 637);
             this.buttonOperate.Name = "buttonOperate";
             this.buttonOperate.Size = new System.Drawing.Size(140, 33);
             this.buttonOperate.TabIndex = 0;
@@ -316,7 +320,7 @@
             this.textBoxCustomOutflow1.Name = "textBoxCustomOutflow1";
             this.textBoxCustomOutflow1.Size = new System.Drawing.Size(77, 22);
             this.textBoxCustomOutflow1.TabIndex = 24;
-            this.textBoxCustomOutflow1.Text = "1";
+            this.textBoxCustomOutflow1.Text = "-99";
             // 
             // textBoxCustomOutflow2
             // 
@@ -325,7 +329,7 @@
             this.textBoxCustomOutflow2.Name = "textBoxCustomOutflow2";
             this.textBoxCustomOutflow2.Size = new System.Drawing.Size(77, 22);
             this.textBoxCustomOutflow2.TabIndex = 25;
-            this.textBoxCustomOutflow2.Text = "1";
+            this.textBoxCustomOutflow2.Text = "-99";
             // 
             // label12
             // 
@@ -436,6 +440,7 @@
             // 
             // dateTimePickerSimStart
             // 
+            this.dateTimePickerSimStart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dateTimePickerSimStart.CustomFormat = "MMM-d";
             this.dateTimePickerSimStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerSimStart.Location = new System.Drawing.Point(12, 643);
@@ -446,8 +451,9 @@
             // 
             // label18
             // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(109, 643);
+            this.label18.Location = new System.Drawing.Point(109, 648);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(141, 17);
             this.label18.TabIndex = 34;
@@ -473,95 +479,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Custom Inflow";
             // 
-            // checkBoxUseCustomInflow
+            // comboBoxEspTraces
             // 
-            this.checkBoxUseCustomInflow.AutoSize = true;
-            this.checkBoxUseCustomInflow.Location = new System.Drawing.Point(11, 21);
-            this.checkBoxUseCustomInflow.Name = "checkBoxUseCustomInflow";
-            this.checkBoxUseCustomInflow.Size = new System.Drawing.Size(163, 21);
-            this.checkBoxUseCustomInflow.TabIndex = 35;
-            this.checkBoxUseCustomInflow.Text = "Use RFC ESP Inflows";
-            this.checkBoxUseCustomInflow.UseVisualStyleBackColor = true;
-            this.checkBoxUseCustomInflow.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // textBoxRfcNode
-            // 
-            this.textBoxRfcNode.Enabled = false;
-            this.textBoxRfcNode.Location = new System.Drawing.Point(145, 75);
-            this.textBoxRfcNode.Name = "textBoxRfcNode";
-            this.textBoxRfcNode.Size = new System.Drawing.Size(196, 22);
-            this.textBoxRfcNode.TabIndex = 36;
-            this.textBoxRfcNode.Text = "1";
-            // 
-            // radioButtonNFcast
-            // 
-            this.radioButtonNFcast.AutoSize = true;
-            this.radioButtonNFcast.Enabled = false;
-            this.radioButtonNFcast.Location = new System.Drawing.Point(28, 48);
-            this.radioButtonNFcast.Name = "radioButtonNFcast";
-            this.radioButtonNFcast.Size = new System.Drawing.Size(134, 21);
-            this.radioButtonNFcast.TabIndex = 37;
-            this.radioButtonNFcast.TabStop = true;
-            this.radioButtonNFcast.Text = "Natural Forecast";
-            this.radioButtonNFcast.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonWSFcast
-            // 
-            this.radioButtonWSFcast.AutoSize = true;
-            this.radioButtonWSFcast.Enabled = false;
-            this.radioButtonWSFcast.Location = new System.Drawing.Point(168, 48);
-            this.radioButtonWSFcast.Name = "radioButtonWSFcast";
-            this.radioButtonWSFcast.Size = new System.Drawing.Size(173, 21);
-            this.radioButtonWSFcast.TabIndex = 38;
-            this.radioButtonWSFcast.TabStop = true;
-            this.radioButtonWSFcast.Text = "Water Supply Forecast";
-            this.radioButtonWSFcast.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(25, 78);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(101, 17);
-            this.label19.TabIndex = 36;
-            this.label19.Text = "Forecast Node";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(206, 107);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 17);
-            this.label20.TabIndex = 40;
-            this.label20.Text = "ESP";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(305, 106);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(36, 17);
-            this.label21.TabIndex = 41;
-            this.label21.Text = "-day";
-            // 
-            // buttonGetEspData
-            // 
-            this.buttonGetEspData.Enabled = false;
-            this.buttonGetEspData.Location = new System.Drawing.Point(209, 130);
-            this.buttonGetEspData.Name = "buttonGetEspData";
-            this.buttonGetEspData.Size = new System.Drawing.Size(132, 26);
-            this.buttonGetEspData.TabIndex = 42;
-            this.buttonGetEspData.Text = "Get ESP Data";
-            this.buttonGetEspData.UseVisualStyleBackColor = true;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(84, 167);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(110, 17);
-            this.label22.TabIndex = 43;
-            this.label22.Text = "ESP Trace Year";
+            this.comboBoxEspTraces.Enabled = false;
+            this.comboBoxEspTraces.FormattingEnabled = true;
+            this.comboBoxEspTraces.Items.AddRange(new object[] {
+            "Get ESP Data..."});
+            this.comboBoxEspTraces.Location = new System.Drawing.Point(200, 160);
+            this.comboBoxEspTraces.Name = "comboBoxEspTraces";
+            this.comboBoxEspTraces.Size = new System.Drawing.Size(141, 24);
+            this.comboBoxEspTraces.TabIndex = 46;
             // 
             // comboBoxEspDay
             // 
@@ -575,6 +502,97 @@
             this.comboBoxEspDay.Name = "comboBoxEspDay";
             this.comboBoxEspDay.Size = new System.Drawing.Size(52, 24);
             this.comboBoxEspDay.TabIndex = 45;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(84, 167);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(110, 17);
+            this.label22.TabIndex = 43;
+            this.label22.Text = "ESP Trace Year";
+            // 
+            // buttonGetEspData
+            // 
+            this.buttonGetEspData.Enabled = false;
+            this.buttonGetEspData.Location = new System.Drawing.Point(209, 130);
+            this.buttonGetEspData.Name = "buttonGetEspData";
+            this.buttonGetEspData.Size = new System.Drawing.Size(132, 26);
+            this.buttonGetEspData.TabIndex = 42;
+            this.buttonGetEspData.Text = "Get ESP Data";
+            this.buttonGetEspData.UseVisualStyleBackColor = true;
+            this.buttonGetEspData.Click += new System.EventHandler(this.buttonGetEspData_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(305, 106);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(36, 17);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "-day";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(206, 107);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 17);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "ESP";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(25, 78);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(101, 17);
+            this.label19.TabIndex = 36;
+            this.label19.Text = "Forecast Node";
+            // 
+            // radioButtonWSFcast
+            // 
+            this.radioButtonWSFcast.AutoSize = true;
+            this.radioButtonWSFcast.Enabled = false;
+            this.radioButtonWSFcast.Location = new System.Drawing.Point(168, 48);
+            this.radioButtonWSFcast.Name = "radioButtonWSFcast";
+            this.radioButtonWSFcast.Size = new System.Drawing.Size(173, 21);
+            this.radioButtonWSFcast.TabIndex = 38;
+            this.radioButtonWSFcast.Text = "Water Supply Forecast";
+            this.radioButtonWSFcast.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNFcast
+            // 
+            this.radioButtonNFcast.AutoSize = true;
+            this.radioButtonNFcast.Checked = true;
+            this.radioButtonNFcast.Enabled = false;
+            this.radioButtonNFcast.Location = new System.Drawing.Point(28, 48);
+            this.radioButtonNFcast.Name = "radioButtonNFcast";
+            this.radioButtonNFcast.Size = new System.Drawing.Size(134, 21);
+            this.radioButtonNFcast.TabIndex = 37;
+            this.radioButtonNFcast.TabStop = true;
+            this.radioButtonNFcast.Text = "Natural Forecast";
+            this.radioButtonNFcast.UseVisualStyleBackColor = true;
+            // 
+            // textBoxRfcNode
+            // 
+            this.textBoxRfcNode.Enabled = false;
+            this.textBoxRfcNode.Location = new System.Drawing.Point(145, 75);
+            this.textBoxRfcNode.Name = "textBoxRfcNode";
+            this.textBoxRfcNode.Size = new System.Drawing.Size(196, 22);
+            this.textBoxRfcNode.TabIndex = 36;
+            this.textBoxRfcNode.Text = "1";
+            // 
+            // checkBoxUseCustomInflow
+            // 
+            this.checkBoxUseCustomInflow.AutoSize = true;
+            this.checkBoxUseCustomInflow.Location = new System.Drawing.Point(11, 21);
+            this.checkBoxUseCustomInflow.Name = "checkBoxUseCustomInflow";
+            this.checkBoxUseCustomInflow.Size = new System.Drawing.Size(163, 21);
+            this.checkBoxUseCustomInflow.TabIndex = 35;
+            this.checkBoxUseCustomInflow.Text = "Use RFC ESP Inflows";
+            this.checkBoxUseCustomInflow.UseVisualStyleBackColor = true;
+            this.checkBoxUseCustomInflow.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -590,7 +608,7 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Location = new System.Drawing.Point(11, 41);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(470, 312);
+            this.groupBox3.Size = new System.Drawing.Size(470, 315);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Inflow";
@@ -607,7 +625,7 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.numericUpDownOutflowShift);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Location = new System.Drawing.Point(11, 359);
+            this.groupBox4.Location = new System.Drawing.Point(11, 362);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(470, 272);
             this.groupBox4.TabIndex = 37;
@@ -623,24 +641,31 @@
             this.label23.TabIndex = 38;
             this.label23.Text = "AF";
             // 
-            // comboBoxEspTraces
+            // statusStrip1
             // 
-            this.comboBoxEspTraces.Enabled = false;
-            this.comboBoxEspTraces.FormattingEnabled = true;
-            this.comboBoxEspTraces.Items.AddRange(new object[] {
-            "0",
-            "5",
-            "10"});
-            this.comboBoxEspTraces.Location = new System.Drawing.Point(200, 160);
-            this.comboBoxEspTraces.Name = "comboBoxEspTraces";
-            this.comboBoxEspTraces.Size = new System.Drawing.Size(141, 24);
-            this.comboBoxEspTraces.TabIndex = 46;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 675);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(490, 25);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 39;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Blue;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // FcOpsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(491, 677);
+            this.ClientSize = new System.Drawing.Size(490, 700);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -651,8 +676,12 @@
             this.Controls.Add(this.textBoxSpace);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonOperate);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FcOpsMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Flood Control Operations Menu";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).EndInit();
@@ -666,6 +695,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,6 +755,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ComboBox comboBoxEspTraces;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        public System.Windows.Forms.ComboBox comboBoxEspTraces;
     }
 }
