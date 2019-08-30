@@ -83,6 +83,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBoxRedrawGraph = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOutflowYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInflowShift)).BeginInit();
@@ -97,7 +98,7 @@
             // buttonOperate
             // 
             this.buttonOperate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonOperate.Location = new System.Drawing.Point(343, 637);
+            this.buttonOperate.Location = new System.Drawing.Point(343, 656);
             this.buttonOperate.Name = "buttonOperate";
             this.buttonOperate.Size = new System.Drawing.Size(140, 33);
             this.buttonOperate.TabIndex = 0;
@@ -443,7 +444,7 @@
             this.dateTimePickerSimStart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dateTimePickerSimStart.CustomFormat = "MMM-d";
             this.dateTimePickerSimStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerSimStart.Location = new System.Drawing.Point(12, 643);
+            this.dateTimePickerSimStart.Location = new System.Drawing.Point(12, 662);
             this.dateTimePickerSimStart.Name = "dateTimePickerSimStart";
             this.dateTimePickerSimStart.ShowUpDown = true;
             this.dateTimePickerSimStart.Size = new System.Drawing.Size(91, 22);
@@ -453,7 +454,7 @@
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(109, 648);
+            this.label18.Location = new System.Drawing.Point(109, 667);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(141, 17);
             this.label18.TabIndex = 34;
@@ -474,7 +475,7 @@
             this.groupBox2.Controls.Add(this.checkBoxUseCustomInflow);
             this.groupBox2.Location = new System.Drawing.Point(107, 105);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(354, 198);
+            this.groupBox2.Size = new System.Drawing.Size(354, 195);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Custom Inflow";
@@ -485,9 +486,9 @@
             this.comboBoxEspTraces.FormattingEnabled = true;
             this.comboBoxEspTraces.Items.AddRange(new object[] {
             "Get ESP Data..."});
-            this.comboBoxEspTraces.Location = new System.Drawing.Point(200, 160);
+            this.comboBoxEspTraces.Location = new System.Drawing.Point(247, 160);
             this.comboBoxEspTraces.Name = "comboBoxEspTraces";
-            this.comboBoxEspTraces.Size = new System.Drawing.Size(141, 24);
+            this.comboBoxEspTraces.Size = new System.Drawing.Size(94, 24);
             this.comboBoxEspTraces.TabIndex = 46;
             // 
             // comboBoxEspDay
@@ -506,7 +507,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(84, 167);
+            this.label22.Location = new System.Drawing.Point(131, 167);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(110, 17);
             this.label22.TabIndex = 43;
@@ -515,9 +516,9 @@
             // buttonGetEspData
             // 
             this.buttonGetEspData.Enabled = false;
-            this.buttonGetEspData.Location = new System.Drawing.Point(209, 130);
+            this.buttonGetEspData.Location = new System.Drawing.Point(208, 130);
             this.buttonGetEspData.Name = "buttonGetEspData";
-            this.buttonGetEspData.Size = new System.Drawing.Size(132, 26);
+            this.buttonGetEspData.Size = new System.Drawing.Size(133, 26);
             this.buttonGetEspData.TabIndex = 42;
             this.buttonGetEspData.Text = "Get ESP Data";
             this.buttonGetEspData.UseVisualStyleBackColor = true;
@@ -544,7 +545,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(25, 78);
+            this.label19.Location = new System.Drawing.Point(65, 78);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 17);
             this.label19.TabIndex = 36;
@@ -577,11 +578,11 @@
             // textBoxRfcNode
             // 
             this.textBoxRfcNode.Enabled = false;
-            this.textBoxRfcNode.Location = new System.Drawing.Point(145, 75);
+            this.textBoxRfcNode.Location = new System.Drawing.Point(172, 75);
             this.textBoxRfcNode.Name = "textBoxRfcNode";
-            this.textBoxRfcNode.Size = new System.Drawing.Size(196, 22);
+            this.textBoxRfcNode.Size = new System.Drawing.Size(169, 22);
             this.textBoxRfcNode.TabIndex = 36;
-            this.textBoxRfcNode.Text = "1";
+            this.textBoxRfcNode.Text = "textBoxRfcNode";
             // 
             // checkBoxUseCustomInflow
             // 
@@ -608,7 +609,7 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Location = new System.Drawing.Point(11, 41);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(470, 315);
+            this.groupBox3.Size = new System.Drawing.Size(470, 307);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Inflow";
@@ -625,7 +626,7 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.numericUpDownOutflowShift);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Location = new System.Drawing.Point(11, 362);
+            this.groupBox4.Location = new System.Drawing.Point(11, 354);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(470, 272);
             this.groupBox4.TabIndex = 37;
@@ -646,7 +647,7 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 675);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 694);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(490, 25);
             this.statusStrip1.SizingGrip = false;
@@ -660,11 +661,26 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // checkBoxRedrawGraph
+            // 
+            this.checkBoxRedrawGraph.AutoSize = true;
+            this.checkBoxRedrawGraph.Checked = true;
+            this.checkBoxRedrawGraph.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRedrawGraph.Location = new System.Drawing.Point(11, 632);
+            this.checkBoxRedrawGraph.Name = "checkBoxRedrawGraph";
+            this.checkBoxRedrawGraph.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.checkBoxRedrawGraph.Size = new System.Drawing.Size(122, 21);
+            this.checkBoxRedrawGraph.TabIndex = 47;
+            this.checkBoxRedrawGraph.Text = "Redraw Graph";
+            this.checkBoxRedrawGraph.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxRedrawGraph.UseVisualStyleBackColor = true;
+            // 
             // FcOpsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 700);
+            this.ClientSize = new System.Drawing.Size(490, 719);
+            this.Controls.Add(this.checkBoxRedrawGraph);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.groupBox4);
@@ -758,5 +774,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         public System.Windows.Forms.ComboBox comboBoxEspTraces;
+        public System.Windows.Forms.CheckBox checkBoxRedrawGraph;
     }
 }

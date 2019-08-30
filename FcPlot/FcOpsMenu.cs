@@ -40,7 +40,6 @@ namespace FcPlot
             this.toolStripStatusLabel1.Text = "";
             this.textBoxRfcNode.Text = pt.EspNode;
 
-
             // Handle ENTER key press
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             this.numericUpDownInflowYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
@@ -49,6 +48,20 @@ namespace FcPlot
             this.numericUpDownOutflowShift.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             this.textBoxInflowScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             this.textBoxOutflowScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
+
+            // Add tooltips
+            // Create the ToolTip and associate with the Form container.
+            ToolTip toolTip1 = new ToolTip();
+            // Set up the delays for the ToolTip.
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 200;
+            toolTip1.ReshowDelay = 200;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip1.ShowAlways = true;
+            // Set up the ToolTip text for the Button and Checkbox.
+            toolTip1.SetToolTip(this.checkBoxRedrawGraph, "Unchecking this will allow you to graph multiple scenario curves on the chart");
+            toolTip1.SetToolTip(this.checkBoxUseCustomInflow, "Checking this will allow you to download and use RFC ESP inflows");
+            toolTip1.SetToolTip(this.checkBoxUseCustomOutflow, "Checking this will allow you to use your own outflow schedule");
         }
 
         private void Operate()
@@ -77,6 +90,8 @@ namespace FcPlot
             this.dateTimePickerCustomOutflow3.Enabled = checkBoxUseCustomOutflow.Checked;
             this.textBoxCustomOutflow1.Enabled = checkBoxUseCustomOutflow.Checked;
             this.textBoxCustomOutflow2.Enabled = checkBoxUseCustomOutflow.Checked;
+            this.dateTimePickerSimStart.Value = this.dateTimePickerSimStart.MaxDate;
+            this.dateTimePickerSimStart.Enabled = !checkBoxUseCustomOutflow.Checked;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -87,6 +102,8 @@ namespace FcPlot
             this.comboBoxEspDay.Enabled = checkBoxUseCustomInflow.Checked;
             this.buttonGetEspData.Enabled = checkBoxUseCustomInflow.Checked;
             this.comboBoxEspTraces.Enabled = checkBoxUseCustomInflow.Checked;
+            this.dateTimePickerSimStart.Value = this.dateTimePickerSimStart.MaxDate;
+            this.dateTimePickerSimStart.Enabled = !checkBoxUseCustomInflow.Checked;
         }
 
         public SeriesList espList;
@@ -145,7 +162,37 @@ namespace FcPlot
                 s.Name = series.Name;
                 espList.Add(s);
             }
+            // Create statistical Series
+            var sMin = new Series("MIN");
+            var sMax = new Series("MAX");
+            var sAvg = new Series("AVG");
+            var sP10 = new Series("P10");
+            var sP25 = new Series("P25");
+            var sP50 = new Series("P50");
+            var sP75 = new Series("P75");
+            var sP90 = new Series("P90");
+            foreach (Point pt in espList[0])
+            {
+                DateTime ithT = pt.DateTime;
+                List<double> ithVals = new List<double>();
+                foreach (Series s in espList)
+                {
+                    ithVals.Add(s[ithT].Value);
+                }
+                sMin.Add(ithT, ithVals.Min());
+                sAvg.Add(ithT, ithVals.Average());
+                sMax.Add(ithT, ithVals.Max());
+                ithVals.Sort();
+                sP10.Add(ithT, ithVals[Convert.ToInt32(System.Math.Floor(ithVals.Count * 0.10))]);
+                sP25.Add(ithT, ithVals[Convert.ToInt32(System.Math.Floor(ithVals.Count * 0.25))]);
+                sP50.Add(ithT, ithVals[Convert.ToInt32(System.Math.Floor(ithVals.Count * 0.50))]);
+                sP75.Add(ithT, ithVals[Convert.ToInt32(System.Math.Floor(ithVals.Count * 0.75))]);
+                sP90.Add(ithT, ithVals[Convert.ToInt32(System.Math.Floor(ithVals.Count * 0.90))]);
+            }
+            yearList.AddRange(new List<string> { "MIN", "P10", "P25", "P50", "P75", "P90", "MAX", "AVG" });
+            espList.Add(new SeriesList() { sMin, sP10, sP25, sP50, sP75, sP90, sMax, sAvg });
 
+            // Finalize
             FillEspDropDown();
             this.toolStripStatusLabel1.Text = "Downloaded " + rfcDataRows[0].ToString().Replace("FILE:", "") + 
                 ". Updated " + rfcDataRows[1].ToString().Replace("ISSUED:", "");

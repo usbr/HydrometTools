@@ -42,8 +42,12 @@ namespace FcPlot
             {
                 rval.LinePen.Style = System.Drawing.Drawing2D.DashStyle.Dash;
             }
-            tChart1.Series.Add(rval);
-            ReadIntoTChart(s, rval);
+            var a = tChart1.Series.WithTitle(title);
+            if (a == null) //don't redraw series with duplicate labels
+            {
+                tChart1.Series.Add(rval);
+                ReadIntoTChart(s, rval);
+            }
             return rval;
         }
 
@@ -144,6 +148,7 @@ namespace FcPlot
                 var ts = new Steema.TeeChart.Styles.Line(tChart1.Chart);
                 ts.Marks.Visible = true;
                 ts.Color = System.Drawing.Color.Green;
+                ts.Color = System.Drawing.Color.DarkGoldenrod;
                 ts.Marks.Style = Steema.TeeChart.Styles.MarksStyles.Label;
                 ts.Marks.Arrow.Visible = false;
                 ts.Marks.ArrowLength = 0;
@@ -235,8 +240,8 @@ namespace FcPlot
             // Get required variables from the available resources
             string inflowCode = opsUI.textBoxInflowCode.Text;
             string outflowCode = opsUI.textBoxOutflowCode.Text;
-            decimal inflowYear = opsUI.numericUpDownInflowYear.Value;
-            decimal outflowYear = opsUI.numericUpDownOutflowYear.Value;
+            string inflowYear = opsUI.numericUpDownInflowYear.Value.ToString();
+            string outflowYear = opsUI.numericUpDownOutflowYear.Value.ToString();
             string[] resCodes = pt.UpstreamReservoirs;
             double maxSpace = pt.TotalUpstreamActiveSpace;
             decimal inflowShift = opsUI.numericUpDownInflowShift.Value;
@@ -245,27 +250,42 @@ namespace FcPlot
             string outflowScale = opsUI.textBoxOutflowScale.Text;
 
             // redraw the main graph
-            ui.GraphData();
+            if (opsUI.checkBoxRedrawGraph.Checked)
+            {
+                ui.GraphData();
+            }
+            PlotCurrentData(ui, inflowCode, outflowCode);
 
-            // Process current inflow curve
-            var sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
-            DateTime t1 = DateTime.Now;
-            DateTime t2 = DateTime.Now;
-            int yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
-            ui.SetupDates(yr, ref t1, ref t2, false);
-            sInflow.Read(t1, t2);
-            var sInflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sInflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
-            CreateSeries(System.Drawing.Color.DarkGoldenrod, ui.textBoxWaterYear.Text + "-Inflow", sInflowShifted, "right");
+            var sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries("", "");
+            var sOutflowShifted = new Series();
+            var sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries("", "");
+            var sInflowShifted = new Series();
+            DateTime t1, t2;
+            int yr;
 
-            // Process current outflow curve
-            var sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1]);
+            // Get observed storage contents 
+            // [JR] we only need the last value so we can streamline this code...
+            //      or keep it as is and allow the user to start the simulation from a past date...
+            var ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[0], "AF");
             t1 = DateTime.Now;
             t2 = DateTime.Now;
             yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
             ui.SetupDates(yr, ref t1, ref t2, false);
-            sOutflow.Read(t1, t2);
-            var sOutflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sOutflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
-            CreateSeries(System.Drawing.Color.DarkViolet, ui.textBoxWaterYear.Text + "-Outflow", sOutflowShifted, "right");
+            ithStorage.Read(t1, t2);
+            Series sStorage = new Series(ithStorage.Table, "content", TimeInterval.Daily);
+            for (int i = 1; i < resCodes.Count(); i++)
+            {
+                ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[i], "AF");
+                t1 = DateTime.Now;
+                t2 = DateTime.Now;
+                yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
+                ui.SetupDates(yr, ref t1, ref t2, false);
+                ithStorage.Read(t1, t2);
+                Series sStorageTemp = new Series(ithStorage.Table, "content", TimeInterval.Daily);
+                sStorage = sStorage + sStorageTemp;
+            }
+            //Reclamation.TimeSeries.Point lastPt = sStorage[sStorage.Count() - 1]; // could potentially start simulation from any past date...
+            Reclamation.TimeSeries.Point lastPt = sStorage[opsUI.dateTimePickerSimStart.Value.AddDays(-1)];
             
             // Process simulation outflow curve
             double outflowScaleValue;
@@ -328,12 +348,12 @@ namespace FcPlot
                 var sItem = opsUI.comboBoxEspTraces.SelectedItem;
                 var selIndex = opsUI.yearList.IndexOf(sItem.ToString());
                 var s = opsUI.espList[selIndex - 1];
-                inflowYear = Convert.ToDecimal(sItem.ToString());
+                inflowYear = (sItem.ToString());
                 sInflow.Table = s.Table;
                 sInflowShifted = Reclamation.TimeSeries.Math.Shift(sInflow, Convert.ToInt32(inflowShift));
                 sInflowShifted = sInflowShifted.Subset(sOutflowShifted.MinDateTime, sOutflowShifted.MaxDateTime);
                 sInflowShifted = sInflowShifted * inflowScaleValue;
-                CreateSeries(System.Drawing.Color.Gold, inflowYear + "-ESP Inflow", sInflowShifted, "right", true);
+                CreateSeries(System.Drawing.Color.LawnGreen, inflowYear + "-ESP Inflow", sInflowShifted, "right", true);
             }
             else
             {
@@ -349,32 +369,8 @@ namespace FcPlot
                 sInflowShifted = Reclamation.TimeSeries.Math.Shift(sInflowShifted, Convert.ToInt32(inflowShift));
                 sInflowShifted = sInflowShifted.Subset(t1, t2);
                 sInflowShifted = sInflowShifted * inflowScaleValue;
-                CreateSeries(System.Drawing.Color.Gold, inflowYear + "-Inflow", sInflowShifted, "right", true);
+                CreateSeries(System.Drawing.Color.LawnGreen, inflowYear + "-Inflow", sInflowShifted, "right", true);
             }
-
-            // Get observed storage contents 
-            // [JR] we only need the last value so we can streamline this code...
-            //      or keep it as is and allow the user to start the simulation from a past date...
-            var ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[0], "AF");
-            t1 = DateTime.Now;
-            t2 = DateTime.Now;
-            yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
-            ui.SetupDates(yr, ref t1, ref t2, false);
-            ithStorage.Read(t1, t2);
-            Series sStorage = new Series(ithStorage.Table, "content", TimeInterval.Daily);
-            for (int i = 1; i < resCodes.Count(); i++)
-            {
-                ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[i], "AF");
-                t1 = DateTime.Now;
-                t2 = DateTime.Now;
-                yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
-                ui.SetupDates(yr, ref t1, ref t2, false);
-                ithStorage.Read(t1, t2);
-                Series sStorageTemp = new Series(ithStorage.Table, "content", TimeInterval.Daily);
-                sStorage = sStorage + sStorageTemp;
-            }
-            //Reclamation.TimeSeries.Point lastPt = sStorage[sStorage.Count() - 1]; // could potentially start simulation from any past date...
-            Reclamation.TimeSeries.Point lastPt = sStorage[opsUI.dateTimePickerSimStart.Value.AddDays(-1)]; 
 
             // Process simulated storage curve and run storage simulation forward
             DateTime minDate = new DateTime(System.Math.Min(sOutflowShifted.MaxDateTime.Ticks, sInflowShifted.MaxDateTime.Ticks)); //day-shifting misaligns the max-dates of each series
@@ -427,6 +423,31 @@ namespace FcPlot
             tChart1.Axes.Right.FixedLabelSize = false;
             SetupTChartTools();
             opsUI.toolStripStatusLabel1.Text = "Showing results for (" + inflowYear + "-Qin | " + outflowYear + "-Qout)";
+        }
+
+
+        private void PlotCurrentData(FcPlotUI ui, string inflowCode, string outflowCode)
+        {
+            // Process current inflow curve
+            var sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
+            DateTime t1 = DateTime.Now;
+            DateTime t2 = DateTime.Now;
+            int yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
+            ui.SetupDates(yr, ref t1, ref t2, false);
+            sInflow.Read(t1, t2);
+            var sInflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sInflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
+            CreateSeries(System.Drawing.Color.ForestGreen, ui.textBoxWaterYear.Text + "-Inflow", sInflowShifted, "right");
+
+            // Process current outflow curve
+            var sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1]);
+            t1 = DateTime.Now;
+            t2 = DateTime.Now;
+            yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
+            ui.SetupDates(yr, ref t1, ref t2, false);
+            sOutflow.Read(t1, t2);
+            var sOutflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sOutflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
+            CreateSeries(System.Drawing.Color.DarkViolet, ui.textBoxWaterYear.Text + "-Outflow", sOutflowShifted, "right");
+
         }
 
         void Form1_GetSeriesMark(Steema.TeeChart.Styles.Series series, Steema.TeeChart.Styles.GetSeriesMarkEventArgs e)
