@@ -19,6 +19,7 @@ namespace HydrometTools.Advanced
         public AdvancedControl()
         {
             InitializeComponent();
+            this.gpFixInflow1.buttonRun.Enabled = HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains;
         }
 
         private void archiverInput1_Load(object sender, EventArgs e)

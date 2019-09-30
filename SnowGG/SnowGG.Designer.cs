@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange3 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonToggleMonths = new System.Windows.Forms.Button();
             this.checkBoxUseList = new System.Windows.Forms.CheckBox();
@@ -57,12 +57,14 @@
             this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.yearSelector1 = new Reclamation.TimeSeries.Forms.YearSelector();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBoxSumList = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBoxSumList);
             this.panel1.Controls.Add(this.buttonToggleMonths);
             this.panel1.Controls.Add(this.checkBoxUseList);
             this.panel1.Controls.Add(this.textBoxMultiple);
@@ -362,7 +364,7 @@
             this.monthRangePicker1.BeginningMonth = 10;
             this.monthRangePicker1.Location = new System.Drawing.Point(556, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange1;
+            this.monthRangePicker1.MonthDayRange = monthDayRange3;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
@@ -377,6 +379,18 @@
         2005};
             this.yearSelector1.Size = new System.Drawing.Size(428, 31);
             this.yearSelector1.TabIndex = 2;
+            // 
+            // checkBoxSumList
+            // 
+            this.checkBoxSumList.AutoSize = true;
+            this.checkBoxSumList.Enabled = false;
+            this.checkBoxSumList.Location = new System.Drawing.Point(369, 139);
+            this.checkBoxSumList.Margin = new System.Windows.Forms.Padding(5);
+            this.checkBoxSumList.Name = "checkBoxSumList";
+            this.checkBoxSumList.Size = new System.Drawing.Size(84, 21);
+            this.checkBoxSumList.TabIndex = 18;
+            this.checkBoxSumList.Text = "Sum List";
+            this.checkBoxSumList.UseVisualStyleBackColor = true;
             // 
             // SnowGG
             // 
@@ -426,5 +440,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonToggleMonths;
+        private System.Windows.Forms.CheckBox checkBoxSumList;
     }
 }

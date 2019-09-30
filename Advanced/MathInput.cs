@@ -54,7 +54,10 @@ namespace HydrometTools
                 Cursor = Cursors.WaitCursor;
 
                 string status = HydrometEditsVMS.RunRatingTableMath(login.Username, login.Password, Cbtt, PcodeIn, PcodeOut, T1, T2,checkBoxACE.Checked);
-
+                if (radioButtonDaily.Checked)
+                {
+                    status = HydrometEditsVMS.RunRatingTableMathArchives(login.Username, login.Password, Cbtt, PcodeIn, PcodeOut, T1, T2, checkBoxACE.Checked);
+                }
                 if (checkBoxArchiver.Checked)
                 {
                     status += "\n" + HydrometEditsVMS.RunArchiver(login.Username, login.Password, new string[] { Cbtt }, PcodeOut, T1, T2, false);

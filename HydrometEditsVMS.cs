@@ -7,26 +7,27 @@ using System.Configuration;
 using HydrometTools.ssh;
 namespace Reclamation.TimeSeries.Hydromet
 {
-     static class HydrometEditsVMS
+    static class HydrometEditsVMS
     {
         static string timeFormat = "MMMdyyyy_HH_mm_ss";
 
         public static string HydrometHostAddress
-            
+
         {
-         get {
-             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
+            get
+            {
+                HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
 
-             if (svr == HydrometHost.PN || svr == HydrometHost.PNLinux)
-                 return ConfigurationManager.AppSettings["BoiseHydrometAddress"];
-             else
-                 if (svr == HydrometHost.Yakima)
-                     return ConfigurationManager.AppSettings["YakimaHydrometAddress"];
-                 else if (svr == HydrometHost.GreatPlains)
-                     return ConfigurationManager.AppSettings["BillingsHydrometAddress"]; 
+                if (svr == HydrometHost.PN || svr == HydrometHost.PNLinux)
+                    return ConfigurationManager.AppSettings["BoiseHydrometAddress"];
+                else
+                    if (svr == HydrometHost.Yakima)
+                    return ConfigurationManager.AppSettings["YakimaHydrometAddress"];
+                else if (svr == HydrometHost.GreatPlains)
+                    return ConfigurationManager.AppSettings["BillingsHydrometAddress"];
 
-             throw new NotImplementedException(svr.ToString());
-         }
+                throw new NotImplementedException(svr.ToString());
+            }
         }
 
 
@@ -42,7 +43,7 @@ namespace Reclamation.TimeSeries.Hydromet
         {
             //interpret/nodebug acm 2010Jun14 mck fb
             string rval = "";
-             
+
             var tmpFile = FileUtility.GetTempFileName(".txt");
             TextFile tf = new TextFile(tmpFile);
             AddVmsScriptHeader(user, tf);
@@ -54,17 +55,17 @@ namespace Reclamation.TimeSeries.Hydromet
 
             tf.SaveAsVms(tf.FileName);
             string t = DateTime.Now.ToString(timeFormat).ToLower();
-            string remoteFile = "huser1:[edits]run_archiver_"+user+t+".com";
+            string remoteFile = "huser1:[edits]run_archiver_" + user + t + ".com";
             string unixRemoteFile = VmsToUnixPath(remoteFile);
             rval += "\n" + SendFileAndRunCommand(user, password, tmpFile, unixRemoteFile, "@" + remoteFile);
             return rval;
         }
 
-      
+
 
 
         public static string RunArchiver(string user, string password, string[] cbtt,
-    string pcode, DateTime t1, DateTime t2,bool previewOnly)
+    string pcode, DateTime t1, DateTime t2, bool previewOnly)
         {
             string tmpFile = FileUtility.GetTempFileName(".txt"); // create script.
             TextFile tf = new TextFile(tmpFile);
@@ -104,8 +105,8 @@ namespace Reclamation.TimeSeries.Hydromet
                 if (pcode == "ALL")
                     pcode = "";
 
-              
-                
+
+
 
                 while (t <= t2.Date)
                 {
@@ -124,7 +125,7 @@ namespace Reclamation.TimeSeries.Hydromet
             {
                 tf.SaveAsVms(tf.FileName);
                 string t = DateTime.Now.ToString(timeFormat).ToLower();
-                string remoteFile = "huser1:[edits]run_archiver_" + user +t+ ".com";
+                string remoteFile = "huser1:[edits]run_archiver_" + user + t + ".com";
                 string unixRemoteFile = VmsToUnixPath(remoteFile);
                 string rval = SendFileAndRunCommand(user, password, tmpFile, unixRemoteFile, "@" + remoteFile);
                 return rval;
@@ -146,20 +147,20 @@ namespace Reclamation.TimeSeries.Hydromet
 
             string tmpFile = FileUtility.GetTempFileName(".com"); // create script.
             TextFile tf = new TextFile(tmpFile);
-            CreateRawDataCommands(user, cbtt, t1, t2,tf);
+            CreateRawDataCommands(user, cbtt, t1, t2, tf);
             //PNHYD0$ mail/subject="karl test" get_all_gstable.com ktarbet
 
-          //  tf.Add("$ Mail/subject=\"Raw data has run for cbtt=["+cbtt + "]  \" run_rawdata.com ktarbet");
+            //  tf.Add("$ Mail/subject=\"Raw data has run for cbtt=["+cbtt + "]  \" run_rawdata.com ktarbet");
 
             tf.SaveAsVms(tf.FileName);
             string t = DateTime.Now.ToString(timeFormat).ToLower();
-            string remoteFile = "huser1:[edits]run_rawdata_"+user+t+".com";
+            string remoteFile = "huser1:[edits]run_rawdata_" + user + t + ".com";
             string unixRemoteFile = VmsToUnixPath(remoteFile);
             string rval = SendFileAndRunCommand(user, password, tmpFile, unixRemoteFile, "@" + remoteFile);
             return rval;
         }
 
-        private static void CreateRawDataCommands(string user, string cbtt, DateTime t1,DateTime t2, TextFile tf)
+        private static void CreateRawDataCommands(string user, string cbtt, DateTime t1, DateTime t2, TextFile tf)
         {
             /*
             day=2010Jun14
@@ -172,43 +173,43 @@ namespace Reclamation.TimeSeries.Hydromet
 
             tf.Add("$! -- rawdata script --- ");
             AddVmsScriptHeader(user, tf);
-            
+
             tf.Add("$ rawdata");
             tf.Add("day=" + t1.ToString("yyyyMMMdd"));
-            if( singleDay) 
+            if (singleDay)
             {
-               tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ","
-                        + t2.ToString("HH") + ":" + t2.ToString("mm") +"/route=huser1:[edits]route.dat/brief " + cbtt);
+                tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ","
+                         + t2.ToString("HH") + ":" + t2.ToString("mm") + "/route=huser1:[edits]route.dat/brief " + cbtt);
             }
             else // multi day
             {
-             tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ",23:59/route=huser1:[edits]route.dat/brief " + cbtt);
-             DateTime t = t1.Date.AddDays(1);
-             while (t <= t2.Date)
-             {
-                 tf.Add("day=" + t.ToString("yyyyMMMdd"));
+                tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ",23:59/route=huser1:[edits]route.dat/brief " + cbtt);
+                DateTime t = t1.Date.AddDays(1);
+                while (t <= t2.Date)
+                {
+                    tf.Add("day=" + t.ToString("yyyyMMMdd"));
 
-                 if (t.Date == t2.Date)
-                 {// final value. look at hour and minute.
-                     tf.Add("g/00:00," + t2.ToString("HH") + ":" + t2.ToString("mm") + "/route=huser1:[edits]route.dat/brief " + cbtt);
-                 }
-                 else
-                 {
-                     tf.Add("g/all/route=huser1:[edits]route.dat/brief " + cbtt);
-                 }
-                 t = t.Date.AddDays(1);
-              
-             }
+                    if (t.Date == t2.Date)
+                    {// final value. look at hour and minute.
+                        tf.Add("g/00:00," + t2.ToString("HH") + ":" + t2.ToString("mm") + "/route=huser1:[edits]route.dat/brief " + cbtt);
+                    }
+                    else
+                    {
+                        tf.Add("g/all/route=huser1:[edits]route.dat/brief " + cbtt);
+                    }
+                    t = t.Date.AddDays(1);
+
+                }
 
             }
 
             tf.Add("$ Exit");
         }
 
-        
 
-        public static string RunRatingTableMath(string user, string password, string cbtt, string pcodeIn, 
-            string pcodeOut, DateTime t1, DateTime t2, bool ace=false)
+
+        public static string RunRatingTableMath(string user, string password, string cbtt, string pcodeIn,
+            string pcodeOut, DateTime t1, DateTime t2, bool ace = false)
         {
             if (cbtt.Trim() == "" || Regex.IsMatch(cbtt, "[^a-zA-z0-9]")
                 || pcodeIn.Trim() == "" || Regex.IsMatch(pcodeIn, "[^a-zA-z0-9]")
@@ -226,12 +227,12 @@ namespace Reclamation.TimeSeries.Hydromet
             string tmpFile_com = FileUtility.GetTempFileName(".com");
             TextFile tf_dfp = new TextFile(tmpFile_dfp);
             TextFile tf_com = new TextFile(tmpFile_com);
-            
-            CreateRatingMathCommands(user, cbtt, pcodeIn, pcodeOut, t1, t2, tf_dfp,ace);
+
+            CreateRatingMathCommands(user, cbtt, pcodeIn, pcodeOut, t1, t2, tf_dfp, ace);
 
             string t = DateTime.Now.ToString(timeFormat).ToLower();
-            string remoteFile_dfp = "huser1:[edits]math_cmds_" + user +t+ ".dfp";
-            string remoteFile_com = "huser1:[edits]run_math_" + user +t+ ".com";
+            string remoteFile_dfp = "huser1:[edits]math_cmds_" + user + t + ".dfp";
+            string remoteFile_com = "huser1:[edits]run_math_" + user + t + ".com";
             string unixRemoteFile_dfp = VmsToUnixPath(remoteFile_dfp);
             string unixRemoteFile_com = VmsToUnixPath(remoteFile_com);
 
@@ -239,8 +240,8 @@ namespace Reclamation.TimeSeries.Hydromet
 
             AddVmsScriptHeader(user, tf_com);
             tf_com.Add("$day");
-            tf_com.Add("@" +remoteFile_dfp);
-            
+            tf_com.Add("@" + remoteFile_dfp);
+
             tf_dfp.SaveAsVms(tf_dfp.FileName);
             tf_com.SaveAsVms(tf_com.FileName);
 
@@ -248,7 +249,132 @@ namespace Reclamation.TimeSeries.Hydromet
 
             if (!SendFile(user, password, tmpFile_dfp, unixRemoteFile_dfp))
             {
-                return "Error sending file to server '"+remoteFile_com +"'";
+                return "Error sending file to server '" + remoteFile_com + "'";
+            }
+
+            string rval = SendFileAndRunCommand(user, password, tmpFile_com, unixRemoteFile_com, "@" + remoteFile_com);
+            return rval;
+        }
+
+        /// <summary>
+        /// Allow users to compute daily ratings. Computes ratings from daily gage heights and forebay elevations.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <param name="cbtt"></param>
+        /// <param name="pcodeIn"></param>
+        /// <param name="pcodeOut"></param>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <param name="ace"></param>
+        /// <returns></returns>
+        public static string RunRatingTableMathArchives(string user, string password, string cbtt, string pcodeIn,
+            string pcodeOut, DateTime t1, DateTime t2, bool ace = false)
+        {
+            if (cbtt.Trim() == "" || Regex.IsMatch(cbtt, "[^a-zA-z0-9]")
+                || pcodeIn.Trim() == "" || Regex.IsMatch(pcodeIn, "[^a-zA-z0-9]")
+                || pcodeOut.Trim() == "" || Regex.IsMatch(pcodeOut, "[^a-zA-z0-9]"))
+            {
+                return "Error: invalid cbtt or pcode";
+            }
+
+            if (pcodeIn.Trim().ToUpper() != "FB" || pcodeOut.Trim().ToUpper() != "AF")
+            {
+                return "Error: Only works with FB to AF rating tables";
+            }
+
+            if (t2 <= t1)
+            {
+                return "Error: Invalid Dates (%rating) -- ending date must be greater than beginning";
+            }
+
+            string tmpFile_dfp = FileUtility.GetTempFileName(".dfp"); // create script.
+            string tmpFile_com = FileUtility.GetTempFileName(".com");
+            TextFile tf_dfp = new TextFile(tmpFile_dfp);
+            TextFile tf_com = new TextFile(tmpFile_com);
+
+
+            tf_dfp.Add("G/DATE=" + t1.ToString("yyyyMMMdd") + "," + t2.ToString("yyyyMMMdd") + "/" + pcodeIn + "," + pcodeOut + " " + cbtt);
+            tf_dfp.Add("MATH/" + pcodeIn + "," + pcodeOut);
+            if (ace)
+            {
+                tf_dfp.Add(cbtt + "/" + "ace" + ":=%rating(" + cbtt + "/" + pcodeIn + ")");
+                tf_dfp.Add(cbtt + "/" + pcodeOut + ":=" + cbtt + "/ace");
+                tf_dfp.Add("remove " + cbtt + "/ace");
+            }
+            else
+            {
+                tf_dfp.Add(cbtt + "/" + pcodeOut + ":=%rating(" + cbtt + "/" + pcodeIn + ")");
+            }
+            tf_dfp.Add("exit");
+            tf_dfp.Add("update");
+            tf_dfp.Add("clear");
+
+            string t = DateTime.Now.ToString(timeFormat).ToLower();
+            string remoteFile_dfp = "huser1:[edits]math_cmds_" + user + t + ".dfp";
+            string remoteFile_com = "huser1:[edits]run_math_" + user + t + ".com";
+            string unixRemoteFile_dfp = VmsToUnixPath(remoteFile_dfp);
+            string unixRemoteFile_com = VmsToUnixPath(remoteFile_com);
+
+            tf_com.Add("$! -- Archiver script --- ");
+
+            AddVmsScriptHeader(user, tf_com);
+            tf_com.Add("$archive");
+            tf_com.Add("@" + remoteFile_dfp);
+
+            tf_dfp.SaveAsVms(tf_dfp.FileName);
+            tf_com.SaveAsVms(tf_com.FileName);
+
+
+
+            if (!SendFile(user, password, tmpFile_dfp, unixRemoteFile_dfp))
+            {
+                return "Error sending file to server '" + remoteFile_com + "'";
+            }
+
+            string rval = SendFileAndRunCommand(user, password, tmpFile_com, unixRemoteFile_com, "@" + remoteFile_com);
+            return rval;
+        }
+
+        /// <summary>
+        /// Lets users run the "FIXINFLO" procedure directly from HydrometTools. 
+        /// This is a procedure that calculates the inflow for some GP's more complicated reservoirs, and it is not run by the archiver.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <param name="cbtt"></param>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
+        public static string RunGPFixInflowProc(string user, string password, string cbtt,
+             DateTime t1, DateTime t2)
+        {
+            if (cbtt.Trim() == "" || Regex.IsMatch(cbtt, "[^a-zA-z0-9]"))
+            {
+                return "Error: invalid cbtt or pcode";
+            }
+
+            if (t2 <= t1)
+            {
+                return "Error: Invalid Dates (@fixinflo) -- ending date must be greater than beginning";
+            }
+
+            string tmpFile_com = FileUtility.GetTempFileName(".com");
+            TextFile tf_com = new TextFile(tmpFile_com);
+
+            string t = DateTime.Now.ToString(timeFormat).ToLower();
+            string remoteFile_com = "huser1:[edits]run_math_" + user + t + ".com";
+            string unixRemoteFile_com = VmsToUnixPath(remoteFile_com);
+
+            tf_com.Add("$! -- Fixinflo script --- ");
+
+            AddVmsScriptHeader(user, tf_com);
+            tf_com.Add("INTERPRET FIXINFLO/NODEBUG " + t1.ToString("yyyyMMMdd") + " " + cbtt.Trim() + " " + t2.ToString("yyyyMMMdd"));
+            tf_com.SaveAsVms(tf_com.FileName);
+
+            if (!SendFile(user, password, tf_com.FileName, unixRemoteFile_com))
+            {
+                return "Error sending file to server '" + remoteFile_com + "'";
             }
 
             string rval = SendFileAndRunCommand(user, password, tmpFile_com, unixRemoteFile_com, "@" + remoteFile_com);
@@ -262,15 +388,15 @@ namespace Reclamation.TimeSeries.Hydromet
             tf.Add("$! username: " + un + " " + user);
             tf.Add("$! ----------------------------------");
             tf.Add("$interpret:== $SUTRON$:[rtcm]rtcm");
-         HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
+            HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
             if (svr == HydrometHost.PN || svr == HydrometHost.Yakima || svr == HydrometHost.PNLinux)
-         {
-          tf.Add("$set process/priv=syslck");
-         }
+            {
+                tf.Add("$set process/priv=syslck");
+            }
             tf.Add("$DAY:== $SUTRON$:[DAYFILE]DAYFILE");
         }
 
-        private static void CreateRatingMathCommands(string user, string cbtt, string pcodeIn, 
+        private static void CreateRatingMathCommands(string user, string cbtt, string pcodeIn,
             string pcodeOut, DateTime t1, DateTime t2, TextFile tf, bool ace)
         {
             /*
@@ -305,14 +431,14 @@ namespace Reclamation.TimeSeries.Hydromet
             */
             bool singleDay = t1.Date == t2.Date;
 
-            
+
             tf.Add("day=" + t1.ToString("yyyyMMMdd"));
             if (singleDay)
             {
                 tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ","
-                         + t2.ToString("HH") + ":" + t2.ToString("mm") + "/" +pcodeIn+ "," +pcodeOut+ " " + cbtt);
+                         + t2.ToString("HH") + ":" + t2.ToString("mm") + "/" + pcodeIn + "," + pcodeOut + " " + cbtt);
                 tf.Add("math/" + pcodeIn + "," + pcodeOut);
-                RatingEquation(cbtt, pcodeIn, pcodeOut, tf,ace);
+                RatingEquation(cbtt, pcodeIn, pcodeOut, tf, ace);
 
                 tf.Add("exit");
                 tf.Add("update");
@@ -322,7 +448,7 @@ namespace Reclamation.TimeSeries.Hydromet
             {
                 tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ",23:59/" + pcodeIn + "," + pcodeOut + " " + cbtt);
                 tf.Add("math/" + pcodeIn + "," + pcodeOut);
-                RatingEquation(cbtt, pcodeIn, pcodeOut, tf,ace);
+                RatingEquation(cbtt, pcodeIn, pcodeOut, tf, ace);
                 //tf.Add(cbtt + "/" + pcodeOut + ":=%rating(" + cbtt + "/" + pcodeIn + ")");
                 tf.Add("exit");
                 tf.Add("update");
@@ -341,7 +467,7 @@ namespace Reclamation.TimeSeries.Hydromet
                         tf.Add("g/a/" + pcodeIn + "," + pcodeOut + " " + cbtt);
                     }
                     tf.Add("math/" + pcodeIn + "," + pcodeOut);
-                    RatingEquation(cbtt, pcodeIn, pcodeOut, tf,ace);
+                    RatingEquation(cbtt, pcodeIn, pcodeOut, tf, ace);
                     tf.Add("exit");
                     tf.Add("update");
                     tf.Add("clear");
@@ -370,21 +496,21 @@ namespace Reclamation.TimeSeries.Hydromet
             string remoteFile, bool overwrite = false, bool checkDayfileBuffer = true, bool interactive = true)
         {
             string rmtFile = VmsToUnixPath(remoteFile);
-            if( overwrite)
-                return SendFileAndRunCommand(user, password, localFile, rmtFile, "Arcimport " + remoteFile + " overwrite",checkDayfileBuffer,interactive);
+            if (overwrite)
+                return SendFileAndRunCommand(user, password, localFile, rmtFile, "Arcimport " + remoteFile + " overwrite", checkDayfileBuffer, interactive);
             else
-            return SendFileAndRunCommand(user, password, localFile, rmtFile, "Arcimport "+remoteFile,checkDayfileBuffer,interactive);
+                return SendFileAndRunCommand(user, password, localFile, rmtFile, "Arcimport " + remoteFile, checkDayfileBuffer, interactive);
         }
-        public static string SaveInstantData(string user, string password, string localFile, string remoteFile, bool interactive=true)
+        public static string SaveInstantData(string user, string password, string localFile, string remoteFile, bool interactive = true)
         {
             string rmtFile = VmsToUnixPath(remoteFile);
-            return SendFileAndRunCommand(user, password, localFile, rmtFile, "dayflag "+remoteFile,true,interactive);
+            return SendFileAndRunCommand(user, password, localFile, rmtFile, "dayflag " + remoteFile, true, interactive);
         }
 
         public static string RunMpollImport(string user, string password, string localFile, string remoteFile)
         {
             string rmtFile = VmsToUnixPath(remoteFile);
-            return SendFileAndRunCommand(user, password, localFile, rmtFile, "mpimport " + remoteFile,false);
+            return SendFileAndRunCommand(user, password, localFile, rmtFile, "mpimport " + remoteFile, false);
         }
 
         public static string SendFileAndRunCommand(string user, string password, string localFile,
@@ -395,30 +521,30 @@ namespace Reclamation.TimeSeries.Hydromet
                 // wait for any pending procesing.
                 bool ready = true; // no pending jobs
 
-                if( checkDayfileBuffer)
-                   ready = EmptyBuffer(user,password,interactive); 
+                if (checkDayfileBuffer)
+                    ready = EmptyBuffer(user, password, interactive);
 
-               if (  ready && SendFile(user,password,localFile,remoteFile))
+                if (ready && SendFile(user, password, localFile, remoteFile))
                 {
                     Logger.WriteLine("file copy was sucessful ", "ui");
-                    
+
                     if (command != "")
                     {
                         Logger.WriteLine("Running command '" + command + "'", "ui");
                         string rval = Utility.RunCommand(HydrometHostAddress, user, password, @"\$", command);
                         return rval;
                     }
-                    Logger.WriteLine("done.","ui");
+                    Logger.WriteLine("done.", "ui");
                     return "";
                 }
                 else
                 {
-                    return "Error copying file to server. Check permissions and path to server "+remoteFile;
+                    return "Error copying file to server. Check permissions and path to server " + remoteFile;
                 }
             }
             catch (Exception ex)
             {
-                if( interactive)
+                if (interactive)
                     System.Windows.Forms.MessageBox.Show(ex.Message);
                 Logger.WriteLine(ex.Message);
                 return ex.Message;
@@ -426,7 +552,7 @@ namespace Reclamation.TimeSeries.Hydromet
             //Logger.WriteLine("Completed ", "ui");
             //return "";
         }
-        
+
         /// <summary>
         /// check the sutron buffer for pending jobs 
         /// that may interfere with work.  Wait a few seconds if needed
@@ -438,36 +564,36 @@ namespace Reclamation.TimeSeries.Hydromet
         {
 
             string s = "";
-          for (int i = 0; i < 500; i++)
-          {
-              Logger.WriteLine("Checking if server buffer is busy "+i.ToString());
-              Application.DoEvents();
-              s = Utility.RunCommand(HydrometHostAddress, user, password, @"\$", "dir DMSSYS:[DMS_V4.DMS402.mbxbuf]*.buf");
-              if( s.IndexOf("%DIRECT-W-NOFILES, no files found") >=0)
-                  return true;
+            for (int i = 0; i < 500; i++)
+            {
+                Logger.WriteLine("Checking if server buffer is busy " + i.ToString());
+                Application.DoEvents();
+                s = Utility.RunCommand(HydrometHostAddress, user, password, @"\$", "dir DMSSYS:[DMS_V4.DMS402.mbxbuf]*.buf");
+                if (s.IndexOf("%DIRECT-W-NOFILES, no files found") >= 0)
+                    return true;
 
-              Logger.WriteLine("result of shobuf = '" + s + "'");
-              Logger.WriteLine("Server is busy:  Waiting for 10 seconds");
-              HydrometTools.ssh.Utility.Close(); // hope to fix false busy bug.. (lost connection)
-              System.Threading.Thread.Sleep(10000);
-              
+                Logger.WriteLine("result of shobuf = '" + s + "'");
+                Logger.WriteLine("Server is busy:  Waiting for 10 seconds");
+                HydrometTools.ssh.Utility.Close(); // hope to fix false busy bug.. (lost connection)
+                System.Threading.Thread.Sleep(10000);
 
-              if (interactive)
-              {
-                  var result = MessageBox.Show("Click yes continue waiting?", "The server is too busy to perform the command", MessageBoxButtons.YesNo);
-                  if (result == DialogResult.No)
-                  {
-                      //return false;
-                      throw new Exception("Command canceled ");
-                  }
-              }
-          }
 
-           if( interactive)
-                    System.Windows.Forms.MessageBox.Show("ERROR:  Buffer is busy please try later. "+s);
+                if (interactive)
+                {
+                    var result = MessageBox.Show("Click yes continue waiting?", "The server is too busy to perform the command", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        //return false;
+                        throw new Exception("Command canceled ");
+                    }
+                }
+            }
 
-           Logger.WriteLine("Error: giving up because after 500 tries the server is still busy");
-          return false;
+            if (interactive)
+                System.Windows.Forms.MessageBox.Show("ERROR:  Buffer is busy please try later. " + s);
+
+            Logger.WriteLine("Error: giving up because after 500 tries the server is still busy");
+            return false;
         }
 
         private static bool SendFile(string user, string password, string localFile, string remoteFile)
@@ -491,17 +617,17 @@ namespace Reclamation.TimeSeries.Hydromet
             // convert huser2:[ktarbet.tmp]edits.txt
             // to /huser2/ktarbet/tmp/edits.txt
 
-           var m = Regex.Match(remoteFile,@"(?<path>.+\:\[.{1,256}\])(?<filename>.{1,50})");
-            if( m.Success)
+            var m = Regex.Match(remoteFile, @"(?<path>.+\:\[.{1,256}\])(?<filename>.{1,50})");
+            if (m.Success)
             {
                 string path = m.Groups["path"].Value;
                 string filename = m.Groups["filename"].Value;
 
-                path = "/"+path.Replace(":[", "/");
+                path = "/" + path.Replace(":[", "/");
                 path = path.Replace("]", "/");
                 path = path.Replace(".", "/");
 
-                
+
                 return path + "" + filename;
             }
 
@@ -510,7 +636,7 @@ namespace Reclamation.TimeSeries.Hydromet
 
 
 
-       
+
 
         /// <summary>
         /// Inserts a constant value many times into dayfiles
@@ -522,10 +648,10 @@ namespace Reclamation.TimeSeries.Hydromet
         /// <param name="value">value to insert</param>
         /// <param name="increment">minutes between values</param>
         /// <returns></returns>
-        public static string InsertDayFileValue(string user, string password, DateTime t1, 
-            DateTime t2,string cbtt, string pcode, double value, int increment)
+        public static string InsertDayFileValue(string user, string password, DateTime t1,
+            DateTime t2, string cbtt, string pcode, double value, int increment)
         {
-            
+
             DateTime t = t1;
             if (t2 < t1)
                 return "Error dates out of order";
@@ -545,20 +671,20 @@ namespace Reclamation.TimeSeries.Hydromet
             string fn = FileUtility.GetTempFileName(".txt");
             StreamWriter output = new StreamWriter(fn);
 
-            output.WriteLine("yyyyMMMdd hhmm cbtt     PC        NewValue   OldValue   Flag User:"+user);
+            output.WriteLine("yyyyMMMdd hhmm cbtt     PC        NewValue   OldValue   Flag User:" + user);
             do
             {
                 string flagCode = "-03";// manually entered data
                 double missing = 998877.0;
-              string str = t.ToString("yyyyMMMdd HHmm").ToUpper()
-                            + " " + cbtt.ToUpper().PadRight(8)
-                            + " " + pcode.ToUpper().Trim().PadRight(9)
-                            + " " + value.ToString("F2").PadRight(10)
-                            + " " + missing.ToString("F2").PadRight(10)
-                            + " " + flagCode.ToString().PadRight(3);
-                        output.WriteLine(str);
+                string str = t.ToString("yyyyMMMdd HHmm").ToUpper()
+                              + " " + cbtt.ToUpper().PadRight(8)
+                              + " " + pcode.ToUpper().Trim().PadRight(9)
+                              + " " + value.ToString("F2").PadRight(10)
+                              + " " + missing.ToString("F2").PadRight(10)
+                              + " " + flagCode.ToString().PadRight(3);
+                output.WriteLine(str);
                 t = t.AddMinutes(increment);
-            } while (t<=t2);
+            } while (t <= t2);
 
 
             output.Close();
@@ -567,15 +693,15 @@ namespace Reclamation.TimeSeries.Hydromet
         }
 
 
-        public static string UpdateShift(string user, string password, string cbtt, 
+        public static string UpdateShift(string user, string password, string cbtt,
             string pcode, double shift)
         {
-            string command = "input_shift "+cbtt+" " +pcode + " " +shift.ToString("F2");
+            string command = "input_shift " + cbtt + " " + pcode + " " + shift.ToString("F2");
             Logger.WriteLine("Running command '" + command + "'", "ui");
             string rval = Utility.RunCommand(HydrometHostAddress, user, password, @"\$", command);
             return rval;
 
         }
-          
+
     }
 }

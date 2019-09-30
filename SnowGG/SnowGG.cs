@@ -559,6 +559,7 @@ namespace HydrometTools.SnowGG
             comboBoxCbtt.Enabled = !comboBoxCbtt.Enabled;
             comboBoxPcode.Enabled = !comboBoxPcode.Enabled;
             textBoxMultiple.Enabled = !textBoxMultiple.Enabled;
+            checkBoxSumList.Enabled = !checkBoxSumList.Enabled;
         }
 
         private bool cySelected = false;

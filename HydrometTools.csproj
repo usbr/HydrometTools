@@ -268,6 +268,12 @@
     <Compile Include="Advanced\Mcf2Decodes.Designer.cs">
       <DependentUpon>Mcf2Decodes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Advanced\GpFixInflow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advanced\GpFixInflow.Designer.cs">
+      <DependentUpon>GpFixInflow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Advanced\RawDataInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -588,6 +594,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Advanced\Mcf2Decodes.resx">
       <DependentUpon>Mcf2Decodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advanced\GpFixInflow.resx">
+      <DependentUpon>GpFixInflow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgriMet\AgriMetCropChartEditor.resx">
       <DependentUpon>AgriMetCropChartEditor.cs</DependentUpon>

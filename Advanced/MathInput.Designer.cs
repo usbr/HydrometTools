@@ -41,12 +41,15 @@
             this.checkBoxArchiver = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBoxACE = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.radioButtonInstant = new System.Windows.Forms.RadioButton();
+            this.radioButtonDaily = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // textBoxCbtt
             // 
-            this.textBoxCbtt.Location = new System.Drawing.Point(92, 69);
-            this.textBoxCbtt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxCbtt.Location = new System.Drawing.Point(54, 149);
+            this.textBoxCbtt.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCbtt.Name = "textBoxCbtt";
             this.textBoxCbtt.Size = new System.Drawing.Size(117, 22);
             this.textBoxCbtt.TabIndex = 0;
@@ -54,7 +57,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 73);
+            this.label1.Location = new System.Drawing.Point(15, 152);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 17);
@@ -65,8 +68,8 @@
             // 
             this.dateTimePicker1.CustomFormat = "yyyyMMMdd HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(64, 181);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(18, 243);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(171, 22);
             this.dateTimePicker1.TabIndex = 3;
@@ -74,7 +77,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(21, 5);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -87,16 +90,16 @@
             // 
             this.dateTimePicker2.CustomFormat = "yyyyMMMdd HH:mm";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(64, 213);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker2.Location = new System.Drawing.Point(18, 273);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(171, 22);
             this.dateTimePicker2.TabIndex = 4;
             // 
             // buttonRunMath
             // 
-            this.buttonRunMath.Location = new System.Drawing.Point(269, 207);
-            this.buttonRunMath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRunMath.Location = new System.Drawing.Point(257, 267);
+            this.buttonRunMath.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRunMath.Name = "buttonRunMath";
             this.buttonRunMath.Size = new System.Drawing.Size(100, 28);
             this.buttonRunMath.TabIndex = 5;
@@ -106,16 +109,16 @@
             // 
             // textBoxPcodeIn
             // 
-            this.textBoxPcodeIn.Location = new System.Drawing.Point(92, 102);
-            this.textBoxPcodeIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPcodeIn.Location = new System.Drawing.Point(18, 206);
+            this.textBoxPcodeIn.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPcodeIn.Name = "textBoxPcodeIn";
             this.textBoxPcodeIn.Size = new System.Drawing.Size(117, 22);
             this.textBoxPcodeIn.TabIndex = 1;
             // 
             // textBoxPcodeOut
             // 
-            this.textBoxPcodeOut.Location = new System.Drawing.Point(92, 135);
-            this.textBoxPcodeOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPcodeOut.Location = new System.Drawing.Point(143, 206);
+            this.textBoxPcodeOut.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPcodeOut.Name = "textBoxPcodeOut";
             this.textBoxPcodeOut.Size = new System.Drawing.Size(117, 22);
             this.textBoxPcodeOut.TabIndex = 2;
@@ -123,7 +126,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 106);
+            this.label2.Location = new System.Drawing.Point(15, 185);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 17);
@@ -133,7 +136,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 139);
+            this.label3.Location = new System.Drawing.Point(142, 185);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 17);
@@ -143,8 +146,8 @@
             // checkBoxArchiver
             // 
             this.checkBoxArchiver.AutoSize = true;
-            this.checkBoxArchiver.Location = new System.Drawing.Point(219, 157);
-            this.checkBoxArchiver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxArchiver.Location = new System.Drawing.Point(21, 117);
+            this.checkBoxArchiver.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxArchiver.Name = "checkBoxArchiver";
             this.checkBoxArchiver.Size = new System.Drawing.Size(185, 21);
             this.checkBoxArchiver.TabIndex = 10;
@@ -154,7 +157,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(263, 181);
+            this.label4.Location = new System.Drawing.Point(214, 117);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 17);
@@ -164,7 +167,7 @@
             // checkBoxACE
             // 
             this.checkBoxACE.AutoSize = true;
-            this.checkBoxACE.Location = new System.Drawing.Point(220, 135);
+            this.checkBoxACE.Location = new System.Drawing.Point(21, 92);
             this.checkBoxACE.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxACE.Name = "checkBoxACE";
             this.checkBoxACE.Size = new System.Drawing.Size(115, 21);
@@ -172,10 +175,45 @@
             this.checkBoxACE.Text = "use ace table";
             this.checkBoxACE.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Datatype: ";
+            // 
+            // radioButtonInstant
+            // 
+            this.radioButtonInstant.AutoSize = true;
+            this.radioButtonInstant.Checked = true;
+            this.radioButtonInstant.Location = new System.Drawing.Point(101, 64);
+            this.radioButtonInstant.Name = "radioButtonInstant";
+            this.radioButtonInstant.Size = new System.Drawing.Size(133, 21);
+            this.radioButtonInstant.TabIndex = 14;
+            this.radioButtonInstant.TabStop = true;
+            this.radioButtonInstant.Text = "Instant (dayfiles)";
+            this.radioButtonInstant.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonDaily
+            // 
+            this.radioButtonDaily.AutoSize = true;
+            this.radioButtonDaily.Location = new System.Drawing.Point(246, 64);
+            this.radioButtonDaily.Name = "radioButtonDaily";
+            this.radioButtonDaily.Size = new System.Drawing.Size(120, 21);
+            this.radioButtonDaily.TabIndex = 15;
+            this.radioButtonDaily.TabStop = true;
+            this.radioButtonDaily.Text = "Daily (archive)";
+            this.radioButtonDaily.UseVisualStyleBackColor = true;
+            // 
             // MathInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radioButtonDaily);
+            this.Controls.Add(this.radioButtonInstant);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.checkBoxACE);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBoxArchiver);
@@ -189,9 +227,9 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCbtt);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MathInput";
-            this.Size = new System.Drawing.Size(421, 255);
+            this.Size = new System.Drawing.Size(376, 314);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +250,8 @@
         private System.Windows.Forms.CheckBox checkBoxArchiver;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBoxACE;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radioButtonInstant;
+        private System.Windows.Forms.RadioButton radioButtonDaily;
     }
 }

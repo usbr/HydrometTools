@@ -221,7 +221,6 @@ namespace HydrometTools
                     updateStatus("Invalid Data Source.  Missing data?", true);
                     externalSeries = new Series("", TimeInterval.Daily);
                     return;
-                    break;
             }
 
             externalSeries.Read(t1, t2);

@@ -16,20 +16,19 @@ using HydrometTools.RecordWorkup;
 
 namespace HydrometTools
 {
-	/// <summary>
-	/// Summary description for Form1.
-	/// </summary>
-	public class FormMain : System.Windows.Forms.Form
-	{
-	   Control arcEditor;
-       Control dayEditor;
-       Control mpollEditor;
-       //Control graphTabs;
-       Control hydroEditor;
+    /// <summary>
+    /// Summary description for Form1.
+    /// </summary>
+    public class FormMain : System.Windows.Forms.Form
+    {
+        Control arcEditor;
+        Control dayEditor;
+        Control mpollEditor;
+        //Control graphTabs;
+        Control hydroEditor;
 
-       private TabPage tabPageFcplot;
-
-		private System.ComponentModel.IContainer components=null;
+        private TabPage tabPageFcplot;
+        private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.MainMenu mainMenu1;
         private TabControl tabControl1;
         private TabPage tabPageDay;
@@ -60,7 +59,7 @@ namespace HydrometTools
         private TabPage tabPageFloodControl;
         private FcPlot.FcPlotUI fcUi;
 
-		public FormMain()
+        public FormMain()
         {
             var host = HydrometInfoUtility.HydrometServerFromPreferences();
             if (host == HydrometHost.PN)
@@ -74,10 +73,10 @@ namespace HydrometTools
             UserPreference.SetDefault("AutoFlagDayFiles", "True", false);
 
             InitializeComponent();
-            
+
             this.Text += " " + Application.ProductVersion;
 
-           // FileUtility.CleanTempPath();
+            // FileUtility.CleanTempPath();
             Application.EnableVisualStyles();
             TabPageManager tabManager = new TabPageManager(tabControl1);
             Logger.OnLogEvent += new StatusEventHandler(Logger_OnLogEvent);
@@ -106,8 +105,6 @@ namespace HydrometTools
             this.tabControl1.Controls.Remove(this.tabPageRecords);
         }
 
-       
-
         void Logger_OnLogEvent(object sender, StatusEventArgs e)
         {
             if (e.Tag == "ui" && this.statusStrip1.Items.Count > 0)
@@ -117,28 +114,28 @@ namespace HydrometTools
             }
         }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
@@ -459,21 +456,21 @@ namespace HydrometTools
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		#endregion
+        }
+        #endregion
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main() 
-		{
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
             Logger.EnableLogger(true);
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             Application.Idle += new EventHandler(Application_Idle);
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-			Application.Run(new FormMain());
-		}
+            Application.Run(new FormMain());
+        }
 
         static DateTime prevDateTime = DateTime.Now;
         static void Application_Idle(object sender, EventArgs e)
@@ -488,8 +485,8 @@ namespace HydrometTools
             }
             catch (Exception)
             {
-                
-               
+
+
             }
         }
 
@@ -515,15 +512,14 @@ namespace HydrometTools
             Cleanup();
         }
 
-	
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateTabs();
-
         }
 
 
-        Control advanced=null;
+        Control advanced = null;
 
 
         private Stats.StatsControl statsControl1;
@@ -534,9 +530,7 @@ namespace HydrometTools
         private Shift.ShiftInput shifts;
         private void UpdateTabs()
         {
-
-
-            if (tabControl1.SelectedTab == tabPageAdvanced && advanced == null )
+            if (tabControl1.SelectedTab == tabPageAdvanced && advanced == null)
             {
                 if (Login.AdminPasswordIsValid())
                 {
@@ -576,71 +570,62 @@ namespace HydrometTools
                     setup1.Parent = tabPageSetup;
                     setup1.Dock = DockStyle.Fill;
                 }
+                setup1.ReadUserPref();
+            }
+            //else if( tabControl1.SelectedTab == tabPageGraphTool && graphTabs == null)
+            //{
+            //    graphTabs = new Graphing.GraphingTabs();
+            //    graphTabs.Parent = tabPageGraphTool;
+            //    graphTabs.Dock = DockStyle.Fill;
+            //}
+            else if (tabControl1.SelectedTab == tabPageHydrographEditor && hydroEditor == null)
+            {
+                hydroEditor = new TimeSeriesHydrographEditor(TimeInterval.Daily);
+                hydroEditor.Parent = tabPageHydrographEditor;
+                hydroEditor.Dock = DockStyle.Fill;
+            }
+            else if (tabControl1.SelectedTab == tabPageFcplot && fcUi == null)
+            {
+                fcUi = new FcPlot.FcPlotUI();
+                fcUi.Parent = tabPageFcplot;
+                fcUi.Dock = DockStyle.Fill;
+            }
+            else if (tabControl1.SelectedTab == tabPageStats && statsControl1 == null)
+            {
+                statsControl1 = new Stats.StatsControl();
+                statsControl1.Parent = tabPageStats;
+                statsControl1.Dock = DockStyle.Fill;
+            }
+            else if (tabControl1.SelectedTab == tabPageReports && reportControl1 == null)
+            {
+                reportControl1 = new Reports.Reports(); //new Reports.YakimaStatus();
+                reportControl1.Parent = tabPageReports;
+                reportControl1.Dock = DockStyle.Fill;
+            }
+            else if (tabControl1.SelectedTab == tabPageSnowGG && snowGG1 == null)
+            {
+                snowGG1 = new SnowGG.SnowGG();
+                snowGG1.Parent = tabPageSnowGG;
+                snowGG1.Dock = DockStyle.Fill;
+            }
+            else if (tabControl1.SelectedTab == tabPageUpdater && import1 == null)
+            {
+                import1 = new ImportDaily();
+                import1.Parent = tabPageDailyImport;
+                import1.Dock = DockStyle.Fill;
 
-
-                        setup1.ReadUserPref();
-               }
-                    //else if( tabControl1.SelectedTab == tabPageGraphTool && graphTabs == null)
-                    //{
-                    //    graphTabs = new Graphing.GraphingTabs();
-                    //    graphTabs.Parent = tabPageGraphTool;
-                    //    graphTabs.Dock = DockStyle.Fill;
-                    //}
-                    else if (tabControl1.SelectedTab == tabPageHydrographEditor && hydroEditor == null)
-                    {
-                        hydroEditor = new TimeSeriesHydrographEditor(TimeInterval.Daily);
-                        hydroEditor.Parent = tabPageHydrographEditor;
-                        hydroEditor.Dock = DockStyle.Fill;
-                    }
-
-                    else if ( tabControl1.SelectedTab == tabPageFcplot && fcUi == null)
-                    {
-                        fcUi = new FcPlot.FcPlotUI();
-                        fcUi.Parent = tabPageFcplot;
-                        fcUi.Dock = DockStyle.Fill;
-                    }
-                    else if (tabControl1.SelectedTab == tabPageStats
-                        && statsControl1 == null)
-                    {
-                        statsControl1 = new Stats.StatsControl();
-                        statsControl1.Parent = tabPageStats;
-                        statsControl1.Dock = DockStyle.Fill;
-                    }
-            else if( tabControl1.SelectedTab == tabPageReports
-                        && reportControl1 == null)
-                    {
-                        reportControl1 = new Reports.Reports(); //new Reports.YakimaStatus();
-                        reportControl1.Parent = tabPageReports;
-                        reportControl1.Dock = DockStyle.Fill;
-                    }
-                    else if( tabControl1.SelectedTab  == tabPageSnowGG
-                        && snowGG1 == null)
-                    {
-                        snowGG1 = new SnowGG.SnowGG();
-                        snowGG1.Parent = tabPageSnowGG;
-                        snowGG1.Dock = DockStyle.Fill;
-                    }
-                    else if( tabControl1.SelectedTab == tabPageUpdater
-                        &&  import1 == null )
-                    {
-                        import1 = new ImportDaily();
-                        import1.Parent = tabPageDailyImport;
-                        import1.Dock = DockStyle.Fill;
-                       
-                        var fdr = new Import.ImportFDRTemperature();
-                        fdr.Parent = tabPageFdrImport;
-                        fdr.Dock = DockStyle.Fill;
-                    }
-            else if( tabControl1.SelectedTab == tabPageRecords
-                && records == null)
+                var fdr = new Import.ImportFDRTemperature();
+                fdr.Parent = tabPageFdrImport;
+                fdr.Dock = DockStyle.Fill;
+            }
+            else if (tabControl1.SelectedTab == tabPageRecords && records == null)
             {
                 records = new DailyRecordWorkup();
                 records.Parent = tabPageRecords;
                 records.Dock = DockStyle.Fill;
-
             }
 
-            if( tabControl1.SelectedTab == tabPageShifts && shifts == null)
+            if (tabControl1.SelectedTab == tabPageShifts && shifts == null)
             {
                 shifts = new Shift.ShiftInput();
                 shifts.Parent = tabPageShifts;
@@ -663,11 +648,11 @@ namespace HydrometTools
 
         }
 
-       
+
 
         private void linkLabelHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(FileUtility.GetFileReference( "Hydromet Tools User Manual.pdf"));
+            Process.Start(FileUtility.GetFileReference("Hydromet Tools User Manual.pdf"));
         }
 
         private void richTextBoxLog_TextChanged(object sender, EventArgs e)
@@ -675,6 +660,6 @@ namespace HydrometTools
 
         }
 
-       
-	}
+
+    }
 }
