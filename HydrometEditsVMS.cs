@@ -435,6 +435,7 @@ namespace Reclamation.TimeSeries.Hydromet
             tf.Add("day=" + t1.ToString("yyyyMMMdd"));
             if (singleDay)
             {
+                tf.Add("FORMAT=NULL");
                 tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ","
                          + t2.ToString("HH") + ":" + t2.ToString("mm") + "/" + pcodeIn + "," + pcodeOut + " " + cbtt);
                 tf.Add("math/" + pcodeIn + "," + pcodeOut);
@@ -446,6 +447,7 @@ namespace Reclamation.TimeSeries.Hydromet
             }
             else // multi day
             {
+                tf.Add("FORMAT=NULL");
                 tf.Add("g/" + t1.ToString("HH") + ":" + t1.ToString("mm") + ",23:59/" + pcodeIn + "," + pcodeOut + " " + cbtt);
                 tf.Add("math/" + pcodeIn + "," + pcodeOut);
                 RatingEquation(cbtt, pcodeIn, pcodeOut, tf, ace);
