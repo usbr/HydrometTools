@@ -278,56 +278,30 @@ namespace Reclamation.TimeSeries.Hydromet
                 return "Error: invalid cbtt or pcode";
             }
 
-            if (pcodeIn.Trim().ToUpper() != "FB" || pcodeOut.Trim().ToUpper() != "AF")
-            {
-                return "Error: Only works with FB to AF rating tables";
-            }
-
             if (t2 <= t1)
             {
                 return "Error: Invalid Dates (%rating) -- ending date must be greater than beginning";
             }
 
-            string tmpFile_dfp = FileUtility.GetTempFileName(".dfp"); // create script.
-            string tmpFile_com = FileUtility.GetTempFileName(".com");
-            TextFile tf_dfp = new TextFile(tmpFile_dfp);
-            TextFile tf_com = new TextFile(tmpFile_com);
-
-
-            tf_dfp.Add("G/DATE=" + t1.ToString("yyyyMMMdd") + "," + t2.ToString("yyyyMMMdd") + "/" + pcodeIn + "," + pcodeOut + " " + cbtt);
-            tf_dfp.Add("MATH/" + pcodeIn + "," + pcodeOut);
             if (ace)
             {
-                tf_dfp.Add(cbtt + "/" + "ace" + ":=%rating(" + cbtt + "/" + pcodeIn + ")");
-                tf_dfp.Add(cbtt + "/" + pcodeOut + ":=" + cbtt + "/ace");
-                tf_dfp.Add("remove " + cbtt + "/ace");
+                pcodeOut = "ACE";
             }
-            else
-            {
-                tf_dfp.Add(cbtt + "/" + pcodeOut + ":=%rating(" + cbtt + "/" + pcodeIn + ")");
-            }
-            tf_dfp.Add("exit");
-            tf_dfp.Add("update");
-            tf_dfp.Add("clear");
+
+            string tmpFile_com = FileUtility.GetTempFileName(".com");
+            TextFile tf_com = new TextFile(tmpFile_com);
 
             string t = DateTime.Now.ToString(timeFormat).ToLower();
-            string remoteFile_dfp = "huser1:[edits]math_cmds_" + user + t + ".dfp";
-            string remoteFile_com = "huser1:[edits]run_math_" + user + t + ".com";
-            string unixRemoteFile_dfp = VmsToUnixPath(remoteFile_dfp);
+            string remoteFile_com = "huser1:[edits]run_daily_rating" + user + t + ".com";
             string unixRemoteFile_com = VmsToUnixPath(remoteFile_com);
 
-            tf_com.Add("$! -- Archiver script --- ");
+            tf_com.Add("$! -- Rating_Daily script --- ");
 
             AddVmsScriptHeader(user, tf_com);
-            tf_com.Add("$archive");
-            tf_com.Add("@" + remoteFile_dfp);
-
-            tf_dfp.SaveAsVms(tf_dfp.FileName);
+            tf_com.Add("$INTERPRET DLY_RATING/NODEBUG " + t1.ToString("yyyyMMMdd") + " " + t2.ToString("yyyyMMMdd") + " " + cbtt.Trim().ToUpper() + " " + pcodeIn.ToUpper() + " " + pcodeOut.ToUpper());
             tf_com.SaveAsVms(tf_com.FileName);
 
-
-
-            if (!SendFile(user, password, tmpFile_dfp, unixRemoteFile_dfp))
+            if (!SendFile(user, password, tf_com.FileName, unixRemoteFile_com))
             {
                 return "Error sending file to server '" + remoteFile_com + "'";
             }
