@@ -294,41 +294,41 @@
             // 
             // dateTimePickerCustomOutflow1
             // 
-            this.dateTimePickerCustomOutflow1.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow1.CustomFormat = "MMM-d-yyyy";
             this.dateTimePickerCustomOutflow1.Enabled = false;
             this.dateTimePickerCustomOutflow1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCustomOutflow1.Location = new System.Drawing.Point(73, 52);
             this.dateTimePickerCustomOutflow1.Name = "dateTimePickerCustomOutflow1";
             this.dateTimePickerCustomOutflow1.ShowUpDown = true;
-            this.dateTimePickerCustomOutflow1.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerCustomOutflow1.Size = new System.Drawing.Size(127, 22);
             this.dateTimePickerCustomOutflow1.TabIndex = 22;
             // 
             // dateTimePickerCustomOutflow2
             // 
-            this.dateTimePickerCustomOutflow2.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow2.CustomFormat = "MMM-d-yyyy";
             this.dateTimePickerCustomOutflow2.Enabled = false;
             this.dateTimePickerCustomOutflow2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCustomOutflow2.Location = new System.Drawing.Point(73, 84);
             this.dateTimePickerCustomOutflow2.Name = "dateTimePickerCustomOutflow2";
             this.dateTimePickerCustomOutflow2.ShowUpDown = true;
-            this.dateTimePickerCustomOutflow2.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerCustomOutflow2.Size = new System.Drawing.Size(127, 22);
             this.dateTimePickerCustomOutflow2.TabIndex = 23;
             // 
             // textBoxCustomOutflow1
             // 
             this.textBoxCustomOutflow1.Enabled = false;
-            this.textBoxCustomOutflow1.Location = new System.Drawing.Point(231, 51);
+            this.textBoxCustomOutflow1.Location = new System.Drawing.Point(270, 51);
             this.textBoxCustomOutflow1.Name = "textBoxCustomOutflow1";
-            this.textBoxCustomOutflow1.Size = new System.Drawing.Size(77, 22);
+            this.textBoxCustomOutflow1.Size = new System.Drawing.Size(46, 22);
             this.textBoxCustomOutflow1.TabIndex = 24;
             this.textBoxCustomOutflow1.Text = "-99";
             // 
             // textBoxCustomOutflow2
             // 
             this.textBoxCustomOutflow2.Enabled = false;
-            this.textBoxCustomOutflow2.Location = new System.Drawing.Point(231, 84);
+            this.textBoxCustomOutflow2.Location = new System.Drawing.Point(270, 84);
             this.textBoxCustomOutflow2.Name = "textBoxCustomOutflow2";
-            this.textBoxCustomOutflow2.Size = new System.Drawing.Size(77, 22);
+            this.textBoxCustomOutflow2.Size = new System.Drawing.Size(46, 22);
             this.textBoxCustomOutflow2.TabIndex = 25;
             this.textBoxCustomOutflow2.Text = "-99";
             // 
@@ -344,7 +344,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(170, 57);
+            this.label13.Location = new System.Drawing.Point(206, 54);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(55, 17);
             this.label13.TabIndex = 27;
@@ -353,7 +353,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(170, 89);
+            this.label14.Location = new System.Drawing.Point(206, 87);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(55, 17);
             this.label14.TabIndex = 28;
@@ -373,19 +373,19 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(8, 123);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(235, 17);
+            this.label16.Size = new System.Drawing.Size(211, 17);
             this.label16.TabIndex = 30;
-            this.label16.Text = "revert to the analog year release on";
+            this.label16.Text = "revert to analog year release on";
             // 
             // dateTimePickerCustomOutflow3
             // 
-            this.dateTimePickerCustomOutflow3.CustomFormat = "MMM-d";
+            this.dateTimePickerCustomOutflow3.CustomFormat = "MMM-d-yyyy";
             this.dateTimePickerCustomOutflow3.Enabled = false;
             this.dateTimePickerCustomOutflow3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerCustomOutflow3.Location = new System.Drawing.Point(249, 118);
+            this.dateTimePickerCustomOutflow3.Location = new System.Drawing.Point(225, 123);
             this.dateTimePickerCustomOutflow3.Name = "dateTimePickerCustomOutflow3";
             this.dateTimePickerCustomOutflow3.ShowUpDown = true;
-            this.dateTimePickerCustomOutflow3.Size = new System.Drawing.Size(91, 22);
+            this.dateTimePickerCustomOutflow3.Size = new System.Drawing.Size(123, 22);
             this.dateTimePickerCustomOutflow3.TabIndex = 31;
             // 
             // groupBox1
@@ -424,7 +424,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(314, 87);
+            this.label17.Location = new System.Drawing.Point(322, 87);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(26, 17);
             this.label17.TabIndex = 33;
@@ -433,7 +433,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(314, 56);
+            this.label11.Location = new System.Drawing.Point(322, 54);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 17);
             this.label11.TabIndex = 32;
@@ -497,8 +497,8 @@
             this.comboBoxEspDay.FormattingEnabled = true;
             this.comboBoxEspDay.Items.AddRange(new object[] {
             "0",
-            "5",
-            "10"});
+            "10",
+            "M"});
             this.comboBoxEspDay.Location = new System.Drawing.Point(247, 103);
             this.comboBoxEspDay.Name = "comboBoxEspDay";
             this.comboBoxEspDay.Size = new System.Drawing.Size(52, 24);

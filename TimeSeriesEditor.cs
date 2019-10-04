@@ -62,7 +62,11 @@ namespace HydrometTools
         private LinkLabel linkLabelIdahoPower;
         private LinkLabel linkLabelPrint;
         private Button buttonHideTable;
+#if SpreadsheetGear
         private TimeSeriesSpreadsheetSG uc;
+#else
+        private TimeSeriesSpreadsheet uc;
+#endif
         private Button buttonHideGraph;
         Steema.TeeChart.Tools.Annotation annotation1;
 
@@ -249,7 +253,7 @@ namespace HydrometTools
 			base.Dispose( disposing );
 		}
 
-		#region Component Designer generated code
+#region Component Designer generated code
 		/// <summary> 
 		/// Required method for Designer support - do not modify 
 		/// the contents of this method with the code editor.
@@ -851,7 +855,7 @@ namespace HydrometTools
             this.PerformLayout();
 
 		}
-		#endregion
+#endregion
 
 		void LoadSiteList()
 		{

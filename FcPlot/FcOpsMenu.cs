@@ -48,6 +48,7 @@ namespace FcPlot
             this.numericUpDownOutflowShift.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             this.textBoxInflowScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             this.textBoxOutflowScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
+            this.comboBoxEspTraces.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
 
             // Add tooltips
             // Create the ToolTip and associate with the Form container.
