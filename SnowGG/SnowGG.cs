@@ -523,11 +523,9 @@ namespace HydrometTools.SnowGG
                             this.comboBoxPcode.Text = pcode;
                         }
                     }
-                    else
-                    {
-                        // add other items to cbtt combo box
-                        comboBoxCbtt.Items.Add(list[i]);
-                    }
+                    // add other items to cbtt combo box
+                    comboBoxCbtt.Items.Add(list[i]);
+
 
                 }
                 comboBoxCbtt.SelectedIndex = 0;
