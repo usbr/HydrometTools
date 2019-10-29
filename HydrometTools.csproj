@@ -364,6 +364,12 @@
     <Compile Include="RecordWorkup\DailyRecordWorkup.Designer.cs">
       <DependentUpon>DailyRecordWorkup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\OpsLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\OpsLog.Designer.cs">
+      <DependentUpon>OpsLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Reports.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -613,6 +619,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="RecordWorkup\DailyRecordWorkup.resx">
       <DependentUpon>DailyRecordWorkup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OpsLog.resx">
+      <DependentUpon>OpsLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>

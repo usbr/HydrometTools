@@ -189,6 +189,20 @@ namespace HydrometTools
             return rval;
         }
 
+        internal static DataTable GetOpsLogEntries(DateTime t1, DateTime t2)
+        {
+            var svr = GetServer("hydromet");
+            svr.SetAllValuesInCommandBuilder = true;
+            string fmt = TimeSeriesDatabase.dateTimeFormat;
+
+            var sql = @"select * from ""opslog"" where 'datetime'>=" + svr.PortableDateString(t1, fmt) 
+                + " and 'datetime'<=" + svr.PortableDateString(t2, fmt)  
+                + " order by datetime desc";
+
+            DataTable tbl = svr.Table("opslog", sql);
+            return tbl;
+        }
+
         public static void InsertShift(string cbtt, string pcode, System.DateTime date_measured, double? discharge, double? gage_height, double shift, string comments, System.DateTime date_entered)
         {
             string sql = "select * from shifts where 2=1";

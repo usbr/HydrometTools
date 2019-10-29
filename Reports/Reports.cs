@@ -32,6 +32,12 @@ namespace HydrometTools.Reports
                 yak.Parent = tabPageYakima;
                 yak.Dock = DockStyle.Fill;
             }
+            if (tabControl1.SelectedTab == tabPageOpsLog)
+            {
+                var opsLog = new OpsLog();
+                opsLog.Parent = tabPageOpsLog;
+                opsLog.Dock = DockStyle.Fill;
+            }
         }
     }
 }
