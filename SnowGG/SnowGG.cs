@@ -72,14 +72,15 @@ namespace HydrometTools.SnowGG
             var t2 = t.AddMonths(1);
 
 
-            if (t.Month == 9)
-            {
-                this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 9, 30);
-            }
-            else
-            {
-                this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, t2.Month, DateTime.DaysInMonth(t2.Year, t2.Month));
-            }
+            //if (t.Month == 9)
+            //{
+            //    this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 9, 30);
+            //}
+            //else
+            //{
+            //    this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, t2.Month, DateTime.DaysInMonth(t2.Year, t2.Month));
+            //}
+            this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 9, 30);
 
             //this.comboBoxPcode.SelectedIndex = 0;
             this.checkBoxGP.Visible = HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains;
@@ -158,6 +159,7 @@ namespace HydrometTools.SnowGG
                     var sl = new SeriesList();
                     sl.Add(s);
 
+                    // get wy data
                     var wyList = new SeriesList();
                     if (cySelected)
                     {
@@ -168,12 +170,18 @@ namespace HydrometTools.SnowGG
                         wyList = PiscesAnalysis.WaterYears(sl, waterYears, false, 10, true);
                     }
 
-                    foreach (var item in wyList)
+                    foreach (Series item in wyList)
                     {
-                        item.Name = cbtt + " " + pcode;
+                        item.Name = cbtt + " " + pcode;  
+                        // remove missing data points
+                        var missingItems = item.Table.Select("value = 998877");
+                        foreach (var row in missingItems)
+                        {
+                            item.RemoveAt(item.IndexOf(Convert.ToDateTime(row.ItemArray[0])));
+                        }
                     }
 
-
+                    // apply deltas and add stats if toggled
                     wyList = ApplyDeltas(wyList, waterYears);
                     AddStatistics(wyList);
 
