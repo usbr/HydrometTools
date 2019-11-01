@@ -30,7 +30,7 @@
         {
             this.labelUser = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxLogEntry = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonSaveEntry = new System.Windows.Forms.Button();
             this.buttonRefreshLog = new System.Windows.Forms.Button();
@@ -38,6 +38,12 @@
             this.dateTimePickerT2 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxBasin = new System.Windows.Forms.ComboBox();
+            this.comboBoxProject = new System.Windows.Forms.ComboBox();
+            this.checkBoxFilterLogEntries = new System.Windows.Forms.CheckBox();
+            this.buttonExportLogs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,15 +65,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Log Entry: ";
             // 
-            // textBox1
+            // textBoxLogEntry
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxLogEntry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(88, 33);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(760, 70);
-            this.textBox1.TabIndex = 2;
+            this.textBoxLogEntry.Location = new System.Drawing.Point(88, 33);
+            this.textBoxLogEntry.Multiline = true;
+            this.textBoxLogEntry.Name = "textBoxLogEntry";
+            this.textBoxLogEntry.Size = new System.Drawing.Size(760, 70);
+            this.textBoxLogEntry.TabIndex = 2;
             // 
             // dataGridView1
             // 
@@ -77,8 +83,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(7, 109);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(946, 526);
+            this.dataGridView1.Size = new System.Drawing.Size(946, 502);
             this.dataGridView1.TabIndex = 3;
             // 
             // buttonSaveEntry
@@ -92,6 +99,7 @@
             this.buttonSaveEntry.TabIndex = 4;
             this.buttonSaveEntry.Text = "Save Log Entry";
             this.buttonSaveEntry.UseVisualStyleBackColor = true;
+            this.buttonSaveEntry.Click += new System.EventHandler(this.buttonSaveEntry_Click);
             // 
             // buttonRefreshLog
             // 
@@ -110,9 +118,9 @@
             this.dateTimePickerT1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerT1.CustomFormat = "ddd, MMM-d-yyyy HH:mm";
             this.dateTimePickerT1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerT1.Location = new System.Drawing.Point(648, 641);
+            this.dateTimePickerT1.Location = new System.Drawing.Point(584, 641);
             this.dateTimePickerT1.Name = "dateTimePickerT1";
-            this.dateTimePickerT1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePickerT1.Size = new System.Drawing.Size(264, 22);
             this.dateTimePickerT1.TabIndex = 6;
             // 
             // dateTimePickerT2
@@ -120,16 +128,16 @@
             this.dateTimePickerT2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerT2.CustomFormat = "ddd, MMM-d-yyyy HH:mm";
             this.dateTimePickerT2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerT2.Location = new System.Drawing.Point(648, 671);
+            this.dateTimePickerT2.Location = new System.Drawing.Point(584, 671);
             this.dateTimePickerT2.Name = "dateTimePickerT2";
-            this.dateTimePickerT2.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePickerT2.Size = new System.Drawing.Size(264, 22);
             this.dateTimePickerT2.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(565, 646);
+            this.label2.Location = new System.Drawing.Point(498, 646);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 17);
             this.label2.TabIndex = 8;
@@ -139,16 +147,85 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(565, 676);
+            this.label3.Location = new System.Drawing.Point(498, 676);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "End Date: ";
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(419, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 17);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Basin: ";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(661, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Project: ";
+            // 
+            // comboBoxBasin
+            // 
+            this.comboBoxBasin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxBasin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBasin.FormattingEnabled = true;
+            this.comboBoxBasin.Location = new System.Drawing.Point(476, 1);
+            this.comboBoxBasin.Name = "comboBoxBasin";
+            this.comboBoxBasin.Size = new System.Drawing.Size(179, 24);
+            this.comboBoxBasin.TabIndex = 14;
+            // 
+            // comboBoxProject
+            // 
+            this.comboBoxProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxProject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProject.FormattingEnabled = true;
+            this.comboBoxProject.Location = new System.Drawing.Point(727, 1);
+            this.comboBoxProject.Name = "comboBoxProject";
+            this.comboBoxProject.Size = new System.Drawing.Size(226, 24);
+            this.comboBoxProject.TabIndex = 15;
+            // 
+            // checkBoxFilterLogEntries
+            // 
+            this.checkBoxFilterLogEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxFilterLogEntries.AutoSize = true;
+            this.checkBoxFilterLogEntries.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxFilterLogEntries.Location = new System.Drawing.Point(703, 614);
+            this.checkBoxFilterLogEntries.Name = "checkBoxFilterLogEntries";
+            this.checkBoxFilterLogEntries.Size = new System.Drawing.Size(250, 21);
+            this.checkBoxFilterLogEntries.TabIndex = 16;
+            this.checkBoxFilterLogEntries.Text = "Filter log entries by Basin && Project";
+            this.checkBoxFilterLogEntries.UseVisualStyleBackColor = true;
+            // 
+            // buttonExportLogs
+            // 
+            this.buttonExportLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonExportLogs.Location = new System.Drawing.Point(7, 618);
+            this.buttonExportLogs.Name = "buttonExportLogs";
+            this.buttonExportLogs.Size = new System.Drawing.Size(105, 45);
+            this.buttonExportLogs.TabIndex = 17;
+            this.buttonExportLogs.Text = "Export Log Entries";
+            this.buttonExportLogs.UseVisualStyleBackColor = true;
+            this.buttonExportLogs.Click += new System.EventHandler(this.buttonExportLogs_Click);
+            // 
             // OpsLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonExportLogs);
+            this.Controls.Add(this.checkBoxFilterLogEntries);
+            this.Controls.Add(this.comboBoxProject);
+            this.Controls.Add(this.comboBoxBasin);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerT2);
@@ -156,7 +233,7 @@
             this.Controls.Add(this.buttonRefreshLog);
             this.Controls.Add(this.buttonSaveEntry);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxLogEntry);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelUser);
             this.Name = "OpsLog";
@@ -171,7 +248,7 @@
 
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxLogEntry;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonSaveEntry;
         private System.Windows.Forms.Button buttonRefreshLog;
@@ -179,5 +256,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerT2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBoxBasin;
+        private System.Windows.Forms.ComboBox comboBoxProject;
+        private System.Windows.Forms.CheckBox checkBoxFilterLogEntries;
+        private System.Windows.Forms.Button buttonExportLogs;
     }
 }

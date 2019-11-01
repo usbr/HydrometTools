@@ -666,6 +666,12 @@
       <Link>hydromet-tools-private.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="cfg\mockOpsLogEntries.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="cfg\opslogitems.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Reports\YakimaOthersAboveParker.csv">
       <Link>YakimaOthersAboveParker.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
