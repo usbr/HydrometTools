@@ -125,11 +125,14 @@ namespace FcPlot
             var avg30yrQU = Get30YearAverageSeries(pt.DailyStationQU, "qu", forecastMonth);
 
             // sum volume for the forecast period
-
             var t = new DateTime(start.DateTime.Year, start.DateTime.Month, 1);
             double historicalAverageResidual = SumResidual(avg30yrQU, t, t2);
+            // capture if running the process before forecast season starts (before Jan)
+            if (DateTime.Now.Month > 9)
+            {
+                historicalAverageResidual = SumResidual(avg30yrQU, t.AddYears(1), t2.AddYears(1));
+            }
             double percent = forecastValue / historicalAverageResidual;
-
 
             //get thirty year average QU from daily 
             //avg30yrQU = Get30YearAverageSeries(pt.DailyStationQU, "qu", forecastMonth);
@@ -189,8 +192,6 @@ namespace FcPlot
                 t = t.AddDays(1);
             }
 
-
-
             for (int i = 0; i < residual.Count(); i++)
             { // lookup space requirement in reservoir rule curve
                 DateTime avg = residual[i].DateTime;
@@ -200,7 +201,10 @@ namespace FcPlot
                 {
                     val = pt.TotalUpstreamActiveSpace;
                 }
-                s.Add(dt, val);
+                if (dt <= t2)
+                {
+                    s.Add(dt, val);
+                }
             }
 
             return s;
@@ -218,7 +222,7 @@ namespace FcPlot
             int currWY = DateTime.Now.Year;
             if (DateTime.Now.Month > 9)
             {
-                currWY = currWY + 1;
+                //currWY = currWY + 1; //[JR] need to check what this does come January...
             }
 
             DateTime t = new DateTime(currWY, forecastMonth, 1);
