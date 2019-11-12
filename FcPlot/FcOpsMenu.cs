@@ -25,12 +25,17 @@ namespace FcPlot
             this.textBoxDams.Text = dams;
             string inflowCode = pt.StationQD + " QU";
             this.textBoxInflowCode.Text = inflowCode;
-            this.numericUpDownInflowYear.Maximum = (DateTime.Now.Year - 1);
-            this.numericUpDownInflowYear.Value = (DateTime.Now.Year - 1);
+            int maxYear = DateTime.Now.Year - 1;
+            if (DateTime.Now.Month > 9)
+            {
+                maxYear = DateTime.Now.Year;
+            }
+            this.numericUpDownInflowYear.Maximum = maxYear;
+            this.numericUpDownInflowYear.Value = maxYear;
             string outflowCode = pt.StationQD + " QD";
             this.textBoxOutflowCode.Text = outflowCode;
-            this.numericUpDownOutflowYear.Maximum = (DateTime.Now.Year - 1);
-            this.numericUpDownOutflowYear.Value = (DateTime.Now.Year - 1);
+            this.numericUpDownOutflowYear.Maximum = maxYear;
+            this.numericUpDownOutflowYear.Value = maxYear;
             this.dateTimePickerCustomOutflow1.Value = DateTime.Now.Date;
             this.dateTimePickerCustomOutflow2.Value = DateTime.Now.Date.AddDays(5);
             this.dateTimePickerCustomOutflow3.Value = DateTime.Now.Date.AddDays(10);

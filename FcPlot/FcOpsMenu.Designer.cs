@@ -170,18 +170,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(260, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 17);
+            this.label4.Size = new System.Drawing.Size(80, 17);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Year";
+            this.label4.Text = "Water Year";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(259, 24);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 17);
+            this.label5.Size = new System.Drawing.Size(80, 17);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Year";
+            this.label5.Text = "Water Year";
             // 
             // textBoxOutflowScale
             // 
@@ -210,16 +210,16 @@
             // 
             // numericUpDownInflowYear
             // 
-            this.numericUpDownInflowYear.Location = new System.Drawing.Point(321, 24);
+            this.numericUpDownInflowYear.Location = new System.Drawing.Point(354, 24);
             this.numericUpDownInflowYear.Name = "numericUpDownInflowYear";
-            this.numericUpDownInflowYear.Size = new System.Drawing.Size(140, 22);
+            this.numericUpDownInflowYear.Size = new System.Drawing.Size(107, 22);
             this.numericUpDownInflowYear.TabIndex = 13;
             // 
             // numericUpDownOutflowYear
             // 
-            this.numericUpDownOutflowYear.Location = new System.Drawing.Point(320, 21);
+            this.numericUpDownOutflowYear.Location = new System.Drawing.Point(353, 21);
             this.numericUpDownOutflowYear.Name = "numericUpDownOutflowYear";
-            this.numericUpDownOutflowYear.Size = new System.Drawing.Size(140, 22);
+            this.numericUpDownOutflowYear.Size = new System.Drawing.Size(107, 22);
             this.numericUpDownOutflowYear.TabIndex = 14;
             // 
             // numericUpDownInflowShift
