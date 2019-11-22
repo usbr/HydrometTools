@@ -189,18 +189,49 @@ namespace HydrometTools
             return rval;
         }
 
-        internal static DataTable GetOpsLogEntries(DateTime t1, DateTime t2)
+        internal static DataTable GetOpsLogEntries(DateTime t1, DateTime t2, string basin = "", string project = "")
         {
             var svr = GetServer("hydromet");
             svr.SetAllValuesInCommandBuilder = true;
             string fmt = TimeSeriesDatabase.dateTimeFormat;
 
-            var sql = @"select * from ""opslog"" where 'datetime'>=" + svr.PortableDateString(t1, fmt) 
-                + " and 'datetime'<=" + svr.PortableDateString(t2, fmt)  
-                + " order by datetime desc";
+            var sql = "select logid, loguser, logdate, logentry, basin, project, attachmentname from operationslog where "
+                + " logdate >=" + svr.PortableDateString(t1, fmt)
+                + " and logdate <=" + svr.PortableDateString(t2.AddDays(1), fmt);
+
+            if (basin !="")
+            {
+                sql += " and lower(basin) = '" + basin.ToLower() + "'";
+            }
+
+            if (project != "")
+            {
+                sql += " and lower(project) = '" + project.ToLower() + "'";
+            }
+
+            sql += " order by logdate desc";
 
             DataTable tbl = svr.Table("opslog", sql);
             return tbl;
+        }
+
+        internal static void InsertOpsLogEntry(string username, string logentry, string basin, string project, string attachmentname = "")
+        {
+            string sql = "select * from operationslog where 2=1";
+            var svr = GetServer("hydromet");
+            DataTable opsLogDataTable = svr.Table("operationslog", sql);
+            string fmt = TimeSeriesDatabase.dateTimeFormat;
+
+            var opsRow = opsLogDataTable.NewRow();
+            opsRow["logid"] = 0;
+            opsRow["loguser"] = username;
+            opsRow["logdate"] = DateTime.Now;
+            opsRow["logentry"] = logentry;
+            opsRow["basin"] = basin;
+            opsRow["project"] = project;
+
+            opsLogDataTable.Rows.Add(opsRow);
+            svr.SaveTable(opsLogDataTable);
         }
 
         public static void InsertShift(string cbtt, string pcode, System.DateTime date_measured, double? discharge, double? gage_height, double shift, string comments, System.DateTime date_entered)

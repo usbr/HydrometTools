@@ -33,12 +33,8 @@ namespace HydrometTools.Reports
             this.comboBoxBasin.SelectedIndexChanged += ComboBoxBasin_SelectedIndexChanged;
             comboBoxBasin.SelectedIndex = 0;
 
-            // Populate mock entries in the ops log
-            var fRef = FileUtility.GetFileReference("mockOpsLogEntries.csv");
-            var logEntries = new CsvFile(fRef);
-            this.dataGridView1.DataSource = logEntries;
-            this.dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            // Populate entries in the ops log
+            UpdateLogTable();
         }
 
         private void ComboBoxBasin_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,18 +58,32 @@ namespace HydrometTools.Reports
 
         private void buttonRefreshLog_Click(object sender, EventArgs e)
         {
-            //var tbl =  Database.GetOpsLogEntries(this.dateTimePickerT1.Value, this.dateTimePickerT2.Value);
-            //this.dataGridView1.DataSource = tbl;
-            MessageBox.Show("Not yet implemented... Need DB access...", "Refresh Log Display", MessageBoxButtons.OK);
+            UpdateLogTable();
+            //MessageBox.Show("Not yet implemented... Need DB access...", "Refresh Log Display", MessageBoxButtons.OK);
+        }
+
+        private void UpdateLogTable()
+        {
+            string basin = "", project = "";
+            if (checkBoxFilterLogEntries.Checked)
+            {
+                basin = this.comboBoxBasin.SelectedItem.ToString();
+                project = this.comboBoxProject.SelectedItem.ToString();
+            }
+            var tbl = Database.GetOpsLogEntries(this.dateTimePickerT1.Value, this.dateTimePickerT2.Value, basin, project);
+            this.dataGridView1.DataSource = tbl;
         }
 
         private void buttonSaveEntry_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("User: " + Environment.UserName.ToLower() + Environment.NewLine
-                + "Basin: " + this.comboBoxBasin.SelectedItem + Environment.NewLine
-                + "Project: " + this.comboBoxProject.SelectedItem + Environment.NewLine
-                + "Log Entry: " + this.textBoxLogEntry.Text + Environment.NewLine
-                + "Not yet implemented... Need DB access...", "Save Log Entry", MessageBoxButtons.OK);
+            Database.InsertOpsLogEntry(Environment.UserName.ToLower(), this.textBoxLogEntry.Text,
+                this.comboBoxBasin.SelectedItem.ToString(), this.comboBoxProject.SelectedItem.ToString());
+            //MessageBox.Show("User: " + Environment.UserName.ToLower() + Environment.NewLine
+            //    + "Basin: " + this.comboBoxBasin.SelectedItem + Environment.NewLine
+            //    + "Project: " + this.comboBoxProject.SelectedItem + Environment.NewLine
+            //    + "Log Entry: " + this.textBoxLogEntry.Text + Environment.NewLine
+            //    + "Not yet implemented... Need DB access...", "Save Log Entry", MessageBoxButtons.OK);
+            UpdateLogTable();
         }
 
         private void buttonExportLogs_Click(object sender, EventArgs e)
