@@ -76,11 +76,18 @@ namespace HydrometTools.Reports
 
             // format attachment column
             DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-            cellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             cellStyle.ForeColor = Color.Blue;
             cellStyle.SelectionForeColor = Color.Black;
-            cellStyle.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Underline);
+            cellStyle.Font = new Font(this.dataGridView1.Font.FontFamily, this.dataGridView1.Font.Size, FontStyle.Underline);
             this.dataGridView1.Columns[dataGridView1.ColumnCount - 1].DefaultCellStyle = cellStyle;
+
+            // format other columns
+            this.dataGridView1.Columns["logdate"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            this.dataGridView1.Columns["logdate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridView1.Columns["logentry"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            this.dataGridView1.Columns["logentry"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridView1.Columns["attachmentname"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            this.dataGridView1.Columns["attachmentname"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
 
         private void buttonSaveEntry_Click(object sender, EventArgs e)
@@ -111,7 +118,7 @@ namespace HydrometTools.Reports
             // check if the attachment-name column is checked
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(dataGridView1.ColumnCount - 1) && e.RowIndex != -1)
             {
-                // download and open attachment if there is a filename associated with the lof entry
+                // download and open attachment if there is a filename associated with the log entry
                 if (dataGridView1.CurrentCell != null && dataGridView1.CurrentCell.Value.ToString() != "")
                 {
                     var logId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
@@ -121,8 +128,6 @@ namespace HydrometTools.Reports
                     var tempFileName = Path.GetTempPath() + attName;
                     System.IO.File.WriteAllBytes(tempFileName, attachmentBytes);
                     System.Diagnostics.Process.Start(tempFileName);
-
-                    //MessageBox.Show(dataGridView1.CurrentCell.Value.ToString());
                 }
             }
         }
