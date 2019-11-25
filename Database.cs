@@ -203,19 +203,38 @@ namespace HydrometTools
             {
                 sql += " and lower(basin) = '" + basin.ToLower() + "'";
             }
-
             if (project != "")
             {
                 sql += " and lower(project) = '" + project.ToLower() + "'";
             }
-
             sql += " order by logdate desc";
 
             DataTable tbl = svr.Table("opslog", sql);
             return tbl;
         }
 
-        internal static void InsertOpsLogEntry(string username, string logentry, string basin, string project, string attachmentname = "")
+        internal static byte[] GetOpsLogAttachment(int logId)
+        {
+            var svr = GetServer("hydromet");
+            svr.SetAllValuesInCommandBuilder = true;
+            string fmt = TimeSeriesDatabase.dateTimeFormat;
+
+            var sql = "select attachmentfile from operationslog where logid = " + logId;
+
+            DataTable tbl = svr.Table("attachmentFile", sql);
+            byte[] attachmentBinary = new byte[] { };
+            if (tbl.Rows.Count > 0)
+            {
+                attachmentBinary = (byte[])tbl.Rows[0][0];
+            }
+            else
+            {
+
+            }
+            return attachmentBinary;
+        }
+
+        internal static void InsertOpsLogEntry(DateTime t, string username, string logentry, string basin, string project, string attachmentname = "", string attachmentPath = "")
         {
             string sql = "select * from operationslog where 2=1";
             var svr = GetServer("hydromet");
@@ -225,10 +244,16 @@ namespace HydrometTools
             var opsRow = opsLogDataTable.NewRow();
             opsRow["logid"] = 0;
             opsRow["loguser"] = username;
-            opsRow["logdate"] = DateTime.Now;
+            opsRow["logdate"] = t;
             opsRow["logentry"] = logentry;
             opsRow["basin"] = basin;
             opsRow["project"] = project;
+            if (attachmentname != "")
+            {
+                opsRow["attachmentname"] = attachmentname;
+                byte[] attBytes = System.IO.File.ReadAllBytes(attachmentPath);
+                opsRow["attachmentfile"] = attBytes;
+            }
 
             opsLogDataTable.Rows.Add(opsRow);
             svr.SaveTable(opsLogDataTable);

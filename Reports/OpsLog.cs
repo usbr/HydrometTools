@@ -35,6 +35,7 @@ namespace HydrometTools.Reports
 
             // Populate entries in the ops log
             UpdateLogTable();
+            this.dataGridView1.CellClick += DataGridView1_CellClick;
         }
 
         private void ComboBoxBasin_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,18 +73,58 @@ namespace HydrometTools.Reports
             }
             var tbl = Database.GetOpsLogEntries(this.dateTimePickerT1.Value, this.dateTimePickerT2.Value, basin, project);
             this.dataGridView1.DataSource = tbl;
+
+            // format attachment column
+            DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+            cellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            cellStyle.ForeColor = Color.Blue;
+            cellStyle.SelectionForeColor = Color.Black;
+            cellStyle.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Underline);
+            this.dataGridView1.Columns[dataGridView1.ColumnCount - 1].DefaultCellStyle = cellStyle;
         }
 
         private void buttonSaveEntry_Click(object sender, EventArgs e)
         {
-            Database.InsertOpsLogEntry(Environment.UserName.ToLower(), this.textBoxLogEntry.Text,
-                this.comboBoxBasin.SelectedItem.ToString(), this.comboBoxProject.SelectedItem.ToString());
-            //MessageBox.Show("User: " + Environment.UserName.ToLower() + Environment.NewLine
-            //    + "Basin: " + this.comboBoxBasin.SelectedItem + Environment.NewLine
-            //    + "Project: " + this.comboBoxProject.SelectedItem + Environment.NewLine
-            //    + "Log Entry: " + this.textBoxLogEntry.Text + Environment.NewLine
-            //    + "Not yet implemented... Need DB access...", "Save Log Entry", MessageBoxButtons.OK);
-            UpdateLogTable();
+            if (textBoxLogEntry.Text.Length > 0)
+            {
+                var t = DateTime.Now;
+                if (hasAttachment) 
+                {
+                    Database.InsertOpsLogEntry(t, Environment.UserName.ToLower(), this.textBoxLogEntry.Text,
+                        this.comboBoxBasin.SelectedItem.ToString(), this.comboBoxProject.SelectedItem.ToString(),
+                        this.labelAttachmentName.Text, this.labelAttachmentPath.Text);
+                }
+                else
+                {
+                    Database.InsertOpsLogEntry(t, Environment.UserName.ToLower(), this.textBoxLogEntry.Text,
+                        this.comboBoxBasin.SelectedItem.ToString(), this.comboBoxProject.SelectedItem.ToString());
+                }
+                UpdateLogTable();
+            }
+            else
+            {
+                MessageBox.Show("Log Entry cannot be blank...", "Log Error", MessageBoxButtons.OK);
+            }
+        }
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // check if the attachment-name column is checked
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(dataGridView1.ColumnCount - 1) && e.RowIndex != -1)
+            {
+                // download and open attachment if there is a filename associated with the lof entry
+                if (dataGridView1.CurrentCell != null && dataGridView1.CurrentCell.Value.ToString() != "")
+                {
+                    var logId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                    var attName = dataGridView1.CurrentCell.Value.ToString();
+                    var attachmentBytes = Database.GetOpsLogAttachment(logId);
+
+                    var tempFileName = Path.GetTempPath() + attName;
+                    System.IO.File.WriteAllBytes(tempFileName, attachmentBytes);
+                    System.Diagnostics.Process.Start(tempFileName);
+                    
+                    //MessageBox.Show(dataGridView1.CurrentCell.Value.ToString());
+                }
+            }
         }
 
         private void buttonExportLogs_Click(object sender, EventArgs e)
@@ -100,6 +141,54 @@ namespace HydrometTools.Reports
             File.WriteAllText(fName, dataObject.GetText(TextDataFormat.CommaSeparatedValue));
             // Open file
             System.Diagnostics.Process.Start(fName);
+        }
+
+        bool hasAttachment = false;
+        private void buttonAttachFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Find your attachment";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                labelAttachmentPath.Text = dlg.FileName;
+                labelAttachmentName.Text = System.IO.Path.GetFileName(dlg.FileName);
+
+                // check and validate attachment
+                long len = new System.IO.FileInfo(dlg.FileName).Length;
+                var fSize = len / 1024.0 / 1024.0;
+                string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+                int order = 0;
+                while (len >= 1024 && order < sizes.Length - 1)
+                {
+                    order++;
+                    len = len / 1024;
+                }
+                // check file-size
+                if (fSize > 20.0)
+                {
+                    labelAttachmentSize.Text = "(" + String.Format("{0:0.##} {1}", len, sizes[order]) + ") File too large - limit attachments to 20 MB...";
+                    hasAttachment = false;
+                }
+                else
+                {
+                    labelAttachmentSize.Text = "(" + String.Format("{0:0.##} {1}", len, sizes[order]) + ")";
+                    hasAttachment = true;
+                }
+                // check path length
+                if (dlg.FileName.Length > 248)
+                {
+                    labelAttachmentPath.Text = "Path to file is too long - relocate file and try again...";
+                    hasAttachment = false;
+                }
+
+                if (hasAttachment)
+                {
+                    this.labelAttachmentPath.Visible = true;
+                    this.labelAttachmentSize.Visible = true;
+                }
+            }
         }
     }
 }

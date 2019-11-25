@@ -44,6 +44,10 @@
             this.comboBoxProject = new System.Windows.Forms.ComboBox();
             this.checkBoxFilterLogEntries = new System.Windows.Forms.CheckBox();
             this.buttonExportLogs = new System.Windows.Forms.Button();
+            this.buttonAttachFile = new System.Windows.Forms.Button();
+            this.labelAttachmentPath = new System.Windows.Forms.Label();
+            this.labelAttachmentName = new System.Windows.Forms.Label();
+            this.labelAttachmentSize = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,11 +85,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 109);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 142);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(946, 502);
+            this.dataGridView1.Size = new System.Drawing.Size(946, 469);
             this.dataGridView1.TabIndex = 3;
             // 
             // buttonSaveEntry
@@ -216,10 +220,58 @@
             this.buttonExportLogs.UseVisualStyleBackColor = true;
             this.buttonExportLogs.Click += new System.EventHandler(this.buttonExportLogs_Click);
             // 
+            // buttonAttachFile
+            // 
+            this.buttonAttachFile.Location = new System.Drawing.Point(88, 109);
+            this.buttonAttachFile.Name = "buttonAttachFile";
+            this.buttonAttachFile.Size = new System.Drawing.Size(122, 24);
+            this.buttonAttachFile.TabIndex = 18;
+            this.buttonAttachFile.Text = "Attach File";
+            this.buttonAttachFile.UseVisualStyleBackColor = true;
+            this.buttonAttachFile.Click += new System.EventHandler(this.buttonAttachFile_Click);
+            // 
+            // labelAttachmentPath
+            // 
+            this.labelAttachmentPath.AutoSize = true;
+            this.labelAttachmentPath.Location = new System.Drawing.Point(217, 112);
+            this.labelAttachmentPath.Name = "labelAttachmentPath";
+            this.labelAttachmentPath.Size = new System.Drawing.Size(124, 17);
+            this.labelAttachmentPath.TabIndex = 19;
+            this.labelAttachmentPath.Text = "Attachment Path...";
+            this.labelAttachmentPath.Visible = false;
+            // 
+            // labelAttachmentName
+            // 
+            this.labelAttachmentName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAttachmentName.AutoSize = true;
+            this.labelAttachmentName.Location = new System.Drawing.Point(664, 112);
+            this.labelAttachmentName.Name = "labelAttachmentName";
+            this.labelAttachmentName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelAttachmentName.Size = new System.Drawing.Size(146, 17);
+            this.labelAttachmentName.TabIndex = 20;
+            this.labelAttachmentName.Text = "labelAttachmentName";
+            this.labelAttachmentName.Visible = false;
+            // 
+            // labelAttachmentSize
+            // 
+            this.labelAttachmentSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAttachmentSize.AutoSize = true;
+            this.labelAttachmentSize.Location = new System.Drawing.Point(817, 112);
+            this.labelAttachmentSize.Name = "labelAttachmentSize";
+            this.labelAttachmentSize.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelAttachmentSize.Size = new System.Drawing.Size(136, 17);
+            this.labelAttachmentSize.TabIndex = 21;
+            this.labelAttachmentSize.Text = "labelAttachmentSize";
+            this.labelAttachmentSize.Visible = false;
+            // 
             // OpsLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelAttachmentSize);
+            this.Controls.Add(this.labelAttachmentName);
+            this.Controls.Add(this.labelAttachmentPath);
+            this.Controls.Add(this.buttonAttachFile);
             this.Controls.Add(this.buttonExportLogs);
             this.Controls.Add(this.checkBoxFilterLogEntries);
             this.Controls.Add(this.comboBoxProject);
@@ -262,5 +314,9 @@
         private System.Windows.Forms.ComboBox comboBoxProject;
         private System.Windows.Forms.CheckBox checkBoxFilterLogEntries;
         private System.Windows.Forms.Button buttonExportLogs;
+        private System.Windows.Forms.Button buttonAttachFile;
+        private System.Windows.Forms.Label labelAttachmentPath;
+        private System.Windows.Forms.Label labelAttachmentName;
+        private System.Windows.Forms.Label labelAttachmentSize;
     }
 }
