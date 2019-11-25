@@ -88,7 +88,7 @@ namespace HydrometTools.Reports
             if (textBoxLogEntry.Text.Length > 0)
             {
                 var t = DateTime.Now;
-                if (hasAttachment) 
+                if (hasAttachment)
                 {
                     Database.InsertOpsLogEntry(t, Environment.UserName.ToLower(), this.textBoxLogEntry.Text,
                         this.comboBoxBasin.SelectedItem.ToString(), this.comboBoxProject.SelectedItem.ToString(),
@@ -121,7 +121,7 @@ namespace HydrometTools.Reports
                     var tempFileName = Path.GetTempPath() + attName;
                     System.IO.File.WriteAllBytes(tempFileName, attachmentBytes);
                     System.Diagnostics.Process.Start(tempFileName);
-                    
+
                     //MessageBox.Show(dataGridView1.CurrentCell.Value.ToString());
                 }
             }
@@ -136,7 +136,7 @@ namespace HydrometTools.Reports
             // Copy selected cells to DataObject
             DataObject dataObject = dataGridView1.GetClipboardContent();
             // Get temp filename
-            var fName = System.IO.Path.GetTempFileName().Replace("tmp","csv");
+            var fName = System.IO.Path.GetTempFileName().Replace("tmp", "csv");
             // Get the text of the DataObject, and serialize it to a file
             File.WriteAllText(fName, dataObject.GetText(TextDataFormat.CommaSeparatedValue));
             // Open file
@@ -168,7 +168,8 @@ namespace HydrometTools.Reports
                 // check file-size
                 if (fSize > 20.0)
                 {
-                    labelAttachmentSize.Text = "(" + String.Format("{0:0.##} {1}", len, sizes[order]) + ") File too large - limit attachments to 20 MB...";
+                    MessageBox.Show("(" + String.Format("{0:0.##} {1}", len, sizes[order]) + ") File too large - limit attachments to 20 MB..."
+                        , "Attachment Error", MessageBoxButtons.OK);
                     hasAttachment = false;
                 }
                 else
@@ -179,16 +180,14 @@ namespace HydrometTools.Reports
                 // check path length
                 if (dlg.FileName.Length > 248)
                 {
-                    labelAttachmentPath.Text = "Path to file is too long - relocate file and try again...";
+                    MessageBox.Show("Path to file is too long - relocate file and try again...", "Attachment Error", MessageBoxButtons.OK);
                     hasAttachment = false;
                 }
 
-                if (hasAttachment)
-                {
-                    this.labelAttachmentPath.Visible = true;
-                    this.labelAttachmentSize.Visible = true;
-                }
+                this.labelAttachmentPath.Visible = hasAttachment;
+                this.labelAttachmentSize.Visible = hasAttachment;
             }
         }
     }
 }
+
