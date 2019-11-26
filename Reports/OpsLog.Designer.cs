@@ -207,7 +207,7 @@
             // 
             this.checkBoxFilterLogEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxFilterLogEntries.AutoSize = true;
-            this.checkBoxFilterLogEntries.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxFilterLogEntries.Location = new System.Drawing.Point(6, 22);
             this.checkBoxFilterLogEntries.Name = "checkBoxFilterLogEntries";
             this.checkBoxFilterLogEntries.Size = new System.Drawing.Size(250, 21);
             this.checkBoxFilterLogEntries.TabIndex = 16;
@@ -279,7 +279,7 @@
             this.groupBox1.Controls.Add(this.checkBoxFilterLogEntries);
             this.groupBox1.Location = new System.Drawing.Point(7, 614);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(530, 85);
+            this.groupBox1.Size = new System.Drawing.Size(480, 85);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log Filter";
@@ -290,9 +290,9 @@
             this.comboBoxColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxColumns.Enabled = false;
             this.comboBoxColumns.FormattingEnabled = true;
-            this.comboBoxColumns.Location = new System.Drawing.Point(387, 46);
+            this.comboBoxColumns.Location = new System.Drawing.Point(363, 42);
             this.comboBoxColumns.Name = "comboBoxColumns";
-            this.comboBoxColumns.Size = new System.Drawing.Size(137, 24);
+            this.comboBoxColumns.Size = new System.Drawing.Size(111, 24);
             this.comboBoxColumns.TabIndex = 23;
             // 
             // checkBoxLogSearch
@@ -320,9 +320,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(285, 49);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 17);
+            this.label6.Size = new System.Drawing.Size(72, 17);
             this.label6.TabIndex = 26;
-            this.label6.Text = "in the column ";
+            this.label6.Text = "in column:";
             // 
             // OpsLog
             // 

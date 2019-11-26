@@ -38,7 +38,10 @@ namespace HydrometTools.Reports
             comboBoxBasin.SelectedIndex = 0;
             foreach (DataColumn col in ((DataTable)this.dataGridView1.DataSource).Columns)
             {
-                this.comboBoxColumns.Items.Add(col.ColumnName);
+                if (col.DataType == typeof(string))
+                {
+                    this.comboBoxColumns.Items.Add(col.ColumnName);
+                }
             }
             this.comboBoxColumns.SelectedIndex = 0;
         }
