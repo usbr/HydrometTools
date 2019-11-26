@@ -22,8 +22,12 @@ namespace HydrometTools.Reports
             this.labelUser.Text = "User: " + Environment.UserName.ToLower();
             this.dateTimePickerT1.Value = DateTime.Now.AddDays(-3);
             this.dateTimePickerT2.Value = DateTime.Now;
-
-            // Populate Basin drop-down
+            
+            // Populate entries in the ops log
+            UpdateLogTable();
+            this.dataGridView1.CellClick += DataGridView1_CellClick;
+            
+            // Populate drop-downs
             var dropDownItems = GetOpsLogOptions();
             var basinItems = dropDownItems.DefaultView.ToTable(true, "basin");
             var basinStrings = basinItems.Rows.Cast<DataRow>()
@@ -32,10 +36,11 @@ namespace HydrometTools.Reports
             comboBoxBasin.Items.AddRange(basinStrings);
             this.comboBoxBasin.SelectedIndexChanged += ComboBoxBasin_SelectedIndexChanged;
             comboBoxBasin.SelectedIndex = 0;
-
-            // Populate entries in the ops log
-            UpdateLogTable();
-            this.dataGridView1.CellClick += DataGridView1_CellClick;
+            foreach (DataColumn col in ((DataTable)this.dataGridView1.DataSource).Columns)
+            {
+                this.comboBoxColumns.Items.Add(col.ColumnName);
+            }
+            this.comboBoxColumns.SelectedIndex = 0;
         }
 
         private void ComboBoxBasin_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,8 +64,7 @@ namespace HydrometTools.Reports
 
         private void buttonRefreshLog_Click(object sender, EventArgs e)
         {
-            UpdateLogTable();
-            //MessageBox.Show("Not yet implemented... Need DB access...", "Refresh Log Display", MessageBoxButtons.OK);
+            UpdateLogTable();            
         }
 
         private void UpdateLogTable()
@@ -71,7 +75,13 @@ namespace HydrometTools.Reports
                 basin = this.comboBoxBasin.SelectedItem.ToString();
                 project = this.comboBoxProject.SelectedItem.ToString();
             }
-            var tbl = Database.GetOpsLogEntries(this.dateTimePickerT1.Value, this.dateTimePickerT2.Value, basin, project);
+            string keyWd = "", colName = "";
+            if (checkBoxLogSearch.Checked)
+            {
+                keyWd = this.textBoxKeyword.Text;
+                colName = this.comboBoxColumns.SelectedItem.ToString();
+            }
+            var tbl = Database.GetOpsLogEntries(this.dateTimePickerT1.Value, this.dateTimePickerT2.Value, basin, project, keyWd, colName);
             this.dataGridView1.DataSource = tbl;
 
             // format attachment column
@@ -113,6 +123,7 @@ namespace HydrometTools.Reports
                 MessageBox.Show("Log Entry cannot be blank...", "Log Error", MessageBoxButtons.OK);
             }
         }
+
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // check if the attachment-name column is checked
@@ -192,6 +203,12 @@ namespace HydrometTools.Reports
                 this.labelAttachmentPath.Visible = hasAttachment;
                 this.labelAttachmentSize.Visible = hasAttachment;
             }
+        }
+
+        private void checkBoxLogSearch_CheckedChanged(object sender, EventArgs e)
+        {
+            this.textBoxKeyword.Enabled = this.checkBoxLogSearch.Checked;
+            this.comboBoxColumns.Enabled = this.checkBoxLogSearch.Checked;
         }
     }
 }

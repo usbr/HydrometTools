@@ -189,7 +189,8 @@ namespace HydrometTools
             return rval;
         }
 
-        internal static DataTable GetOpsLogEntries(DateTime t1, DateTime t2, string basin = "", string project = "")
+        internal static DataTable GetOpsLogEntries(DateTime t1, DateTime t2, 
+            string basin = "", string project = "", string keyword = "", string colname = "")
         {
             var svr = GetServer("hydromet");
             svr.SetAllValuesInCommandBuilder = true;
@@ -206,6 +207,10 @@ namespace HydrometTools
             if (project != "")
             {
                 sql += " and lower(project) = '" + project.ToLower() + "'";
+            }
+            if (keyword != "" && colname != "")
+            {
+                sql += " and lower(" + colname + ") like '%" + keyword.ToLower() + "%'";
             }
             sql += " order by logdate desc";
 

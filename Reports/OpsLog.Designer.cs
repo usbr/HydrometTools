@@ -48,7 +48,13 @@
             this.labelAttachmentPath = new System.Windows.Forms.Label();
             this.labelAttachmentName = new System.Windows.Forms.Label();
             this.labelAttachmentSize = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxColumns = new System.Windows.Forms.ComboBox();
+            this.checkBoxLogSearch = new System.Windows.Forms.CheckBox();
+            this.textBoxKeyword = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelUser
@@ -109,7 +115,7 @@
             // 
             this.buttonRefreshLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRefreshLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefreshLog.Location = new System.Drawing.Point(855, 641);
+            this.buttonRefreshLog.Location = new System.Drawing.Point(855, 614);
             this.buttonRefreshLog.Name = "buttonRefreshLog";
             this.buttonRefreshLog.Size = new System.Drawing.Size(98, 52);
             this.buttonRefreshLog.TabIndex = 5;
@@ -122,9 +128,9 @@
             this.dateTimePickerT1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerT1.CustomFormat = "ddd, MMM-d-yyyy HH:mm";
             this.dateTimePickerT1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerT1.Location = new System.Drawing.Point(584, 641);
+            this.dateTimePickerT1.Location = new System.Drawing.Point(624, 614);
             this.dateTimePickerT1.Name = "dateTimePickerT1";
-            this.dateTimePickerT1.Size = new System.Drawing.Size(264, 22);
+            this.dateTimePickerT1.Size = new System.Drawing.Size(224, 22);
             this.dateTimePickerT1.TabIndex = 6;
             // 
             // dateTimePickerT2
@@ -132,16 +138,16 @@
             this.dateTimePickerT2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerT2.CustomFormat = "ddd, MMM-d-yyyy HH:mm";
             this.dateTimePickerT2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerT2.Location = new System.Drawing.Point(584, 671);
+            this.dateTimePickerT2.Location = new System.Drawing.Point(624, 644);
             this.dateTimePickerT2.Name = "dateTimePickerT2";
-            this.dateTimePickerT2.Size = new System.Drawing.Size(264, 22);
+            this.dateTimePickerT2.Size = new System.Drawing.Size(224, 22);
             this.dateTimePickerT2.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(498, 646);
+            this.label2.Location = new System.Drawing.Point(543, 619);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 17);
             this.label2.TabIndex = 8;
@@ -151,7 +157,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(498, 676);
+            this.label3.Location = new System.Drawing.Point(543, 649);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 17);
             this.label3.TabIndex = 9;
@@ -199,10 +205,9 @@
             // 
             // checkBoxFilterLogEntries
             // 
-            this.checkBoxFilterLogEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxFilterLogEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxFilterLogEntries.AutoSize = true;
-            this.checkBoxFilterLogEntries.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxFilterLogEntries.Location = new System.Drawing.Point(703, 614);
+            this.checkBoxFilterLogEntries.Location = new System.Drawing.Point(6, 19);
             this.checkBoxFilterLogEntries.Name = "checkBoxFilterLogEntries";
             this.checkBoxFilterLogEntries.Size = new System.Drawing.Size(250, 21);
             this.checkBoxFilterLogEntries.TabIndex = 16;
@@ -211,12 +216,12 @@
             // 
             // buttonExportLogs
             // 
-            this.buttonExportLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonExportLogs.Location = new System.Drawing.Point(7, 618);
+            this.buttonExportLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonExportLogs.Location = new System.Drawing.Point(855, 672);
             this.buttonExportLogs.Name = "buttonExportLogs";
-            this.buttonExportLogs.Size = new System.Drawing.Size(105, 45);
+            this.buttonExportLogs.Size = new System.Drawing.Size(98, 25);
             this.buttonExportLogs.TabIndex = 17;
-            this.buttonExportLogs.Text = "Export Log Entries";
+            this.buttonExportLogs.Text = "Export Log";
             this.buttonExportLogs.UseVisualStyleBackColor = true;
             this.buttonExportLogs.Click += new System.EventHandler(this.buttonExportLogs_Click);
             // 
@@ -264,16 +269,71 @@
             this.labelAttachmentSize.Text = "labelAttachmentSize";
             this.labelAttachmentSize.Visible = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.textBoxKeyword);
+            this.groupBox1.Controls.Add(this.checkBoxLogSearch);
+            this.groupBox1.Controls.Add(this.comboBoxColumns);
+            this.groupBox1.Controls.Add(this.checkBoxFilterLogEntries);
+            this.groupBox1.Location = new System.Drawing.Point(7, 614);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(530, 85);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Log Filter";
+            // 
+            // comboBoxColumns
+            // 
+            this.comboBoxColumns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxColumns.Enabled = false;
+            this.comboBoxColumns.FormattingEnabled = true;
+            this.comboBoxColumns.Location = new System.Drawing.Point(387, 46);
+            this.comboBoxColumns.Name = "comboBoxColumns";
+            this.comboBoxColumns.Size = new System.Drawing.Size(137, 24);
+            this.comboBoxColumns.TabIndex = 23;
+            // 
+            // checkBoxLogSearch
+            // 
+            this.checkBoxLogSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxLogSearch.AutoSize = true;
+            this.checkBoxLogSearch.Location = new System.Drawing.Point(6, 50);
+            this.checkBoxLogSearch.Name = "checkBoxLogSearch";
+            this.checkBoxLogSearch.Size = new System.Drawing.Size(139, 21);
+            this.checkBoxLogSearch.TabIndex = 24;
+            this.checkBoxLogSearch.Text = "Keyword search: ";
+            this.checkBoxLogSearch.UseVisualStyleBackColor = true;
+            this.checkBoxLogSearch.CheckedChanged += new System.EventHandler(this.checkBoxLogSearch_CheckedChanged);
+            // 
+            // textBoxKeyword
+            // 
+            this.textBoxKeyword.Enabled = false;
+            this.textBoxKeyword.Location = new System.Drawing.Point(151, 46);
+            this.textBoxKeyword.Name = "textBoxKeyword";
+            this.textBoxKeyword.Size = new System.Drawing.Size(128, 22);
+            this.textBoxKeyword.TabIndex = 25;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(285, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 17);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "in the column ";
+            // 
             // OpsLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelAttachmentSize);
             this.Controls.Add(this.labelAttachmentName);
             this.Controls.Add(this.labelAttachmentPath);
             this.Controls.Add(this.buttonAttachFile);
             this.Controls.Add(this.buttonExportLogs);
-            this.Controls.Add(this.checkBoxFilterLogEntries);
             this.Controls.Add(this.comboBoxProject);
             this.Controls.Add(this.comboBoxBasin);
             this.Controls.Add(this.label5);
@@ -291,6 +351,8 @@
             this.Name = "OpsLog";
             this.Size = new System.Drawing.Size(956, 700);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,5 +380,10 @@
         private System.Windows.Forms.Label labelAttachmentPath;
         private System.Windows.Forms.Label labelAttachmentName;
         private System.Windows.Forms.Label labelAttachmentSize;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxKeyword;
+        private System.Windows.Forms.CheckBox checkBoxLogSearch;
+        private System.Windows.Forms.ComboBox comboBoxColumns;
     }
 }
