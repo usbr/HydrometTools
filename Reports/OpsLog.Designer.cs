@@ -42,17 +42,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxBasin = new System.Windows.Forms.ComboBox();
             this.comboBoxProject = new System.Windows.Forms.ComboBox();
-            this.checkBoxFilterLogEntries = new System.Windows.Forms.CheckBox();
             this.buttonExportLogs = new System.Windows.Forms.Button();
             this.buttonAttachFile = new System.Windows.Forms.Button();
             this.labelAttachmentPath = new System.Windows.Forms.Label();
             this.labelAttachmentName = new System.Windows.Forms.Label();
             this.labelAttachmentSize = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxColumns = new System.Windows.Forms.ComboBox();
-            this.checkBoxLogSearch = new System.Windows.Forms.CheckBox();
-            this.textBoxKeyword = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBoxKeyword = new System.Windows.Forms.TextBox();
+            this.checkBoxLogSearch = new System.Windows.Forms.CheckBox();
+            this.comboBoxColumns = new System.Windows.Forms.ComboBox();
+            this.checkBoxFilterLogBasin = new System.Windows.Forms.CheckBox();
+            this.checkBoxFileterLogProject = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -203,17 +205,6 @@
             this.comboBoxProject.Size = new System.Drawing.Size(226, 24);
             this.comboBoxProject.TabIndex = 15;
             // 
-            // checkBoxFilterLogEntries
-            // 
-            this.checkBoxFilterLogEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkBoxFilterLogEntries.AutoSize = true;
-            this.checkBoxFilterLogEntries.Location = new System.Drawing.Point(6, 22);
-            this.checkBoxFilterLogEntries.Name = "checkBoxFilterLogEntries";
-            this.checkBoxFilterLogEntries.Size = new System.Drawing.Size(250, 21);
-            this.checkBoxFilterLogEntries.TabIndex = 16;
-            this.checkBoxFilterLogEntries.Text = "Filter log entries by Basin && Project";
-            this.checkBoxFilterLogEntries.UseVisualStyleBackColor = true;
-            // 
             // buttonExportLogs
             // 
             this.buttonExportLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -272,11 +263,13 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.checkBoxFileterLogProject);
+            this.groupBox1.Controls.Add(this.checkBoxFilterLogBasin);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBoxKeyword);
             this.groupBox1.Controls.Add(this.checkBoxLogSearch);
             this.groupBox1.Controls.Add(this.comboBoxColumns);
-            this.groupBox1.Controls.Add(this.checkBoxFilterLogEntries);
             this.groupBox1.Location = new System.Drawing.Point(7, 614);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(480, 85);
@@ -284,22 +277,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log Filter";
             // 
-            // comboBoxColumns
+            // label6
             // 
-            this.comboBoxColumns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxColumns.Enabled = false;
-            this.comboBoxColumns.FormattingEnabled = true;
-            this.comboBoxColumns.Location = new System.Drawing.Point(363, 42);
-            this.comboBoxColumns.Name = "comboBoxColumns";
-            this.comboBoxColumns.Size = new System.Drawing.Size(111, 24);
-            this.comboBoxColumns.TabIndex = 23;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(285, 53);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 17);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "in column:";
+            // 
+            // textBoxKeyword
+            // 
+            this.textBoxKeyword.Enabled = false;
+            this.textBoxKeyword.Location = new System.Drawing.Point(151, 50);
+            this.textBoxKeyword.Name = "textBoxKeyword";
+            this.textBoxKeyword.Size = new System.Drawing.Size(128, 22);
+            this.textBoxKeyword.TabIndex = 25;
             // 
             // checkBoxLogSearch
             // 
             this.checkBoxLogSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxLogSearch.AutoSize = true;
-            this.checkBoxLogSearch.Location = new System.Drawing.Point(6, 50);
+            this.checkBoxLogSearch.Location = new System.Drawing.Point(6, 54);
             this.checkBoxLogSearch.Name = "checkBoxLogSearch";
             this.checkBoxLogSearch.Size = new System.Drawing.Size(139, 21);
             this.checkBoxLogSearch.TabIndex = 24;
@@ -307,22 +306,47 @@
             this.checkBoxLogSearch.UseVisualStyleBackColor = true;
             this.checkBoxLogSearch.CheckedChanged += new System.EventHandler(this.checkBoxLogSearch_CheckedChanged);
             // 
-            // textBoxKeyword
+            // comboBoxColumns
             // 
-            this.textBoxKeyword.Enabled = false;
-            this.textBoxKeyword.Location = new System.Drawing.Point(151, 46);
-            this.textBoxKeyword.Name = "textBoxKeyword";
-            this.textBoxKeyword.Size = new System.Drawing.Size(128, 22);
-            this.textBoxKeyword.TabIndex = 25;
+            this.comboBoxColumns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxColumns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxColumns.Enabled = false;
+            this.comboBoxColumns.FormattingEnabled = true;
+            this.comboBoxColumns.Location = new System.Drawing.Point(363, 50);
+            this.comboBoxColumns.Name = "comboBoxColumns";
+            this.comboBoxColumns.Size = new System.Drawing.Size(111, 24);
+            this.comboBoxColumns.TabIndex = 23;
             // 
-            // label6
+            // checkBoxFilterLogBasin
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(285, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 17);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "in column:";
+            this.checkBoxFilterLogBasin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxFilterLogBasin.AutoSize = true;
+            this.checkBoxFilterLogBasin.Location = new System.Drawing.Point(213, 20);
+            this.checkBoxFilterLogBasin.Name = "checkBoxFilterLogBasin";
+            this.checkBoxFilterLogBasin.Size = new System.Drawing.Size(65, 21);
+            this.checkBoxFilterLogBasin.TabIndex = 27;
+            this.checkBoxFilterLogBasin.Text = "Basin";
+            this.checkBoxFilterLogBasin.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxFileterLogProject
+            // 
+            this.checkBoxFileterLogProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxFileterLogProject.AutoSize = true;
+            this.checkBoxFileterLogProject.Location = new System.Drawing.Point(290, 20);
+            this.checkBoxFileterLogProject.Name = "checkBoxFileterLogProject";
+            this.checkBoxFileterLogProject.Size = new System.Drawing.Size(74, 21);
+            this.checkBoxFileterLogProject.TabIndex = 28;
+            this.checkBoxFileterLogProject.Text = "Project";
+            this.checkBoxFileterLogProject.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(197, 17);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Filter log entries by selected : ";
             // 
             // OpsLog
             // 
@@ -374,7 +398,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxBasin;
         private System.Windows.Forms.ComboBox comboBoxProject;
-        private System.Windows.Forms.CheckBox checkBoxFilterLogEntries;
         private System.Windows.Forms.Button buttonExportLogs;
         private System.Windows.Forms.Button buttonAttachFile;
         private System.Windows.Forms.Label labelAttachmentPath;
@@ -385,5 +408,8 @@
         private System.Windows.Forms.TextBox textBoxKeyword;
         private System.Windows.Forms.CheckBox checkBoxLogSearch;
         private System.Windows.Forms.ComboBox comboBoxColumns;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox checkBoxFileterLogProject;
+        private System.Windows.Forms.CheckBox checkBoxFilterLogBasin;
     }
 }

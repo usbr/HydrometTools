@@ -36,6 +36,7 @@ namespace HydrometTools.Reports
             comboBoxBasin.Items.AddRange(basinStrings);
             this.comboBoxBasin.SelectedIndexChanged += ComboBoxBasin_SelectedIndexChanged;
             comboBoxBasin.SelectedIndex = 0;
+            this.comboBoxColumns.Items.Add("All");
             foreach (DataColumn col in ((DataTable)this.dataGridView1.DataSource).Columns)
             {
                 if (col.DataType == typeof(string))
@@ -44,6 +45,9 @@ namespace HydrometTools.Reports
                 }
             }
             this.comboBoxColumns.SelectedIndex = 0;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
         }
 
         private void ComboBoxBasin_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,9 +77,12 @@ namespace HydrometTools.Reports
         private void UpdateLogTable()
         {
             string basin = "", project = "";
-            if (checkBoxFilterLogEntries.Checked)
+            if (checkBoxFilterLogBasin.Checked)
             {
                 basin = this.comboBoxBasin.SelectedItem.ToString();
+            }
+            if (checkBoxFileterLogProject.Checked)
+            {
                 project = this.comboBoxProject.SelectedItem.ToString();
             }
             string keyWd = "", colName = "";

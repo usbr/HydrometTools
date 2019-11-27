@@ -210,7 +210,18 @@ namespace HydrometTools
             }
             if (keyword != "" && colname != "")
             {
-                sql += " and lower(" + colname + ") like '%" + keyword.ToLower() + "%'";
+                if (colname.ToLower() == "all")
+                {
+                    sql += " and lower(logentry) like '%" + keyword.ToLower() + "%'"
+                        + " or lower(basin) like '%" + keyword.ToLower() + "%'"
+                        + " or lower(project) like '%" + keyword.ToLower() + "%'"
+                        + " or lower(attachmentname) like '%" + keyword.ToLower() + "%'"
+                        + " or lower(loguser) like '%" + keyword.ToLower() + "%'";
+                }
+                else
+                {
+                    sql += " and lower(" + colname + ") like '%" + keyword.ToLower() + "%'";
+                }
             }
             sql += " order by logdate desc";
 
