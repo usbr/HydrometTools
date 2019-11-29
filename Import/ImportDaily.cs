@@ -213,6 +213,7 @@ namespace HydrometTools
                     var snotelSiteID = NrcsSnotelSeries.LookupSiteID(textBoxSnotel.Text);
                     string snotelParameter = NrcsSnotelSeries.SnotelParameterFromHydrometPcode(pc);
                     externalSeries = new NrcsSnotelSeries(snotelSiteID, snotelParameter);
+                    externalSeries.Units = "in";
                     break;
                 case ExternalSource.Idwr:
                     externalSeries = new IDWRDailySeries(textBoxIdwr.Text.Trim());

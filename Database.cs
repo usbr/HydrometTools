@@ -243,10 +243,6 @@ namespace HydrometTools
             {
                 attachmentBinary = (byte[])tbl.Rows[0][0];
             }
-            else
-            {
-
-            }
             return attachmentBinary;
         }
 
