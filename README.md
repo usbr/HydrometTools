@@ -3,6 +3,8 @@ Hydromet Tools
 
 This is the source code for Hydromet Tools, a desktop application used to view, query, edit, manage, and analyze data within a Reclamation Hydromet Database. 
 
+<img src="https://raw.githubusercontent.com/wiki/usbr/HydrometTools/images/resOpsUI.PNG" width="75%" height="75%"/>
+
 Hydromet Tools uses several licensed components for displaying data in a tabular and graphical format. As such, you may not distribute Hydromet Tools (the Software) as part of libraries, components, or frameworks. You may not use the Software components within a development environment without purchasing the appropriate licenses from [Steema](https://www.steema.com/product/net)(Graphing Engine) and [SpreadsheetGear](http://www.spreadsheetgear.com/)(Embedded Spreadsheet). You may help us develop Hydromet Tools by compiling the source code using Open-Source libraries as stand-ins for the licensed components; a brief guide on how to do this can be found at this Wiki page.
 
 Thanks,
