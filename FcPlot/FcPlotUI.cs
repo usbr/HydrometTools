@@ -56,7 +56,7 @@ namespace FcPlot
         private void comboBoxSite_SelectedIndexChanged(object sender, EventArgs e)
         {
             CheckOpsMenuOpen();
-            GraphData();
+            GraphData(true);
         }
 
 
@@ -70,7 +70,7 @@ namespace FcPlot
         ResidualForecast residForecastCompare;
 
 
-        public void GraphData()
+        public void GraphData(bool showFlows = false)
         {
             linkLabelReport.Visible = false;
             if (comboBoxSite.Text.ToString() == "" || this.comboBoxSite.SelectedItem.ToString().IndexOf("--") != -1)
@@ -98,6 +98,10 @@ namespace FcPlot
                 if (pt.DailyStationQU == "NA")
                 {
                     return;
+                }
+                if (showFlows)
+                {
+                    this.pcodeInitial.Text = (pt.DailyStationQU + " QU," + pt.StationQD + " QD").ToLower();
                 }
 
                 checkBoxDashed.Visible = pt.StationFC.ToLower() == "heii";

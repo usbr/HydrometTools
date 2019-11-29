@@ -28,19 +28,20 @@ namespace FcPlot
         }
 
 
-        private Steema.TeeChart.Styles.Line CreateSeries(System.Drawing.Color color , string title, Series s, string axis, bool dash=false)
+        private Steema.TeeChart.Styles.Line CreateSeries(System.Drawing.Color color , string title, Series s, string axis, bool dash=false, int lineWidth = 1)
         {
             var rval = new Steema.TeeChart.Styles.Line();
             rval.Brush.Color = color;
             rval.Color = color;
             rval.Title = title;
+            rval.LinePen.Width = lineWidth;
             if(axis == "right")
             {
                 rval.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
             }
             if (dash)
             {
-                rval.LinePen.Style = System.Drawing.Drawing2D.DashStyle.Dash;
+                rval.LinePen.Style = System.Drawing.Drawing2D.DashStyle.Dot;
             }
             var a = tChart1.Series.WithTitle(title);
             if (a == null) //don't redraw series with duplicate labels
@@ -96,7 +97,7 @@ namespace FcPlot
                 AddRuleCurves(ruleCurves, labelDates, dashed);
             }
 
-            Color[] colors = {  Color.Black,Color.Orange,Color.DarkKhaki,Color.Brown,
+            Color[] colors = {  Color.DodgerBlue,Color.DarkOrange,Color.DarkKhaki,Color.Teal,
                                 Color.Aqua,Color.Olive,Color.BurlyWood,Color.MediumSpringGreen,
                                 Color.CadetBlue,Color.Chartreuse, Color.Chocolate,Color.Coral,Color.CornflowerBlue};
 
@@ -124,8 +125,8 @@ namespace FcPlot
             }
 
             //add lines
-            CreateSeries(Color.Red, required.Name + " " + RequiredLegend, required, "left");
-            CreateSeries(Color.Blue, actual.Name + " Storage", actual, "left");
+            CreateSeries(Color.Red, required.Name + " " + RequiredLegend, required, "left", true, 2);
+            CreateSeries(Color.Blue, actual.Name + " Storage", actual, "left", false, 2);
 
             // zoom out a little..
             double min = 0, max = 0;
