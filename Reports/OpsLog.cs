@@ -192,9 +192,10 @@ namespace HydrometTools.Reports
                     len = len / 1024;
                 }
                 // check file-size
-                if (fSize > 20.0)
+                double maxSize = 5.0;
+                if (fSize > maxSize)
                 {
-                    MessageBox.Show("(" + String.Format("{0:0.##} {1}", len, sizes[order]) + ") File too large - limit attachments to 20 MB..."
+                    MessageBox.Show("(" + String.Format("{0:0.##} {1}", len, sizes[order]) + ") File too large - limit attachments to " + maxSize.ToString("F0") + " MB..."
                         , "Attachment Error", MessageBoxButtons.OK);
                     hasAttachment = false;
                 }
