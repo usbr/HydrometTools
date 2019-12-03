@@ -244,6 +244,12 @@
     <Compile Include="Advanced\ArchiverFileList.Designer.cs">
       <DependentUpon>ArchiverFileList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Advanced\DataManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advanced\DataManagement.Designer.cs">
+      <DependentUpon>DataManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Advanced\DayfileInsert.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -592,6 +598,9 @@
     <Content Include="RecordWorkup\192.txt" />
     <Content Include="RecordWorkup\readme.txt" />
     <Content Include="Stats\Report.txt" />
+    <EmbeddedResource Include="Advanced\DataManagement.resx">
+      <DependentUpon>DataManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Advanced\EquationEditorTable.resx">
       <DependentUpon>EquationEditorTable.cs</DependentUpon>
     </EmbeddedResource>

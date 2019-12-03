@@ -62,6 +62,8 @@
             this.tabPageEncode = new System.Windows.Forms.TabPage();
             this.encodeAscii1 = new HydrometTools.Advanced.ManualEncodeDecode.EncodeAscii();
             this.tabPageEquations = new System.Windows.Forms.TabPage();
+            this.tabPageDataManagement = new System.Windows.Forms.TabPage();
+            this.dataManagement1 = new HydrometTools.Advanced.DataManagement();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -77,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuality)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPageEncode.SuspendLayout();
+            this.tabPageDataManagement.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -247,6 +250,7 @@
             // 
             this.tabControlLinux.Controls.Add(this.tabPageSites);
             this.tabControlLinux.Controls.Add(this.tabPageMCFToDecodes);
+            this.tabControlLinux.Controls.Add(this.tabPageDataManagement);
             this.tabControlLinux.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlLinux.Location = new System.Drawing.Point(3, 2);
             this.tabControlLinux.Margin = new System.Windows.Forms.Padding(4);
@@ -450,6 +454,24 @@
             this.tabPageEquations.Text = "equations";
             this.tabPageEquations.UseVisualStyleBackColor = true;
             // 
+            // tabPageDataManagement
+            // 
+            this.tabPageDataManagement.Controls.Add(this.dataManagement1);
+            this.tabPageDataManagement.Location = new System.Drawing.Point(4, 25);
+            this.tabPageDataManagement.Name = "tabPageDataManagement";
+            this.tabPageDataManagement.Size = new System.Drawing.Size(961, 780);
+            this.tabPageDataManagement.TabIndex = 2;
+            this.tabPageDataManagement.Text = "Data Management";
+            this.tabPageDataManagement.UseVisualStyleBackColor = true;
+            // 
+            // dataManagement1
+            // 
+            this.dataManagement1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataManagement1.Location = new System.Drawing.Point(0, 0);
+            this.dataManagement1.Name = "dataManagement1";
+            this.dataManagement1.Size = new System.Drawing.Size(961, 780);
+            this.dataManagement1.TabIndex = 0;
+            // 
             // AdvancedControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -474,6 +496,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPageEncode.ResumeLayout(false);
+            this.tabPageDataManagement.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -514,5 +537,7 @@
         private System.Windows.Forms.TabPage tabPageEquations;
         private System.Windows.Forms.GroupBox groupBox6;
         private GpFixInflow gpFixInflow1;
+        private System.Windows.Forms.TabPage tabPageDataManagement;
+        private DataManagement dataManagement1;
     }
 }
