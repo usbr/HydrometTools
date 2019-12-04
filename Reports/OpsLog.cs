@@ -108,6 +108,9 @@ namespace HydrometTools.Reports
             this.dataGridView1.Columns["logentry"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridView1.Columns["attachmentname"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             this.dataGridView1.Columns["attachmentname"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+            this.dataGridView1.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            this.dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
         }
 
         private void buttonSaveEntry_Click(object sender, EventArgs e)
