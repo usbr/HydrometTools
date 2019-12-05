@@ -111,6 +111,14 @@ namespace HydrometTools.Reports
 
             this.dataGridView1.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
             this.dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+
+            // clear log-entries
+            this.textBoxLogEntry.Text = "";
+            hasAttachment = false;
+            this.labelAttachmentPath.Text = "";
+            this.labelAttachmentSize.Text = "";
+            this.labelAttachmentPath.Visible = hasAttachment;
+            this.labelAttachmentSize.Visible = hasAttachment;
         }
 
         private void buttonSaveEntry_Click(object sender, EventArgs e)
