@@ -101,7 +101,7 @@ namespace FcPlot
                 }
                 if (showFlows)
                 {
-                    this.pcodeInitial.Text = (pt.DailyStationQU + " QU," + pt.StationQD + " QD").ToLower();
+                    this.pcodeInitial.Text = (pt.StationQD + " QU," + pt.StationQD + " QD").ToLower();
                 }
 
                 checkBoxDashed.Visible = pt.StationFC.ToLower() == "heii";
