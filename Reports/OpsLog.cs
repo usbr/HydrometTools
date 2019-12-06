@@ -20,8 +20,8 @@ namespace HydrometTools.Reports
         {
             InitializeComponent();
             this.labelUser.Text = "User: " + Environment.UserName.ToLower();
-            this.dateTimePickerT1.Value = DateTime.Now.AddDays(-3);
-            this.dateTimePickerT2.Value = DateTime.Now;
+            this.dateTimePickerT1.Value = DateTime.Now.Date.AddDays(-10);
+            this.dateTimePickerT2.Value = DateTime.Now.Date.AddDays(1).AddMinutes(-1);
             
             // Populate entries in the ops log
             UpdateLogTable();
