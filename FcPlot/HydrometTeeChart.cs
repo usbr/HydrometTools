@@ -316,12 +316,9 @@ namespace FcPlot
                 foreach (var item in sOutflowShifted)
                 {
                     DateTime sDate1 = new DateTime(customT1.Year, customT1.Month, customT1.Day);
-                    if (customT1.Month <= 9) { sDate1 = new DateTime(sOutflowShifted.MaxDateTime.Year, customT1.Month, customT1.Day); }
                     DateTime sDate2 = new DateTime(customT2.Year, customT2.Month, customT2.Day);
-                    if (customT1.Month <= 9) { sDate2 = new DateTime(sOutflowShifted.MaxDateTime.Year, customT2.Month, customT2.Day); }
                     DateTime sDate3 = new DateTime(customT3.Year, customT3.Month, customT3.Day);
-                    if (customT1.Month <= 9) { sDate3 = new DateTime(sOutflowShifted.MaxDateTime.Year, customT3.Month, customT3.Day); }
-
+                    
                     var ithDate = item.DateTime;
                     if (ithDate >= sDate1 && ithDate < sDate2 && customV1 >= 0)
                     {
