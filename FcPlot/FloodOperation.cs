@@ -195,6 +195,10 @@ namespace FcPlot
             for (int i = 0; i < residual.Count(); i++)
             { // lookup space requirement in reservoir rule curve
                 DateTime avg = residual[i].DateTime;
+                if (avg.Month == 2 && avg.Day == 29)
+                {
+                    avg = avg.AddDays(-1); //[JR] fixes leap-year problem on the res-ops tab
+                }
                 DateTime dt = new DateTime(waterYear, residual[i].DateTime.Month, residual[i].DateTime.Day);
                 double val = -m_ruleCurve.LookupRequiredSpace(avg, residual[i].Value, out flag) * pt.PercentSpace / 100 + pt.TotalUpstreamActiveSpace;
                 if (val >= pt.TotalUpstreamActiveSpace)
