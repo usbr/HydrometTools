@@ -234,6 +234,8 @@ namespace FcPlot
 
             return list[0];
         }
+
+
         /// <summary>
         /// Finds forecast series.  Check if a mid-month forecast exists
         /// and use that if available.  Handle special case for hungry horse (hgh)

@@ -189,7 +189,7 @@ namespace FcPlot
 
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
 
-                if (this.checkBoxShowInstantAF.Checked)
+                if (this.checkBoxShowInstantAF.Checked && pt.UpstreamReservoirs.Length == 1)
                 {
                     // Plots instant storage content data
                     var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], "af");
