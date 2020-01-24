@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Reclamation.Core.MonthDayRange monthDayRange3 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxSumList = new System.Windows.Forms.CheckBox();
             this.buttonToggleMonths = new System.Windows.Forms.Button();
             this.checkBoxUseList = new System.Windows.Forms.CheckBox();
             this.textBoxMultiple = new System.Windows.Forms.TextBox();
@@ -57,13 +58,14 @@
             this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.yearSelector1 = new Reclamation.TimeSeries.Forms.YearSelector();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBoxSumList = new System.Windows.Forms.CheckBox();
+            this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBoxUseInstant);
             this.panel1.Controls.Add(this.checkBoxSumList);
             this.panel1.Controls.Add(this.buttonToggleMonths);
             this.panel1.Controls.Add(this.checkBoxUseList);
@@ -86,6 +88,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1323, 198);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBoxSumList
+            // 
+            this.checkBoxSumList.AutoSize = true;
+            this.checkBoxSumList.Enabled = false;
+            this.checkBoxSumList.Location = new System.Drawing.Point(369, 139);
+            this.checkBoxSumList.Margin = new System.Windows.Forms.Padding(5);
+            this.checkBoxSumList.Name = "checkBoxSumList";
+            this.checkBoxSumList.Size = new System.Drawing.Size(84, 21);
+            this.checkBoxSumList.TabIndex = 18;
+            this.checkBoxSumList.Text = "Sum List";
+            this.checkBoxSumList.UseVisualStyleBackColor = true;
             // 
             // buttonToggleMonths
             // 
@@ -267,12 +281,12 @@
             // checkBoxGP
             // 
             this.checkBoxGP.AutoSize = true;
-            this.checkBoxGP.Location = new System.Drawing.Point(369, 111);
+            this.checkBoxGP.Location = new System.Drawing.Point(400, 169);
             this.checkBoxGP.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxGP.Name = "checkBoxGP";
-            this.checkBoxGP.Size = new System.Drawing.Size(175, 21);
+            this.checkBoxGP.Size = new System.Drawing.Size(129, 21);
             this.checkBoxGP.TabIndex = 10;
-            this.checkBoxGP.Text = "include  se_avg (2001)";
+            this.checkBoxGP.Text = "include  se_avg";
             this.checkBoxGP.UseVisualStyleBackColor = true;
             this.checkBoxGP.Visible = false;
             // 
@@ -380,17 +394,16 @@
             this.yearSelector1.Size = new System.Drawing.Size(428, 31);
             this.yearSelector1.TabIndex = 2;
             // 
-            // checkBoxSumList
+            // checkBoxUseInstant
             // 
-            this.checkBoxSumList.AutoSize = true;
-            this.checkBoxSumList.Enabled = false;
-            this.checkBoxSumList.Location = new System.Drawing.Point(369, 139);
-            this.checkBoxSumList.Margin = new System.Windows.Forms.Padding(5);
-            this.checkBoxSumList.Name = "checkBoxSumList";
-            this.checkBoxSumList.Size = new System.Drawing.Size(84, 21);
-            this.checkBoxSumList.TabIndex = 18;
-            this.checkBoxSumList.Text = "Sum List";
-            this.checkBoxSumList.UseVisualStyleBackColor = true;
+            this.checkBoxUseInstant.AutoSize = true;
+            this.checkBoxUseInstant.Location = new System.Drawing.Point(369, 111);
+            this.checkBoxUseInstant.Margin = new System.Windows.Forms.Padding(5);
+            this.checkBoxUseInstant.Name = "checkBoxUseInstant";
+            this.checkBoxUseInstant.Size = new System.Drawing.Size(135, 21);
+            this.checkBoxUseInstant.TabIndex = 19;
+            this.checkBoxUseInstant.Text = "Use Instant Data";
+            this.checkBoxUseInstant.UseVisualStyleBackColor = true;
             // 
             // SnowGG
             // 
@@ -441,5 +454,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonToggleMonths;
         private System.Windows.Forms.CheckBox checkBoxSumList;
+        private System.Windows.Forms.CheckBox checkBoxUseInstant;
     }
 }

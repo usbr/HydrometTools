@@ -189,9 +189,25 @@ namespace FcPlot
 
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
 
-                hydrometChart1.Fcplot(residForecast.TotalContent, requiredContent, alternateRequiredContent,
-                 alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
-                  dashedLines);
+                if (this.checkBoxShowInstantAF.Checked)
+                {
+                    // Plots instant storage content data
+                    var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], "af");
+                    sInstant.Read(residForecast.TotalContent.MinDateTime, residForecast.TotalContent.MaxDateTime);
+                    sInstant.Name = residForecast.TotalContent.Name;
+                    sInstant.Units = residForecast.TotalContent.Units;
+
+                    hydrometChart1.Fcplot(sInstant, requiredContent, alternateRequiredContent,
+                    alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
+                     dashedLines);
+                }
+                else
+                {
+                    // Plots daily storage content data
+                    hydrometChart1.Fcplot(residForecast.TotalContent, requiredContent, alternateRequiredContent,
+                     alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
+                      dashedLines);
+                }
 
                 //compute the targets
                 if (pt.FillType == FillType.Variable && (showTarget.Checked == true || checkBoxOverrideFcast.Checked == true))

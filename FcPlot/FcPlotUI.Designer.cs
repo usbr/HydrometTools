@@ -59,6 +59,7 @@ namespace FcPlot
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFlagLegend = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBoxShowInstantAF = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageGraph.SuspendLayout();
@@ -69,6 +70,7 @@ namespace FcPlot
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBoxShowInstantAF);
             this.panel1.Controls.Add(this.buttonOpsMenu);
             this.panel1.Controls.Add(this.checkBoxOverrideFcast);
             this.panel1.Controls.Add(this.textBoxOverrideFcast);
@@ -406,6 +408,19 @@ namespace FcPlot
             this.labelFlagLegend.TabIndex = 4;
             this.labelFlagLegend.Text = "label2";
             // 
+            // checkBoxShowInstantAF
+            // 
+            this.checkBoxShowInstantAF.AutoSize = true;
+            this.checkBoxShowInstantAF.Checked = true;
+            this.checkBoxShowInstantAF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowInstantAF.Location = new System.Drawing.Point(1053, 10);
+            this.checkBoxShowInstantAF.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxShowInstantAF.Name = "checkBoxShowInstantAF";
+            this.checkBoxShowInstantAF.Size = new System.Drawing.Size(211, 21);
+            this.checkBoxShowInstantAF.TabIndex = 18;
+            this.checkBoxShowInstantAF.Text = "Show Instantaneous Storage";
+            this.checkBoxShowInstantAF.UseVisualStyleBackColor = true;
+            // 
             // FcPlotUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -458,5 +473,6 @@ namespace FcPlot
         private System.Windows.Forms.TextBox textBoxOverrideFcast;
         private System.Windows.Forms.CheckBox checkBoxOverrideFcast;
         private System.Windows.Forms.Button buttonOpsMenu;
+        private System.Windows.Forms.CheckBox checkBoxShowInstantAF;
     }
 }

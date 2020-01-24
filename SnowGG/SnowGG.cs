@@ -155,7 +155,15 @@ namespace HydrometTools.SnowGG
                     var server = HydrometInfoUtility.HydrometServerFromPreferences();
                     var range = monthRangePicker1.MonthDayRange;
 
-                    Series s = new HydrometDailySeries(cbtt, pcode, server);
+                    Series s;
+                    if (this.checkBoxUseInstant.Checked)
+                    {
+                        s = new HydrometInstantSeries(cbtt, pcode, server);
+                    }
+                    else
+                    {
+                        s = new HydrometDailySeries(cbtt, pcode, server);
+                    }
                     var sl = new SeriesList();
                     sl.Add(s);
 
@@ -368,7 +376,15 @@ namespace HydrometTools.SnowGG
             }
 
             var server = HydrometInfoUtility.HydrometServerFromPreferences();
-            Series s = new HydrometDailySeries(comboBoxCbtt.Text.Trim(), DeterminePcode(),server);
+            Series s;
+            if (this.checkBoxUseInstant.Checked)
+            {
+                s = new HydrometInstantSeries(comboBoxCbtt.Text.Trim(), DeterminePcode(), server);
+            }
+            else
+            {
+                s = new HydrometDailySeries(comboBoxCbtt.Text.Trim(), DeterminePcode(), server);
+            }
             s.Read(t1, t2);
             s.RemoveMissing();
             s.Appearance.LegendText = "";
