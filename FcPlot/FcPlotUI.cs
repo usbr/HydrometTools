@@ -193,7 +193,7 @@ namespace FcPlot
                 {
                     // Plots instant storage content data
                     var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], "af");
-                    sInstant.Read(residForecast.TotalContent.MinDateTime, residForecast.TotalContent.MaxDateTime);
+                    sInstant.Read(residForecast.TotalContent.MinDateTime, residForecast.TotalContent.MaxDateTime.AddDays(1));
                     sInstant.Name = residForecast.TotalContent.Name;
                     sInstant.Units = residForecast.TotalContent.Units;
 
