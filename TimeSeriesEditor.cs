@@ -68,6 +68,7 @@ namespace HydrometTools
         private TimeSeriesSpreadsheet uc;
 #endif
         private Button buttonHideGraph;
+        private Button buttonScalePrecip;
         Steema.TeeChart.Tools.Annotation annotation1;
 
 
@@ -106,6 +107,7 @@ namespace HydrometTools
                 T2 = WaterYear.EndOfWaterYear(DateTime.Now);
                BackColor = Color.AliceBlue;
                groupBoxMonthlyReports.Visible = true;
+                this.buttonScalePrecip.Visible = false;
             }
            if (m_interval == TimeInterval.Daily)
            {
@@ -289,11 +291,12 @@ namespace HydrometTools
             this.Lookbutton = new System.Windows.Forms.Button();
             this.linkLabelOwrd = new System.Windows.Forms.LinkLabel();
             this.linkLabelIdahoPower = new System.Windows.Forms.LinkLabel();
-            this.timeSelectorBeginEndWaterYear1 = new Reclamation.TimeSeries.Forms.TimeSelectorBeginEndWaterYear();
-            this.timeSelector2 = new Reclamation.TimeSeries.Forms.TimeSelectorBeginEnd();
             this.linkLabelPrint = new System.Windows.Forms.LinkLabel();
             this.buttonHideTable = new System.Windows.Forms.Button();
             this.buttonHideGraph = new System.Windows.Forms.Button();
+            this.buttonScalePrecip = new System.Windows.Forms.Button();
+            this.timeSelectorBeginEndWaterYear1 = new Reclamation.TimeSeries.Forms.TimeSelectorBeginEndWaterYear();
+            this.timeSelector2 = new Reclamation.TimeSeries.Forms.TimeSelectorBeginEnd();
             this.panelGraphTable.SuspendLayout();
             this.groupBoxMonthlyReports.SuspendLayout();
             this.SuspendLayout();
@@ -400,14 +403,14 @@ namespace HydrometTools
             this.panelGraphTable.Controls.Add(this.tChart1);
             this.panelGraphTable.Location = new System.Drawing.Point(34, 115);
             this.panelGraphTable.Name = "panelGraphTable";
-            this.panelGraphTable.Size = new System.Drawing.Size(856, 459);
+            this.panelGraphTable.Size = new System.Drawing.Size(1087, 549);
             this.panelGraphTable.TabIndex = 27;
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(510, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(6, 459);
+            this.splitter1.Size = new System.Drawing.Size(6, 549);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
             // 
@@ -429,8 +432,6 @@ namespace HydrometTools
             // 
             // 
             this.tChart1.Axes.Bottom.AxisPen.Width = 1;
-            this.tChart1.Axes.Bottom.Grid.DrawEvery = 1;
-            this.tChart1.Axes.Bottom.Grid.Visible = true;
             // 
             // 
             // 
@@ -584,7 +585,7 @@ namespace HydrometTools
             // 
             // 
             this.tChart1.Panel.Brush.Gradient.Visible = false;
-            this.tChart1.Size = new System.Drawing.Size(510, 459);
+            this.tChart1.Size = new System.Drawing.Size(510, 549);
             this.tChart1.TabIndex = 3;
             // 
             // 
@@ -761,6 +762,56 @@ namespace HydrometTools
             this.linkLabelIdahoPower.Visible = false;
             this.linkLabelIdahoPower.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelIdahoPower_LinkClicked);
             // 
+            // linkLabelPrint
+            // 
+            this.linkLabelPrint.Location = new System.Drawing.Point(266, 88);
+            this.linkLabelPrint.Name = "linkLabelPrint";
+            this.linkLabelPrint.Size = new System.Drawing.Size(50, 24);
+            this.linkLabelPrint.TabIndex = 46;
+            this.linkLabelPrint.TabStop = true;
+            this.linkLabelPrint.Text = "print";
+            this.linkLabelPrint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrint_LinkClicked);
+            // 
+            // buttonHideTable
+            // 
+            this.buttonHideTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHideTable.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.buttonHideTable.Location = new System.Drawing.Point(1121, 115);
+            this.buttonHideTable.Name = "buttonHideTable";
+            this.buttonHideTable.Size = new System.Drawing.Size(25, 546);
+            this.buttonHideTable.TabIndex = 47;
+            this.buttonHideTable.Text = "\r\n>\r\n>\r\n \r\nH\r\ni\r\nd\r\ne\r\n\r\nT\r\na\r\nb\r\nl\r\ne\r\n \r\n>\r\n>";
+            this.buttonHideTable.UseVisualStyleBackColor = true;
+            this.buttonHideTable.Click += new System.EventHandler(this.buttonHideTable_Click);
+            // 
+            // buttonHideGraph
+            // 
+            this.buttonHideGraph.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonHideGraph.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.buttonHideGraph.Location = new System.Drawing.Point(3, 115);
+            this.buttonHideGraph.Name = "buttonHideGraph";
+            this.buttonHideGraph.Size = new System.Drawing.Size(25, 546);
+            this.buttonHideGraph.TabIndex = 48;
+            this.buttonHideGraph.Text = "\r\n<\r\n<\r\n \r\nH\r\ni\r\nd\r\ne\r\n\r\nG\r\nr\r\na\r\np\r\nh\r\n \r\n<\r\n<";
+            this.buttonHideGraph.UseVisualStyleBackColor = true;
+            this.buttonHideGraph.Click += new System.EventHandler(this.buttonHideGraph_Click);
+            // 
+            // buttonScalePrecip
+            // 
+            this.buttonScalePrecip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonScalePrecip.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonScalePrecip.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonScalePrecip.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonScalePrecip.Location = new System.Drawing.Point(998, 7);
+            this.buttonScalePrecip.Name = "buttonScalePrecip";
+            this.buttonScalePrecip.Size = new System.Drawing.Size(148, 23);
+            this.buttonScalePrecip.TabIndex = 49;
+            this.buttonScalePrecip.Text = "Scale Precip Data";
+            this.buttonScalePrecip.UseVisualStyleBackColor = false;
+            this.buttonScalePrecip.Click += new System.EventHandler(this.buttonScalePrecip_Click);
+            // 
             // timeSelectorBeginEndWaterYear1
             // 
             this.timeSelectorBeginEndWaterYear1.Location = new System.Drawing.Point(543, 22);
@@ -782,44 +833,9 @@ namespace HydrometTools
             this.timeSelector2.T2 = new System.DateTime(2010, 5, 10, 11, 44, 21, 531);
             this.timeSelector2.TabIndex = 28;
             // 
-            // linkLabelPrint
-            // 
-            this.linkLabelPrint.Location = new System.Drawing.Point(266, 88);
-            this.linkLabelPrint.Name = "linkLabelPrint";
-            this.linkLabelPrint.Size = new System.Drawing.Size(50, 24);
-            this.linkLabelPrint.TabIndex = 46;
-            this.linkLabelPrint.TabStop = true;
-            this.linkLabelPrint.Text = "print";
-            this.linkLabelPrint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrint_LinkClicked);
-            // 
-            // buttonHideTable
-            // 
-            this.buttonHideTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonHideTable.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.buttonHideTable.Location = new System.Drawing.Point(890, 115);
-            this.buttonHideTable.Name = "buttonHideTable";
-            this.buttonHideTable.Size = new System.Drawing.Size(25, 456);
-            this.buttonHideTable.TabIndex = 47;
-            this.buttonHideTable.Text = "\r\n>\r\n>\r\n \r\nH\r\ni\r\nd\r\ne\r\n\r\nT\r\na\r\nb\r\nl\r\ne\r\n \r\n>\r\n>";
-            this.buttonHideTable.UseVisualStyleBackColor = true;
-            this.buttonHideTable.Click += new System.EventHandler(this.buttonHideTable_Click);
-            // 
-            // buttonHideGraph
-            // 
-            this.buttonHideGraph.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonHideGraph.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.buttonHideGraph.Location = new System.Drawing.Point(3, 115);
-            this.buttonHideGraph.Name = "buttonHideGraph";
-            this.buttonHideGraph.Size = new System.Drawing.Size(25, 456);
-            this.buttonHideGraph.TabIndex = 48;
-            this.buttonHideGraph.Text = "\r\n<\r\n<\r\n \r\nH\r\ni\r\nd\r\ne\r\n\r\nG\r\nr\r\na\r\np\r\nh\r\n \r\n<\r\n<";
-            this.buttonHideGraph.UseVisualStyleBackColor = true;
-            this.buttonHideGraph.Click += new System.EventHandler(this.buttonHideGraph_Click);
-            // 
             // TimeSeriesEditor
             // 
+            this.Controls.Add(this.buttonScalePrecip);
             this.Controls.Add(this.buttonHideGraph);
             this.Controls.Add(this.buttonHideTable);
             this.Controls.Add(this.linkLabelPrint);
@@ -847,7 +863,7 @@ namespace HydrometTools
             this.Controls.Add(this.buttonDownload);
             this.Controls.Add(this.label1);
             this.Name = "TimeSeriesEditor";
-            this.Size = new System.Drawing.Size(918, 574);
+            this.Size = new System.Drawing.Size(1149, 664);
             this.panelGraphTable.ResumeLayout(false);
             this.groupBoxMonthlyReports.ResumeLayout(false);
             this.groupBoxMonthlyReports.PerformLayout();
@@ -931,7 +947,8 @@ namespace HydrometTools
                 hydrometDataTable.AcceptChanges();
                 hydrometDataTable.RowChanged += new DataRowChangeEventHandler(dataTable_RowChanged);
                 Logger.WriteLine(UserPreference.Lookup("HydrometServer"),"ui");
-			}
+                this.buttonUpload.Enabled = true;
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -1545,7 +1562,6 @@ namespace HydrometTools
             }
 
 		}
-
         
 
         private void checkBoxShowBadData_CheckedChanged(object sender, EventArgs e)
@@ -1678,6 +1694,54 @@ namespace HydrometTools
                 this.buttonHideGraph.Text = "\r\n<\r\n<\r\n \r\nH\r\ni\r\nd\r\ne\r\n\r\nG\r\nr\r\na\r\np\r\nh\r\n \r\n<\r\n<";
             }
             graphHidden = !graphHidden;
+        }
+
+        private void buttonScalePrecip_Click(object sender, EventArgs e)
+        {
+            this.buttonUpload.Enabled = false;
+
+            int colSkip;
+            if (m_interval == TimeInterval.Daily) // no flag col
+            {
+                colSkip = 1;
+            }
+            else if (m_interval == TimeInterval.Irregular) // has flag col
+            {
+                colSkip = 2;
+            }
+            else
+            {
+                return;
+            }
+            int ithCol = 1;
+            var tempTable = hydrometDataTable.Copy();
+            while (ithCol < tempTable.Columns.Count)
+            {
+                if (tempTable.Columns[ithCol].ColumnName.ToLower().Contains("pc"))
+                {
+                    double zeroVal = Convert.ToDouble(tempTable.Rows[0][ithCol]);
+                    for (int ithRow = 0; ithRow < tempTable.Rows.Count; ithRow++)
+                    {
+                        try
+                        {
+                            double ithVal = Convert.ToDouble(tempTable.Rows[ithRow][ithCol]);
+                            if (ithVal < zeroVal)
+                            {
+                                zeroVal = ithVal;
+                            }
+                            double diffVal = ithVal - zeroVal;
+                            tempTable.Rows[ithRow][ithCol] = diffVal;
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+                ithCol = ithCol + colSkip;
+            }
+            hydrometDataTable = tempTable;
+            Graph();
         }
     }
 }
