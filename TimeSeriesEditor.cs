@@ -1719,10 +1719,10 @@ namespace HydrometTools
             {
                 if (tempTable.Columns[ithCol].ColumnName.ToLower().Contains("pc"))
                 {
-                    double zeroVal = Convert.ToDouble(tempTable.Rows[0][ithCol]);
-                    for (int ithRow = 0; ithRow < tempTable.Rows.Count; ithRow++)
+                    try
                     {
-                        try
+                        double zeroVal = Convert.ToDouble(tempTable.Rows[0][ithCol]);
+                        for (int ithRow = 0; ithRow < tempTable.Rows.Count; ithRow++)
                         {
                             double ithVal = Convert.ToDouble(tempTable.Rows[ithRow][ithCol]);
                             if (ithVal < zeroVal)
@@ -1732,10 +1732,10 @@ namespace HydrometTools
                             double diffVal = ithVal - zeroVal;
                             tempTable.Rows[ithRow][ithCol] = diffVal;
                         }
-                        catch
-                        {
+                    }
+                    catch
+                    {
 
-                        }
                     }
                 }
                 ithCol = ithCol + colSkip;
