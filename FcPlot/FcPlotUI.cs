@@ -186,48 +186,82 @@ namespace FcPlot
                 }
                 hydrometChart1.SetLabels(pt.Name, "Storage Content (acre-feet)");
 
-
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
 
-                if (this.checkBoxShowInstantAF.Checked && pt.UpstreamReservoirs.Length == 1)
+                // DEFAULT - Plots daily storage content data
+                if (!checkBoxShowInstantAF.Checked && !checkBoxShowElevation.Checked)
                 {
-                    // Plots instant storage content data
-                    var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], "af");
-                    sInstant.Read(residForecast.TotalContent.MinDateTime, residForecast.TotalContent.MaxDateTime.AddDays(1));
-                    sInstant.Name = residForecast.TotalContent.Name;
-                    sInstant.Units = residForecast.TotalContent.Units;
-
-                    hydrometChart1.Fcplot(sInstant, requiredContent, alternateRequiredContent,
-                    alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
-                     dashedLines);
-                }
-                else
-                {
-                    // Plots daily storage content data
                     hydrometChart1.Fcplot(residForecast.TotalContent, requiredContent, alternateRequiredContent,
                      alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
                       dashedLines);
-                }
 
-                //compute the targets
-                if (pt.FillType == FillType.Variable && (showTarget.Checked == true || checkBoxOverrideFcast.Checked == true))
-                { 
-                    if (Convert.ToInt32(this.textBoxWaterYear.Text) == DateTime.Now.WaterYear())
+                    //compute the targets
+                    if (pt.FillType == FillType.Variable && (showTarget.Checked == true || checkBoxOverrideFcast.Checked == true))
                     {
-                        actualContent.RemoveMissing();
-                        var startPt = actualContent[actualContent.Count - 1];
-                        targets = FloodOperation.ComputeTargets(pt, Convert.ToInt32(this.textBoxWaterYear.Text), startPt, 
-                            optionalPercents, checkBoxDashed.Checked, this.checkBoxOverrideFcast.Checked, this.textBoxOverrideFcast.Text);
-                        var aColors = new Color[] {Color.Black,Color.Maroon,Color.Indigo,Color.DarkSlateGray,Color.SaddleBrown };
-                        for (int i = 0; i < targets.Count; i++)
+                        if (Convert.ToInt32(this.textBoxWaterYear.Text) == DateTime.Now.WaterYear())
                         {
-                            var s = targets[i];
-                            var c = Color.Black;
-                            if (i < aColors.Length)
-                                c = aColors[i];
-                            hydrometChart1.CreateTarget(c, s.Name, s, "left");
+                            actualContent.RemoveMissing();
+                            var startPt = actualContent[actualContent.Count - 1];
+                            targets = FloodOperation.ComputeTargets(pt, Convert.ToInt32(this.textBoxWaterYear.Text), startPt,
+                                optionalPercents, checkBoxDashed.Checked, this.checkBoxOverrideFcast.Checked, this.textBoxOverrideFcast.Text);
+                            var aColors = new Color[] { Color.Black, Color.Maroon, Color.Indigo, Color.DarkSlateGray, Color.SaddleBrown };
+                            for (int i = 0; i < targets.Count; i++)
+                            {
+                                var s = targets[i];
+                                var c = Color.Black;
+                                if (i < aColors.Length)
+                                    c = aColors[i];
+                                hydrometChart1.CreateTarget(c, s.Name, s, "left");
+                            }
                         }
-                        
+                    }
+                }
+                else
+                {
+                    string leftPcode = "af";;
+                    if (this.checkBoxShowElevation.Checked)
+                    {
+                        leftPcode = "fb";
+                        hydrometChart1.SetLabels(pt.Name, "Water Level Elevation (feet)");
+
+                        if (alternateRange.IsValid)
+                        {
+                            var sAlternate = new Series();
+                            if (checkBoxShowInstantAF.Checked)
+                            {
+                                sAlternate = new HydrometInstantSeries(pt.UpstreamReservoirs[0], leftPcode);
+                            }
+                            else
+                            {
+                                sAlternate = new HydrometDailySeries(pt.UpstreamReservoirs[0], leftPcode);
+                            }
+                            sAlternate.Read(alternateRange.DateTime1, alternateRange.DateTime2);
+                            sAlternate.Name = this.textBoxAlternateWaterYear.Text + " Actual";
+                            sAlternate.Units = residForecast.TotalContent.Units;
+                            alternateActualContent = sAlternate;
+                        }
+                    }
+
+                    if (pt.UpstreamReservoirs.Length == 1)
+                    {
+                        var s = new Series();
+                        if (checkBoxShowInstantAF.Checked)
+                        {
+                            var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], leftPcode);
+                            s = sInstant;
+                        }
+                        else
+                        {
+                            var sDaily = new HydrometDailySeries(pt.UpstreamReservoirs[0], leftPcode);
+                            s = sDaily;
+                        }
+                        s.Read(residForecast.TotalContent.MinDateTime, residForecast.TotalContent.MaxDateTime.AddDays(1));
+                        s.Name = residForecast.TotalContent.Name;
+                        s.Units = residForecast.TotalContent.Units;
+
+                        hydrometChart1.Fcplot(s, requiredContent, alternateRequiredContent,
+                        alternateActualContent, ruleCurves, labelDates.ToArray(), pt.RequiredLegend, hmList, showRuleCurve,
+                         dashedLines, checkBoxShowElevation.Checked);
                     }
                 }
 

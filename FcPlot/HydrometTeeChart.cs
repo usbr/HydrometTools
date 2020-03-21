@@ -81,7 +81,7 @@ namespace FcPlot
 
         internal void Fcplot(Series actual, Series required, Series alternateRequiredContent,
             Series alternateActualContent, SeriesList ruleCurves, DateTime[] labelDates,
-            String RequiredLegend, SeriesList userInput, bool greenLines, bool dashed)
+            String RequiredLegend, SeriesList userInput, bool greenLines, bool dashed, bool useFB = false)
         {
             tChart1.Zoom.Undo();
             this.tChart1.Series.RemoveAllSeries();
@@ -92,7 +92,7 @@ namespace FcPlot
                     + " must match the number of forecast levels " + ruleCurves.Count);
 
             //add green lines
-            if (greenLines)
+            if (greenLines && !useFB)
             {
                 AddRuleCurves(ruleCurves, labelDates, dashed);
             }
@@ -118,22 +118,41 @@ namespace FcPlot
             //add alternative lines
             if (alternateRequiredContent.Count > 0) //&& required.Count >0)
             {
-                var s = Reclamation.TimeSeries.Math.ShiftToYear(alternateRequiredContent, required[0].DateTime.Year);
-                CreateSeries(Color.BlueViolet, alternateRequiredContent.Name + " " + RequiredLegend, s, "left");
+                var s = new Series();
+                if (!useFB)
+                {
+                    s = Reclamation.TimeSeries.Math.ShiftToYear(alternateRequiredContent, required[0].DateTime.Year);
+                    CreateSeries(Color.BlueViolet, alternateRequiredContent.Name + " " + RequiredLegend, s, "left");
+                }
                 s = Reclamation.TimeSeries.Math.ShiftToYear(alternateActualContent, required[0].DateTime.Year);
                 CreateSeries(Color.LightSkyBlue, alternateActualContent.Name, s, "left");
             }
 
             //add lines
-            CreateSeries(Color.Red, required.Name + " " + RequiredLegend, required, "left", true, 2);
-            CreateSeries(Color.Blue, actual.Name + " Storage", actual, "left", false, 2);
+            if (!useFB)
+            {
+                CreateSeries(Color.Red, required.Name + " " + RequiredLegend, required, "left", true, 2);
+                CreateSeries(Color.Blue, actual.Name + " Storage", actual, "left", false, 2);
+            }
+            else
+            {
+                CreateSeries(Color.Blue, actual.Name + " Elevation", actual, "left", false, 2);
+            }
 
             // zoom out a little..
             double min = 0, max = 0;
             tChart1.Axes.Left.Automatic = true;
             tChart1.Axes.Left.CalcMinMax(ref min, ref max);
-            tChart1.Axes.Left.Maximum = max * 1.01;
-            tChart1.Axes.Left.Minimum = 0;// min - 1000;
+            if (useFB)
+            {
+                tChart1.Axes.Left.Maximum = max + (max - min) * 0.1;
+                tChart1.Axes.Left.Minimum = min - (max - min) * 0.1;
+            }
+            else
+            {
+                tChart1.Axes.Left.Maximum = max * 1.01;
+                tChart1.Axes.Left.Minimum = 0;// min - 1000;
+            }
             tChart1.Axes.Left.Automatic = false;
             //tChart1.Axes.Bottom.in
             //tChart1.Axes.Left.Automatic = true;

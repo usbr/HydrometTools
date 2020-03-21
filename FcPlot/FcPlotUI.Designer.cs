@@ -32,6 +32,7 @@ namespace FcPlot
             this.components = new System.ComponentModel.Container();
             Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxShowElevation = new System.Windows.Forms.CheckBox();
             this.checkBoxShowInstantAF = new System.Windows.Forms.CheckBox();
             this.buttonOpsMenu = new System.Windows.Forms.Button();
             this.checkBoxOverrideFcast = new System.Windows.Forms.CheckBox();
@@ -48,18 +49,18 @@ namespace FcPlot
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAlternateWaterYear = new System.Windows.Forms.TextBox();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.textBoxWaterYear = new System.Windows.Forms.TextBox();
             this.comboBoxSite = new System.Windows.Forms.ComboBox();
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageGraph = new System.Windows.Forms.TabPage();
+            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFlagLegend = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
-            this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageGraph.SuspendLayout();
@@ -70,6 +71,7 @@ namespace FcPlot
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBoxShowElevation);
             this.panel1.Controls.Add(this.checkBoxShowInstantAF);
             this.panel1.Controls.Add(this.buttonOpsMenu);
             this.panel1.Controls.Add(this.checkBoxOverrideFcast);
@@ -96,15 +98,26 @@ namespace FcPlot
             this.panel1.Size = new System.Drawing.Size(1402, 103);
             this.panel1.TabIndex = 2;
             // 
+            // checkBoxShowElevation
+            // 
+            this.checkBoxShowElevation.AutoSize = true;
+            this.checkBoxShowElevation.Location = new System.Drawing.Point(1053, 39);
+            this.checkBoxShowElevation.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBoxShowElevation.Name = "checkBoxShowElevation";
+            this.checkBoxShowElevation.Size = new System.Drawing.Size(126, 21);
+            this.checkBoxShowElevation.TabIndex = 19;
+            this.checkBoxShowElevation.Text = "Show Elevation";
+            this.checkBoxShowElevation.UseVisualStyleBackColor = true;
+            // 
             // checkBoxShowInstantAF
             // 
             this.checkBoxShowInstantAF.AutoSize = true;
             this.checkBoxShowInstantAF.Location = new System.Drawing.Point(1053, 10);
             this.checkBoxShowInstantAF.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxShowInstantAF.Name = "checkBoxShowInstantAF";
-            this.checkBoxShowInstantAF.Size = new System.Drawing.Size(211, 21);
+            this.checkBoxShowInstantAF.Size = new System.Drawing.Size(187, 21);
             this.checkBoxShowInstantAF.TabIndex = 18;
-            this.checkBoxShowInstantAF.Text = "Show Instantaneous Storage";
+            this.checkBoxShowInstantAF.Text = "Show Instant on Left Axis";
             this.checkBoxShowInstantAF.UseVisualStyleBackColor = true;
             // 
             // buttonOpsMenu
@@ -267,6 +280,17 @@ namespace FcPlot
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // monthRangePicker1
+            // 
+            this.monthRangePicker1.AutoSize = true;
+            this.monthRangePicker1.BeginningMonth = 10;
+            this.monthRangePicker1.Location = new System.Drawing.Point(296, 0);
+            this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.monthRangePicker1.MonthDayRange = monthDayRange1;
+            this.monthRangePicker1.Name = "monthRangePicker1";
+            this.monthRangePicker1.Size = new System.Drawing.Size(433, 43);
+            this.monthRangePicker1.TabIndex = 1;
+            // 
             // textBoxWaterYear
             // 
             this.textBoxWaterYear.Location = new System.Drawing.Point(203, 44);
@@ -355,6 +379,15 @@ namespace FcPlot
             this.tabPageGraph.Text = "graph";
             this.tabPageGraph.UseVisualStyleBackColor = true;
             // 
+            // hydrometChart1
+            // 
+            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
+            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.hydrometChart1.Name = "hydrometChart1";
+            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
+            this.hydrometChart1.TabIndex = 1;
+            // 
             // tabPageReport
             // 
             this.tabPageReport.Controls.Add(this.dataGridView1);
@@ -398,26 +431,6 @@ namespace FcPlot
             this.labelFlagLegend.Size = new System.Drawing.Size(46, 17);
             this.labelFlagLegend.TabIndex = 4;
             this.labelFlagLegend.Text = "label2";
-            // 
-            // hydrometChart1
-            // 
-            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
-            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.hydrometChart1.Name = "hydrometChart1";
-            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
-            this.hydrometChart1.TabIndex = 1;
-            // 
-            // monthRangePicker1
-            // 
-            this.monthRangePicker1.AutoSize = true;
-            this.monthRangePicker1.BeginningMonth = 10;
-            this.monthRangePicker1.Location = new System.Drawing.Point(296, 0);
-            this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.monthRangePicker1.MonthDayRange = monthDayRange1;
-            this.monthRangePicker1.Name = "monthRangePicker1";
-            this.monthRangePicker1.Size = new System.Drawing.Size(433, 43);
-            this.monthRangePicker1.TabIndex = 1;
             // 
             // FcPlotUI
             // 
@@ -472,5 +485,6 @@ namespace FcPlot
         private System.Windows.Forms.CheckBox checkBoxOverrideFcast;
         private System.Windows.Forms.Button buttonOpsMenu;
         private System.Windows.Forms.CheckBox checkBoxShowInstantAF;
+        private System.Windows.Forms.CheckBox checkBoxShowElevation;
     }
 }
