@@ -137,6 +137,12 @@ namespace FcPlot
             else
             {
                 CreateSeries(Color.Blue, actual.Name + " Elevation", actual, "left", false, 2);
+                var sDummy = new Series();
+                for (DateTime i = actual.MinDateTime; i < ruleCurves[0].MaxDateTime; i = i.AddDays(1))
+                {
+                    sDummy.Add(i, actual.Values.Average());
+                }
+                CreateSeries(Color.Transparent, "Dummy", sDummy, "left", false, 0);
             }
 
             // zoom out a little..
@@ -155,7 +161,6 @@ namespace FcPlot
             }
             tChart1.Axes.Left.Automatic = false;
             //tChart1.Axes.Bottom.in
-            //tChart1.Axes.Left.Automatic = true;
             //tChart1.Zoom.ZoomPercent(10);
         }
 
