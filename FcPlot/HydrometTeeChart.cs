@@ -85,6 +85,7 @@ namespace FcPlot
         {
             tChart1.Zoom.Undo();
             this.tChart1.Series.RemoveAllSeries();
+            this.tChart1.Tools.Clear();
             tChart1.Axes.Bottom.Labels.Style = Steema.TeeChart.AxisLabelStyle.Value;
 
             if (labelDates.Length != ruleCurves.Count)
@@ -162,6 +163,35 @@ namespace FcPlot
             tChart1.Axes.Left.Automatic = false;
             //tChart1.Axes.Bottom.in
             //tChart1.Zoom.ZoomPercent(10);
+
+            // format nearest point
+            for (int i = 0; i < tChart1.Series.Count; i++)
+            {
+                if (tChart1.Series[i].ToString().Any(x => char.IsLetter(x)))
+                {
+                    Steema.TeeChart.Tools.NearestPoint nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint(tChart1[i]);
+                    nearestPoint1.Pen.Color = tChart1[i].Color;
+                    nearestPoint1.Brush.Color = tChart1[i].Color;
+                    nearestPoint1.Size = 3;
+                    nearestPoint1.Style = Steema.TeeChart.Tools.NearestPointStyles.Circle;
+                    nearestPoint1.DrawLine = false;
+                    tChart1.Tools.Add(nearestPoint1);
+
+                    // set tool-tip text
+                    tChart1[i].GetSeriesMark += Form1_GetSeriesMark;
+                }
+            }            
+
+            // Add point tooltips
+            Steema.TeeChart.Tools.MarksTip marksTip1 = new Steema.TeeChart.Tools.MarksTip(tChart1.Chart);
+            marksTip1.Style = Steema.TeeChart.Styles.MarksStyles.XY;
+            marksTip1.Active = true;
+            marksTip1.MouseDelay = 0;
+            marksTip1.HideDelay = 9999;
+            marksTip1.MouseAction = Steema.TeeChart.Tools.MarksTipMouseAction.Move;
+            marksTip1.BackColor = Color.LightSteelBlue;
+            marksTip1.ForeColor = Color.Black;
+            tChart1.Tools.Add(marksTip1);
         }
 
 
@@ -189,6 +219,8 @@ namespace FcPlot
                 if (idx > 0 && idx < ts.Marks.Items.Count - 1)
                 {
                     ts[idx].Label = s.Name;
+                    ts.Marks.Items[idx].Text = s.Name;
+                    ts.GetSeriesMark += simple_GetSeriesMark;
                     ts.Marks.Items[idx].Visible = true;
                 }
 
@@ -478,6 +510,12 @@ namespace FcPlot
             var val = Convert.ToDouble(series.YValues[e.ValueIndex].ToString()).ToString("#,###,###.##");
             e.MarkText = "Series: " + series.Title + "\r\nDate-Time: " + t.ToString("MM/dd/yyyy HH:mm") + "\r\nValue: " + val;
         }
+
+        void simple_GetSeriesMark(Steema.TeeChart.Styles.Series series, Steema.TeeChart.Styles.GetSeriesMarkEventArgs e)
+        {            
+            e.MarkText = series.Title;
+        }
+
 
         void SetupTChartTools()
         {
