@@ -765,10 +765,6 @@
     <None Include="cfg\rating_tables\bhr_af.csv">
       <Link>cfg\rating_tables\bhr_af.csv</Link>
     </None>
-    <None Include="cfg\RuleCurves\AMF.csv">
-      <Link>cfg\RuleCurves\AMF.csv</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="cfg\RuleCurves\BEUO.csv">
       <Link>cfg\RuleCurves\BEUO.csv</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -75,7 +75,16 @@ namespace FcPlot
         {
             tChart1.Axes.Left.Title.Caption = yAxis;
             tChart1.Axes.Left.FixedLabelSize = false;
-            tChart1.Text = title;            
+            tChart1.Text = title;
+        }
+
+
+        internal void SetRightLabels(string yAxis)
+        {
+            tChart1.Axes.Right.Title.Caption = yAxis;
+            tChart1.Axes.Right.FixedLabelSize = false;
+            tChart1.Axes.Right.Automatic = true;
+            tChart1.Axes.Right.Grid.Visible = false;
         }
 
 
@@ -172,7 +181,7 @@ namespace FcPlot
                     Steema.TeeChart.Tools.NearestPoint nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint(tChart1[i]);
                     nearestPoint1.Pen.Color = tChart1[i].Color;
                     nearestPoint1.Brush.Color = tChart1[i].Color;
-                    nearestPoint1.Size = 3;
+                    nearestPoint1.Size = 5;
                     nearestPoint1.Style = Steema.TeeChart.Tools.NearestPointStyles.Circle;
                     nearestPoint1.DrawLine = false;
                     tChart1.Tools.Add(nearestPoint1);
@@ -187,7 +196,7 @@ namespace FcPlot
             marksTip1.Style = Steema.TeeChart.Styles.MarksStyles.XY;
             marksTip1.Active = true;
             marksTip1.MouseDelay = 0;
-            marksTip1.HideDelay = 9999;
+            marksTip1.HideDelay = 999999;
             marksTip1.MouseAction = Steema.TeeChart.Tools.MarksTipMouseAction.Move;
             marksTip1.BackColor = Color.LightSteelBlue;
             marksTip1.ForeColor = Color.Black;
@@ -541,7 +550,7 @@ namespace FcPlot
             marksTip1.Style = Steema.TeeChart.Styles.MarksStyles.XY;
             marksTip1.Active = true;
             marksTip1.MouseDelay = 0;
-            marksTip1.HideDelay = 9999;
+            marksTip1.HideDelay = 999999;
             marksTip1.MouseAction = Steema.TeeChart.Tools.MarksTipMouseAction.Move;
             marksTip1.BackColor = Color.LightSteelBlue;
             marksTip1.ForeColor = Color.Black;

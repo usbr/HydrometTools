@@ -101,7 +101,8 @@ namespace FcPlot
                 }
                 if (showFlows)
                 {
-                    this.pcodeInitial.Text = (pt.StationQD + " QU," + pt.StationQD + " QD").ToLower();
+                    this.pcodeInitial.Text = (pt.ResOpsInflow + "," + pt.ResOpsOutflow).ToLower();
+                    hydrometChart1.SetRightLabels("Flows (cfs)");
                 }
 
                 checkBoxDashed.Visible = pt.StationFC.ToLower() == "heii";
@@ -185,7 +186,7 @@ namespace FcPlot
                     showRuleCurve = false;
                 }
                 hydrometChart1.SetLabels(pt.Name, "Storage Content (acre-feet)");
-
+                
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
 
                 // DEFAULT - Plots daily storage content data

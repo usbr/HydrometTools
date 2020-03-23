@@ -23,7 +23,7 @@ namespace FcPlot
             this.textBoxSpace.Text = maxSpace.ToString("F0");
             string dams = string.Join(", ", pt.UpstreamReservoirs);
             this.textBoxDams.Text = dams;
-            string inflowCode = pt.StationQD + " QU";
+            string inflowCode = pt.ResOpsInflow;
             this.textBoxInflowCode.Text = inflowCode;
             int maxYear = DateTime.Now.Year - 1;
             if (DateTime.Now.Month > 9)
@@ -32,7 +32,7 @@ namespace FcPlot
             }
             this.numericUpDownInflowYear.Maximum = maxYear;
             this.numericUpDownInflowYear.Value = maxYear;
-            string outflowCode = pt.StationQD + " QD";
+            string outflowCode = pt.ResOpsOutflow;
             this.textBoxOutflowCode.Text = outflowCode;
             this.numericUpDownOutflowYear.Maximum = maxYear;
             this.numericUpDownOutflowYear.Value = maxYear;
