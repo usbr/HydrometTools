@@ -179,6 +179,7 @@ namespace FcPlot
                 if (tChart1.Series[i].ToString().Any(x => char.IsLetter(x)))
                 {
                     Steema.TeeChart.Tools.NearestPoint nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint(tChart1[i]);
+                    nearestPoint1.Direction = Steema.TeeChart.Tools.NearestPointDirection.Horizontal;
                     nearestPoint1.Pen.Color = tChart1[i].Color;
                     nearestPoint1.Brush.Color = tChart1[i].Color;
                     nearestPoint1.Size = 5;
@@ -532,6 +533,7 @@ namespace FcPlot
 
             // format nearest point
             Steema.TeeChart.Tools.NearestPoint nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint(tChart1.Chart);
+            nearestPoint1.Direction = Steema.TeeChart.Tools.NearestPointDirection.Horizontal;
             nearestPoint1.Pen.Color = System.Drawing.Color.Black;
             nearestPoint1.Brush.Color = System.Drawing.Color.Black;
             nearestPoint1.Size = 0;
