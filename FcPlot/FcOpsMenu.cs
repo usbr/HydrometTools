@@ -36,14 +36,35 @@ namespace FcPlot
             this.textBoxOutflowCode.Text = outflowCode;
             this.numericUpDownOutflowYear.Maximum = maxYear;
             this.numericUpDownOutflowYear.Value = maxYear;
-            this.dateTimePickerCustomOutflow1.Value = DateTime.Now.Date;
-            this.dateTimePickerCustomOutflow2.Value = DateTime.Now.Date.AddDays(5);
-            this.dateTimePickerCustomOutflow3.Value = DateTime.Now.Date.AddDays(10);
             this.dateTimePickerSimStart.MaxDate = DateTime.Now.Date;
             this.comboBoxEspDay.SelectedItem = this.comboBoxEspDay.Items[1];
             this.comboBoxEspTraces.SelectedItem = this.comboBoxEspTraces.Items[0];
             this.toolStripStatusLabel1.Text = "";
             this.textBoxRfcNode.Text = pt.EspNode;
+
+            // Fill outflow datagrid
+            var qOutTable = new System.Data.DataTable();
+            qOutTable.Columns.Add("Outflow", typeof(Int64));
+            qOutTable.Columns.Add("StartDate", typeof(DateTime));
+            qOutTable.Columns.Add("EndDate", typeof(DateTime));
+            var qOutRow = qOutTable.NewRow();
+            qOutRow["StartDate"] = DateTime.Now.Date;
+            qOutRow["EndDate"] = DateTime.Now.AddDays(10).Date;
+            var s = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1]);
+            s.Read(DateTime.Now.AddDays(-1).Date, DateTime.Now.Date);
+            try
+            {
+                qOutRow["Outflow"] = s[0].Value;
+            }
+            catch
+            {
+                qOutRow["Outflow"] = -99;
+            }
+            qOutTable.Rows.Add(qOutRow);
+            this.dataGridView1.DataSource = qOutTable;
+            this.dataGridView1.Columns[1].ReadOnly = true;
+            this.dataGridView1.Columns[1].DefaultCellStyle.ForeColor = System.Drawing.Color.Gray;
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
 
             // Handle ENTER key press
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
@@ -72,7 +93,27 @@ namespace FcPlot
 
         private void Operate()
         {
-            ui.hydrometChart1.FcOps(ui, pt, this);
+            if (this.comboBoxEspTraces.SelectedItem.ToString().ToLower() == "cycle all")
+            {
+                this.checkBoxRedrawGraph.Checked = false;
+                this.checkBoxHideLegend.Checked = true;
+                foreach (string item in this.comboBoxEspTraces.Items)
+                {
+                    int idxVal;
+                    if (int.TryParse(item, out idxVal))
+                    {
+                        int idxNum = comboBoxEspTraces.Items.IndexOf(idxVal.ToString());
+                        this.comboBoxEspTraces.SelectedIndex = idxNum;
+                        ui.hydrometChart1.FcOps(ui, pt, this);
+                    }
+                }
+                this.checkBoxRedrawGraph.Checked = true;
+                this.checkBoxHideLegend.Checked = false;
+            }
+            else
+            {
+                ui.hydrometChart1.FcOps(ui, pt, this);
+            }
         }
 
         private void buttonOperate_Click(object sender, EventArgs e)
@@ -85,17 +126,12 @@ namespace FcPlot
             if (e.KeyChar == (char)Keys.Return)
             {
                 Operate();
-                // Then Do your Thang
             }
         }
 
         private void checkBoxUseCustomOutflow_CheckedChanged(object sender, EventArgs e)
         {
-            this.dateTimePickerCustomOutflow1.Enabled = checkBoxUseCustomOutflow.Checked;
-            this.dateTimePickerCustomOutflow2.Enabled = checkBoxUseCustomOutflow.Checked;
-            this.dateTimePickerCustomOutflow3.Enabled = checkBoxUseCustomOutflow.Checked;
-            this.textBoxCustomOutflow1.Enabled = checkBoxUseCustomOutflow.Checked;
-            this.textBoxCustomOutflow2.Enabled = checkBoxUseCustomOutflow.Checked;
+            this.dataGridView1.Enabled = checkBoxUseCustomOutflow.Checked;
             this.dateTimePickerSimStart.Value = this.dateTimePickerSimStart.MaxDate;
             this.dateTimePickerSimStart.Enabled = !checkBoxUseCustomOutflow.Checked;
         }
@@ -110,6 +146,9 @@ namespace FcPlot
             this.comboBoxEspTraces.Enabled = checkBoxUseCustomInflow.Checked;
             this.dateTimePickerSimStart.Value = this.dateTimePickerSimStart.MaxDate;
             this.dateTimePickerSimStart.Enabled = !checkBoxUseCustomInflow.Checked;
+            this.numericUpDownInflowYear.Enabled = !checkBoxUseCustomInflow.Checked;
+            this.numericUpDownInflowShift.Enabled = !checkBoxUseCustomInflow.Checked;
+            this.textBoxInflowScale.Enabled = !checkBoxUseCustomInflow.Checked;
         }
 
         public SeriesList espList;
@@ -128,7 +167,7 @@ namespace FcPlot
             {
                 rfcURL += "watersupply/";
             }
-            rfcURL += this.textBoxRfcNode.Text + ".ESPF" + this.comboBoxEspDay.SelectedItem.ToString() + ".csv";
+            rfcURL += this.textBoxRfcNode.Text + ".ESPF" + this.comboBoxEspDay.SelectedItem.ToString().Split('|')[0].Trim() + ".csv";
             
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(rfcURL);
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
@@ -212,8 +251,21 @@ namespace FcPlot
             {
                 comboBoxEspTraces.Items.Add(item.Name);
             }
-            comboBoxEspTraces.SelectedItem = comboBoxEspTraces.Items[comboBoxEspTraces.Items.Count- 1];
+            comboBoxEspTraces.Items.Add("CYCLE ALL");
+            comboBoxEspTraces.SelectedItem = comboBoxEspTraces.Items[comboBoxEspTraces.Items.Count - 1];
         }
 
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (e.RowIndex > 0)
+            {
+                System.Data.DataTable qOutTable = (System.Data.DataTable)this.dataGridView1.DataSource;
+                DateTime t = (DateTime)qOutTable.Rows[e.RowIndex - 2]["EndDate"];
+
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex - 1];
+                row.Cells[1].Value = t.AddDays(1).Date;
+                row.Cells[2].Value = t.AddDays(10).Date;
+            }
+        }
     }
 }

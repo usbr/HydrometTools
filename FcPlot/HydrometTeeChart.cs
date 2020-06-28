@@ -372,35 +372,25 @@ namespace FcPlot
             sOutflowShifted = sOutflowShifted * outflowScaleValue;
             if (opsUI.checkBoxUseCustomOutflow.Checked) //apply custom outflow
             {
-                DateTime customT1 = opsUI.dateTimePickerCustomOutflow1.Value;
-                DateTime customT2 = opsUI.dateTimePickerCustomOutflow2.Value;
-                DateTime customT3 = opsUI.dateTimePickerCustomOutflow3.Value;
-                var customV1 = Convert.ToInt32(opsUI.textBoxCustomOutflow1.Text);
-                var customV2 = Convert.ToInt32(opsUI.textBoxCustomOutflow2.Text);
-
-                Series rval = sOutflowShifted.Clone();
-                foreach (var item in sOutflowShifted)
+                DataTable qOutTable = (DataTable)opsUI.dataGridView1.DataSource;
+                var sCustomOutflow = new Series();
+                foreach (DataRow qRow in qOutTable.Rows)
                 {
-                    DateTime sDate1 = new DateTime(customT1.Year, customT1.Month, customT1.Day);
-                    DateTime sDate2 = new DateTime(customT2.Year, customT2.Month, customT2.Day);
-                    DateTime sDate3 = new DateTime(customT3.Year, customT3.Month, customT3.Day);
-                    
-                    var ithDate = item.DateTime;
-                    if (ithDate >= sDate1 && ithDate < sDate2 && customV1 >= 0)
+                    DateTime qOutT1 = (DateTime)qRow["StartDate"];
+                    DateTime qOutT2 = (DateTime)qRow["EndDate"];
+                    double qOutVal = (Int64)qRow["Outflow"];
+                    for (DateTime ithDate = qOutT1; ithDate <= qOutT2; ithDate = ithDate.AddDays(1))
                     {
-                        rval.Add(ithDate, customV1);
-                    }
-                    else if (ithDate >= sDate2 && ithDate < sDate3 && customV2 >= 0)
-                    {
-                        rval.Add(ithDate, customV2);
-                    }
-                    else
-                    {
-                        rval.Add(item);
+                        if (sCustomOutflow.IndexOf(ithDate) >= 0)
+                        {
+                            sCustomOutflow.RemoveAt(ithDate);
+                        }
+                        sCustomOutflow.Add(ithDate, qOutVal);
                     }
                 }
-                sOutflowShifted = rval;
+                sOutflowShifted = Reclamation.TimeSeries.Math.Merge(sCustomOutflow, sOutflowShifted);                
             }
+
             CreateSeries(System.Drawing.Color.Plum, outflowYear + "-Outflow", sOutflowShifted, "right", true);
 
             // Process simulation inflow curve
@@ -485,6 +475,7 @@ namespace FcPlot
             tChart1.Axes.Right.Grid.Visible = false;
             tChart1.Axes.Right.Title.Caption = "Flow (cfs)";
             tChart1.Axes.Right.FixedLabelSize = false;
+            tChart1.Legend.Visible = !opsUI.checkBoxHideLegend.Checked;
             SetupTChartTools();
             opsUI.toolStripStatusLabel1.Text = "Showing results for (" + inflowYear + "-Qin | " + outflowYear + "-Qout)";
         }
