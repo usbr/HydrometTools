@@ -168,9 +168,17 @@ namespace FcPlot
                 rfcURL += "watersupply/";
             }
             rfcURL += this.textBoxRfcNode.Text + ".ESPF" + this.comboBoxEspDay.SelectedItem.ToString().Split('|')[0].Trim() + ".csv";
-            
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(rfcURL);
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            HttpWebResponse resp;
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(rfcURL);
+                resp = (HttpWebResponse)req.GetResponse();
+            }
+            catch
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(rfcURL.Replace("natural", "unadjusted"));
+                resp = (HttpWebResponse)req.GetResponse();
+            }
             StreamReader sr = new StreamReader(resp.GetResponseStream());
             string rfcDataString = sr.ReadToEnd();
             
