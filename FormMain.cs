@@ -59,6 +59,8 @@ namespace HydrometTools
         private TabPage tabPageFloodControl;
         private FcPlot.FcPlotUI fcUi;
 
+        private bool compilePublic = true;
+
         public FormMain()
         {
             var host = HydrometInfoUtility.HydrometServerFromPreferences();
@@ -81,8 +83,12 @@ namespace HydrometTools
             TabPageManager tabManager = new TabPageManager(tabControl1);
             Logger.OnLogEvent += new StatusEventHandler(Logger_OnLogEvent);
             UpdateTabs();
-            //MakeMinimalVersion();
             this.Text = "Hydromet/Agrimet Tools V" + Application.ProductVersion;
+            if (compilePublic)
+            {
+                MakeMinimalVersion();
+                this.Text += "(PUBLIC)";
+            }
         }
 
         private void MakeMinimalVersion()
@@ -92,8 +98,8 @@ namespace HydrometTools
             this.tabControl1.Controls.Remove(this.tabPageMPoll);
             //this.tabControl1.Controls.Remove(this.tabPageSnowGG);
             //this.tabControl1.Controls.Remove(this.tabPageSetup);
-            this.setup1.HideNotificationSettings();
-            this.setup1.HideAlarms();
+            //this.setup1.HideNotificationSettings();
+            //this.setup1.HideAlarms();
             this.tabControl1.Controls.Remove(this.tabPageUpdater);
             this.tabControl1.Controls.Remove(this.tabPageRating);
             this.tabControl1.Controls.Remove(this.tabPageAdvanced);
@@ -101,8 +107,9 @@ namespace HydrometTools
             this.tabControl1.Controls.Remove(this.tabPageHydrographEditor);
             this.tabControl1.Controls.Remove(this.tabPageStats);
             this.tabControl1.Controls.Remove(this.tabPageReports);
-            this.tabControl1.Controls.Remove(this.tabPageFcplot);
+            this.tabControl1.Controls.Remove(this.tabPageFloodControl);
             this.tabControl1.Controls.Remove(this.tabPageRecords);
+            this.tabControl1.Controls.Remove(this.tabPageShifts);
         }
 
         void Logger_OnLogEvent(object sender, StatusEventArgs e)
