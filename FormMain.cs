@@ -59,7 +59,7 @@ namespace HydrometTools
         private TabPage tabPageFloodControl;
         private FcPlot.FcPlotUI fcUi;
 
-        private bool compilePublic = true;
+        private bool compilePublic = false;
 
         public FormMain()
         {
@@ -549,14 +549,14 @@ namespace HydrometTools
 
             if (tabControl1.SelectedTab == tabPageArc && arcEditor == null)
             {
-                arcEditor = new TimeSeriesEditor(TimeInterval.Daily);
+                arcEditor = new TimeSeriesEditor(TimeInterval.Daily, compilePublic);
                 arcEditor.Parent = tabPageArc;
                 arcEditor.Dock = DockStyle.Fill;
             }
             else
                 if (tabControl1.SelectedTab == tabPageDay && dayEditor == null)
             {
-                dayEditor = new TimeSeriesEditor(TimeInterval.Irregular);
+                dayEditor = new TimeSeriesEditor(TimeInterval.Irregular, compilePublic);
                 dayEditor.Parent = tabPageDay;
                 dayEditor.Dock = DockStyle.Fill;
             }
@@ -565,7 +565,7 @@ namespace HydrometTools
             {
                 HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
 
-                mpollEditor = new TimeSeriesEditor(TimeInterval.Monthly);
+                mpollEditor = new TimeSeriesEditor(TimeInterval.Monthly, compilePublic);
                 mpollEditor.Parent = tabPageMPoll;
                 mpollEditor.Dock = DockStyle.Fill;
             }
@@ -573,7 +573,7 @@ namespace HydrometTools
             {
                 if (setup1 == null)
                 {
-                    setup1 = new Settings();
+                    setup1 = new Settings(compilePublic);
                     setup1.Parent = tabPageSetup;
                     setup1.Dock = DockStyle.Fill;
                 }

@@ -37,7 +37,7 @@ namespace HydrometTools
         private Label label1;
         private Button buttonShowPassword;
         bool Ready = false;
-		public Settings()
+		public Settings(bool compilePublic = false)
 		{
             serverSelection1 = new Reclamation.TimeSeries.Forms.Hydromet.ServerSelection();
 			InitializeComponent();
@@ -47,6 +47,13 @@ namespace HydrometTools
             c.Parent = tabPageNotifications;
             c.Dock = DockStyle.Fill;
             c.Visible = true;
+            if (compilePublic)
+            {
+                groupBox1.Visible = false;
+                this.tabControl1.Controls.Remove(tabPageAlarms);
+                this.tabControl1.Controls.Remove(tabPageLog);
+                this.tabControl1.Controls.Remove(tabPageNotifications);
+            }
 		}
 
         internal void HideNotificationSettings()

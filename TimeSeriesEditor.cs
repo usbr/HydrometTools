@@ -72,9 +72,9 @@ namespace HydrometTools
         Steema.TeeChart.Tools.Annotation annotation1;
 
 
-		public TimeSeriesEditor(TimeInterval db)
-		{
-			InitializeComponent();
+        public TimeSeriesEditor(TimeInterval db, bool compilePublic = false)
+        {
+            InitializeComponent();
 #if SpreadsheetGear
             uc = new TimeSeriesSpreadsheetSG();
 #else
@@ -93,55 +93,59 @@ namespace HydrometTools
             this.checkBoxShowPoints.Checked = UserPreference.Lookup("ShowPoints") == "True";
 
             annotation1 = new Steema.TeeChart.Tools.Annotation(tChart1.Chart);
-            
-            originalDataXmlFilename = Path.Combine(FileUtility.GetTempPath(), db.ToString() +DateTime.Now.Ticks+ "_download.xml");
+
+            originalDataXmlFilename = Path.Combine(FileUtility.GetTempPath(), db.ToString() + DateTime.Now.Ticks + "_download.xml");
 
             checkBoxShowBadData.Visible = false;
             T1 = DateTime.Now.AddDays(-5);
             T2 = DateTime.Now;
 
-            Logger.WriteLine(m_interval.ToString(),"ui");
+            Logger.WriteLine(m_interval.ToString(), "ui");
             if (m_interval == TimeInterval.Monthly)
             {
                 T1 = WaterYear.BeginningOfWaterYear(DateTime.Now);
                 T2 = WaterYear.EndOfWaterYear(DateTime.Now);
-               BackColor = Color.AliceBlue;
-               groupBoxMonthlyReports.Visible = true;
+                BackColor = Color.AliceBlue;
+                groupBoxMonthlyReports.Visible = true;
                 this.buttonScalePrecip.Visible = false;
             }
-           if (m_interval == TimeInterval.Daily)
-           {
+            if (m_interval == TimeInterval.Daily)
+            {
                 T2 = DateTime.Now.Date.AddDays(-1);
                 BackColor = Color.Lavender;
-           }
+            }
 
-           if (m_interval == TimeInterval.Irregular)
-           {
-               checkBoxShowBadData.Visible = true;
-               comboBoxInterval.Visible = true;
-               labelFillGap.Visible = true;
-               comboBoxInterval.SelectedIndex = 0;
-           }
-            
-			dragPoint1 = new Steema.TeeChart.Tools.DragPoint();
-			this.dragPoint1.Style = Steema.TeeChart.Tools.DragPointStyles.Y;
-			this.tChart1.Tools.Add(this.dragPoint1);
-			this.dragPoint1.Drag += new Steema.TeeChart.Tools.DragPointEventHandler(this.dragPoint1_Drag);
+            if (m_interval == TimeInterval.Irregular)
+            {
+                checkBoxShowBadData.Visible = true;
+                comboBoxInterval.Visible = true;
+                labelFillGap.Visible = true;
+                comboBoxInterval.SelectedIndex = 0;
+            }
 
+            dragPoint1 = new Steema.TeeChart.Tools.DragPoint();
+            this.dragPoint1.Style = Steema.TeeChart.Tools.DragPointStyles.Y;
+            this.tChart1.Tools.Add(this.dragPoint1);
+            this.dragPoint1.Drag += new Steema.TeeChart.Tools.DragPointEventHandler(this.dragPoint1_Drag);
 
             tChart1.MouseMove += new MouseEventHandler(tChart1_MouseMove);
             var nearest = new Steema.TeeChart.Tools.NearestPoint(tChart1.Chart);
 
-			LoadSiteList();
+            LoadSiteList();
             this.comboBoxInputs.Text = UserPreference.Lookup("Inputs" + m_interval.ToString());
 
-            
-			this.dragPoint1.Active = false;
-			this.dragPoint1.Series = null;
-        //    HydrometEdits.Progress += new ProgressEventHandler(HydrometEdits_Progress);
+
+            this.dragPoint1.Active = false;
+            this.dragPoint1.Series = null;
+            //    HydrometEdits.Progress += new ProgressEventHandler(HydrometEdits_Progress);
+
+            if (compilePublic)
+            {
+                this.buttonUpload.Visible = false;
+            }
 
             timeSeriesSpreadsheet1.UpdateCompleted += new EventHandler<EventArgs>(timeSeriesSpreadsheet1_UpdateCompleted);
-		}
+        }
 
         private DateTime T1
         {
