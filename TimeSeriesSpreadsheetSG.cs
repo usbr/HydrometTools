@@ -51,7 +51,6 @@ namespace HydrometTools
         ToolStripMenuItem ExcelMenu;
         ToolStripMenuItem SpreadsheetMenu;
         ToolStripItem regressionMenu;
-        
 
         private void SetupContextMenu()
         {
@@ -66,7 +65,7 @@ namespace HydrometTools
                 }
                 if (item.Text == "Cu&t")
                     cutMenu = item;
-                
+
             }
             foreach (ToolStripItem item in removeList)
             {
@@ -74,12 +73,12 @@ namespace HydrometTools
             }
 
             wbView.ContextMenuStrip.Items.Add(new ToolStripSeparator());
-            
+
             interpolateMenu = wbView.ContextMenuStrip.Items.Add("Interpolate");
             interpolateMenu.Click += new EventHandler(interpolateMenu_Click);
 
             pasteMenu = wbView.ContextMenuStrip.Items.Add("&Paste");
-           pasteMenu.Click += new EventHandler(pasteMenu_Click);
+            pasteMenu.Click += new EventHandler(pasteMenu_Click);
 
 
             calculateMenu = wbView.ContextMenuStrip.Items.Add("Calculate");
@@ -89,7 +88,7 @@ namespace HydrometTools
             showEquationMenu.Click += showEquationMenu_Click;
 
 
-            
+
             wbView.ContextMenuStrip.Items.Add(new ToolStripSeparator());
 
 
@@ -107,13 +106,13 @@ namespace HydrometTools
             SpreadsheetMenu = new ToolStripMenuItem("Full View Spreadsheet");
             SpreadsheetMenu.Click += new EventHandler(SpreadsheetMenu_Click);
             wbView.ContextMenuStrip.Items.Add(SpreadsheetMenu);
-            
+
             ExcelMenu = new ToolStripMenuItem("Open in Excel");
             ExcelMenu.Click += new EventHandler(ExcelMenu_Click);
             wbView.ContextMenuStrip.Items.Add(ExcelMenu);
 
 
-            var advanced= new ToolStripMenuItem("Advanced");
+            var advanced = new ToolStripMenuItem("Advanced");
             wbView.ContextMenuStrip.Items.Add(advanced);
             interpolateWithStyleMenu = advanced.DropDownItems.Add("Interpolate with Style!");
             interpolateWithStyleMenu.ToolTipText = "Select two equal sized vertical ranges (one with a gap, one without)";
@@ -616,24 +615,26 @@ namespace HydrometTools
             }
         }
 
-       
+
         private void FormatCells(TimeInterval db)
         {
             if (db == TimeInterval.Irregular)
+            {
+                for (int i = 1; i < m_dataTable.Columns.Count; i += 2)
                 {
-                    for (int i = 1; i < m_dataTable.Columns.Count; i+=2)
-                    {
-                        string dataColumn = SpreadsheetGearExcel.ReferenceFromIndex(i);
-                        string flagColumn = SpreadsheetGearExcel.ReferenceFromIndex(i + 1);
-                        ConditionalFormatting(dataColumn,flagColumn);
-                    }
+                    string dataColumn = SpreadsheetGearExcel.ReferenceFromIndex(i);
+                    string flagColumn = SpreadsheetGearExcel.ReferenceFromIndex(i + 1);
+                    ConditionalFormatting(dataColumn, flagColumn);
                 }
-                else
-                    if (db == TimeInterval.Monthly)
-                    {
-                        string dateRange = "A:A";// +m_dataTable.Rows.Count.ToString();
-                        worksheet.Range[dateRange].NumberFormat = "mmm yyyy";
-                    }
+            }
+            else if (db == TimeInterval.Monthly)
+            {
+                string dateRange = "A:A";// +m_dataTable.Rows.Count.ToString();
+                worksheet.Range[dateRange].NumberFormat = "mmm yyyy";
+            }
+
+            worksheet.Range["A:A"].Interior.Color = SpreadsheetGear.Colors.LightGray;
+            worksheet.Range["1:1"].Interior.Color = SpreadsheetGear.Colors.LightGray;
         }
 
 
