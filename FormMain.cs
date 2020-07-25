@@ -495,7 +495,6 @@ namespace HydrometTools
             catch (Exception)
             {
 
-
             }
         }
 
@@ -513,6 +512,7 @@ namespace HydrometTools
             }
             catch (Exception)
             {
+
             }
         }
 
@@ -527,19 +527,18 @@ namespace HydrometTools
             UpdateTabs();
         }
 
-
         Control advanced = null;
-
-
         private Stats.StatsControl statsControl1;
         private Reports.Reports reportControl1;
         private SnowGG.SnowGG snowGG1;
         private ImportDaily import1;
         DailyRecordWorkup records;
         private Shift.ShiftInput shifts;
+
         private void UpdateTabs()
         {
             this.tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+
             if (tabControl1.SelectedTab == tabPageAdvanced && advanced == null)
             {
                 if (Login.AdminPasswordIsValid())
@@ -556,23 +555,23 @@ namespace HydrometTools
                 arcEditor.Parent = tabPageArc;
                 arcEditor.Dock = DockStyle.Fill;
             }
-            else
-                if (tabControl1.SelectedTab == tabPageDay && dayEditor == null)
+
+            if (tabControl1.SelectedTab == tabPageDay && dayEditor == null)
             {
                 dayEditor = new TimeSeriesEditor(TimeInterval.Irregular, compilePublic);
                 dayEditor.Parent = tabPageDay;
                 dayEditor.Dock = DockStyle.Fill;
             }
-            else
-                    if (tabControl1.SelectedTab == tabPageMPoll && mpollEditor == null)
+
+            if (tabControl1.SelectedTab == tabPageMPoll && mpollEditor == null)
             {
                 HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
-
                 mpollEditor = new TimeSeriesEditor(TimeInterval.Monthly, compilePublic);
                 mpollEditor.Parent = tabPageMPoll;
                 mpollEditor.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageSetup)
+
+            if (tabControl1.SelectedTab == tabPageSetup)
             {
                 if (setup1 == null)
                 {
@@ -582,53 +581,60 @@ namespace HydrometTools
                 }
                 setup1.ReadUserPref();
             }
+
             //else if( tabControl1.SelectedTab == tabPageGraphTool && graphTabs == null)
             //{
             //    graphTabs = new Graphing.GraphingTabs();
             //    graphTabs.Parent = tabPageGraphTool;
             //    graphTabs.Dock = DockStyle.Fill;
             //}
-            else if (tabControl1.SelectedTab == tabPageHydrographEditor && hydroEditor == null)
+
+            if (tabControl1.SelectedTab == tabPageHydrographEditor && hydroEditor == null)
             {
                 hydroEditor = new TimeSeriesHydrographEditor(TimeInterval.Daily);
                 hydroEditor.Parent = tabPageHydrographEditor;
                 hydroEditor.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageFcplot && fcUi == null)
+
+            if (tabControl1.SelectedTab == tabPageFcplot && fcUi == null)
             {
                 fcUi = new FcPlot.FcPlotUI();
                 fcUi.Parent = tabPageFcplot;
                 fcUi.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageStats && statsControl1 == null)
+
+            if (tabControl1.SelectedTab == tabPageStats && statsControl1 == null)
             {
                 statsControl1 = new Stats.StatsControl();
                 statsControl1.Parent = tabPageStats;
                 statsControl1.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageReports && reportControl1 == null)
+
+            if (tabControl1.SelectedTab == tabPageReports && reportControl1 == null)
             {
                 reportControl1 = new Reports.Reports(); //new Reports.YakimaStatus();
                 reportControl1.Parent = tabPageReports;
                 reportControl1.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageSnowGG && snowGG1 == null)
+
+            if (tabControl1.SelectedTab == tabPageSnowGG && snowGG1 == null)
             {
                 snowGG1 = new SnowGG.SnowGG();
                 snowGG1.Parent = tabPageSnowGG;
                 snowGG1.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageUpdater && import1 == null)
+
+            if (tabControl1.SelectedTab == tabPageUpdater && import1 == null)
             {
                 import1 = new ImportDaily();
                 import1.Parent = tabPageDailyImport;
                 import1.Dock = DockStyle.Fill;
-
                 var fdr = new Import.ImportFDRTemperature();
                 fdr.Parent = tabPageFdrImport;
                 fdr.Dock = DockStyle.Fill;
             }
-            else if (tabControl1.SelectedTab == tabPageRecords && records == null)
+
+            if (tabControl1.SelectedTab == tabPageRecords && records == null)
             {
                 records = new DailyRecordWorkup();
                 records.Parent = tabPageRecords;
@@ -655,19 +661,6 @@ namespace HydrometTools
                     this.tabControl1.TabPages.Remove(tabPageFcplot);
                 }
             }
-
-        }
-
-
-
-        private void linkLabelHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(FileUtility.GetFileReference("Hydromet Tools User Manual.pdf"));
-        }
-
-        private void richTextBoxLog_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         // format active tab label text
