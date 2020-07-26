@@ -1,5 +1,5 @@
 #define AppName "Hydromet Tools"
-#define SrcApp ".\bin\debug\HydrometTools.exe"
+#define SrcApp ".\bin\Debug\HydrometTools.exe"
 #define FileVerStr GetFileVersion(SrcApp)
 #define public StripBuild(str aVerStr) Copy(aVerStr, 1, RPos(".", aVerStr)-1)
 #define AppVerStr StripBuild(FileVerStr)
@@ -40,39 +40,39 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";  GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked   
 
 [Files]
-Source:  "bin\debug\HydrometTools.exe";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\HydrometNotifications.exe";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\HydrometTools.exe.config";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Aga.Controls.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\ICSharpCode.SharpZipLib.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Reclamation.Core.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Reclamation.TimeSeries.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Reclamation.TimeSeries.Excel.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Reclamation.TimeSeries.Forms.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Reclamation.TimeSeries.Graphing.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Pisces.exe";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\pscp.exe";   DestDir: "{app}";   Flags: ignoreversion
-;Source:  "bin\debug\Excel.dll";   DestDir: "{app}";   Flags: ignoreversion
-;Source:  "bin\debug\SpreadsheetGear.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\SpreadsheetGear2012.Core.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\SpreadsheetGear2012.Drawing.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\SpreadsheetGear2012.Windows.Forms.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\TeeChart.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\HydrometNotifications.exe";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Npgsql.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\ZedGraph.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\DgvFilterPopup.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\System.Threading.Tasks.Extensions.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Renci.SshNet.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\Newtonsoft.Json.dll";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\RestSharp.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\HydrometTools.exe";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\HydrometNotifications.exe";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\HydrometTools.exe.config";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Aga.Controls.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\ICSharpCode.SharpZipLib.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reclamation.Core.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reclamation.TimeSeries.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reclamation.TimeSeries.Excel.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reclamation.TimeSeries.Forms.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reclamation.TimeSeries.Graphing.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Pisces.exe";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\thirdparty\pscp.exe";   DestDir: "{app}";   Flags: ignoreversion
+;Source:  "bin\Debug\Excel.dll";   DestDir: "{app}";   Flags: ignoreversion
+;Source:  "bin\Debug\SpreadsheetGear.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\SpreadsheetGear2012.Core.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\SpreadsheetGear2012.Drawing.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\SpreadsheetGear2012.Windows.Forms.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\TeeChart.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\HydrometNotifications.exe";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Npgsql.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\ZedGraph.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\DgvFilterPopup.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\System.Threading.Tasks.Extensions.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Renci.SshNet.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Newtonsoft.Json.dll";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\RestSharp.dll";   DestDir: "{app}";   Flags: ignoreversion
 
-Source:  ".\bin\debug\x86\SQLite.Interop.dll";   DestDir: "{app}\x86";   Flags: ignoreversion
-Source:  ".\bin\debug\x64\SQLite.Interop.dll";   DestDir: "{app}\x64";   Flags: ignoreversion
-Source:  ".\bin\debug\System.Data.SQLite.dll";   DestDir: "{app}";   Flags: ignoreversion    
+Source:  ".\bin\Debug\x86\SQLite.Interop.dll";   DestDir: "{app}\x86";   Flags: ignoreversion
+Source:  ".\bin\Debug\x64\SQLite.Interop.dll";   DestDir: "{app}\x64";   Flags: ignoreversion
+Source:  ".\bin\Debug\System.Data.SQLite.dll";   DestDir: "{app}";   Flags: ignoreversion    
 
-Source:  "bin\debug\YakimaStatusTemplate.txt";   DestDir: "{app}";   Flags: ignoreversion
-Source:  "bin\debug\YakimaOthersAboveParker.csv";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reports\YakimaStatusTemplate.txt";   DestDir: "{app}";   Flags: ignoreversion
+Source:  "bin\Debug\Reports\YakimaOthersAboveParker.csv";   DestDir: "{app}";   Flags: ignoreversion
 Source:  "cfg\gp\*.*";   DestDir: "{app}\cfg\gp";   Flags: ignoreversion
 Source:  "cfg\yak\*.*";   DestDir: "{app}\cfg\yak";   Flags: ignoreversion
 ;Source:  "cfg\rating_tables\*.*";   DestDir: "{app}\cfg\rating_tables";   Flags: ignoreversion
@@ -101,6 +101,8 @@ Source:  "cfg\RatingTableTemplate.xls";   DestDir: "{app}\cfg";   Flags: ignorev
 Source:  "cfg\snowgg_groups.csv";   DestDir: "{app}\cfg";   Flags: ignoreversion
 Source:  "cfg\snowgg_groups_gp.csv";   DestDir: "{app}\cfg";   Flags: ignoreversion
 Source:  "C:\HydrometTools\cfg\timeseries_gp.pdb";   DestDir: "{app}\cfg";   Flags: ignoreversion
+Source:  "cfg\opslogitems.csv";   DestDir: "{app}\cfg";   Flags: ignoreversion
+
                    
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
