@@ -618,6 +618,15 @@ namespace HydrometTools
 
         private void FormatCells(TimeInterval db)
         {
+            // Default format
+            worksheet.UsedRange.Font.Color = SpreadsheetGear.Colors.Black;
+            worksheet.Range["A:A"].Interior.Color = SpreadsheetGear.Colors.LightGray;
+            worksheet.Range["A:A"].Font.Bold = true;
+            worksheet.Range["A:A"].Font.Italic = true;
+            worksheet.Range[0, 0, 0, m_dataTable.Columns.Count - 1].Interior.Color = SpreadsheetGear.Colors.LightGray;
+            worksheet.Range[0, 0, 0, m_dataTable.Columns.Count - 1].Font.Bold = true;
+            worksheet.Range[0, 0, 0, m_dataTable.Columns.Count - 1].Font.Italic = true;
+
             if (db == TimeInterval.Irregular)
             {
                 for (int i = 1; i < m_dataTable.Columns.Count; i += 2)
@@ -633,19 +642,16 @@ namespace HydrometTools
                 worksheet.Range[dateRange].NumberFormat = "mmm yyyy";
             }
 
-            worksheet.Range["A:A"].Interior.Color = SpreadsheetGear.Colors.LightGray;
-            worksheet.Range["1:1"].Interior.Color = SpreadsheetGear.Colors.LightGray;
         }
 
 
         private void ConditionalFormatting(string dataColumn, string flagColumn)
         {
-
             int rangeSize = m_dataTable.Rows.Count + 5;
             string strRange = dataColumn + "2:" + dataColumn + rangeSize.ToString();
             IRange range = wbView.ActiveWorksheet.Cells[strRange];
             SpreadsheetGear.IFormatConditions conditions = range.FormatConditions;
-
+            
             // Delete any existing formats in the collection.
             conditions.Delete();
 
@@ -782,8 +788,6 @@ namespace HydrometTools
                         + " sum: " + sum.ToString("F2")
                         + " count: " + count.ToString();
                 }
-                    
-
             }
         }
 

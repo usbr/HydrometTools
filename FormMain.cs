@@ -24,10 +24,8 @@ namespace HydrometTools
         Control arcEditor;
         Control dayEditor;
         Control mpollEditor;
-        //Control graphTabs;
         Control hydroEditor;
 
-        private TabPage tabPageFcplot;
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.MainMenu mainMenu1;
         private TabControl tabControl1;
@@ -51,9 +49,7 @@ namespace HydrometTools
         private TabPage tabPageReports;
         private TabControl tabControl2;
         private TabPage tabPageDailyImport;
-        //private ImportDaily importUI1;
         private TabPage tabPageFdrImport;
-        //private Import.ImportFDRTemperature importFDRTemperature1;
         private TabPage tabPageRecords;
         private TabPage tabPageShifts;
         private TabPage tabPageFloodControl;
@@ -219,22 +215,22 @@ namespace HydrometTools
             // 
             // tabPageArc
             // 
-            this.tabPageArc.Location = new System.Drawing.Point(4, 27);
+            this.tabPageArc.Location = new System.Drawing.Point(4, 26);
             this.tabPageArc.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageArc.Name = "tabPageArc";
             this.tabPageArc.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageArc.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageArc.Size = new System.Drawing.Size(1248, 615);
             this.tabPageArc.TabIndex = 1;
             this.tabPageArc.Text = "Daily";
             this.tabPageArc.UseVisualStyleBackColor = true;
             // 
             // tabPageMPoll
             // 
-            this.tabPageMPoll.Location = new System.Drawing.Point(4, 27);
+            this.tabPageMPoll.Location = new System.Drawing.Point(4, 26);
             this.tabPageMPoll.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageMPoll.Name = "tabPageMPoll";
             this.tabPageMPoll.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageMPoll.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageMPoll.Size = new System.Drawing.Size(1248, 615);
             this.tabPageMPoll.TabIndex = 8;
             this.tabPageMPoll.Text = "Monthly";
             this.tabPageMPoll.UseVisualStyleBackColor = true;
@@ -312,7 +308,7 @@ namespace HydrometTools
             this.tabPageFdrImport.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageFdrImport.Name = "tabPageFdrImport";
             this.tabPageFdrImport.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageFdrImport.Size = new System.Drawing.Size(1232, 577);
+            this.tabPageFdrImport.Size = new System.Drawing.Size(1232, 578);
             this.tabPageFdrImport.TabIndex = 1;
             this.tabPageFdrImport.Text = "FDR - Water Quality";
             this.tabPageFdrImport.UseVisualStyleBackColor = true;
@@ -341,11 +337,11 @@ namespace HydrometTools
             // tabPageAgrimet
             // 
             this.tabPageAgrimet.Controls.Add(this.agriMetTab1);
-            this.tabPageAgrimet.Location = new System.Drawing.Point(4, 27);
+            this.tabPageAgrimet.Location = new System.Drawing.Point(4, 26);
             this.tabPageAgrimet.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageAgrimet.Name = "tabPageAgrimet";
             this.tabPageAgrimet.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageAgrimet.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageAgrimet.Size = new System.Drawing.Size(1248, 615);
             this.tabPageAgrimet.TabIndex = 10;
             this.tabPageAgrimet.Text = "AgriMet";
             this.tabPageAgrimet.UseVisualStyleBackColor = true;
@@ -356,70 +352,70 @@ namespace HydrometTools
             this.agriMetTab1.Location = new System.Drawing.Point(4, 4);
             this.agriMetTab1.Margin = new System.Windows.Forms.Padding(5);
             this.agriMetTab1.Name = "agriMetTab1";
-            this.agriMetTab1.Size = new System.Drawing.Size(1240, 606);
+            this.agriMetTab1.Size = new System.Drawing.Size(1240, 607);
             this.agriMetTab1.TabIndex = 0;
             // 
             // tabPageHydrographEditor
             // 
-            this.tabPageHydrographEditor.Location = new System.Drawing.Point(4, 27);
+            this.tabPageHydrographEditor.Location = new System.Drawing.Point(4, 26);
             this.tabPageHydrographEditor.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageHydrographEditor.Name = "tabPageHydrographEditor";
             this.tabPageHydrographEditor.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageHydrographEditor.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageHydrographEditor.Size = new System.Drawing.Size(1248, 615);
             this.tabPageHydrographEditor.TabIndex = 12;
             this.tabPageHydrographEditor.Text = "Hydrograph Editor";
             this.tabPageHydrographEditor.UseVisualStyleBackColor = true;
             // 
             // tabPageShifts
             // 
-            this.tabPageShifts.Location = new System.Drawing.Point(4, 27);
+            this.tabPageShifts.Location = new System.Drawing.Point(4, 26);
             this.tabPageShifts.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageShifts.Name = "tabPageShifts";
             this.tabPageShifts.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageShifts.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageShifts.Size = new System.Drawing.Size(1248, 615);
             this.tabPageShifts.TabIndex = 18;
             this.tabPageShifts.Text = "Shifts";
             this.tabPageShifts.UseVisualStyleBackColor = true;
             // 
             // tabPageRecords
             // 
-            this.tabPageRecords.Location = new System.Drawing.Point(4, 27);
+            this.tabPageRecords.Location = new System.Drawing.Point(4, 26);
             this.tabPageRecords.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageRecords.Name = "tabPageRecords";
             this.tabPageRecords.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageRecords.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageRecords.Size = new System.Drawing.Size(1248, 615);
             this.tabPageRecords.TabIndex = 17;
             this.tabPageRecords.Text = "Daily Records";
             this.tabPageRecords.UseVisualStyleBackColor = true;
             // 
             // tabPageReports
             // 
-            this.tabPageReports.Location = new System.Drawing.Point(4, 27);
+            this.tabPageReports.Location = new System.Drawing.Point(4, 26);
             this.tabPageReports.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageReports.Name = "tabPageReports";
             this.tabPageReports.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageReports.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageReports.Size = new System.Drawing.Size(1248, 615);
             this.tabPageReports.TabIndex = 16;
             this.tabPageReports.Text = "Reports";
             this.tabPageReports.UseVisualStyleBackColor = true;
             // 
             // tabPageSetup
             // 
-            this.tabPageSetup.Location = new System.Drawing.Point(4, 27);
+            this.tabPageSetup.Location = new System.Drawing.Point(4, 26);
             this.tabPageSetup.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageSetup.Name = "tabPageSetup";
             this.tabPageSetup.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageSetup.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageSetup.Size = new System.Drawing.Size(1248, 615);
             this.tabPageSetup.TabIndex = 3;
             this.tabPageSetup.Text = "Settings";
             this.tabPageSetup.UseVisualStyleBackColor = true;
             // 
             // tabPageAdvanced
             // 
-            this.tabPageAdvanced.Location = new System.Drawing.Point(4, 27);
+            this.tabPageAdvanced.Location = new System.Drawing.Point(4, 26);
             this.tabPageAdvanced.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
-            this.tabPageAdvanced.Size = new System.Drawing.Size(1248, 614);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(1248, 615);
             this.tabPageAdvanced.TabIndex = 9;
             this.tabPageAdvanced.Text = "Advanced";
             this.tabPageAdvanced.UseVisualStyleBackColor = true;
@@ -596,10 +592,10 @@ namespace HydrometTools
                 hydroEditor.Dock = DockStyle.Fill;
             }
 
-            if (tabControl1.SelectedTab == tabPageFcplot && fcUi == null)
+            if (tabControl1.SelectedTab == tabPageFloodControl && fcUi == null)
             {
                 fcUi = new FcPlot.FcPlotUI();
-                fcUi.Parent = tabPageFcplot;
+                fcUi.Parent = tabPageFloodControl;
                 fcUi.Dock = DockStyle.Fill;
             }
 
@@ -648,7 +644,7 @@ namespace HydrometTools
                 shifts.Dock = DockStyle.Fill;
             }
 
-            if (tabPageFcplot == null)
+            if (tabControl1.SelectedTab == tabPageFloodControl)
             {
                 if (FcPlotDataSet.HasRuleCurves())
                 {
@@ -658,7 +654,7 @@ namespace HydrometTools
                 }
                 else
                 {
-                    this.tabControl1.TabPages.Remove(tabPageFcplot);
+                    this.tabControl1.TabPages.Remove(tabPageFloodControl);
                 }
             }
         }

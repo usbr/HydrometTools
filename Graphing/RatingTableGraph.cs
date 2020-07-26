@@ -33,7 +33,7 @@ namespace Reclamation.TimeSeries.Graphing
                 var s = new Steema.TeeChart.Styles.Line();
                 tChart1.Series.Add(s);
                 s.Title = ratingTables[j].Name;
-                s.ShowInLegend = true;
+                s.Legend.Visible = true;
                 ratingTable = ratingTables[j];
                 for (int i = 0; i < ratingTable.Count; i++)
                 {
