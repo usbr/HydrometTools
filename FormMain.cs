@@ -210,7 +210,7 @@ namespace HydrometTools
             this.tabPageDay.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageDay.Size = new System.Drawing.Size(1248, 615);
             this.tabPageDay.TabIndex = 0;
-            this.tabPageDay.Text = "Instant";
+            this.tabPageDay.Text = "Instant ";
             this.tabPageDay.UseVisualStyleBackColor = true;
             // 
             // tabPageArc
@@ -221,7 +221,7 @@ namespace HydrometTools
             this.tabPageArc.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageArc.Size = new System.Drawing.Size(1248, 615);
             this.tabPageArc.TabIndex = 1;
-            this.tabPageArc.Text = "Daily";
+            this.tabPageArc.Text = "Daily ";
             this.tabPageArc.UseVisualStyleBackColor = true;
             // 
             // tabPageMPoll
@@ -232,7 +232,7 @@ namespace HydrometTools
             this.tabPageMPoll.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageMPoll.Size = new System.Drawing.Size(1248, 615);
             this.tabPageMPoll.TabIndex = 8;
-            this.tabPageMPoll.Text = "Monthly";
+            this.tabPageMPoll.Text = "Monthly ";
             this.tabPageMPoll.UseVisualStyleBackColor = true;
             // 
             // tabPageSnowGG
@@ -244,7 +244,7 @@ namespace HydrometTools
             this.tabPageSnowGG.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageSnowGG.Size = new System.Drawing.Size(1248, 615);
             this.tabPageSnowGG.TabIndex = 2;
-            this.tabPageSnowGG.Text = "Data Analysis";
+            this.tabPageSnowGG.Text = "Data Analysis ";
             this.tabPageSnowGG.UseVisualStyleBackColor = true;
             // 
             // tabPageFloodControl
@@ -253,7 +253,7 @@ namespace HydrometTools
             this.tabPageFloodControl.Name = "tabPageFloodControl";
             this.tabPageFloodControl.Size = new System.Drawing.Size(1248, 615);
             this.tabPageFloodControl.TabIndex = 19;
-            this.tabPageFloodControl.Text = "Reservoir Operations";
+            this.tabPageFloodControl.Text = "Reservoir Operations ";
             this.tabPageFloodControl.UseVisualStyleBackColor = true;
             // 
             // tabPageStats
@@ -264,7 +264,7 @@ namespace HydrometTools
             this.tabPageStats.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageStats.Size = new System.Drawing.Size(1248, 615);
             this.tabPageStats.TabIndex = 15;
-            this.tabPageStats.Text = "Check";
+            this.tabPageStats.Text = "Check ";
             this.tabPageStats.UseVisualStyleBackColor = true;
             // 
             // tabPageUpdater
@@ -276,7 +276,7 @@ namespace HydrometTools
             this.tabPageUpdater.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageUpdater.Size = new System.Drawing.Size(1248, 615);
             this.tabPageUpdater.TabIndex = 6;
-            this.tabPageUpdater.Text = "Data Import";
+            this.tabPageUpdater.Text = "Data Import ";
             this.tabPageUpdater.UseVisualStyleBackColor = true;
             // 
             // tabControl2
@@ -322,7 +322,7 @@ namespace HydrometTools
             this.tabPageRating.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageRating.Size = new System.Drawing.Size(1248, 615);
             this.tabPageRating.TabIndex = 7;
-            this.tabPageRating.Text = "Rating Tables";
+            this.tabPageRating.Text = "Rating Tables ";
             this.tabPageRating.UseVisualStyleBackColor = true;
             // 
             // ratingTable1
@@ -343,7 +343,7 @@ namespace HydrometTools
             this.tabPageAgrimet.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageAgrimet.Size = new System.Drawing.Size(1248, 615);
             this.tabPageAgrimet.TabIndex = 10;
-            this.tabPageAgrimet.Text = "AgriMet";
+            this.tabPageAgrimet.Text = "AgriMet ";
             this.tabPageAgrimet.UseVisualStyleBackColor = true;
             // 
             // agriMetTab1
@@ -363,7 +363,7 @@ namespace HydrometTools
             this.tabPageHydrographEditor.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageHydrographEditor.Size = new System.Drawing.Size(1248, 615);
             this.tabPageHydrographEditor.TabIndex = 12;
-            this.tabPageHydrographEditor.Text = "Hydrograph Editor";
+            this.tabPageHydrographEditor.Text = "Hydrograph Editor ";
             this.tabPageHydrographEditor.UseVisualStyleBackColor = true;
             // 
             // tabPageShifts
@@ -374,7 +374,7 @@ namespace HydrometTools
             this.tabPageShifts.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageShifts.Size = new System.Drawing.Size(1248, 615);
             this.tabPageShifts.TabIndex = 18;
-            this.tabPageShifts.Text = "Shifts";
+            this.tabPageShifts.Text = "Shifts ";
             this.tabPageShifts.UseVisualStyleBackColor = true;
             // 
             // tabPageRecords
@@ -385,7 +385,7 @@ namespace HydrometTools
             this.tabPageRecords.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageRecords.Size = new System.Drawing.Size(1248, 615);
             this.tabPageRecords.TabIndex = 17;
-            this.tabPageRecords.Text = "Daily Records";
+            this.tabPageRecords.Text = "Daily Records ";
             this.tabPageRecords.UseVisualStyleBackColor = true;
             // 
             // tabPageReports
@@ -396,7 +396,7 @@ namespace HydrometTools
             this.tabPageReports.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageReports.Size = new System.Drawing.Size(1248, 615);
             this.tabPageReports.TabIndex = 16;
-            this.tabPageReports.Text = "Reports";
+            this.tabPageReports.Text = "Reports ";
             this.tabPageReports.UseVisualStyleBackColor = true;
             // 
             // tabPageSetup
@@ -407,7 +407,7 @@ namespace HydrometTools
             this.tabPageSetup.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageSetup.Size = new System.Drawing.Size(1248, 615);
             this.tabPageSetup.TabIndex = 3;
-            this.tabPageSetup.Text = "Settings";
+            this.tabPageSetup.Text = "Settings ";
             this.tabPageSetup.UseVisualStyleBackColor = true;
             // 
             // tabPageAdvanced
@@ -417,7 +417,7 @@ namespace HydrometTools
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Size = new System.Drawing.Size(1248, 615);
             this.tabPageAdvanced.TabIndex = 9;
-            this.tabPageAdvanced.Text = "Advanced";
+            this.tabPageAdvanced.Text = "Advanced ";
             this.tabPageAdvanced.UseVisualStyleBackColor = true;
             // 
             // statusStrip1

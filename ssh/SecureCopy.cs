@@ -44,10 +44,10 @@ namespace HydrometTools.ssh
             string args = "";
 
             if( direction == ScpDirection.From)
-                args = "-v -pw \"" + passwd + "\" -batch \"" + user + "@" + host + ":" + rfile + "\" \"" + lfile+"\"";
+                args = "-v -P 22 -pw \"" + passwd + "\" -batch \"" + user + "@" + host + ":" + rfile + "\" \"" + lfile+"\"";
             else
                 if( direction == ScpDirection.To)
-                    args = "-v -pw \"" + passwd + "\" -batch \"" + lfile +"\" \""+ user + "@" + host + ":" + rfile + "\" ";
+                    args = "-v -P 22 -pw \"" + passwd + "\" -batch \"" + lfile +"\" \""+ user + "@" + host + ":" + rfile + "\" ";
 
             args = args.Replace("-batch", " ");
 

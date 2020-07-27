@@ -83,10 +83,10 @@ namespace HydrometTools
             var uc = new TimeSeriesSpreadsheet();
 #endif
             uc.Parent = this.panelGraphTable;
-            uc.BringToFront();
+            //uc.BringToFront();
             uc.Dock = DockStyle.Fill;
             timeSeriesSpreadsheet1 = uc;
-            uc.Dock = DockStyle.Fill;
+            //uc.Dock = DockStyle.Fill;
             uc.BringToFront();
 
             m_interval = db;
@@ -284,6 +284,7 @@ namespace HydrometTools
             this.buttonForward = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.panelGraphTable = new System.Windows.Forms.Panel();
+            this.linkLabelPrint = new System.Windows.Forms.LinkLabel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tChart1 = new Steema.TeeChart.TChart();
             this.labelFileName = new System.Windows.Forms.Label();
@@ -295,13 +296,12 @@ namespace HydrometTools
             this.comboBoxInterval = new System.Windows.Forms.ComboBox();
             this.labelFillGap = new System.Windows.Forms.Label();
             this.groupBoxMonthlyReports = new System.Windows.Forms.GroupBox();
-            this.includeMonthlyFlags = new System.Windows.Forms.CheckBox();
-            this.MonthlyInventory = new System.Windows.Forms.LinkLabel();
             this.USGSMonthlyReport = new System.Windows.Forms.LinkLabel();
+            this.MonthlyInventory = new System.Windows.Forms.LinkLabel();
+            this.includeMonthlyFlags = new System.Windows.Forms.CheckBox();
             this.Lookbutton = new System.Windows.Forms.Button();
             this.linkLabelOwrd = new System.Windows.Forms.LinkLabel();
             this.linkLabelIdahoPower = new System.Windows.Forms.LinkLabel();
-            this.linkLabelPrint = new System.Windows.Forms.LinkLabel();
             this.buttonHideTable = new System.Windows.Forms.Button();
             this.buttonHideGraph = new System.Windows.Forms.Button();
             this.buttonScalePrecip = new System.Windows.Forms.Button();
@@ -325,7 +325,8 @@ namespace HydrometTools
             // 
             // buttonUpload
             // 
-            this.buttonUpload.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonUpload.BackColor = System.Drawing.Color.MistyRose;
+            this.buttonUpload.Cursor = System.Windows.Forms.Cursors.Default;
             this.buttonUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUpload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonUpload.Location = new System.Drawing.Point(404, 57);
@@ -351,13 +352,16 @@ namespace HydrometTools
             // 
             // buttonDownload
             // 
+            this.buttonDownload.BackColor = System.Drawing.Color.PaleGreen;
+            this.buttonDownload.Cursor = System.Windows.Forms.Cursors.Default;
             this.buttonDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDownload.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.buttonDownload.ForeColor = System.Drawing.Color.ForestGreen;
             this.buttonDownload.Location = new System.Drawing.Point(404, 13);
             this.buttonDownload.Name = "buttonDownload";
             this.buttonDownload.Size = new System.Drawing.Size(109, 38);
             this.buttonDownload.TabIndex = 16;
             this.buttonDownload.Text = "Query Data";
+            this.buttonDownload.UseVisualStyleBackColor = false;
             this.buttonDownload.Click += new System.EventHandler(this.RefreshClick);
             // 
             // checkBoxShowBadData
@@ -419,13 +423,27 @@ namespace HydrometTools
             this.panelGraphTable.Controls.Add(this.linkLabelChartDetails);
             this.panelGraphTable.Controls.Add(this.splitter1);
             this.panelGraphTable.Controls.Add(this.tChart1);
+            this.panelGraphTable.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panelGraphTable.Location = new System.Drawing.Point(34, 115);
             this.panelGraphTable.Name = "panelGraphTable";
             this.panelGraphTable.Size = new System.Drawing.Size(1087, 549);
             this.panelGraphTable.TabIndex = 27;
             // 
+            // linkLabelPrint
+            // 
+            this.linkLabelPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkLabelPrint.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabelPrint.Location = new System.Drawing.Point(120, 525);
+            this.linkLabelPrint.Name = "linkLabelPrint";
+            this.linkLabelPrint.Size = new System.Drawing.Size(101, 21);
+            this.linkLabelPrint.TabIndex = 46;
+            this.linkLabelPrint.TabStop = true;
+            this.linkLabelPrint.Text = "Print Chart";
+            this.linkLabelPrint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrint_LinkClicked);
+            // 
             // splitter1
             // 
+            this.splitter1.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.splitter1.Location = new System.Drawing.Point(426, 0);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(6, 549);
@@ -724,15 +742,16 @@ namespace HydrometTools
             this.groupBoxMonthlyReports.Text = "reports";
             this.groupBoxMonthlyReports.Visible = false;
             // 
-            // includeMonthlyFlags
+            // USGSMonthlyReport
             // 
-            this.includeMonthlyFlags.AutoSize = true;
-            this.includeMonthlyFlags.Location = new System.Drawing.Point(170, 15);
-            this.includeMonthlyFlags.Name = "includeMonthlyFlags";
-            this.includeMonthlyFlags.Size = new System.Drawing.Size(60, 21);
-            this.includeMonthlyFlags.TabIndex = 4;
-            this.includeMonthlyFlags.Text = "flags";
-            this.includeMonthlyFlags.UseVisualStyleBackColor = true;
+            this.USGSMonthlyReport.AutoSize = true;
+            this.USGSMonthlyReport.Location = new System.Drawing.Point(10, 19);
+            this.USGSMonthlyReport.Name = "USGSMonthlyReport";
+            this.USGSMonthlyReport.Size = new System.Drawing.Size(82, 17);
+            this.USGSMonthlyReport.TabIndex = 2;
+            this.USGSMonthlyReport.TabStop = true;
+            this.USGSMonthlyReport.Text = "USGS table";
+            this.USGSMonthlyReport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.USGSMonthlyReport_LinkClicked);
             // 
             // MonthlyInventory
             // 
@@ -745,16 +764,15 @@ namespace HydrometTools
             this.MonthlyInventory.Text = "inventory";
             this.MonthlyInventory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MonthlyInventory_LinkClicked);
             // 
-            // USGSMonthlyReport
+            // includeMonthlyFlags
             // 
-            this.USGSMonthlyReport.AutoSize = true;
-            this.USGSMonthlyReport.Location = new System.Drawing.Point(10, 19);
-            this.USGSMonthlyReport.Name = "USGSMonthlyReport";
-            this.USGSMonthlyReport.Size = new System.Drawing.Size(82, 17);
-            this.USGSMonthlyReport.TabIndex = 2;
-            this.USGSMonthlyReport.TabStop = true;
-            this.USGSMonthlyReport.Text = "USGS table";
-            this.USGSMonthlyReport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.USGSMonthlyReport_LinkClicked);
+            this.includeMonthlyFlags.AutoSize = true;
+            this.includeMonthlyFlags.Location = new System.Drawing.Point(170, 15);
+            this.includeMonthlyFlags.Name = "includeMonthlyFlags";
+            this.includeMonthlyFlags.Size = new System.Drawing.Size(60, 21);
+            this.includeMonthlyFlags.TabIndex = 4;
+            this.includeMonthlyFlags.Text = "flags";
+            this.includeMonthlyFlags.UseVisualStyleBackColor = true;
             // 
             // Lookbutton
             // 
@@ -789,18 +807,6 @@ namespace HydrometTools
             this.linkLabelIdahoPower.Text = "idaho power";
             this.linkLabelIdahoPower.Visible = false;
             this.linkLabelIdahoPower.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelIdahoPower_LinkClicked);
-            // 
-            // linkLabelPrint
-            // 
-            this.linkLabelPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkLabelPrint.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabelPrint.Location = new System.Drawing.Point(120, 525);
-            this.linkLabelPrint.Name = "linkLabelPrint";
-            this.linkLabelPrint.Size = new System.Drawing.Size(101, 21);
-            this.linkLabelPrint.TabIndex = 46;
-            this.linkLabelPrint.TabStop = true;
-            this.linkLabelPrint.Text = "Print Chart";
-            this.linkLabelPrint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrint_LinkClicked);
             // 
             // buttonHideTable
             // 
