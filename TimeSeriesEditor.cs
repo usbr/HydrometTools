@@ -72,7 +72,7 @@ namespace HydrometTools
         private Label labelTimeSkip;
         private Button buttonDefaultDates;
         Steema.TeeChart.Tools.Annotation annotation1;
-
+        private Steema.TeeChart.Editor editor1;
 
         public TimeSeriesEditor(TimeInterval db, bool compilePublic = false)
         {
@@ -136,6 +136,7 @@ namespace HydrometTools
 
             tChart1.MouseMove += new MouseEventHandler(tChart1_MouseMove);
             var nearest = new Steema.TeeChart.Tools.NearestPoint(tChart1.Chart);
+            editor1 = new Steema.TeeChart.Editor(tChart1);
 
             LoadSiteList();
             this.comboBoxInputs.Text = UserPreference.Lookup("Inputs" + m_interval.ToString());
@@ -1111,11 +1112,11 @@ namespace HydrometTools
                Graph();
         }
 
-		
-		/// <summary>
-		/// graphs data in dataTable
-		/// </summary>
-		void Graph()
+
+        /// <summary>
+        /// graphs data in dataTable
+        /// </summary>
+        void Graph()
 		{
             UserPreference.Save("ShowPoints", this.checkBoxShowPoints.Checked.ToString());
 
@@ -1202,11 +1203,11 @@ namespace HydrometTools
 
             GraphReferenceData();
             tChart1.Axes.Left.Automatic = true;
-//            Application.DoEvents();
-  //          this.tChart1.Zoom.Undo();
-    //        this.tChart1.Zoom.ZoomPercent(99);
+            //Application.DoEvents();
+            //this.tChart1.Zoom.Undo();
+            //this.tChart1.Zoom.ZoomPercent(99);
 
-		}
+        }
 
         SeriesList referenceData;
 
@@ -1536,7 +1537,9 @@ namespace HydrometTools
 
 		private void linkLabelChartDetails_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
-            Steema.TeeChart.Editor.Show(tChart1);
+            //tChart1.ShowEditor();
+            //Steema.TeeChart.Editor.Show(tChart1);
+            editor1.ShowModal();
 		}
 
 

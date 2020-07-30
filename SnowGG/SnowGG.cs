@@ -232,7 +232,7 @@ namespace HydrometTools.SnowGG
                     }
                     catch
                     {
-                        item.Appearance.Color = "Black";
+                        item.Appearance.Color = "SlateGray"; //System.Drawing.KnownColor.SlateGray
                     }
                 }
 
@@ -340,8 +340,8 @@ namespace HydrometTools.SnowGG
             if (!anyStats)
                 return;
 
-            int y1 =1990;
-            int y2 =2011;
+            int y1 = DateTime.Now.Date.AddYears(-30).Year;
+            int y2 = DateTime.Now.Date.Year;
             int[] pctls = new int[] { };
 
             int.TryParse(this.textBoxWY1.Text, out y1);

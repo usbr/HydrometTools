@@ -54,8 +54,11 @@ namespace HydrometTools
         private TabPage tabPageShifts;
         private TabPage tabPageFloodControl;
         private FcPlot.FcPlotUI fcUi;
-
-        private bool compilePublic = false;
+        private TabPage tabPageHome;
+        private PictureBox pictureBox1;
+        private TextBox textBox1;
+        private RichTextBox richTextBox1;
+        private bool compilePublic = true;
 
         public FormMain()
         {
@@ -144,6 +147,9 @@ namespace HydrometTools
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageHome = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPageDay = new System.Windows.Forms.TabPage();
             this.tabPageArc = new System.Windows.Forms.TabPage();
             this.tabPageMPoll = new System.Windows.Forms.TabPage();
@@ -166,7 +172,10 @@ namespace HydrometTools
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
+            this.tabPageHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPageUpdater.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPageRating.SuspendLayout();
@@ -176,6 +185,7 @@ namespace HydrometTools
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPageHome);
             this.tabControl1.Controls.Add(this.tabPageDay);
             this.tabControl1.Controls.Add(this.tabPageArc);
             this.tabControl1.Controls.Add(this.tabPageMPoll);
@@ -201,6 +211,43 @@ namespace HydrometTools
             this.tabControl1.TabIndex = 0;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabPageHome
+            // 
+            this.tabPageHome.Controls.Add(this.richTextBox1);
+            this.tabPageHome.Controls.Add(this.pictureBox1);
+            this.tabPageHome.Controls.Add(this.textBox1);
+            this.tabPageHome.Location = new System.Drawing.Point(4, 26);
+            this.tabPageHome.Name = "tabPageHome";
+            this.tabPageHome.Size = new System.Drawing.Size(1248, 615);
+            this.tabPageHome.TabIndex = 20;
+            this.tabPageHome.Text = "Home";
+            this.tabPageHome.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(8, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(253, 224);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(276, 16);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(964, 596);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // tabPageDay
             // 
@@ -437,6 +484,18 @@ namespace HydrometTools
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Location = new System.Drawing.Point(8, 263);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(253, 349);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -452,6 +511,9 @@ namespace HydrometTools
             this.Name = "FormMain";
             this.Text = "Hydromet Tools";
             this.tabControl1.ResumeLayout(false);
+            this.tabPageHome.ResumeLayout(false);
+            this.tabPageHome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPageUpdater.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPageRating.ResumeLayout(false);
