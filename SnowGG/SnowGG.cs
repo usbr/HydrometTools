@@ -82,11 +82,6 @@ namespace HydrometTools.SnowGG
 
             //this.comboBoxPcode.SelectedIndex = 0;
             this.checkBoxGP.Visible = HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains;
-            this.checkBoxMpoll.Visible = HydrometInfoUtility.HydrometServerFromPreferences() != HydrometHost.GreatPlains;
-            if( this.checkBoxMpoll.Visible )
-               this.checkBoxGP.Checked = false;
-            if (this.checkBoxGP.Visible)
-                this.checkBoxMpoll.Checked = false;
         }
 
         private List<string> snowGgColors = new List<string> {
@@ -196,11 +191,6 @@ namespace HydrometTools.SnowGG
                         GPAverage(cbtt, server, range, wyList);
                     }
 
-                    var mp = ReadMpollData(pcode, cbtt);
-                    mp.RemoveMissing();
-                    if (mp.Count > 0)
-                        wyList.Add(mp);
-
                     // remove months outside selected range
                     var list = FilterBySelectedRange(range, wyList);
                     finalSeriesCollection.Add(list);
@@ -249,6 +239,7 @@ namespace HydrometTools.SnowGG
 
                 timeSeriesGraph1.GraphSettings = GetGraphSettings();
                 this.dataGridView1.DataSource = this.timeSeriesGraph1.Series.ToDataTable(true);
+                this.dataGridView1.Columns[0].DefaultCellStyle.Format = "MMM-d";
                 this.linkLabelReport.Visible = true;
             }
             finally
@@ -443,33 +434,6 @@ namespace HydrometTools.SnowGG
             }
         }
 
-        private  Series ReadMpollData(string pcode, string cbtt)
-        {
-
-            if (!checkBoxMpoll.Checked)
-                return new Series();
-
-            Series m = new HydrometMonthlySeries(cbtt, pcode);
-            DateTime t1 = new DateTime(6189, 10, 1);
-            DateTime t2 = new DateTime(6190, 9, 1);
-
-
-           m.Read(t1, t2);
-           //m = Math.Subset(m, monthRangePicker1.MonthDayRange);
-           //if (range.Month1 < 9)
-           //{
-           //    m = Math.ShiftToYear(m, 2001);
-           //}
-         //  else
-           //{
-           //    m = Math.ShiftToYear(m, 2000);
-           //}
-
-           m.Appearance.Style = Styles.Point;
-           m.Appearance.LegendText += " 30 yr average";
-           
-            return m;
-        }
 
         private string DeterminePcode()
         {
@@ -527,7 +491,7 @@ namespace HydrometTools.SnowGG
             }
             if (grp.Trim() != "")
             {
-                this.buttonSelectGroup.Text = grp;
+                //this.buttonSelectGroup.Text = grp;
                 comboBoxCbtt.Items.Clear();
                 // get list of items.
 

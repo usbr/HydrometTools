@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange5 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange9 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
             this.checkBoxSumList = new System.Windows.Forms.CheckBox();
@@ -50,7 +50,6 @@
             this.checkBoxMax = new System.Windows.Forms.CheckBox();
             this.checkBoxMin = new System.Windows.Forms.CheckBox();
             this.checkBoxGP = new System.Windows.Forms.CheckBox();
-            this.checkBoxMpoll = new System.Windows.Forms.CheckBox();
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonSelectGroup = new System.Windows.Forms.Button();
             this.comboBoxCbtt = new System.Windows.Forms.ComboBox();
@@ -60,17 +59,17 @@
             this.yearSelector1 = new Reclamation.TimeSeries.Forms.YearSelector();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageTable = new System.Windows.Forms.TabPage();
             this.tabPageChart = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.tabPageTable = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageTable.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,7 +83,6 @@
             this.panel1.Controls.Add(this.checkBoxAnnotate);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.checkBoxGP);
-            this.panel1.Controls.Add(this.checkBoxMpoll);
             this.panel1.Controls.Add(this.buttonNext);
             this.panel1.Controls.Add(this.buttonSelectGroup);
             this.panel1.Controls.Add(this.comboBoxCbtt);
@@ -96,13 +94,13 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1323, 198);
+            this.panel1.Size = new System.Drawing.Size(1323, 189);
             this.panel1.TabIndex = 0;
             // 
             // checkBoxUseInstant
             // 
             this.checkBoxUseInstant.AutoSize = true;
-            this.checkBoxUseInstant.Location = new System.Drawing.Point(369, 111);
+            this.checkBoxUseInstant.Location = new System.Drawing.Point(210, 88);
             this.checkBoxUseInstant.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxUseInstant.Name = "checkBoxUseInstant";
             this.checkBoxUseInstant.Size = new System.Drawing.Size(135, 21);
@@ -114,7 +112,7 @@
             // 
             this.checkBoxSumList.AutoSize = true;
             this.checkBoxSumList.Enabled = false;
-            this.checkBoxSumList.Location = new System.Drawing.Point(369, 139);
+            this.checkBoxSumList.Location = new System.Drawing.Point(9, 144);
             this.checkBoxSumList.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxSumList.Name = "checkBoxSumList";
             this.checkBoxSumList.Size = new System.Drawing.Size(84, 21);
@@ -124,7 +122,7 @@
             // 
             // buttonToggleMonths
             // 
-            this.buttonToggleMonths.Location = new System.Drawing.Point(993, 43);
+            this.buttonToggleMonths.Location = new System.Drawing.Point(946, 43);
             this.buttonToggleMonths.Name = "buttonToggleMonths";
             this.buttonToggleMonths.Size = new System.Drawing.Size(69, 39);
             this.buttonToggleMonths.TabIndex = 17;
@@ -136,7 +134,7 @@
             // 
             this.checkBoxUseList.AutoSize = true;
             this.checkBoxUseList.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxUseList.Location = new System.Drawing.Point(67, 84);
+            this.checkBoxUseList.Location = new System.Drawing.Point(22, 53);
             this.checkBoxUseList.Name = "checkBoxUseList";
             this.checkBoxUseList.Size = new System.Drawing.Size(81, 21);
             this.checkBoxUseList.TabIndex = 16;
@@ -147,15 +145,15 @@
             // textBoxMultiple
             // 
             this.textBoxMultiple.Enabled = false;
-            this.textBoxMultiple.Location = new System.Drawing.Point(154, 83);
+            this.textBoxMultiple.Location = new System.Drawing.Point(109, 52);
             this.textBoxMultiple.Name = "textBoxMultiple";
-            this.textBoxMultiple.Size = new System.Drawing.Size(301, 22);
+            this.textBoxMultiple.Size = new System.Drawing.Size(286, 22);
             this.textBoxMultiple.TabIndex = 15;
             // 
             // checkBoxDeltas
             // 
             this.checkBoxDeltas.AutoSize = true;
-            this.checkBoxDeltas.Location = new System.Drawing.Point(154, 140);
+            this.checkBoxDeltas.Location = new System.Drawing.Point(9, 117);
             this.checkBoxDeltas.Name = "checkBoxDeltas";
             this.checkBoxDeltas.Size = new System.Drawing.Size(182, 21);
             this.checkBoxDeltas.TabIndex = 14;
@@ -167,12 +165,12 @@
             this.checkBoxAnnotate.AutoSize = true;
             this.checkBoxAnnotate.Checked = true;
             this.checkBoxAnnotate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAnnotate.Location = new System.Drawing.Point(154, 111);
+            this.checkBoxAnnotate.Location = new System.Drawing.Point(9, 88);
             this.checkBoxAnnotate.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxAnnotate.Name = "checkBoxAnnotate";
-            this.checkBoxAnnotate.Size = new System.Drawing.Size(138, 21);
+            this.checkBoxAnnotate.Size = new System.Drawing.Size(111, 21);
             this.checkBoxAnnotate.TabIndex = 13;
-            this.checkBoxAnnotate.Text = "date/value tooltip";
+            this.checkBoxAnnotate.Text = "Show Tooltip";
             this.checkBoxAnnotate.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -187,11 +185,11 @@
             this.groupBox1.Controls.Add(this.checkBoxAvg);
             this.groupBox1.Controls.Add(this.checkBoxMax);
             this.groupBox1.Controls.Add(this.checkBoxMin);
-            this.groupBox1.Location = new System.Drawing.Point(556, 90);
+            this.groupBox1.Location = new System.Drawing.Point(509, 90);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(496, 92);
+            this.groupBox1.Size = new System.Drawing.Size(445, 83);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statistics";
@@ -218,10 +216,10 @@
             // 
             // textBoxPctls
             // 
-            this.textBoxPctls.Location = new System.Drawing.Point(317, 50);
+            this.textBoxPctls.Location = new System.Drawing.Point(306, 51);
             this.textBoxPctls.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxPctls.Name = "textBoxPctls";
-            this.textBoxPctls.Size = new System.Drawing.Size(171, 22);
+            this.textBoxPctls.Size = new System.Drawing.Size(122, 22);
             this.textBoxPctls.TabIndex = 7;
             this.textBoxPctls.Text = "10, 50, 90";
             // 
@@ -269,7 +267,7 @@
             // checkBoxAvg
             // 
             this.checkBoxAvg.AutoSize = true;
-            this.checkBoxAvg.Location = new System.Drawing.Point(10, 52);
+            this.checkBoxAvg.Location = new System.Drawing.Point(16, 53);
             this.checkBoxAvg.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxAvg.Name = "checkBoxAvg";
             this.checkBoxAvg.Size = new System.Drawing.Size(54, 21);
@@ -280,7 +278,7 @@
             // checkBoxMax
             // 
             this.checkBoxMax.AutoSize = true;
-            this.checkBoxMax.Location = new System.Drawing.Point(74, 52);
+            this.checkBoxMax.Location = new System.Drawing.Point(80, 52);
             this.checkBoxMax.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxMax.Name = "checkBoxMax";
             this.checkBoxMax.Size = new System.Drawing.Size(55, 21);
@@ -302,7 +300,7 @@
             // checkBoxGP
             // 
             this.checkBoxGP.AutoSize = true;
-            this.checkBoxGP.Location = new System.Drawing.Point(400, 169);
+            this.checkBoxGP.Location = new System.Drawing.Point(210, 117);
             this.checkBoxGP.Margin = new System.Windows.Forms.Padding(5);
             this.checkBoxGP.Name = "checkBoxGP";
             this.checkBoxGP.Size = new System.Drawing.Size(129, 21);
@@ -311,24 +309,12 @@
             this.checkBoxGP.UseVisualStyleBackColor = true;
             this.checkBoxGP.Visible = false;
             // 
-            // checkBoxMpoll
-            // 
-            this.checkBoxMpoll.AutoSize = true;
-            this.checkBoxMpoll.Location = new System.Drawing.Point(154, 169);
-            this.checkBoxMpoll.Margin = new System.Windows.Forms.Padding(5);
-            this.checkBoxMpoll.Name = "checkBoxMpoll";
-            this.checkBoxMpoll.Size = new System.Drawing.Size(236, 21);
-            this.checkBoxMpoll.TabIndex = 9;
-            this.checkBoxMpoll.Text = "include monthly 30 year average";
-            this.checkBoxMpoll.UseVisualStyleBackColor = true;
-            this.checkBoxMpoll.Visible = false;
-            // 
             // buttonNext
             // 
-            this.buttonNext.Location = new System.Drawing.Point(465, 15);
+            this.buttonNext.Location = new System.Drawing.Point(405, 15);
             this.buttonNext.Margin = new System.Windows.Forms.Padding(5);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(79, 24);
+            this.buttonNext.Size = new System.Drawing.Size(92, 24);
             this.buttonNext.TabIndex = 8;
             this.buttonNext.Text = ">";
             this.toolTip1.SetToolTip(this.buttonNext, "advance to next site");
@@ -342,7 +328,7 @@
             this.buttonSelectGroup.Location = new System.Drawing.Point(9, 16);
             this.buttonSelectGroup.Margin = new System.Windows.Forms.Padding(5);
             this.buttonSelectGroup.Name = "buttonSelectGroup";
-            this.buttonSelectGroup.Size = new System.Drawing.Size(139, 24);
+            this.buttonSelectGroup.Size = new System.Drawing.Size(94, 24);
             this.buttonSelectGroup.TabIndex = 7;
             this.buttonSelectGroup.Text = "Select...";
             this.toolTip1.SetToolTip(this.buttonSelectGroup, "select basin or group of sites");
@@ -352,10 +338,10 @@
             // comboBoxCbtt
             // 
             this.comboBoxCbtt.FormattingEnabled = true;
-            this.comboBoxCbtt.Location = new System.Drawing.Point(154, 16);
+            this.comboBoxCbtt.Location = new System.Drawing.Point(109, 16);
             this.comboBoxCbtt.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxCbtt.Name = "comboBoxCbtt";
-            this.comboBoxCbtt.Size = new System.Drawing.Size(301, 24);
+            this.comboBoxCbtt.Size = new System.Drawing.Size(138, 24);
             this.comboBoxCbtt.TabIndex = 6;
             this.comboBoxCbtt.Text = "JKPI";
             this.toolTip1.SetToolTip(this.comboBoxCbtt, "enter cbtt such as \'JKPI\'");
@@ -363,15 +349,16 @@
             // 
             // buttonRefresh
             // 
+            this.buttonRefresh.BackColor = System.Drawing.Color.PaleGreen;
             this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefresh.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.buttonRefresh.Location = new System.Drawing.Point(465, 50);
+            this.buttonRefresh.ForeColor = System.Drawing.Color.ForestGreen;
+            this.buttonRefresh.Location = new System.Drawing.Point(405, 52);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(5);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(79, 55);
+            this.buttonRefresh.Size = new System.Drawing.Size(92, 66);
             this.buttonRefresh.TabIndex = 5;
-            this.buttonRefresh.Text = "Refresh";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Text = "Query Data";
+            this.buttonRefresh.UseVisualStyleBackColor = false;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // comboBoxPcode
@@ -385,10 +372,10 @@
             "AF",
             "QD",
             "QU"});
-            this.comboBoxPcode.Location = new System.Drawing.Point(154, 50);
+            this.comboBoxPcode.Location = new System.Drawing.Point(257, 16);
             this.comboBoxPcode.Margin = new System.Windows.Forms.Padding(5);
             this.comboBoxPcode.Name = "comboBoxPcode";
-            this.comboBoxPcode.Size = new System.Drawing.Size(301, 24);
+            this.comboBoxPcode.Size = new System.Drawing.Size(138, 24);
             this.comboBoxPcode.TabIndex = 4;
             this.comboBoxPcode.Text = "Snow";
             this.toolTip1.SetToolTip(this.comboBoxPcode, "enter parameter code");
@@ -397,16 +384,16 @@
             // 
             this.monthRangePicker1.AutoSize = true;
             this.monthRangePicker1.BeginningMonth = 10;
-            this.monthRangePicker1.Location = new System.Drawing.Point(556, 43);
+            this.monthRangePicker1.Location = new System.Drawing.Point(509, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange5;
+            this.monthRangePicker1.MonthDayRange = monthDayRange9;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
             // 
             // yearSelector1
             // 
-            this.yearSelector1.Location = new System.Drawing.Point(556, 9);
+            this.yearSelector1.Location = new System.Drawing.Point(509, 9);
             this.yearSelector1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.yearSelector1.Name = "yearSelector1";
             this.yearSelector1.SelectedYears = new int[] {
@@ -422,11 +409,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageChart);
             this.tabControl1.Controls.Add(this.tabPageTable);
-            this.tabControl1.Location = new System.Drawing.Point(0, 198);
+            this.tabControl1.Location = new System.Drawing.Point(0, 190);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1320, 528);
+            this.tabControl1.Size = new System.Drawing.Size(1320, 536);
             this.tabControl1.TabIndex = 1;
+            // 
+            // tabPageChart
+            // 
+            this.tabPageChart.Location = new System.Drawing.Point(4, 25);
+            this.tabPageChart.Name = "tabPageChart";
+            this.tabPageChart.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageChart.Size = new System.Drawing.Size(1312, 507);
+            this.tabPageChart.TabIndex = 1;
+            this.tabPageChart.Text = "Chart";
+            this.tabPageChart.UseVisualStyleBackColor = true;
             // 
             // tabPageTable
             // 
@@ -435,30 +432,10 @@
             this.tabPageTable.Location = new System.Drawing.Point(4, 25);
             this.tabPageTable.Name = "tabPageTable";
             this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTable.Size = new System.Drawing.Size(1312, 499);
+            this.tabPageTable.Size = new System.Drawing.Size(1312, 510);
             this.tabPageTable.TabIndex = 0;
-            this.tabPageTable.Text = "Table";
+            this.tabPageTable.Text = "DataTable";
             this.tabPageTable.UseVisualStyleBackColor = true;
-            // 
-            // tabPageChart
-            // 
-            this.tabPageChart.Location = new System.Drawing.Point(4, 25);
-            this.tabPageChart.Name = "tabPageChart";
-            this.tabPageChart.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageChart.Size = new System.Drawing.Size(1312, 499);
-            this.tabPageChart.TabIndex = 1;
-            this.tabPageChart.Text = "Chart";
-            this.tabPageChart.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.linkLabelReport);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1312, 37);
-            this.panel2.TabIndex = 0;
             // 
             // dataGridView1
             // 
@@ -471,6 +448,16 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1312, 466);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.linkLabelReport);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1312, 37);
+            this.panel2.TabIndex = 0;
             // 
             // linkLabelReport
             // 
@@ -489,8 +476,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SnowGG";
             this.Size = new System.Drawing.Size(1323, 729);
@@ -502,9 +489,9 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -521,7 +508,6 @@
         private System.Windows.Forms.ComboBox comboBoxCbtt;
         private System.Windows.Forms.Button buttonSelectGroup;
         private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.CheckBox checkBoxMpoll;
         private System.Windows.Forms.CheckBox checkBoxGP;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBoxAvg;
