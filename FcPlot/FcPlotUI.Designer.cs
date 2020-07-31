@@ -55,12 +55,12 @@ namespace FcPlot
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageGraph = new System.Windows.Forms.TabPage();
-            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFlagLegend = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageGraph.SuspendLayout();
@@ -345,7 +345,7 @@ namespace FcPlot
             // linkLabelReport
             // 
             this.linkLabelReport.AutoSize = true;
-            this.linkLabelReport.Location = new System.Drawing.Point(22, 11);
+            this.linkLabelReport.Location = new System.Drawing.Point(4, 8);
             this.linkLabelReport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabelReport.Name = "linkLabelReport";
             this.linkLabelReport.Size = new System.Drawing.Size(104, 17);
@@ -376,17 +376,8 @@ namespace FcPlot
             this.tabPageGraph.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageGraph.Size = new System.Drawing.Size(1394, 580);
             this.tabPageGraph.TabIndex = 0;
-            this.tabPageGraph.Text = "graph";
+            this.tabPageGraph.Text = "Chart";
             this.tabPageGraph.UseVisualStyleBackColor = true;
-            // 
-            // hydrometChart1
-            // 
-            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
-            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.hydrometChart1.Name = "hydrometChart1";
-            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
-            this.hydrometChart1.TabIndex = 1;
             // 
             // tabPageReport
             // 
@@ -398,7 +389,7 @@ namespace FcPlot
             this.tabPageReport.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageReport.Size = new System.Drawing.Size(1394, 580);
             this.tabPageReport.TabIndex = 1;
-            this.tabPageReport.Text = "report";
+            this.tabPageReport.Text = "Table";
             this.tabPageReport.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
@@ -425,12 +416,21 @@ namespace FcPlot
             // labelFlagLegend
             // 
             this.labelFlagLegend.AutoSize = true;
-            this.labelFlagLegend.Location = new System.Drawing.Point(166, 16);
+            this.labelFlagLegend.Location = new System.Drawing.Point(116, 8);
             this.labelFlagLegend.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFlagLegend.Name = "labelFlagLegend";
             this.labelFlagLegend.Size = new System.Drawing.Size(46, 17);
             this.labelFlagLegend.TabIndex = 4;
             this.labelFlagLegend.Text = "label2";
+            // 
+            // hydrometChart1
+            // 
+            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
+            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.hydrometChart1.Name = "hydrometChart1";
+            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
+            this.hydrometChart1.TabIndex = 1;
             // 
             // FcPlotUI
             // 

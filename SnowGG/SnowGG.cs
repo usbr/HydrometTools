@@ -22,16 +22,14 @@ namespace HydrometTools.SnowGG
             InitializeComponent();
             this.comboBoxCbtt.Text = UserPreference.Lookup("Snowgg->cbtt");
             this.comboBoxPcode.Text = UserPreference.Lookup("Snowgg->pcode");
-
-
+            
             // 
             // timeSeriesGraph1
             // 
             this.timeSeriesGraph1 = new Reclamation.TimeSeries.Graphing.TimeSeriesTeeChartGraph();
-            Reclamation.TimeSeries.Forms.Graphing.GraphSettings graphSettings2 = new GraphSettings();
             this.timeSeriesGraph1.AnnotationOnMouseMove = false;
             this.timeSeriesGraph1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeSeriesGraph1.GraphSettings = graphSettings2;
+            this.timeSeriesGraph1.GraphSettings = new GraphSettings(); 
             this.timeSeriesGraph1.Location = new System.Drawing.Point(0, 131);
             this.timeSeriesGraph1.Margin = new System.Windows.Forms.Padding(4);
             this.timeSeriesGraph1.MissingDataValue = -999D;
@@ -43,7 +41,7 @@ namespace HydrometTools.SnowGG
             this.timeSeriesGraph1.TabIndex = 1;
             this.timeSeriesGraph1.Title = "";
             this.Controls.Remove(this.panel1);
-            this.Controls.Add(this.timeSeriesGraph1);
+            this.tabPageChart.Controls.Add(this.timeSeriesGraph1);
             this.Controls.Add(this.panel1);
 
 
@@ -232,7 +230,7 @@ namespace HydrometTools.SnowGG
                     }
                     catch
                     {
-                        item.Appearance.Color = "SlateGray"; //System.Drawing.KnownColor.SlateGray
+                        item.Appearance.Color = "SlateGray"; //System.Drawing.KnownColor.SlateGray                  
                     }
                 }
 
@@ -250,6 +248,8 @@ namespace HydrometTools.SnowGG
                 comboBoxPcode.Text = pcodeOrig;
 
                 timeSeriesGraph1.GraphSettings = GetGraphSettings();
+                this.dataGridView1.DataSource = this.timeSeriesGraph1.Series.ToDataTable(true);
+                this.linkLabelReport.Visible = true;
             }
             finally
             {
@@ -606,6 +606,13 @@ namespace HydrometTools.SnowGG
             this.monthRangePicker1.Update();
             this.monthRangePicker1.MonthDayRange = selectedRange;
 
+        }
+
+        private void linkLabelReport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var fn = FileUtility.GetTempFileName(".csv");
+            CsvFile.WriteToCSV(this.timeSeriesGraph1.Series.ToDataTable(true), fn);
+            System.Diagnostics.Process.Start(fn);
         }
     }
 }

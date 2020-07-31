@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange3 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange5 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
             this.checkBoxSumList = new System.Windows.Forms.CheckBox();
             this.buttonToggleMonths = new System.Windows.Forms.Button();
             this.checkBoxUseList = new System.Windows.Forms.CheckBox();
@@ -58,9 +59,18 @@
             this.monthRangePicker1 = new Reclamation.TimeSeries.Forms.MonthRangePicker();
             this.yearSelector1 = new Reclamation.TimeSeries.Forms.YearSelector();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageTable = new System.Windows.Forms.TabPage();
+            this.tabPageChart = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.linkLabelReport = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPageTable.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,6 +98,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1323, 198);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBoxUseInstant
+            // 
+            this.checkBoxUseInstant.AutoSize = true;
+            this.checkBoxUseInstant.Location = new System.Drawing.Point(369, 111);
+            this.checkBoxUseInstant.Margin = new System.Windows.Forms.Padding(5);
+            this.checkBoxUseInstant.Name = "checkBoxUseInstant";
+            this.checkBoxUseInstant.Size = new System.Drawing.Size(135, 21);
+            this.checkBoxUseInstant.TabIndex = 19;
+            this.checkBoxUseInstant.Text = "Use Instant Data";
+            this.checkBoxUseInstant.UseVisualStyleBackColor = true;
             // 
             // checkBoxSumList
             // 
@@ -378,7 +399,7 @@
             this.monthRangePicker1.BeginningMonth = 10;
             this.monthRangePicker1.Location = new System.Drawing.Point(556, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange3;
+            this.monthRangePicker1.MonthDayRange = monthDayRange5;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
@@ -394,22 +415,82 @@
             this.yearSelector1.Size = new System.Drawing.Size(428, 31);
             this.yearSelector1.TabIndex = 2;
             // 
-            // checkBoxUseInstant
+            // tabControl1
             // 
-            this.checkBoxUseInstant.AutoSize = true;
-            this.checkBoxUseInstant.Location = new System.Drawing.Point(369, 111);
-            this.checkBoxUseInstant.Margin = new System.Windows.Forms.Padding(5);
-            this.checkBoxUseInstant.Name = "checkBoxUseInstant";
-            this.checkBoxUseInstant.Size = new System.Drawing.Size(135, 21);
-            this.checkBoxUseInstant.TabIndex = 19;
-            this.checkBoxUseInstant.Text = "Use Instant Data";
-            this.checkBoxUseInstant.UseVisualStyleBackColor = true;
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPageChart);
+            this.tabControl1.Controls.Add(this.tabPageTable);
+            this.tabControl1.Location = new System.Drawing.Point(0, 198);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1320, 528);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPageTable
+            // 
+            this.tabPageTable.Controls.Add(this.dataGridView1);
+            this.tabPageTable.Controls.Add(this.panel2);
+            this.tabPageTable.Location = new System.Drawing.Point(4, 25);
+            this.tabPageTable.Name = "tabPageTable";
+            this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTable.Size = new System.Drawing.Size(1312, 499);
+            this.tabPageTable.TabIndex = 0;
+            this.tabPageTable.Text = "Table";
+            this.tabPageTable.UseVisualStyleBackColor = true;
+            // 
+            // tabPageChart
+            // 
+            this.tabPageChart.Location = new System.Drawing.Point(4, 25);
+            this.tabPageChart.Name = "tabPageChart";
+            this.tabPageChart.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageChart.Size = new System.Drawing.Size(1312, 499);
+            this.tabPageChart.TabIndex = 1;
+            this.tabPageChart.Text = "Chart";
+            this.tabPageChart.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.linkLabelReport);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1312, 37);
+            this.panel2.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 33);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1312, 466);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // linkLabelReport
+            // 
+            this.linkLabelReport.AutoSize = true;
+            this.linkLabelReport.Location = new System.Drawing.Point(5, 6);
+            this.linkLabelReport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabelReport.Name = "linkLabelReport";
+            this.linkLabelReport.Size = new System.Drawing.Size(104, 17);
+            this.linkLabelReport.TabIndex = 4;
+            this.linkLabelReport.TabStop = true;
+            this.linkLabelReport.Text = "open with excel";
+            this.linkLabelReport.Visible = false;
+            this.linkLabelReport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelReport_LinkClicked);
             // 
             // SnowGG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SnowGG";
             this.Size = new System.Drawing.Size(1323, 729);
@@ -419,6 +500,11 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageTable.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -455,5 +541,11 @@
         private System.Windows.Forms.Button buttonToggleMonths;
         private System.Windows.Forms.CheckBox checkBoxSumList;
         private System.Windows.Forms.CheckBox checkBoxUseInstant;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageTable;
+        private System.Windows.Forms.TabPage tabPageChart;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.LinkLabel linkLabelReport;
     }
 }
