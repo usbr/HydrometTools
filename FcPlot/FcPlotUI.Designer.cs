@@ -55,12 +55,12 @@ namespace FcPlot
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageGraph = new System.Windows.Forms.TabPage();
+            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelFlagLegend = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.hydrometChart1 = new FcPlot.HydrometTeeChart();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageGraph.SuspendLayout();
@@ -101,7 +101,7 @@ namespace FcPlot
             // checkBoxShowElevation
             // 
             this.checkBoxShowElevation.AutoSize = true;
-            this.checkBoxShowElevation.Location = new System.Drawing.Point(1053, 39);
+            this.checkBoxShowElevation.Location = new System.Drawing.Point(739, 36);
             this.checkBoxShowElevation.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxShowElevation.Name = "checkBoxShowElevation";
             this.checkBoxShowElevation.Size = new System.Drawing.Size(126, 21);
@@ -112,7 +112,7 @@ namespace FcPlot
             // checkBoxShowInstantAF
             // 
             this.checkBoxShowInstantAF.AutoSize = true;
-            this.checkBoxShowInstantAF.Location = new System.Drawing.Point(1053, 10);
+            this.checkBoxShowInstantAF.Location = new System.Drawing.Point(739, 7);
             this.checkBoxShowInstantAF.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxShowInstantAF.Name = "checkBoxShowInstantAF";
             this.checkBoxShowInstantAF.Size = new System.Drawing.Size(187, 21);
@@ -135,7 +135,7 @@ namespace FcPlot
             // checkBoxOverrideFcast
             // 
             this.checkBoxOverrideFcast.AutoSize = true;
-            this.checkBoxOverrideFcast.Location = new System.Drawing.Point(746, 10);
+            this.checkBoxOverrideFcast.Location = new System.Drawing.Point(943, 7);
             this.checkBoxOverrideFcast.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxOverrideFcast.Name = "checkBoxOverrideFcast";
             this.checkBoxOverrideFcast.Size = new System.Drawing.Size(144, 21);
@@ -146,7 +146,7 @@ namespace FcPlot
             // 
             // textBoxOverrideFcast
             // 
-            this.textBoxOverrideFcast.Location = new System.Drawing.Point(904, 8);
+            this.textBoxOverrideFcast.Location = new System.Drawing.Point(1101, 5);
             this.textBoxOverrideFcast.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxOverrideFcast.Name = "textBoxOverrideFcast";
             this.textBoxOverrideFcast.Size = new System.Drawing.Size(119, 22);
@@ -158,7 +158,7 @@ namespace FcPlot
             this.checkBoxDashed.AutoSize = true;
             this.checkBoxDashed.Checked = true;
             this.checkBoxDashed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDashed.Location = new System.Drawing.Point(904, 72);
+            this.checkBoxDashed.Location = new System.Drawing.Point(1101, 69);
             this.checkBoxDashed.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxDashed.Name = "checkBoxDashed";
             this.checkBoxDashed.Size = new System.Drawing.Size(119, 21);
@@ -169,7 +169,7 @@ namespace FcPlot
             // 
             // textBoxTargetPercentages
             // 
-            this.textBoxTargetPercentages.Location = new System.Drawing.Point(904, 39);
+            this.textBoxTargetPercentages.Location = new System.Drawing.Point(1101, 36);
             this.textBoxTargetPercentages.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTargetPercentages.Name = "textBoxTargetPercentages";
             this.textBoxTargetPercentages.Size = new System.Drawing.Size(119, 22);
@@ -201,7 +201,7 @@ namespace FcPlot
             this.showGreenLines.AutoSize = true;
             this.showGreenLines.Checked = true;
             this.showGreenLines.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showGreenLines.Location = new System.Drawing.Point(746, 72);
+            this.showGreenLines.Location = new System.Drawing.Point(943, 69);
             this.showGreenLines.Margin = new System.Windows.Forms.Padding(4);
             this.showGreenLines.Name = "showGreenLines";
             this.showGreenLines.Size = new System.Drawing.Size(138, 21);
@@ -212,7 +212,7 @@ namespace FcPlot
             // showTarget
             // 
             this.showTarget.AutoSize = true;
-            this.showTarget.Location = new System.Drawing.Point(746, 41);
+            this.showTarget.Location = new System.Drawing.Point(943, 38);
             this.showTarget.Margin = new System.Windows.Forms.Padding(4);
             this.showTarget.Name = "showTarget";
             this.showTarget.Size = new System.Drawing.Size(110, 21);
@@ -379,6 +379,15 @@ namespace FcPlot
             this.tabPageGraph.Text = "Chart";
             this.tabPageGraph.UseVisualStyleBackColor = true;
             // 
+            // hydrometChart1
+            // 
+            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
+            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.hydrometChart1.Name = "hydrometChart1";
+            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
+            this.hydrometChart1.TabIndex = 1;
+            // 
             // tabPageReport
             // 
             this.tabPageReport.Controls.Add(this.dataGridView1);
@@ -422,15 +431,6 @@ namespace FcPlot
             this.labelFlagLegend.Size = new System.Drawing.Size(46, 17);
             this.labelFlagLegend.TabIndex = 4;
             this.labelFlagLegend.Text = "label2";
-            // 
-            // hydrometChart1
-            // 
-            this.hydrometChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hydrometChart1.Location = new System.Drawing.Point(4, 4);
-            this.hydrometChart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.hydrometChart1.Name = "hydrometChart1";
-            this.hydrometChart1.Size = new System.Drawing.Size(1386, 572);
-            this.hydrometChart1.TabIndex = 1;
             // 
             // FcPlotUI
             // 

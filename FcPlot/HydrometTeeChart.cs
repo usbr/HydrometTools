@@ -102,7 +102,7 @@ namespace FcPlot
                     + " must match the number of forecast levels " + ruleCurves.Count);
 
             //add green lines
-            if (greenLines && !useFB)
+            if (greenLines && !useFB && !Convert.ToBoolean(Reclamation.Core.UserPreference.Lookup("CompilePublic")))
             {
                 AddRuleCurves(ruleCurves, labelDates, dashed);
             }
@@ -147,12 +147,16 @@ namespace FcPlot
             else
             {
                 CreateSeries(Color.Blue, actual.Name + " Elevation", actual, "left", false, 2);
-                var sDummy = new Series();
-                for (DateTime i = actual.MinDateTime; i < ruleCurves[0].MaxDateTime; i = i.AddDays(1))
+                if (!Convert.ToBoolean(Reclamation.Core.UserPreference.Lookup("CompilePublic")))
                 {
-                    sDummy.Add(i, actual.Values.Average());
+                    // Create dummy series to show full wy on graph
+                    var sDummy = new Series();
+                    for (DateTime i = actual.MinDateTime; i < ruleCurves[0].MaxDateTime; i = i.AddDays(1))
+                    {
+                        sDummy.Add(i, actual.Values.Average());
+                    }
+                    CreateSeries(Color.Transparent, "Dummy", sDummy, "left", false, 0);
                 }
-                CreateSeries(Color.Transparent, "Dummy", sDummy, "left", false, 0);
             }
 
             // zoom out a little..

@@ -58,7 +58,7 @@ namespace HydrometTools
         private PictureBox pictureBox1;
         private TextBox textBox1;
         private RichTextBox richTextBox1;
-        private bool compilePublic = false;
+        private bool compilePublic = true;
 
         public FormMain()
         {
@@ -72,6 +72,7 @@ namespace HydrometTools
 
             UserPreference.SetDefault("HideStatusDialog", "False", false);
             UserPreference.SetDefault("AutoFlagDayFiles", "True", false);
+            UserPreference.SetDefault("CompilePublic", compilePublic.ToString(), true);
 
             InitializeComponent();
 
@@ -106,7 +107,8 @@ namespace HydrometTools
             this.tabControl1.Controls.Remove(this.tabPageHydrographEditor);
             this.tabControl1.Controls.Remove(this.tabPageStats);
             this.tabControl1.Controls.Remove(this.tabPageReports);
-            this.tabControl1.Controls.Remove(this.tabPageFloodControl);
+            //this.tabControl1.Controls.Remove(this.tabPageFloodControl);
+            this.tabPageFloodControl.Text = "Reservoirs ";
             this.tabControl1.Controls.Remove(this.tabPageRecords);
             this.tabControl1.Controls.Remove(this.tabPageShifts);
         }

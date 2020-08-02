@@ -13,6 +13,7 @@ namespace FcPlot
     public partial class FcPlotUI : UserControl
     {
         int[] optionalPercents;
+        private bool compilePublic = Convert.ToBoolean(Reclamation.Core.UserPreference.Lookup("CompilePublic"));
 
         public FcPlotUI()
         {
@@ -22,6 +23,17 @@ namespace FcPlot
             if (DateTime.Now.Month <= 7)
             {
                 this.showTarget.Checked = true;
+            }
+            if (compilePublic)
+            {
+                this.checkBoxDashed.Visible = false;
+                this.checkBoxOverrideFcast.Visible = false;
+                this.showTarget.Visible = false;
+                this.showGreenLines.Visible = false;
+                this.textBoxOverrideFcast.Visible = false;
+                this.textBoxTargetPercentages.Visible = false;
+                this.buttonOpsMenu.Visible = false;
+                this.tabControl1.Controls.Remove(this.tabPageReport);
             }
         }
 
@@ -90,11 +102,20 @@ namespace FcPlot
                 var cbttList = new List<string>();
                 var cbttListAlternate = new List<string>();
                 var labelDates = new List<DateTime>();
-                bool showRuleCurve = true;                
+                bool showRuleCurve = true;
 
                 Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 FloodControlPoint pt = new FloodControlPoint(this.comboBoxSite.Text.ToString());
+
+                if (compilePublic)
+                {
+                    pt.StationFC = "NA";
+                    pt.StationQU = "NA";
+                    pt.RequiredLegend = "Full Storage";
+                    showRuleCurve = false;
+                }
+
                 if (pt.DailyStationQU == "NA")
                 {
                     return;
@@ -166,7 +187,7 @@ namespace FcPlot
                     }
                 }
 
-                if (showGreenLines.Checked == true) // display flood rule curves for various forecast levels
+                if (showGreenLines.Checked == true && !compilePublic) // display flood rule curves for various forecast levels
                 {
                     showRuleCurve = true;
                     // Green lines
@@ -186,7 +207,7 @@ namespace FcPlot
                     showRuleCurve = false;
                 }
                 hydrometChart1.SetLabels(pt.Name, "Storage Content (acre-feet)");
-                
+                                
                 bool dashedLines = checkBoxDashed.Checked && pt.StationFC.ToLower() == "heii";
 
                 // DEFAULT - Plots daily storage content data
