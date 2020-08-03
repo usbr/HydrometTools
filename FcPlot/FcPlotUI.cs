@@ -14,6 +14,7 @@ namespace FcPlot
     {
         int[] optionalPercents;
         private bool compilePublic = Convert.ToBoolean(Reclamation.Core.UserPreference.Lookup("CompilePublic"));
+        public HydrometHost HydrometServer;
 
         public FcPlotUI()
         {
@@ -34,6 +35,15 @@ namespace FcPlot
                 this.textBoxTargetPercentages.Visible = false;
                 this.buttonOpsMenu.Visible = false;
                 this.tabControl1.Controls.Remove(this.tabPageReport);
+            }
+            var hydSvr = UserPreference.Lookup("HydrometServer");
+            if (hydSvr.ToLower() == "greatplains")
+            {
+                HydrometServer = HydrometHost.GreatPlains;
+            }
+            else
+            {
+                HydrometServer = HydrometHost.PNLinux;
             }
         }
 

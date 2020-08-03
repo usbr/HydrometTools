@@ -346,7 +346,7 @@ namespace FcPlot
             Series sStorage = new Series(ithStorage.Table, "content", TimeInterval.Daily);
             for (int i = 1; i < resCodes.Count(); i++)
             {
-                ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[i], "AF");
+                ithStorage = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(resCodes[i], "AF", ui.HydrometServer);
                 t1 = DateTime.Now;
                 t2 = DateTime.Now;
                 yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
@@ -362,7 +362,7 @@ namespace FcPlot
             double outflowScaleValue;
             try { outflowScaleValue = Convert.ToDouble(outflowScale); }
             catch { outflowScaleValue = 1.0; }
-            sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1]);
+            sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1], ui.HydrometServer);
             t1 = DateTime.Now;
             t2 = DateTime.Now;
             yr = Convert.ToInt32(outflowYear);
@@ -415,7 +415,7 @@ namespace FcPlot
             }
             else
             {
-                sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
+                sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1], ui.HydrometServer);
                 t1 = DateTime.Now;
                 t2 = DateTime.Now;
                 yr = Convert.ToInt32(inflowYear);
@@ -488,7 +488,7 @@ namespace FcPlot
         private void PlotCurrentData(FcPlotUI ui, string inflowCode, string outflowCode)
         {
             // Process current inflow curve
-            var sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1]);
+            var sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(inflowCode.Split(' ')[0], inflowCode.Split(' ')[1], ui.HydrometServer);
             DateTime t1 = DateTime.Now;
             DateTime t2 = DateTime.Now;
             int yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
@@ -498,7 +498,7 @@ namespace FcPlot
             CreateSeries(System.Drawing.Color.ForestGreen, ui.textBoxWaterYear.Text + "-Inflow", sInflowShifted, "right");
 
             // Process current outflow curve
-            var sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1]);
+            var sOutflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries(outflowCode.Split(' ')[0], outflowCode.Split(' ')[1], ui.HydrometServer);
             t1 = DateTime.Now;
             t2 = DateTime.Now;
             yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
