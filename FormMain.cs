@@ -58,7 +58,7 @@ namespace HydrometTools
         private PictureBox pictureBox1;
         private TextBox textBox1;
         private RichTextBox richTextBox1;
-        private bool compilePublic = true;
+        private bool compilePublic = false;
 
         public FormMain()
         {

@@ -37,7 +37,7 @@ namespace FcPlot
             }
         }
 
-        private void Reset()
+        public void Reset()
         {
             if (DesignMode)
                 return;
@@ -51,9 +51,16 @@ namespace FcPlot
             this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 9, 30);
 
             // load QU locations
-
             this.comboBoxSite.Items.Clear();
-            this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames());
+            var hydServer = UserPreference.Lookup("HydrometServer");
+            if (hydServer.ToLower() == "greatplains")
+            {
+                this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames("GP"));
+            }
+            else
+            {
+                this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames("PN"));
+            }
 
             checkBoxDashed.Visible = false;
         }
@@ -103,6 +110,17 @@ namespace FcPlot
                 var cbttListAlternate = new List<string>();
                 var labelDates = new List<DateTime>();
                 bool showRuleCurve = true;
+                Reclamation.TimeSeries.Hydromet.HydrometHost svr;
+                var hydSvr = UserPreference.Lookup("HydrometServer");
+                if (hydSvr.ToLower() == "greatplains")
+                {
+                    svr = HydrometHost.GreatPlains;
+                }
+                else
+                {
+                    svr = HydrometHost.PNLinux;
+                }
+                
 
                 Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
@@ -141,8 +159,8 @@ namespace FcPlot
                 {
                     cbttList.AddRange(OptionalCbttList(this.pcodeInitial.Text));
                 }
-                cache.Add(cbttList.ToArray(), requiredRange.DateTime1.AddDays(-1), requiredRange.DateTime2.AddDays(1), HydrometHost.PNLinux, TimeInterval.Daily);
-                cache.Add(residForecast.MonthlyCbttPcodeList(), requiredRange.DateTime1, requiredRange.DateTime2, HydrometHost.PNLinux, TimeInterval.Monthly);
+                cache.Add(cbttList.ToArray(), requiredRange.DateTime1.AddDays(-1), requiredRange.DateTime2.AddDays(1), svr, TimeInterval.Daily);
+                cache.Add(residForecast.MonthlyCbttPcodeList(), requiredRange.DateTime1, requiredRange.DateTime2, svr, TimeInterval.Monthly);
                 
                 // setup cache for alternate range
                 if (alternateRange.IsValid)
@@ -152,8 +170,8 @@ namespace FcPlot
                     {
                         cbttListAlternate.AddRange(OptionalCbttList(this.pcodeComparison.Text));
                     }
-                    cache.Add(cbttListAlternate.ToArray(), alternateRange.DateTime1.AddDays(-1), alternateRange.DateTime2.AddDays(1), HydrometHost.PNLinux, TimeInterval.Daily);
-                    cache.Add(residForecast.MonthlyCbttPcodeList(), alternateRange.DateTime1.AddDays(-1), alternateRange.DateTime2.AddDays(1), HydrometHost.PNLinux, TimeInterval.Monthly);
+                    cache.Add(cbttListAlternate.ToArray(), alternateRange.DateTime1.AddDays(-1), alternateRange.DateTime2.AddDays(1), svr, TimeInterval.Daily);
+                    cache.Add(residForecast.MonthlyCbttPcodeList(), alternateRange.DateTime1.AddDays(-1), alternateRange.DateTime2.AddDays(1), svr, TimeInterval.Monthly);
                 }
                 
                 //add cache
@@ -161,7 +179,7 @@ namespace FcPlot
                 HydrometMonthlySeries.Cache = cache;
 
                 //compute residual forecast
-                residForecast.Compute(requiredRange.DateTime1, requiredRange.DateTime2);
+                residForecast.Compute(requiredRange.DateTime1, requiredRange.DateTime2, svr);
                 requiredContent = -residForecast.SpaceRequired + pt.TotalUpstreamActiveSpace;
                 actualContent = residForecast.TotalContent;
                 requiredContent.Name = this.textBoxWaterYear.Text;
@@ -175,7 +193,7 @@ namespace FcPlot
                 //compute comparison year residual forecast
                 if (alternateRange.IsValid)
                 {
-                    residForecastCompare.Compute(alternateRange.DateTime1, alternateRange.DateTime2);
+                    residForecastCompare.Compute(alternateRange.DateTime1, alternateRange.DateTime2, svr);
                     alternateRequiredContent = -residForecastCompare.SpaceRequired + pt.TotalUpstreamActiveSpace;
                     alternateRequiredContent.Name = this.textBoxAlternateWaterYear.Text;
                     alternateActualContent = residForecastCompare.TotalContent;
