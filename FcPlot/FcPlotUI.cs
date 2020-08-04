@@ -36,15 +36,7 @@ namespace FcPlot
                 this.buttonOpsMenu.Visible = false;
                 this.tabControl1.Controls.Remove(this.tabPageReport);
             }
-            var hydSvr = UserPreference.Lookup("HydrometServer");
-            if (hydSvr.ToLower() == "greatplains")
-            {
-                HydrometServer = HydrometHost.GreatPlains;
-            }
-            else
-            {
-                HydrometServer = HydrometHost.PNLinux;
-            }
+            HydrometServer = HydrometInfoUtility.HydrometServerFromPreferences();
         }
 
         public void Reset()

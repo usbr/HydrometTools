@@ -42,6 +42,12 @@ namespace FcPlot
             this.toolStripStatusLabel1.Text = "";
             this.textBoxRfcNode.Text = pt.EspNode;
 
+            if (ui.HydrometServer != Reclamation.TimeSeries.Hydromet.HydrometHost.PNLinux)
+            {
+                this.checkBoxUseCustomInflow.Checked = false;
+                this.checkBoxUseCustomInflow.Enabled = false;
+            }
+
             // Fill outflow datagrid
             var qOutTable = new System.Data.DataTable();
             qOutTable.Columns.Add("Outflow", typeof(Int64));
