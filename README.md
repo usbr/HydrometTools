@@ -1,7 +1,7 @@
 Hydromet Tools
 =====
 
-This is the source code for Hydromet Tools, a desktop application used to view, query, edit, manage, and analyze data within a Reclamation Hydromet Database. 
+This is the source code for Hydromet Tools, a desktop application used to view, query, edit, manage, and analyze data within a Reclamation Hydromet Database. A quick guide for how to use HydrometTools may be found on the [Wiki](https://github.com/usbr/HydrometTools/wiki).
 
 <img src="https://raw.githubusercontent.com/wiki/usbr/HydrometTools/images/resOpsUI.PNG" width="75%" height="75%"/>
 
