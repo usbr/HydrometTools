@@ -54,8 +54,7 @@ namespace FcPlot
 
             // load QU locations
             this.comboBoxSite.Items.Clear();
-            var hydServer = UserPreference.Lookup("HydrometServer");
-            if (hydServer.ToLower() == "greatplains")
+            if (HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains)
             {
                 this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames("GP"));
             }
@@ -469,6 +468,20 @@ namespace FcPlot
                     frm.Close();
                     break;
                 }
+            }
+        }
+
+        private void comboBoxSite_DropDown(object sender, EventArgs e)
+        {
+            this.comboBoxSite.Items.Clear();
+            // load QU locations
+            if (HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains)
+            {
+                this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames("GP"));
+            }
+            else
+            {
+                this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames("PN"));
             }
         }
     }

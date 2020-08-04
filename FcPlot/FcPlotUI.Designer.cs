@@ -340,6 +340,7 @@ namespace FcPlot
             this.comboBoxSite.Name = "comboBoxSite";
             this.comboBoxSite.Size = new System.Drawing.Size(282, 24);
             this.comboBoxSite.TabIndex = 0;
+            this.comboBoxSite.DropDown += new System.EventHandler(this.comboBoxSite_DropDown);
             this.comboBoxSite.SelectedIndexChanged += new System.EventHandler(this.comboBoxSite_SelectedIndexChanged);
             // 
             // linkLabelReport
