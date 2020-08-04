@@ -54,6 +54,7 @@ namespace FcPlot
 
             // load QU locations
             this.comboBoxSite.Items.Clear();
+            HydrometServer = HydrometInfoUtility.HydrometServerFromPreferences();
             if (HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains)
             {
                 this.comboBoxSite.Items.AddRange(FcPlotDataSet.GetNames("GP"));
@@ -473,6 +474,7 @@ namespace FcPlot
 
         private void comboBoxSite_DropDown(object sender, EventArgs e)
         {
+            HydrometServer = HydrometInfoUtility.HydrometServerFromPreferences();
             this.comboBoxSite.Items.Clear();
             // load QU locations
             if (HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains)
