@@ -271,11 +271,11 @@ namespace FcPlot
                             var sAlternate = new Series();
                             if (checkBoxShowInstantAF.Checked)
                             {
-                                sAlternate = new HydrometInstantSeries(pt.UpstreamReservoirs[0], leftPcode);
+                                sAlternate = new HydrometInstantSeries(pt.UpstreamReservoirs[0], leftPcode, svr);
                             }
                             else
                             {
-                                sAlternate = new HydrometDailySeries(pt.UpstreamReservoirs[0], leftPcode);
+                                sAlternate = new HydrometDailySeries(pt.UpstreamReservoirs[0], leftPcode, svr);
                             }
                             sAlternate.Read(alternateRange.DateTime1, alternateRange.DateTime2);
                             sAlternate.Name = this.textBoxAlternateWaterYear.Text + " Actual";
@@ -289,12 +289,12 @@ namespace FcPlot
                         var s = new Series();
                         if (checkBoxShowInstantAF.Checked)
                         {
-                            var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], leftPcode);
+                            var sInstant = new HydrometInstantSeries(pt.UpstreamReservoirs[0], leftPcode, svr);
                             s = sInstant;
                         }
                         else
                         {
-                            var sDaily = new HydrometDailySeries(pt.UpstreamReservoirs[0], leftPcode);
+                            var sDaily = new HydrometDailySeries(pt.UpstreamReservoirs[0], leftPcode, svr);
                             s = sDaily;
                         }
                         s.Read(residForecast.TotalContent.MinDateTime, residForecast.TotalContent.MaxDateTime.AddDays(1));
