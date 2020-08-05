@@ -331,3 +331,5 @@ ASALocalRun/
 *.binlog
 Applications/HydrometTools/Output
 Applications/PiscesUI/Output
+/Hydromet Tools User Manual.doc
+/HydrometTools.iss
