@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange9 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
             this.checkBoxSumList = new System.Windows.Forms.CheckBox();
@@ -64,6 +64,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.checkBoxUseInstant);
             this.panel1.Controls.Add(this.checkBoxSumList);
             this.panel1.Controls.Add(this.buttonToggleMonths);
@@ -386,7 +388,7 @@
             this.monthRangePicker1.BeginningMonth = 10;
             this.monthRangePicker1.Location = new System.Drawing.Point(509, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange9;
+            this.monthRangePicker1.MonthDayRange = monthDayRange1;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
@@ -432,7 +434,7 @@
             this.tabPageTable.Location = new System.Drawing.Point(4, 25);
             this.tabPageTable.Name = "tabPageTable";
             this.tabPageTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTable.Size = new System.Drawing.Size(1312, 510);
+            this.tabPageTable.Size = new System.Drawing.Size(1312, 507);
             this.tabPageTable.TabIndex = 0;
             this.tabPageTable.Text = "DataTable";
             this.tabPageTable.UseVisualStyleBackColor = true;
@@ -471,6 +473,15 @@
             this.linkLabelReport.Text = "open with excel";
             this.linkLabelReport.Visible = false;
             this.linkLabelReport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelReport_LinkClicked);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(962, 90);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(354, 83);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Aggregation";
             // 
             // SnowGG
             // 
@@ -533,5 +544,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.LinkLabel linkLabelReport;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
