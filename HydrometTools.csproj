@@ -353,14 +353,14 @@
     <Compile Include="Graphing\RatingTableGraph.Designer.cs">
       <DependentUpon>RatingTableGraph.cs</DependentUpon>
     </Compile>
-    <Compile Include="HydrometEditsVMS.cs" />
+    <Compile Include="Advanced\HydrometEditsVMS.cs" />
     <Compile Include="Import\ImportFDRTemperature.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Import\ImportFDRTemperature.Designer.cs">
       <DependentUpon>ImportFDRTemperature.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITimeSeriesSpreadsheet.cs" />
+    <Compile Include="DataQuery\ITimeSeriesSpreadsheet.cs" />
     <Compile Include="RecordWorkup\DailyRecordWorkup.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -391,10 +391,10 @@
     <Compile Include="Reports\YakimaStatus.Designer.cs">
       <DependentUpon>YakimaStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaveOptions.cs">
+    <Compile Include="DataQuery\SaveOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SaveOptions.Designer.cs">
+    <Compile Include="DataQuery\SaveOptions.Designer.cs">
       <DependentUpon>SaveOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Look\LookForm.cs">
@@ -408,11 +408,11 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Look\NewLook.Designer.cs" />
-    <Compile Include="Database.cs" />
-    <Compile Include="ShiftInput.cs">
+    <Compile Include="Advanced\Database.cs" />
+    <Compile Include="Shifts\ShiftInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SpreadsheetRange.cs" />
+    <Compile Include="DataQuery\SpreadsheetRange.cs" />
     <Compile Include="ssh\SecureCopy.cs" />
     <Compile Include="ssh\Utility.cs" />
     <Compile Include="Stats\MaxStat.cs">
@@ -452,19 +452,19 @@
     <Compile Include="Stats\VolumeInRange.Designer.cs">
       <DependentUpon>VolumeInRange.cs</DependentUpon>
     </Compile>
-    <Compile Include="TimeSeriesSpreadsheetSG.cs">
+    <Compile Include="DataQuery\TimeSeriesSpreadsheetSG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TimeSeriesSpreadsheetSG.Designer.cs">
+    <Compile Include="DataQuery\TimeSeriesSpreadsheetSG.Designer.cs">
       <DependentUpon>TimeSeriesSpreadsheetSG.cs</DependentUpon>
     </Compile>
-    <Compile Include="RatingTableTableViewer.cs">
+    <Compile Include="Ratings\RatingTableTableViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RatingTableTableViewer.Designer.cs">
+    <Compile Include="Ratings\RatingTableTableViewer.Designer.cs">
       <DependentUpon>RatingTableTableViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="TimeSeriesHydrographEditor.cs">
+    <Compile Include="DataQuery\TimeSeriesHydrographEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Graphing\GraphingTabs.cs">
@@ -508,13 +508,13 @@
     <Compile Include="SnowGG\SelectBasin.Designer.cs">
       <DependentUpon>SelectBasin.cs</DependentUpon>
     </Compile>
-    <Compile Include="TimeSeriesEditor.cs">
+    <Compile Include="DataQuery\TimeSeriesEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormStatus.cs">
+    <Compile Include="Advanced\FormStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStatus.Designer.cs">
+    <Compile Include="Advanced\FormStatus.Designer.cs">
       <DependentUpon>FormStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -522,10 +522,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RatingTableSelector.cs">
+    <Compile Include="Ratings\RatingTableSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RatingTableSelector.Designer.cs">
+    <Compile Include="Ratings\RatingTableSelector.Designer.cs">
       <DependentUpon>RatingTableSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="AssemblyInfo.cs">
@@ -537,10 +537,10 @@
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTchartLicense.cs">
+    <Compile Include="Advanced\FormTchartLicense.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTchartLicense.Designer.cs">
+    <Compile Include="Advanced\FormTchartLicense.Designer.cs">
       <DependentUpon>FormTchartLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Import\ImportDaily.cs">
@@ -549,16 +549,16 @@
     <Compile Include="Import\ImportDaily.Designer.cs">
       <DependentUpon>ImportDaily.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Advanced\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RatingTableDisplay.cs">
+    <Compile Include="Ratings\RatingTableDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RatingTableDisplay.Designer.cs">
+    <Compile Include="Ratings\RatingTableDisplay.Designer.cs">
       <DependentUpon>RatingTableDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs">
+    <Compile Include="Advanced\Settings.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SnowGG\SnowGG.cs">
@@ -568,16 +568,16 @@
       <DependentUpon>SnowGG.cs</DependentUpon>
     </Compile>
     <Compile Include="SnowGG\SnowGGUtility.cs" />
-    <Compile Include="MonthlyCalculationPreview.cs">
+    <Compile Include="DataQuery\MonthlyCalculationPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MonthlyCalculationPreview.Designer.cs">
+    <Compile Include="DataQuery\MonthlyCalculationPreview.Designer.cs">
       <DependentUpon>MonthlyCalculationPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="TimeSeriesSpreadsheet.cs">
+    <Compile Include="DataQuery\TimeSeriesSpreadsheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TimeSeriesSpreadsheet.Designer.cs">
+    <Compile Include="DataQuery\TimeSeriesSpreadsheet.Designer.cs">
       <DependentUpon>TimeSeriesSpreadsheet.cs</DependentUpon>
     </Compile>
     <Content Include="ThirdParty\PSCP.EXE">
@@ -635,10 +635,10 @@
     <EmbeddedResource Include="Reports\YakimaStatus.resx">
       <DependentUpon>YakimaStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SaveOptions.resx">
+    <EmbeddedResource Include="DataQuery\SaveOptions.resx">
       <DependentUpon>SaveOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShiftInput.resx">
+    <EmbeddedResource Include="Shifts\ShiftInput.resx">
       <DependentUpon>ShiftInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnowGG\SnowGG.resx">
@@ -662,7 +662,7 @@
     <EmbeddedResource Include="Stats\VolumeInRange.resx">
       <DependentUpon>VolumeInRange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TimeSeriesSpreadsheetSG.resx">
+    <EmbeddedResource Include="DataQuery\TimeSeriesSpreadsheetSG.resx">
       <DependentUpon>TimeSeriesSpreadsheetSG.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="..\..\..\..\..\utils\private\hydromet-tools-private.config">
@@ -956,7 +956,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Look\LookForm.resx" />
     <EmbeddedResource Include="Look\NewLook.resx" />
-    <EmbeddedResource Include="TimeSeriesSpreadsheet.resx">
+    <EmbeddedResource Include="DataQuery\TimeSeriesSpreadsheet.resx">
       <DependentUpon>TimeSeriesSpreadsheet.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="App.ico" />
@@ -968,7 +968,7 @@
     <EmbeddedResource Include="FcPlot\HydrometTeeChart.resx">
       <DependentUpon>HydrometTeeChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MonthlyCalculationPreview.resx">
+    <EmbeddedResource Include="DataQuery\MonthlyCalculationPreview.resx">
       <DependentUpon>MonthlyCalculationPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="About.resx">
@@ -999,10 +999,10 @@
     <EmbeddedResource Include="AgriMet\AgriMetTab.resx">
       <DependentUpon>AgriMetTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RatingTableTableViewer.resx">
+    <EmbeddedResource Include="Ratings\RatingTableTableViewer.resx">
       <DependentUpon>RatingTableTableViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TimeSeriesHydrographEditor.resx">
+    <EmbeddedResource Include="DataQuery\TimeSeriesHydrographEditor.resx">
       <DependentUpon>TimeSeriesHydrographEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1024,18 +1024,18 @@
     <EmbeddedResource Include="SnowGG\SelectBasin.resx">
       <DependentUpon>SelectBasin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TimeSeriesEditor.resx">
+    <EmbeddedResource Include="DataQuery\TimeSeriesEditor.resx">
       <DependentUpon>TimeSeriesEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStatus.resx">
+    <EmbeddedResource Include="Advanced\FormStatus.resx">
       <DependentUpon>FormStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RatingTableSelector.resx">
+    <EmbeddedResource Include="Ratings\RatingTableSelector.resx">
       <DependentUpon>RatingTableSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DateSelectorWaterYears.resx">
@@ -1046,20 +1046,20 @@
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTchartLicense.resx">
+    <EmbeddedResource Include="Advanced\FormTchartLicense.resx">
       <DependentUpon>FormTchartLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Import\ImportDaily.resx">
       <DependentUpon>ImportDaily.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Advanced\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RatingTableDisplay.resx">
+    <EmbeddedResource Include="Ratings\RatingTableDisplay.resx">
       <DependentUpon>RatingTableDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings.resx">
+    <EmbeddedResource Include="Advanced\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
