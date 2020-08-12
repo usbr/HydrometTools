@@ -202,7 +202,7 @@
             this.textBoxYear.Name = "textBoxYear";
             this.textBoxYear.Size = new System.Drawing.Size(52, 20);
             this.textBoxYear.TabIndex = 0;
-            this.textBoxYear.Text = "2000";
+            this.textBoxYear.Text = Reclamation.TimeSeries.Hydromet.HydrometDataUtility.T1Thirty.Year.ToString();//"2000";
             // 
             // textBoxCbtt
             // 
@@ -236,7 +236,7 @@
             this.textBoxEndYear.Name = "textBoxEndYear";
             this.textBoxEndYear.Size = new System.Drawing.Size(52, 20);
             this.textBoxEndYear.TabIndex = 31;
-            this.textBoxEndYear.Text = "2010";
+            this.textBoxEndYear.Text = Reclamation.TimeSeries.Hydromet.HydrometDataUtility.T2Thirty.Year.ToString();//"2010";
             // 
             // textBoxPcode
             // 

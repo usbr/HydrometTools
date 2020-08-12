@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange2 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
@@ -253,7 +253,7 @@
             this.textBoxWY2.Name = "textBoxWY2";
             this.textBoxWY2.Size = new System.Drawing.Size(54, 22);
             this.textBoxWY2.TabIndex = 5;
-            this.textBoxWY2.Text = "2010";
+            this.textBoxWY2.Text = Reclamation.TimeSeries.Hydromet.HydrometDataUtility.T2Thirty.Year.ToString();
             this.textBoxWY2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -273,7 +273,7 @@
             this.textBoxWY1.Name = "textBoxWY1";
             this.textBoxWY1.Size = new System.Drawing.Size(54, 22);
             this.textBoxWY1.TabIndex = 3;
-            this.textBoxWY1.Text = "1981";
+            this.textBoxWY1.Text = Reclamation.TimeSeries.Hydromet.HydrometDataUtility.T1Thirty.Year.ToString();
             this.textBoxWY1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // checkBoxAvg
@@ -398,7 +398,7 @@
             this.monthRangePicker1.BeginningMonth = 10;
             this.monthRangePicker1.Location = new System.Drawing.Point(509, 43);
             this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.monthRangePicker1.MonthDayRange = monthDayRange1;
+            this.monthRangePicker1.MonthDayRange = monthDayRange2;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(445, 43);
             this.monthRangePicker1.TabIndex = 1;
