@@ -124,9 +124,13 @@
     <value>126, 17</value>
   </metadata>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>The source code may be found on GitHub at https://github.com/usbr/HydrometTools. 
-
-Updated installers are also on GitHub at https://github.com/usbr/HydrometTools/releases
+    <value>The HydrometTools resources listed below can be found on GitHub:
+- source code: 
+github.com/usbr/HydrometTools. 
+- installers: 
+github.com/usbr/HydrometTools/releases
+- wiki guide: 
+github.com/usbr/HydrometTools/wiki
 
 Contact the developer via e-mail at jrocha@usbr.gov if you have any questions.</value>
   </data>
