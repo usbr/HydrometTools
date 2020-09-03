@@ -20,7 +20,8 @@ namespace HydrometTools.Stats
         {
             InitializeComponent();
 
-            var zg = new TimeSeriesZedGraph();
+            //var zg = new TimeSeriesZedGraph();
+            var zg = new TimeSeriesTeeChartGraph();
             view = new GraphExplorerView(zg);
 
             view.Parent = panel1;

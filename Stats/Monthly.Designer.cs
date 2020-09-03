@@ -202,7 +202,7 @@
             this.textBoxYear.Name = "textBoxYear";
             this.textBoxYear.Size = new System.Drawing.Size(52, 20);
             this.textBoxYear.TabIndex = 0;
-            this.textBoxYear.Text = Reclamation.TimeSeries.Hydromet.HydrometDataUtility.T1Thirty.Year.ToString();//"2000";
+            this.textBoxYear.Text = "1980";
             // 
             // textBoxCbtt
             // 
@@ -236,7 +236,7 @@
             this.textBoxEndYear.Name = "textBoxEndYear";
             this.textBoxEndYear.Size = new System.Drawing.Size(52, 20);
             this.textBoxEndYear.TabIndex = 31;
-            this.textBoxEndYear.Text = Reclamation.TimeSeries.Hydromet.HydrometDataUtility.T2Thirty.Year.ToString();//"2010";
+            this.textBoxEndYear.Text = "2010";
             // 
             // textBoxPcode
             // 
@@ -251,9 +251,9 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(242, 11);
+            this.panel1.Location = new System.Drawing.Point(242, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(499, 361);
+            this.panel1.Size = new System.Drawing.Size(521, 379);
             this.panel1.TabIndex = 40;
             // 
             // Monthly

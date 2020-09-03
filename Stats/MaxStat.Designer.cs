@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Reclamation.Core.MonthDayRange monthDayRange4 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange1 = new Reclamation.Core.MonthDayRange();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.multiWaterYearSelector1 = new HydrometTools.Stats.MultiWaterYearSelector();
+            this.monthDayRangePicker1 = new Reclamation.TimeSeries.Forms.MonthDayRangePicker();
             this.buttonGo = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.monthDayRangePicker1 = new Reclamation.TimeSeries.Forms.MonthDayRangePicker();
-            this.multiWaterYearSelector1 = new HydrometTools.Stats.MultiWaterYearSelector();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,25 @@
             this.groupBox1.TabIndex = 37;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listing of Max and MIN";
+            // 
+            // multiWaterYearSelector1
+            // 
+            this.multiWaterYearSelector1.Location = new System.Drawing.Point(15, 80);
+            this.multiWaterYearSelector1.Margin = new System.Windows.Forms.Padding(2);
+            this.multiWaterYearSelector1.Name = "multiWaterYearSelector1";
+            this.multiWaterYearSelector1.SetGroupBoxTitle = "compute multi year average";
+            this.multiWaterYearSelector1.Size = new System.Drawing.Size(212, 158);
+            this.multiWaterYearSelector1.TabIndex = 0;
+            // 
+            // monthDayRangePicker1
+            // 
+            this.monthDayRangePicker1.BeginningMonth = 10;
+            this.monthDayRangePicker1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.monthDayRangePicker1.Location = new System.Drawing.Point(9, 19);
+            this.monthDayRangePicker1.MonthDayRange = monthDayRange1;
+            this.monthDayRangePicker1.Name = "monthDayRangePicker1";
+            this.monthDayRangePicker1.Size = new System.Drawing.Size(157, 52);
+            this.monthDayRangePicker1.TabIndex = 0;
             // 
             // buttonGo
             // 
@@ -66,27 +85,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Location = new System.Drawing.Point(245, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(492, 341);
+            this.panel1.Size = new System.Drawing.Size(481, 331);
             this.panel1.TabIndex = 38;
-            // 
-            // monthDayRangePicker1
-            // 
-            this.monthDayRangePicker1.BeginningMonth = 10;
-            this.monthDayRangePicker1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monthDayRangePicker1.Location = new System.Drawing.Point(9, 19);
-            this.monthDayRangePicker1.MonthDayRange = monthDayRange4;
-            this.monthDayRangePicker1.Name = "monthDayRangePicker1";
-            this.monthDayRangePicker1.Size = new System.Drawing.Size(157, 52);
-            this.monthDayRangePicker1.TabIndex = 0;
-            // 
-            // multiWaterYearSelector1
-            // 
-            this.multiWaterYearSelector1.Location = new System.Drawing.Point(15, 80);
-            this.multiWaterYearSelector1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.multiWaterYearSelector1.Name = "multiWaterYearSelector1";
-            this.multiWaterYearSelector1.SetGroupBoxTitle = "compute multi year average";
-            this.multiWaterYearSelector1.Size = new System.Drawing.Size(212, 158);
-            this.multiWaterYearSelector1.TabIndex = 0;
             // 
             // MaxStat
             // 

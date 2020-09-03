@@ -24,7 +24,8 @@ namespace HydrometTools.Stats
                 yr += 1;
             this.textBoxCompareSingleYear.Text = yr.ToString();
 
-            var zg = new TimeSeriesZedGraph();
+            //var zg = new TimeSeriesZedGraph();
+            var zg = new TimeSeriesTeeChartGraph();
             view = new GraphExplorerView(zg);
 
             view.Parent = panel1;
