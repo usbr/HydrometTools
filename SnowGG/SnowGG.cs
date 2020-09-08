@@ -102,6 +102,7 @@ namespace HydrometTools.SnowGG
             try
             {
                 timeSeriesGraph1.AnnotationOnMouseMove = checkBoxAnnotate.Checked;
+                timeSeriesGraph1.AnnotationDateShift = !cySelected;
                 Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
                 string pcodeOrig = DeterminePcode();
