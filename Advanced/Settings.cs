@@ -37,6 +37,7 @@ namespace HydrometTools
         private Label label1;
         private Button buttonShowPassword;
         bool Ready = false;
+
 		public Settings(bool compilePublic = false)
 		{
             serverSelection1 = new Reclamation.TimeSeries.Forms.Hydromet.ServerSelection();

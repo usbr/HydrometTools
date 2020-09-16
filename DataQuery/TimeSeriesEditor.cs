@@ -1004,7 +1004,7 @@ namespace HydrometTools
                 //}
                 //else
                 // {// parameters from flat files.
-                if (NetworkUtility.Intranet)
+                if (NetworkUtility.Intranet && !Convert.ToBoolean(UserPreference.Lookup("CompilePublic")))
                     query = HydrometInfoUtility.ExpandQuery(comboBoxInputs.Text, m_interval, Database.DB());
                 else // at home 
                     query = HydrometInfoUtility.ExpandQuery(comboBoxInputs.Text, m_interval, null);

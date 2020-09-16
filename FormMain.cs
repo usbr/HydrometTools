@@ -59,7 +59,7 @@ namespace HydrometTools
         private TextBox textBox1;
         private RichTextBox richTextBox1;
 
-        private bool compilePublic = false;
+        private bool compilePublic = true;
 
         public FormMain()
         {
