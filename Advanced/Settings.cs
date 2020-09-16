@@ -36,6 +36,7 @@ namespace HydrometTools
         private GroupBox groupBox1;
         private Label label1;
         private Button buttonShowPassword;
+        private CheckBox checkBoxForceWebService;
         bool Ready = false;
 
 		public Settings(bool compilePublic = false)
@@ -54,6 +55,7 @@ namespace HydrometTools
                 this.tabControl1.Controls.Remove(tabPageAlarms);
                 this.tabControl1.Controls.Remove(tabPageLog);
                 this.tabControl1.Controls.Remove(tabPageNotifications);
+                this.checkBoxForceWebService.Checked = Convert.ToBoolean(UserPreference.Lookup("CompilePublic"));
             }
 		}
 
@@ -112,6 +114,7 @@ namespace HydrometTools
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonClearLog = new System.Windows.Forms.Button();
             this.tabPageAlarms = new System.Windows.Forms.TabPage();
+            this.checkBoxForceWebService = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -124,7 +127,7 @@ namespace HydrometTools
             // checkBoxHideStatus
             // 
             this.checkBoxHideStatus.AutoSize = true;
-            this.checkBoxHideStatus.Location = new System.Drawing.Point(7, 253);
+            this.checkBoxHideStatus.Location = new System.Drawing.Point(11, 65);
             this.checkBoxHideStatus.Name = "checkBoxHideStatus";
             this.checkBoxHideStatus.Size = new System.Drawing.Size(111, 17);
             this.checkBoxHideStatus.TabIndex = 25;
@@ -135,7 +138,7 @@ namespace HydrometTools
             // checkBoxCompute
             // 
             this.checkBoxCompute.AutoSize = true;
-            this.checkBoxCompute.Location = new System.Drawing.Point(12, 57);
+            this.checkBoxCompute.Location = new System.Drawing.Point(6, 42);
             this.checkBoxCompute.Name = "checkBoxCompute";
             this.checkBoxCompute.Size = new System.Drawing.Size(124, 17);
             this.checkBoxCompute.TabIndex = 26;
@@ -145,11 +148,12 @@ namespace HydrometTools
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBoxForceWebService);
             this.groupBox2.Controls.Add(this.checkBoxAdmin);
             this.groupBox2.Controls.Add(this.checkBoxCompute);
             this.groupBox2.Location = new System.Drawing.Point(305, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 101);
+            this.groupBox2.Size = new System.Drawing.Size(340, 101);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "advanced";
@@ -157,7 +161,7 @@ namespace HydrometTools
             // checkBoxAdmin
             // 
             this.checkBoxAdmin.AutoSize = true;
-            this.checkBoxAdmin.Location = new System.Drawing.Point(12, 30);
+            this.checkBoxAdmin.Location = new System.Drawing.Point(6, 19);
             this.checkBoxAdmin.Name = "checkBoxAdmin";
             this.checkBoxAdmin.Size = new System.Drawing.Size(164, 17);
             this.checkBoxAdmin.TabIndex = 27;
@@ -181,9 +185,10 @@ namespace HydrometTools
             // 
             this.groupBox3.Controls.Add(this.checkBoxAutoFlagDayfiles);
             this.groupBox3.Controls.Add(this.checkBoxMultipleYAxis);
-            this.groupBox3.Location = new System.Drawing.Point(305, 144);
+            this.groupBox3.Controls.Add(this.checkBoxHideStatus);
+            this.groupBox3.Location = new System.Drawing.Point(305, 123);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(383, 76);
+            this.groupBox3.Size = new System.Drawing.Size(340, 96);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "other";
@@ -218,7 +223,6 @@ namespace HydrometTools
             // 
             this.tabPageGeneral.Controls.Add(this.groupBox1);
             this.tabPageGeneral.Controls.Add(this.serverSelection1);
-            this.tabPageGeneral.Controls.Add(this.checkBoxHideStatus);
             this.tabPageGeneral.Controls.Add(this.groupBox3);
             this.tabPageGeneral.Controls.Add(this.groupBox2);
             this.tabPageGeneral.Location = new System.Drawing.Point(4, 22);
@@ -234,16 +238,16 @@ namespace HydrometTools
             this.groupBox1.Controls.Add(this.buttonShowPassword);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxDbPassword);
-            this.groupBox1.Location = new System.Drawing.Point(305, 227);
+            this.groupBox1.Location = new System.Drawing.Point(7, 253);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(361, 100);
+            this.groupBox1.Size = new System.Drawing.Size(293, 49);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "relational database";
             // 
             // buttonShowPassword
             // 
-            this.buttonShowPassword.Location = new System.Drawing.Point(265, 71);
+            this.buttonShowPassword.Location = new System.Drawing.Point(212, 13);
             this.buttonShowPassword.Name = "buttonShowPassword";
             this.buttonShowPassword.Size = new System.Drawing.Size(75, 23);
             this.buttonShowPassword.TabIndex = 42;
@@ -254,7 +258,7 @@ namespace HydrometTools
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 26);
+            this.label1.Location = new System.Drawing.Point(9, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 41;
@@ -262,10 +266,10 @@ namespace HydrometTools
             // 
             // textBoxDbPassword
             // 
-            this.textBoxDbPassword.Location = new System.Drawing.Point(9, 45);
+            this.textBoxDbPassword.Location = new System.Drawing.Point(67, 16);
             this.textBoxDbPassword.Name = "textBoxDbPassword";
             this.textBoxDbPassword.PasswordChar = '*';
-            this.textBoxDbPassword.Size = new System.Drawing.Size(275, 20);
+            this.textBoxDbPassword.Size = new System.Drawing.Size(139, 20);
             this.textBoxDbPassword.TabIndex = 40;
             this.textBoxDbPassword.TextChanged += new System.EventHandler(this.textBoxDbPassword_TextChanged);
             // 
@@ -338,6 +342,17 @@ namespace HydrometTools
             this.tabPageAlarms.Text = "alarms";
             this.tabPageAlarms.UseVisualStyleBackColor = true;
             // 
+            // checkBoxForceWebService
+            // 
+            this.checkBoxForceWebService.AutoSize = true;
+            this.checkBoxForceWebService.Location = new System.Drawing.Point(6, 65);
+            this.checkBoxForceWebService.Name = "checkBoxForceWebService";
+            this.checkBoxForceWebService.Size = new System.Drawing.Size(105, 17);
+            this.checkBoxForceWebService.TabIndex = 28;
+            this.checkBoxForceWebService.Text = "Use web-service";
+            this.checkBoxForceWebService.UseVisualStyleBackColor = true;
+            this.checkBoxForceWebService.CheckedChanged += new System.EventHandler(this.checkBoxForceWebService_CheckedChanged);
+            // 
             // Settings
             // 
             this.Controls.Add(this.tabControl1);
@@ -349,7 +364,6 @@ namespace HydrometTools
             this.groupBox3.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageGeneral.ResumeLayout(false);
-            this.tabPageGeneral.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPageLog.ResumeLayout(false);
@@ -513,7 +527,9 @@ namespace HydrometTools
             SaveUserPref();
         }
 
-        
-
-	}
+        private void checkBoxForceWebService_CheckedChanged(object sender, EventArgs e)
+        {
+            UserPreference.SetDefault("CompilePublic", this.checkBoxForceWebService.Checked.ToString(), true);
+        }
+    }
 }
