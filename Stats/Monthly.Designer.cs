@@ -198,7 +198,7 @@
             // 
             // textBoxYear
             // 
-            this.textBoxYear.Location = new System.Drawing.Point(9, 47);
+            this.textBoxYear.Location = new System.Drawing.Point(9, 48);
             this.textBoxYear.Name = "textBoxYear";
             this.textBoxYear.Size = new System.Drawing.Size(52, 20);
             this.textBoxYear.TabIndex = 0;

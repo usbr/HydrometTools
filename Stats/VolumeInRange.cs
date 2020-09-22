@@ -29,6 +29,8 @@ namespace HydrometTools.Stats
             view.BringToFront();
 
             this.textBoxRankedYear.Text = DateTime.Now.WaterYear().ToString();
+            this.textBoxYear.Text = HydrometDataUtility.T1Thirty.Year.ToString();
+            this.textBoxEndYear.Text = HydrometDataUtility.T2Thirty.Year.ToString();
         }
 
         private void buttonGo_Click(object sender, EventArgs e)

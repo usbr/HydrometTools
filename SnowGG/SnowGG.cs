@@ -80,6 +80,9 @@ namespace HydrometTools.SnowGG
             //}
             this.monthRangePicker1.MonthDayRange = new MonthDayRange(10, 1, 9, 30);
 
+            this.textBoxWY1.Text = HydrometDataUtility.T1Thirty.Year.ToString();
+            this.textBoxWY2.Text = HydrometDataUtility.T2Thirty.Year.ToString();
+
             //this.comboBoxPcode.SelectedIndex = 0;
             this.checkBoxGP.Visible = HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains;
         }

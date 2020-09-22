@@ -27,6 +27,9 @@ namespace HydrometTools.Stats
             view.Parent = panel1;
             view.Dock = DockStyle.Fill;
             view.BringToFront();
+
+            this.textBoxYear.Text = HydrometDataUtility.T1Thirty.Year.ToString();
+            this.textBoxEndYear.Text = HydrometDataUtility.T2Thirty.Year.ToString();
         }
 
         private void buttonGo_Click(object sender, EventArgs e)
