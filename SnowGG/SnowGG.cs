@@ -579,5 +579,27 @@ namespace HydrometTools.SnowGG
             CsvFile.WriteToCSV(this.timeSeriesGraph1.Series.ToDataTable(true), fn);
             System.Diagnostics.Process.Start(fn);
         }
+
+        private void buttonIsolateBoldYears_Click(object sender, EventArgs e)
+        {
+            var yearList = new List<Int32>();
+            for (int idx = 0; idx < this.timeSeriesGraph1.tChart1.Series.Count; idx++)
+            {
+                if (this.timeSeriesGraph1.tChart1.Series[idx] is Steema.TeeChart.Styles.Line)
+                {
+                    int currWidth = (this.timeSeriesGraph1.tChart1.Series[idx] as Steema.TeeChart.Styles.Line).LinePen.Width;
+                    int currYear;
+                    if (currWidth == 5 && Int32.TryParse(this.timeSeriesGraph1.tChart1.Series[idx].Title, out currYear))
+                    {
+                        yearList.Add(currYear);
+                    }
+                }
+            }
+            if (yearList.Count > 0)
+            {
+                yearSelector1.SelectedYears = yearList.ToArray();
+                this.buttonRefresh_Click(sender, e);
+            }
+        }
     }
 }
