@@ -618,6 +618,10 @@ namespace HydrometTools
 
         private void FormatCells(TimeInterval db)
         {
+            if (m_dataTable.Columns.Count == 0)
+            {
+                return;
+            }
             // Default format
             worksheet.UsedRange.Font.Color = SpreadsheetGear.Colors.Black;
             worksheet.Range["A:A"].Interior.Color = SpreadsheetGear.Colors.LightGray;
