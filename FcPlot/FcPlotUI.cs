@@ -434,6 +434,21 @@ namespace FcPlot
         }
 
 
+        public DateTime GetWyEnd(DateTime t)
+        {
+            var wyEnd = t;
+            if (t.Month >= 9)
+            {
+                wyEnd = new DateTime(t.Year + 1, 10, 30);
+            }
+            else
+            {
+                wyEnd = new DateTime(t.Year, 10, 30);
+            }
+            return wyEnd;
+        }
+
+
         private void linkLabelReport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 

@@ -97,10 +97,32 @@ namespace FcPlot
             toolTip1.SetToolTip(this.checkBoxUseCustomOutflow, "Checking this will allow you to use your own outflow schedule");
         }
 
+
+        private void buttonPlotEspData_Click(object sender, EventArgs e)
+        {
+            this.ui.GraphData(true);
+            this.checkBoxRedrawGraph.Checked = false;
+            this.checkBoxHideLegend.Checked = true;
+            foreach (string item in this.comboBoxEspTraces.Items)
+            {
+                int idxVal;
+                if (int.TryParse(item, out idxVal))
+                {
+                    int idxNum = comboBoxEspTraces.Items.IndexOf(idxVal.ToString());
+                    this.comboBoxEspTraces.SelectedIndex = idxNum;
+                    ui.hydrometChart1.PlotEsps(ui, pt, this);                    
+                }
+            }            
+            this.checkBoxRedrawGraph.Checked = true;
+            this.checkBoxHideLegend.Checked = false;
+        }
+
+
         private void Operate()
         {
             if (this.comboBoxEspTraces.SelectedItem.ToString().ToLower() == "cycle all")
             {
+                this.ui.GraphData(true);
                 this.checkBoxRedrawGraph.Checked = false;
                 this.checkBoxHideLegend.Checked = true;
                 foreach (string item in this.comboBoxEspTraces.Items)
@@ -149,6 +171,7 @@ namespace FcPlot
             this.textBoxRfcNode.Enabled = checkBoxUseCustomInflow.Checked;
             this.comboBoxEspDay.Enabled = checkBoxUseCustomInflow.Checked;
             this.buttonGetEspData.Enabled = checkBoxUseCustomInflow.Checked;
+            this.buttonPlotEspData.Enabled = checkBoxUseCustomInflow.Checked;
             this.comboBoxEspTraces.Enabled = checkBoxUseCustomInflow.Checked;
             this.dateTimePickerSimStart.Value = this.dateTimePickerSimStart.MaxDate;
             this.dateTimePickerSimStart.Enabled = !checkBoxUseCustomInflow.Checked;

@@ -298,6 +298,49 @@ namespace FcPlot
             Edit();
         }
 
+        private List<System.Drawing.Color> espColors = new List<Color> {
+            System.Drawing.Color.Green,
+            System.Drawing.Color.Purple,
+            System.Drawing.Color.Brown,
+            System.Drawing.Color.DarkCyan,
+            System.Drawing.Color.DarkGoldenrod,
+            System.Drawing.Color.DarkOrange,
+            System.Drawing.Color.DarkRed,
+            System.Drawing.Color.HotPink
+        };
+        private int espColorCounter = 0;
+
+        internal void PlotEsps(FcPlotUI ui, FloodControlPoint pt, FcOpsMenu opsUI)
+        {
+            opsUI.toolStripStatusLabel1.Text = "Plotting Esps...";
+
+            // Get required variables from the available resources
+            string inflowYear = opsUI.numericUpDownInflowYear.Value.ToString();            
+
+            var sItem = opsUI.comboBoxEspTraces.SelectedItem;
+            var selIndex = opsUI.yearList.IndexOf(sItem.ToString());
+            var s = opsUI.espList[selIndex - 1];
+            inflowYear = (sItem.ToString());
+
+            int yr = Convert.ToInt32(ui.textBoxWaterYear.Text);
+            DateTime t1 = new DateTime(), t2 = new DateTime();
+            ui.SetupDates(yr, ref t1, ref t2, false);
+            t2 = ui.GetWyEnd(t2);
+
+            var sInflow = new Reclamation.TimeSeries.Hydromet.HydrometDailySeries("", "");
+            var sInflowShifted = new Series();
+            sInflow.Table = s.Table;
+            sInflowShifted = Reclamation.TimeSeries.Math.ShiftToYear(sInflow, Convert.ToInt16(ui.textBoxWaterYear.Text) - 1);
+            sInflowShifted = sInflowShifted.Subset(t1, t2);
+            CreateSeries(espColors[espColorCounter], inflowYear + "-ESP Inflow", sInflowShifted, "right", true);
+            espColorCounter++;
+            if (espColorCounter >= espColors.Count)
+            {
+                espColorCounter = 0;
+            }
+            SetupTChartTools();
+        }
+
 
         /// <summary>
         /// Method to perform operations given an inflow and an outflow

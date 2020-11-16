@@ -249,6 +249,7 @@ namespace HydrometTools.SnowGG
             finally
             {
                 Cursor = Cursors.Default;
+                dataQueried = true;
             }
         }
 
@@ -603,6 +604,82 @@ namespace HydrometTools.SnowGG
                 yearSelector1.SelectedYears = yearList.ToArray();
                 this.buttonRefresh_Click(sender, e);
             }
+        }
+
+        private static SeriesList clusterSeriesList;
+        private static bool dataQueried = false;
+
+        private void buttonClusterAnalysis_Click(object sender, EventArgs e)
+        {
+            var seriesItems = textBoxMultiple.Text.Split(',');
+            var nSeries = seriesItems.Length;
+            if (nSeries < 2 || !dataQueried)
+            {
+                var result = MessageBox.Show("Query data for at least 2 series", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Build new series pairs
+            var sNew = new Steema.TeeChart.Styles.Points();
+            sNew.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Sphere;
+            sNew.Pointer.Color = System.Drawing.Color.Red;
+            sNew.Legend.Visible = false;
+            // Populate series pairs
+            var nYears = this.yearSelector1.SelectedYears.Length;
+            var selYears = this.yearSelector1.SelectedYears;
+            clusterSeriesList = new SeriesList();
+            for (int i = 0; i < selYears.Length; i++)
+            {
+                var s1 = this.timeSeriesGraph1.tChart1.Series[0 + i];
+                var s2 = this.timeSeriesGraph1.tChart1.Series[nYears + i];
+                if (i == 0)
+                {
+                    sNew.Add(s1.YValues.Value, s2.YValues.Value, false);
+
+                    // Add s1 and s2 to SeriesList
+                    var s = GetTimeSeriesFromTChartSeries(s1);
+                    clusterSeriesList.Add(s);
+                    s = GetTimeSeriesFromTChartSeries(s2);
+                    clusterSeriesList.Add(s);
+                }
+                else
+                {
+                    sNew.Add(s1.YValues.Value, s2.YValues.Value, true);
+
+                    // Append s1 and s2 to SeriesList
+                    var s = GetTimeSeriesFromTChartSeries(s1);
+                    clusterSeriesList[0].Add(s);
+                    s = GetTimeSeriesFromTChartSeries(s2);
+                    clusterSeriesList[1].Add(s);
+                }
+            }
+
+            // Rebuild chart
+            this.timeSeriesGraph1.tChart1.Series.RemoveAllSeries();
+            this.timeSeriesGraph1.tChart1.Series.Add(sNew);
+            this.timeSeriesGraph1.tChart1.Axes.Left.Title.Text = "";
+            this.timeSeriesGraph1.tChart1.Axes.Left.Automatic = true;
+            this.timeSeriesGraph1.tChart1.Axes.Bottom.Title.Text = "";
+            this.timeSeriesGraph1.tChart1.Axes.Bottom.Automatic = true;
+            this.timeSeriesGraph1.tChart1.Axes.Bottom.Increment = 0;//.Automatic = true;
+            this.timeSeriesGraph1.tChart1.Axes.Right.Visible = false;
+        }
+
+        private Series GetTimeSeriesFromTChartSeries(Steema.TeeChart.Styles.Series sIn)
+        {
+            var s = new Series();
+            s.Name = sIn.Title.Split(' ')[0].ToString() + "_" + sIn.Title.Split(' ')[1].ToString();
+            for (int j = 0; j < sIn.Count; j++)
+            {
+                var jthT = new DateTime(Convert.ToInt32(sIn.Title.Split(' ')[2].ToString()), DateTime.FromOADate(sIn[j].X).Month, DateTime.FromOADate(sIn[j].X).Day);
+                s.Add(jthT, sIn[j].Y);
+            }
+            return s;
+        }
+
+        private void textBoxMultiple_TextChanged(object sender, EventArgs e)
+        {
+            dataQueried = false;
         }
     }
 }

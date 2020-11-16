@@ -252,7 +252,13 @@ namespace Reclamation.TimeSeries.Hydromet
                 return "Error sending file to server '" + remoteFile_com + "'";
             }
 
-            string rval = SendFileAndRunCommand(user, password, tmpFile_com, unixRemoteFile_com, "@" + remoteFile_com);
+            var command = "@" + remoteFile_com;
+            if (HydrometInfoUtility.HydrometServerFromPreferences() == HydrometHost.GreatPlains)
+            {
+                command = "submit/nolog " + remoteFile_com;
+            }
+
+            string rval = SendFileAndRunCommand(user, password, tmpFile_com, unixRemoteFile_com, command);
             return rval;
         }
 
@@ -362,6 +368,8 @@ namespace Reclamation.TimeSeries.Hydromet
             tf.Add("$! username: " + un + " " + user);
             tf.Add("$! ----------------------------------");
             tf.Add("$interpret:== $SUTRON$:[rtcm]rtcm");
+            tf.Add("$define/user_mode sys$output nl:");
+            tf.Add("$define/user_mode sys$error nl:");
             HydrometHost svr = HydrometInfoUtility.HydrometServerFromPreferences();
             if (svr == HydrometHost.PN || svr == HydrometHost.Yakima || svr == HydrometHost.PNLinux)
             {

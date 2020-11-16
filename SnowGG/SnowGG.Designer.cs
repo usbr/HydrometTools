@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Reclamation.Core.MonthDayRange monthDayRange3 = new Reclamation.Core.MonthDayRange();
+            Reclamation.Core.MonthDayRange monthDayRange6 = new Reclamation.Core.MonthDayRange();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonIsolateBoldYears = new System.Windows.Forms.Button();
             this.checkBoxUseInstant = new System.Windows.Forms.CheckBox();
             this.checkBoxSumList = new System.Windows.Forms.CheckBox();
             this.buttonToggleMonths = new System.Windows.Forms.Button();
@@ -65,19 +65,31 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.linkLabelReport = new System.Windows.Forms.LinkLabel();
-            this.buttonIsolateBoldYears = new System.Windows.Forms.Button();
+            this.buttonClusterAnalysis = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.buttonIsolateBoldYears);
-            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.buttonClusterAnalysis);
             this.panel1.Controls.Add(this.checkBoxUseInstant);
             this.panel1.Controls.Add(this.checkBoxSumList);
             this.panel1.Controls.Add(this.buttonToggleMonths);
@@ -96,28 +108,26 @@
             this.panel1.Controls.Add(this.yearSelector1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(992, 153);
+            this.panel1.Size = new System.Drawing.Size(1116, 153);
             this.panel1.TabIndex = 0;
             // 
-            // groupBox2
+            // buttonIsolateBoldYears
             // 
-            this.groupBox2.Location = new System.Drawing.Point(722, 73);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.groupBox2.Size = new System.Drawing.Size(266, 68);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Aggregation";
-            this.groupBox2.Visible = false;
+            this.buttonIsolateBoldYears.Location = new System.Drawing.Point(649, 6);
+            this.buttonIsolateBoldYears.Name = "buttonIsolateBoldYears";
+            this.buttonIsolateBoldYears.Size = new System.Drawing.Size(113, 23);
+            this.buttonIsolateBoldYears.TabIndex = 21;
+            this.buttonIsolateBoldYears.Text = "Isolate Bold Years";
+            this.buttonIsolateBoldYears.UseVisualStyleBackColor = true;
+            this.buttonIsolateBoldYears.Click += new System.EventHandler(this.buttonIsolateBoldYears_Click);
             // 
             // checkBoxUseInstant
             // 
             this.checkBoxUseInstant.AutoSize = true;
             this.checkBoxUseInstant.Location = new System.Drawing.Point(158, 71);
-            this.checkBoxUseInstant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxUseInstant.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxUseInstant.Name = "checkBoxUseInstant";
             this.checkBoxUseInstant.Size = new System.Drawing.Size(106, 17);
             this.checkBoxUseInstant.TabIndex = 19;
@@ -130,7 +140,7 @@
             this.checkBoxSumList.AutoSize = true;
             this.checkBoxSumList.Enabled = false;
             this.checkBoxSumList.Location = new System.Drawing.Point(7, 117);
-            this.checkBoxSumList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxSumList.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxSumList.Name = "checkBoxSumList";
             this.checkBoxSumList.Size = new System.Drawing.Size(66, 17);
             this.checkBoxSumList.TabIndex = 18;
@@ -173,6 +183,7 @@
             this.textBoxMultiple.Size = new System.Drawing.Size(216, 20);
             this.textBoxMultiple.TabIndex = 15;
             this.textBoxMultiple.TabStop = false;
+            this.textBoxMultiple.TextChanged += new System.EventHandler(this.textBoxMultiple_TextChanged);
             // 
             // checkBoxDeltas
             // 
@@ -192,7 +203,7 @@
             this.checkBoxAnnotate.Checked = true;
             this.checkBoxAnnotate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxAnnotate.Location = new System.Drawing.Point(7, 71);
-            this.checkBoxAnnotate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxAnnotate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAnnotate.Name = "checkBoxAnnotate";
             this.checkBoxAnnotate.Size = new System.Drawing.Size(88, 17);
             this.checkBoxAnnotate.TabIndex = 13;
@@ -213,9 +224,9 @@
             this.groupBox1.Controls.Add(this.checkBoxMax);
             this.groupBox1.Controls.Add(this.checkBoxMin);
             this.groupBox1.Location = new System.Drawing.Point(382, 73);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(334, 68);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
@@ -244,7 +255,7 @@
             // textBoxPctls
             // 
             this.textBoxPctls.Location = new System.Drawing.Point(230, 42);
-            this.textBoxPctls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPctls.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPctls.Name = "textBoxPctls";
             this.textBoxPctls.Size = new System.Drawing.Size(92, 20);
             this.textBoxPctls.TabIndex = 7;
@@ -255,7 +266,7 @@
             // 
             this.checkBoxPctls.AutoSize = true;
             this.checkBoxPctls.Location = new System.Drawing.Point(155, 43);
-            this.checkBoxPctls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPctls.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPctls.Name = "checkBoxPctls";
             this.checkBoxPctls.Size = new System.Drawing.Size(78, 17);
             this.checkBoxPctls.TabIndex = 6;
@@ -266,7 +277,7 @@
             // textBoxWY2
             // 
             this.textBoxWY2.Location = new System.Drawing.Point(104, 17);
-            this.textBoxWY2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxWY2.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxWY2.Name = "textBoxWY2";
             this.textBoxWY2.Size = new System.Drawing.Size(42, 20);
             this.textBoxWY2.TabIndex = 5;
@@ -287,7 +298,7 @@
             // textBoxWY1
             // 
             this.textBoxWY1.Location = new System.Drawing.Point(37, 17);
-            this.textBoxWY1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxWY1.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxWY1.Name = "textBoxWY1";
             this.textBoxWY1.Size = new System.Drawing.Size(42, 20);
             this.textBoxWY1.TabIndex = 3;
@@ -299,7 +310,7 @@
             // 
             this.checkBoxAvg.AutoSize = true;
             this.checkBoxAvg.Location = new System.Drawing.Point(12, 43);
-            this.checkBoxAvg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxAvg.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAvg.Name = "checkBoxAvg";
             this.checkBoxAvg.Size = new System.Drawing.Size(45, 17);
             this.checkBoxAvg.TabIndex = 2;
@@ -311,7 +322,7 @@
             // 
             this.checkBoxMax.AutoSize = true;
             this.checkBoxMax.Location = new System.Drawing.Point(60, 42);
-            this.checkBoxMax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxMax.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxMax.Name = "checkBoxMax";
             this.checkBoxMax.Size = new System.Drawing.Size(46, 17);
             this.checkBoxMax.TabIndex = 1;
@@ -323,7 +334,7 @@
             // 
             this.checkBoxMin.AutoSize = true;
             this.checkBoxMin.Location = new System.Drawing.Point(109, 42);
-            this.checkBoxMin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxMin.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxMin.Name = "checkBoxMin";
             this.checkBoxMin.Size = new System.Drawing.Size(43, 17);
             this.checkBoxMin.TabIndex = 0;
@@ -335,7 +346,7 @@
             // 
             this.checkBoxGP.AutoSize = true;
             this.checkBoxGP.Location = new System.Drawing.Point(158, 95);
-            this.checkBoxGP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxGP.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxGP.Name = "checkBoxGP";
             this.checkBoxGP.Size = new System.Drawing.Size(101, 17);
             this.checkBoxGP.TabIndex = 10;
@@ -347,7 +358,7 @@
             // buttonNext
             // 
             this.buttonNext.Location = new System.Drawing.Point(304, 12);
-            this.buttonNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonNext.Margin = new System.Windows.Forms.Padding(4);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(69, 19);
             this.buttonNext.TabIndex = 8;
@@ -362,7 +373,7 @@
             this.buttonSelectGroup.AutoEllipsis = true;
             this.buttonSelectGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonSelectGroup.Location = new System.Drawing.Point(7, 13);
-            this.buttonSelectGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSelectGroup.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSelectGroup.Name = "buttonSelectGroup";
             this.buttonSelectGroup.Size = new System.Drawing.Size(70, 19);
             this.buttonSelectGroup.TabIndex = 7;
@@ -376,7 +387,7 @@
             // 
             this.comboBoxCbtt.FormattingEnabled = true;
             this.comboBoxCbtt.Location = new System.Drawing.Point(82, 13);
-            this.comboBoxCbtt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxCbtt.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxCbtt.Name = "comboBoxCbtt";
             this.comboBoxCbtt.Size = new System.Drawing.Size(104, 21);
             this.comboBoxCbtt.TabIndex = 2;
@@ -390,7 +401,7 @@
             this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRefresh.ForeColor = System.Drawing.Color.ForestGreen;
             this.buttonRefresh.Location = new System.Drawing.Point(304, 42);
-            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(69, 54);
             this.buttonRefresh.TabIndex = 5;
@@ -410,7 +421,7 @@
             "QD",
             "QU"});
             this.comboBoxPcode.Location = new System.Drawing.Point(193, 13);
-            this.comboBoxPcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxPcode.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxPcode.Name = "comboBoxPcode";
             this.comboBoxPcode.Size = new System.Drawing.Size(104, 21);
             this.comboBoxPcode.TabIndex = 4;
@@ -422,8 +433,8 @@
             this.monthRangePicker1.AutoSize = true;
             this.monthRangePicker1.BeginningMonth = 10;
             this.monthRangePicker1.Location = new System.Drawing.Point(382, 35);
-            this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.monthRangePicker1.MonthDayRange = monthDayRange3;
+            this.monthRangePicker1.Margin = new System.Windows.Forms.Padding(5);
+            this.monthRangePicker1.MonthDayRange = monthDayRange6;
             this.monthRangePicker1.Name = "monthRangePicker1";
             this.monthRangePicker1.Size = new System.Drawing.Size(650, 68);
             this.monthRangePicker1.TabIndex = 1;
@@ -432,7 +443,7 @@
             // yearSelector1
             // 
             this.yearSelector1.Location = new System.Drawing.Point(382, 7);
-            this.yearSelector1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.yearSelector1.Margin = new System.Windows.Forms.Padding(5);
             this.yearSelector1.Name = "yearSelector1";
             this.yearSelector1.SelectedYears = new int[] {
         2001,
@@ -451,7 +462,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(990, 435);
+            this.tabControl1.Size = new System.Drawing.Size(1114, 435);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.TabStop = false;
             // 
@@ -461,7 +472,7 @@
             this.tabPageChart.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabPageChart.Name = "tabPageChart";
             this.tabPageChart.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPageChart.Size = new System.Drawing.Size(982, 409);
+            this.tabPageChart.Size = new System.Drawing.Size(1106, 409);
             this.tabPageChart.TabIndex = 1;
             this.tabPageChart.Text = "Chart";
             this.tabPageChart.UseVisualStyleBackColor = true;
@@ -515,15 +526,88 @@
             this.linkLabelReport.Visible = false;
             this.linkLabelReport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelReport_LinkClicked);
             // 
-            // buttonIsolateBoldYears
+            // buttonClusterAnalysis
             // 
-            this.buttonIsolateBoldYears.Location = new System.Drawing.Point(649, 6);
-            this.buttonIsolateBoldYears.Name = "buttonIsolateBoldYears";
-            this.buttonIsolateBoldYears.Size = new System.Drawing.Size(113, 23);
-            this.buttonIsolateBoldYears.TabIndex = 21;
-            this.buttonIsolateBoldYears.Text = "Isolate Bold Years";
-            this.buttonIsolateBoldYears.UseVisualStyleBackColor = true;
-            this.buttonIsolateBoldYears.Click += new System.EventHandler(this.buttonIsolateBoldYears_Click);
+            this.buttonClusterAnalysis.Location = new System.Drawing.Point(769, 7);
+            this.buttonClusterAnalysis.Name = "buttonClusterAnalysis";
+            this.buttonClusterAnalysis.Size = new System.Drawing.Size(111, 27);
+            this.buttonClusterAnalysis.TabIndex = 22;
+            this.buttonClusterAnalysis.Text = "Cluster Analysis";
+            this.toolTip1.SetToolTip(this.buttonClusterAnalysis, "Query at least 2 datasets to perform a cluster analysis");
+            this.buttonClusterAnalysis.UseVisualStyleBackColor = true;
+            this.buttonClusterAnalysis.Click += new System.EventHandler(this.buttonClusterAnalysis_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.trackBar2);
+            this.panel3.Controls.Add(this.trackBar1);
+            this.panel3.Location = new System.Drawing.Point(769, 40);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(308, 101);
+            this.panel3.TabIndex = 23;
+            this.panel3.Visible = false;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(144, 23);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(117, 45);
+            this.trackBar1.TabIndex = 23;
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.Location = new System.Drawing.Point(144, 61);
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(117, 45);
+            this.trackBar2.TabIndex = 24;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 2);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Data";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(74, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Tolerance";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(141, 2);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Target";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(77, 26);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(50, 20);
+            this.textBox1.TabIndex = 28;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(77, 61);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(50, 20);
+            this.textBox2.TabIndex = 29;
             // 
             // SnowGG
             // 
@@ -532,7 +616,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "SnowGG";
-            this.Size = new System.Drawing.Size(992, 592);
+            this.Size = new System.Drawing.Size(1116, 592);
             this.Load += new System.EventHandler(this.SnowGG_Load);
             this.VisibleChanged += new System.EventHandler(this.SnowGG_VisibleChanged);
             this.panel1.ResumeLayout(false);
@@ -544,6 +628,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -585,7 +673,15 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.LinkLabel linkLabelReport;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonIsolateBoldYears;
+        private System.Windows.Forms.Button buttonClusterAnalysis;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
