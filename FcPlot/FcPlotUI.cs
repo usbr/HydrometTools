@@ -254,6 +254,8 @@ namespace FcPlot
                                 if (i < aColors.Length)
                                     c = aColors[i];
                                 hydrometChart1.CreateTarget(c, s.Name, s, "left");
+                                // Add target to datatable
+                                residForecast.AddColumnToReportTable(s);
                             }
                         }
                     }
